@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Team & Sponsors – White + Gold</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    /* ——— Committees & Contact cards ——— */
+.info-grid{
+  max-width:820px;
+  margin:34px auto 0;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+}
+@media (max-width:800px){ .info-grid{ grid-template-columns:1fr; } }
+
+.info-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:14px;
+  box-shadow:var(--shadow);
+  padding:18px 20px;
+  text-align:left;
+}
+
+.info-card h3{
+  margin:0 0 10px;
+  font-size:20px;
+  color:var(--accent);
+  letter-spacing:.2px;
+}
+
+.info-card ul{ margin:0; padding:0; list-style:none; }
+.info-card li{
+  position:relative;
+  padding:8px 0 8px 22px;
+  color:#2d2f36;
+}
+.info-card li::before{
+  content:"";
+  position:absolute;
+  left:6px; top:12px;
+  width:8px; height:8px; border-radius:50%;
+  background:linear-gradient(180deg,var(--accent),var(--accent-2));
+  opacity:.85;
+}
+
+.info-card p{ margin:0 0 6px; line-height:1.7; }
+.info-card.contact a{
+  color:inherit;                    /* no blue */
+  text-decoration:none;             /* no underline */
+  border-bottom:1px dashed rgba(0,0,0,.25);
+}
+.info-card.contact a:hover{
+  color:var(--accent);
+  border-bottom-color:var(--accent);
+}
+
+    :root{
+      /* ===== White + Gold theme ===== */
+      --bg:#ffffff;
+      --card:#ffffff;
+      --ink:#141414;
+      --muted:#5f6573;
+      --accent:#c9a646;      /* gold */
+      --accent-2:#e6c463;
+      --radius:18px;
+      --ring: rgba(201,166,70,.28);
+      --maxw:1200px;
+      --line:#e8e8e8;
+      --shadow:0 10px 28px rgba(0,0,0,.08);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(1200px 360px at 12% -10%, rgba(201,166,70,.08), transparent 60%),
+        radial-gradient(900px 320px at 90% 110%, rgba(201,166,70,.06), transparent 60%),
+        var(--bg);
+      color:var(--ink);
+    }
+    .wrap{max-width:var(--maxw);margin:auto;padding:40px 20px 80px}
+
+    .title{font-size:clamp(28px,4vw,44px);margin:0 0 8px;font-weight:800;letter-spacing:.2px;color:var(--accent)}
+    .subtitle{margin:0 0 26px;color:var(--muted)}
+
+    /* ===== Member Layout ===== */
+    .member{
+      display:grid;grid-template-columns: 1.1fr 1.3fr;gap:42px;align-items:center;margin:56px 0;padding:24px;border-radius:var(--radius);
+      background: linear-gradient(180deg, rgba(201,166,70,.08), transparent 45%), var(--card);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+    }
+    .member.reverse{grid-template-columns:1.3fr 1.1fr;}
+
+    /* framed image with animated gold stroke */
+    .frame{position:relative;border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+    .frame img{display:block;width:100%;height:auto}
+    .frame:before{
+      content:"";position:absolute;inset:-2px;border-radius:18px;padding:2px;
+      background:linear-gradient(130deg, var(--accent), transparent 25%, transparent 75%, var(--accent-2));
+      -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      animation:borderflow 6s linear infinite;
+    }
+    @keyframes borderflow{0%{filter:hue-rotate(0)}100%{filter:hue-rotate(360deg)}}
+
+    /* content block */
+    .member h3{margin:0 0 6px;font-size:clamp(22px,3vw,34px);color:var(--accent);font-weight:800}
+    .member .role{margin:0 0 16px;font-weight:700;color:#8b6a1e}
+    .member p{margin:0 0 12px;line-height:1.75;color:#2d2f36}
+
+    /* micro chips */
+    .chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 18px}
+    .chip{font-size:12px;border:1px solid var(--ring);color:#6e571d;border-radius:999px;padding:6px 10px;background:rgba(201,166,70,.12)}
+
+    /* ===== Scroll reveal ===== */
+    .reveal{opacity:0;transform:translateY(22px) scale(.985);transition:opacity .8s ease, transform .8s ease}
+    .reveal.show{opacity:1;transform:none}
+
+    /* ===== Sponsors block ===== */
+    .sponsors{margin:80px auto 0;text-align:center}
+    .sponsors h2{color:var(--accent);font-size:clamp(24px,3vw,36px)}
+    .tablewrap{
+      max-width:720px;margin:18px auto 0;border-radius:14px;overflow:hidden;
+      border:1px solid var(--line);box-shadow:var(--shadow);background:#fff
+    }
+    table{width:100%;border-collapse:separate;border-spacing:0;background:#fff}
+    thead th{
+      background:rgba(201,166,70,.12);color:#7e621d;padding:12px 14px;
+      text-transform:uppercase;font-size:12px;letter-spacing:.06em
+    }
+    td{padding:12px 14px;border-top:1px solid var(--line);color:#2d2f36}
+    td:nth-child(1){text-align:left}
+    td:nth-child(n+2){text-align:center}
+    tfoot td{font-weight:800;color:#1d1f25}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .member, .member.reverse{grid-template-columns:1fr;}
+      .frame{max-width:520px;margin:auto}
+    }
+
+    /* ===== NAVBAR (light) ===== */
+    .nx-navbar{
+      position: sticky; top: 0; z-index: 9999;
+      background:#fff;
+      border-bottom:1px solid var(--line);
+      box-shadow:0 6px 18px rgba(0,0,0,.06);
+    }
+    .nx-nav-inner{max-width: 1200px;margin: 0 auto;padding: 14px 20px;display: flex;align-items: center;gap: 18px;}
+    .nx-brand{ display:flex; align-items:center; gap:10px; color:var(--ink); text-decoration:none; }
+    .nx-logo{ height:36px; width:auto; display:block; }
+    .nx-logo2{
+      height:30px; width:auto; display:block; object-fit:contain; margin-left:10px;
+    }
+    .nx-tag{ font-size:12px; color:var(--muted); }
+    .nx-grow{ flex:1; }
+
+    .nx-menu{ display:flex; align-items:center; gap:26px; }
+    .nx-item{ position:relative; }
+    .nx-link{
+      font-weight:600; color: var(--muted); text-decoration: none; position:relative;
+    }
+    .nx-link:after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--accent);transform:scaleX(0);transition:.25s}
+    .nx-link:hover{ color: var(--accent); }
+    .nx-link:hover:after{transform:scaleX(1);}
+
+    .nx-drop{
+      position: absolute; top: calc(100% + 10px); left: 0; min-width: 240px;
+      background: #fff; border: 1px solid var(--line);
+      border-radius: 12px; padding: 8px;
+      box-shadow: 0 12px 26px rgba(0,0,0,.08);
+      display: none;
+    }
+    .nx-drop a{ display:block; color: var(--ink); text-decoration:none; padding: 8px 10px; border-radius: 8px; }
+    .nx-drop a:hover{ background: #f6f6f6; color: var(--accent); }
+
+    @media (min-width:1025px){
+      .nx-item:hover > .nx-drop { display:block; }
+      .nx-toggle{ display:none; }
+    }
+    @media (min-width:1025px){ .nx-menu{display:flex} }
+
+    .nx-cta{
+      background:var(--accent); color:#1b1b1b; border:none; padding:10px 14px;
+      border-radius:12px; font-weight:700; cursor:pointer;
+    }
+
+    /* ===== Footer (site nav) ===== */
+    .nx-footer{margin-top:60px;background:#f7f7f7;border-top:1px solid var(--line);color:var(--muted)}
+    .nx-foot-wrap{max-width:1200px;margin:0 auto;padding:48px 20px 28px}
+    .nx-foot-top{display:flex;align-items:center;justify-content:space-between;gap:18px;padding-bottom:22px;border-bottom:1px solid var(--line)}
+    .nx-foot-brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink)}
+    .nx-foot-logo{height:36px;width:auto}
+    .nx-foot-tag{font-size:13px;color:var(--muted)}
+    .nx-foot-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px;padding:26px 0 6px}
+    @media(max-width:900px){.nx-foot-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:540px){.nx-foot-grid{grid-template-columns:1fr}}
+    .nx-foot-col h4{margin:0 0 12px;color:var(--accent);font-size:15px}
+    .nx-foot-col a{display:block;color:var(--ink);text-decoration:none;opacity:.9;padding:7px 0;font-size:14px}
+    .nx-foot-col a:hover{opacity:1;color:var(--accent)}
+    .nx-foot-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+  </style>
+</head>
+<body>
+  <!-- ========== NAVBAR ========== -->
+<header class="nx-navbar">
+  <div class="nx-nav-inner">
+    <a class="nx-brand" href="#">
+      <!-- main logo -->
+      <img class="nx-logo" src="stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
+      <!-- second/partner logo -->
+      <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner Logo">
+    </a>
+
+    <div class="nx-grow"></div>
+
+    <nav class="nx-menu" id="nxMenu">
+      <!-- WHY US -->
+      <div class="nx-item">
+        <a class="nx-link" href="#">Why Us</a>
+        <div class="nx-drop">
+          <a href="about.html">About US</a>
+          <a href="BOARD of directors.html">Board of Directors / Management</a>
+          <a href="Mission.html">Mission / Vision</a>
+          <a href="associated companies.html">Associated Companies</a>
+          <a href="Ncb auditor details .html">Auditors / Legal Advisors</a>
+          <a href="services.html">Services</a>
+          <a href="Registered agents..html">Registered Agents</a>
+        </div>
+      </div>
+
+      <!-- EDUCATION -->
+      <div class="nx-item">
+        <a class="nx-link" href="#">Education</a>
+        <div class="nx-drop">
+          <a href="New to trading.html">New to Trading</a>
+          <a href="Investorguid.html">Investor Guide</a>
+          <a href="Glossary.html">Glossary</a>
+        </div>
+      </div>
+
+      <!-- OPEN ACCOUNT -->
+      <div class="nx-item">
+        <a class="nx-link" href="#">Open Account</a>
+        <div class="nx-drop">
+          <a href="Rda.html">Roshan Digital Account (RDA)</a>
+          <a href="Acoocint opening.html">Open Digital Account</a>
+          <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
+        </div>
+      </div>
+
+      <!-- DOWNLOADS -->
+      <div class="nx-item">
+        <a class="nx-link" href="#">Downloads</a>
+        <div class="nx-drop">
+          <a href="Forms.html">Forms</a>
+          <a href="software.html">Software</a>
+        </div>
+      </div>
+
+      <!-- SUPPORT -->
+      <div class="nx-item">
+        <a class="nx-link" href="#">Support</a>
+        <div class="nx-drop">
+          <a href="investor complaint.html">Investor Complaint</a>
+          <a href="Annaual half yearly.html">Annual / Half yearly / Quarterly Financial Statements</a>
+          <a href="Auditor.html">Statutory Auditor Details</a>
+          <a href="Ncb auditor details .html">NCB Auditor Details</a>
+          <a href="KYC poslicy.html">CDD / KYC Policy</a>
+          <a href="Pending investor complaun.html">Pending Investor Complaints</a>
+          <a href="Penal action.html">Details of Penal Action</a>
+          <a href="Secp complaint.html">SECP Complaint</a>
+          <a href="psx complaint.html">PSX Complaint</a>
+          <a href="UIs of NICCPL.html">UIS Services of NCCPL</a>
+          <a href="Eservices By CDC.html">EServices by CDC</a>
+        </div>
+      </div>
+    </nav>
+
+    <button class="nx-cta">OPEN AN ACCOUNT</button>
+    <button class="nx-toggle" aria-label="Toggle menu" aria-controls="nxMenu" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+  <main class="wrap">
+    <h1 class="title">Leadership</h1>
+    <p class="subtitle">Meet the people steering the vision and execution.</p>
+
+    <!-- Member 1 (image left) -->
+    <section class="member reveal" aria-label="Faysal (Faisal) Dawood">
+      <figure class="frame">
+        <!-- Replace with actual image path -->
+        <img src="faisal-dawood.jpg" alt="Faisal Dawood portrait"/>
+      </figure>
+      <div>
+        <h3>Mr. Faysal (Faisal) Dawood</h3>
+        <div class="role">Proposed CEO</div>
+        <div class="chips">
+          <span class="chip">20+ yrs capital markets</span>
+          <span class="chip">Digital Strategy</span>
+          <span class="chip">Ops & Compliance</span>
+        </div>
+        <p>Faysal Dawood is a seasoned professional with over 20 years of experience in Pakistan’s capital markets. His last assignment was as Head of Online at AKD Securities Ltd., where he led the company’s digital strategy, managing its website, mobile app, and online channels to deliver secure, user-friendly, and compliant trading experiences.</p>
+        <p>Throughout his career at AKD Securities since 2004, he has held key roles across operations, customer service, problem resolution, and account management—driving process improvements, leading change, and championing service excellence at every touch point.</p>
+        <p>With expertise in regulatory coordination, call center technology, internal audit, and risk management, Faysal is known for operational efficiency and customer focus.</p>
+      </div>
+    </section>
+
+    <!-- Member 2 (image right) -->
+    <section class="member reverse reveal" aria-label="Salman Hussain">
+      <div>
+        <h3>Mr. Salman Hussain</h3>
+        <div class="role">Proposed Sponsor / Director</div>
+        <div class="chips">
+          <span class="chip">16+ yrs investor</span>
+          <span class="chip">Equity Markets</span>
+          <span class="chip">Portfolio Mindset</span>
+        </div>
+        <p>Mr. Salman Hussain is a seasoned investor and finance professional with over 16 years of experience in Pakistan’s capital markets. He has maintained an equity trading account with AKD Securities Limited since March 25, 2008 and actively engages in portfolio management.</p>
+        <p>As of May 22, 2025, his equity balance stood at over PKR 21.44 million, reflecting depth and commitment to capital markets participation. He holds an MS in Management Sciences from Abdul Wali Khan University, Mardan (session 2012–2014).</p>
+        <p>Mr. Hussain is proposed sponsor and director in the Company holding <strong>1,700,000 ordinary shares</strong>.</p>
+      </div>
+      <figure class="frame">
+        <!-- Replace with actual image path -->
+        <img src="salman-hussain.jpg" alt="Salman Hussain portrait"/>
+      </figure>
+    </section>
+
+    <!-- Member 3 (image left) -->
+    <section class="member reveal" aria-label="Muhammad Usman Sajid">
+      <figure class="frame">
+        <!-- Replace with actual image path -->
+        <img src="usman-sajid.jpg" alt="Muhammad Usman Sajid portrait"/>
+      </figure>
+      <div>
+        <h3>Mr. Muhammad Usman Sajid</h3>
+        <div class="role">Proposed Director / Compliance Officer</div>
+        <div class="chips">
+          <span class="chip">8+ yrs capital markets</span>
+          <span class="chip">800+ equity accounts</span>
+          <span class="chip">IFMP Certified</span>
+        </div>
+        <p>Mr. Sajid brings over eight years of diversified experience across leading brokerage houses (AKD Securities Limited and Market 786 (Pvt.) Ltd.). He successfully opened and managed 800+ equity accounts (cumulative portfolio &gt; PKR 1.4 billion), 25 mutual fund accounts (~PKR 950 million), and 30 commodity accounts (~PKR 30 million), handling end-to-end client service, administration, and portfolio support.</p>
+        <p><strong>Certifications (IFMP & others):</strong> Stock Brokers Certification (SBC), Mutual Fund Distributor’s Certification (MFDC), Fixed Income Securities Certification (FISC), Financial Derivatives Traders’ Certification (FDTC), Pakistan Market Regulations Certification (PMRC), Financial Advisors Certification (FAC), plus certifications in Taxation Laws, Digital Marketing, QuickBooks & E-Commerce Management.</p>
+        <p>He holds an M.Com. from The Islamia University of Bahawalpur with a focus on Financial Management, Investment Analysis, Corporate Finance, and Accounting.</p>
+      </div>
+    </section>
+
+    <!-- ===== Sponsors / Shareholding Pattern ===== -->
+    <section class="sponsors reveal" aria-label="Sponsors and Shareholding">
+      <h2>Details of Sponsors along with Shareholding Pattern of the Company</h2>
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Name of Sponsors</th>
+              <th>Number of Shares Held</th>
+              <th>Percentage</th>
+            </tr>
+          </thead>
+          <tbody id="sponsorBody">
+            <!-- Keep only the rows you know. Add more rows later; the script will auto-recalculate. -->
+            <tr data-shares="1700000">
+              <td>Mr. Salman Hussain</td>
+              <td class="num">1,700,000</td>
+              <td class="pct"></td>
+            </tr>
+            <!-- Example placeholder for future addition:
+            <tr data-shares="100000">
+              <td>Other Sponsor</td>
+              <td class="num">100,000</td>
+              <td class="pct"></td>
+            </tr>
+            -->
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>Total</td>
+              <td id="totalShares">—</td>
+              <td id="totalPct">100%</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+<section class="info-grid">
+  <div class="info-card">
+    <h3>Committees & Roles</h3>
+    <ul>
+      <li><strong>Audit Committee:</strong> Mr. Salman Hussain (Chairperson), Mr. Muhammad Usman Sajid (Member)</li>
+      <li><strong>Compliance Officer:</strong> Mr. Muhammad Usman Sajid</li>
+      <li><strong>Management Rating:</strong> Business Judiciary Rating BFR4++</li>
+    </ul>
+  </div>
+
+  <div class="info-card contact">
+    <h3>Contact Information</h3>
+    <p>Office No. 6, 4th Floor, Mall of KPK,</p>
+    <p>University Road, Jahangir Abad, Peshawar</p>
+    <p>Mobile: <a href="tel:+923158706976">0315-8706976</a> (Salman Hussain)</p>
+  </div>
+</section>
+
+  </main>
+
+<!-- ========== FOOTER ========== -->
+<footer class="nx-footer">
+  <div class="nx-foot-wrap">
+    <div class="nx-foot-top">
+      <a class="nx-foot-brand" href="index.html">
+       <!-- main logo -->
+      <img class="nx-logo" src="stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
+      <!-- second/partner logo -->
+      <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner Logo">
+      </a>
+    </div>
+
+    <div class="nx-foot-grid">
+      <div class="nx-foot-col">
+        <h4>WHY US</h4>
+        <a href="about.html">About Us</a>
+        <a href="BOARD of directors.html">Board / Management</a>
+        <a href="Mission.html">Mission & Vision</a>
+      </div>
+      <div class="nx-foot-col">
+        <h4>EDUCATION</h4>
+        <a href="New to trading.html">New to Trading</a>
+        <a href="Investorguid.html">Investor Guide</a>
+        <a href="Glossary.html">Glossary</a>
+      </div>
+      <div class="nx-foot-col">
+        <h4>ACCOUNT</h4>
+        <a href="Rda.html">Roshan Digital Account</a>
+        <a href="Acoocint opening.html">Open Digital Account</a>
+        <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
+      </div>
+      <div class="nx-foot-col">
+        <h4>CONTACT</h4>
+        <a href="mailto:info@stocxinvest.com">info@stocxinvest.com</a>
+        <a href="tel:+923162288686">+92 316 2288686</a>
+        <a href="#">Karachi, Pakistan</a>
+      </div>
+    </div>
+
+    <div class="nx-foot-bottom">
+      <span>© <script>document.write(new Date().getFullYear())</script> StocX Invest</span>
+      <span><a href="#" style="color:var(--muted);text-decoration:none">Privacy</a> ·
+            <a href="#" style="color:var(--muted);text-decoration:none">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+  <script>
+    // simple IntersectionObserver reveal
+    (function(){
+      const io = new IntersectionObserver((entries)=>{
+        for (const e of entries){
+          if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }
+        }
+      }, {threshold:.15});
+      document.querySelectorAll('.reveal').forEach(n=>io.observe(n));
+    })();
+  </script>
+
+  <script>
+  // Mobile menu + dropdown toggles
+  (function(){
+    const menu = document.getElementById('nxMenu');
+    const toggle = document.querySelector('.nx-toggle');
+
+    if (toggle && menu){
+      // default mobile: hide menu
+      const mq = window.matchMedia('(max-width:1024px)');
+      const apply = () => { if(mq.matches){ menu.style.display='none'; } else { menu.style.display='flex'; } };
+      apply(); mq.addEventListener('change', apply);
+
+      toggle.addEventListener('click', () => {
+        const open = getComputedStyle(menu).display === 'none';
+        menu.style.display = open ? 'block' : 'none';
+        toggle.setAttribute('aria-expanded', String(open));
+      });
+    }
+
+    // tap to open submenus on mobile
+    document.querySelectorAll('.nx-item > .nx-link').forEach(link=>{
+      link.addEventListener('click',(e)=>{
+        const isMobile = window.matchMedia('(max-width:1024px)').matches;
+        const drop = link.nextElementSibling;
+        if(isMobile && drop && drop.classList.contains('nx-drop')){
+          e.preventDefault();
+          link.parentElement.classList.toggle('open');
+          drop.style.display = drop.style.display === 'block' ? 'none' : 'block';
+        }
+      });
+    });
+
+    // close menu when clicking outside (mobile)
+    document.addEventListener('click',(e)=>{
+      const nav = document.querySelector('.nx-navbar');
+      const isMobile = window.matchMedia('(max-width:1024px)').matches;
+      if(isMobile && nav && !nav.contains(e.target)){
+        if (menu) menu.style.display = 'none';
+        if (toggle) toggle.setAttribute('aria-expanded','false');
+        document.querySelectorAll('.nx-drop').forEach(d=>d.style.display='none');
+      }
+    });
+  })();
+  </script>
+
+  <script>
+  // ===== Auto-calc sponsor percentages & totals =====
+  (function(){
+    const rows = Array.from(document.querySelectorAll('#sponsorBody tr'));
+    const fmt = (n)=> n.toLocaleString('en-US');
+    const total = rows.reduce((s, r)=> s + Number(r.getAttribute('data-shares')||0), 0);
+    rows.forEach(r=>{
+      const shares = Number(r.getAttribute('data-shares')||0);
+      const pctCell = r.querySelector('.pct');
+      const numCell = r.querySelector('.num');
+      if(numCell) numCell.textContent = fmt(shares);
+      if(pctCell) pctCell.textContent = total ? ( (shares/total*100).toFixed(2) + '%' ) : '—';
+    });
+    const totalEl = document.getElementById('totalShares');
+    if(totalEl) totalEl.textContent = fmt(total);
+    const totalPct = document.getElementById('totalPct');
+    if(totalPct) totalPct.textContent = '100%';
+  })();
+  </script>
+
+</body>
+</html>

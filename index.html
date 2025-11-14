@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>StocXinvest — White & Gold</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    /* —— White & Gold Theme —— */
+    --bg:#ffffff; --panel:#ffffff; --ink:#111827; --muted:#6b7280;
+    --gold:#caa03d; --gold-2:#e7c86c;
+    --line:rgba(17,24,39,.10);
+    --r:16px; --shadow:0 12px 34px rgba(0,0,0,.10);
+    --maxw:1200px;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; color:var(--ink); font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    background:
+      radial-gradient(1200px 420px at 8% -10%, rgba(202,160,61,.10), transparent 60%),
+      radial-gradient(900px 360px at 92% 110%, rgba(231,200,108,.12), transparent 60%),
+      var(--bg);
+  }
+  a{color:inherit;text-decoration:none}
+
+  /* ====== NAVBAR (previous structure, white+gold) ====== */
+  .nx-navbar{
+    position:sticky; top:0; z-index:999;
+    background:rgba(255,255,255,.96);
+    border-bottom:1px solid var(--line);
+    backdrop-filter:saturate(140%) blur(10px);
+    transition: box-shadow .6s ease, padding .6s ease; /* slower */
+  }
+  .nx-nav-inner{max-width:var(--maxw);margin:0 auto;padding:16px 20px;display:flex;align-items:center;gap:18px}
+  .nx-brand{display:flex;align-items:center;gap:14px}
+  .nx-logo{height:34px;width:auto;display:block}
+  .nx-logo2{height:48px;width:auto;object-fit:contain;margin-left:10px}
+  .nx-grow{flex:1}
+  .nx-menu{display:flex;align-items:center;gap:28px}
+  .nx-link{position:relative;font-weight:600;font-size:15px;opacity:.92;transition:opacity .4s ease}
+  .nx-link:hover{opacity:1}
+  .nx-link:after{
+    content:""; position:absolute; left:0; right:0; bottom:-8px; height:2px;
+    background:linear-gradient(90deg,var(--gold),transparent);
+    transform:scaleX(0); transform-origin:left; transition:transform .5s ease; /* slower */
+    border-radius:2px
+  }
+  .nx-link:hover:after{transform:scaleX(1)}
+  .nx-cta{
+    appearance:none;border:none;cursor:pointer;padding:10px 16px;font-weight:700;color:#111;
+    background:linear-gradient(180deg,var(--gold),var(--gold-2));
+    border-radius:999px; box-shadow:0 10px 22px rgba(202,160,61,.22);
+    transition:transform .25s ease, box-shadow .6s ease; /* slower */
+  }
+  .nx-cta:hover{transform:translateY(-1px); box-shadow:0 14px 28px rgba(202,160,61,.28)}
+  .nx-toggle{display:none;width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer}
+  .nx-toggle svg{width:20px;height:20px}
+  .nx-item{position:relative}
+  .nx-drop{
+    position:absolute;top:calc(100% + 14px);left:0;min-width:240px;background:#fff;border:1px solid var(--line);
+    border-radius:14px;padding:10px; box-shadow:0 16px 36px rgba(0,0,0,.08);
+    opacity:0; transform:translateY(12px); pointer-events:none;
+    transition:opacity .45s ease, transform .45s ease; /* slower */
+  }
+  .nx-item:hover .nx-drop{opacity:1;transform:none;pointer-events:auto}
+  .nx-drop a{display:block;padding:10px 12px;border-radius:10px;transition:background .4s ease}
+  .nx-drop a:hover{background:rgba(202,160,61,.10)}
+  .nx-navbar.is-shrink .nx-nav-inner{padding:12px 20px}
+  .nx-navbar.is-shrink{box-shadow:0 10px 26px rgba(0,0,0,.10)}
+
+  @media (max-width:1024px){
+    .nx-toggle{display:inline-grid;place-items:center}
+    .nx-menu{
+      position:fixed; inset:70px 16px auto 16px; flex-direction:column; gap:14px; padding:16px; background:#fff;
+      border:1px solid var(--line); border-radius:18px; transform:translateY(-16px); opacity:0; pointer-events:none;
+      transition:opacity .45s ease, transform .45s ease; box-shadow:0 16px 36px rgba(0,0,0,.08)
+    }
+    .nx-menu.is-open{transform:none;opacity:1;pointer-events:auto}
+    .nx-drop{position:static; transform:none; opacity:1; pointer-events:auto; box-shadow:none; border:none; padding:4px}
+  }
+
+  /* ====== CARDS (with slower reveal) ====== */
+  .wrap{max-width:900px;margin:56px auto;padding:0 20px}
+  h1.title{margin:0 0 10px;font-size:clamp(24px,3.4vw,38px);line-height:1.3;color:var(--gold)}
+  .sub{margin:0 0 26px;color:var(--muted)}
+
+  .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+  @media(max-width:1000px){.cards{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:640px){.cards{grid-template-columns:1fr}}
+
+  .card{
+    position:relative; overflow:hidden; background:#fff;
+    border:1px solid var(--line); border-radius:var(--r); padding:26px; box-shadow:var(--shadow);
+    transition:transform .35s ease, border-color .5s ease, box-shadow .5s ease; /* slower */
+  }
+  .card::before{
+    content:""; position:absolute; inset:-22%;
+    background:radial-gradient(520px 140px at var(--mx,20%) var(--my,20%), rgba(202,160,61,.18), transparent 60%);
+    opacity:0; transition:opacity .6s ease; /* slower */
+  }
+  .card:hover{transform:translateY(-4px); border-color:rgba(202,160,61,.45); box-shadow:0 18px 46px rgba(0,0,0,.12)}
+  .card:hover::before{opacity:1}
+  .card h3{margin:10px 0 8px}
+  .muted{color:var(--muted);line-height:1.7}
+
+  /* ====== FOOTER (previous structure, white+gold) ====== */
+  .nx-footer{
+    margin-top:60px; background:#fff; border-top:1px solid var(--line); color:var(--ink);
+  }
+  .nx-foot-wrap{max-width:var(--maxw);margin:0 auto;padding:48px 20px 28px}
+  .nx-foot-top{display:flex;align-items:center;justify-content:space-between;gap:18px;padding-bottom:22px;border-bottom:1px solid var(--line)}
+  .nx-foot-brand{display:flex;align-items:center;gap:14px}
+  .nx-foot-logo{height:36px;width:auto;filter:drop-shadow(0 0 8px rgba(202,160,61,.15))}
+  .nx-foot-tag{font-size:13px;color:var(--muted)}
+  .nx-foot-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px;padding:26px 0 6px}
+  @media (max-width:900px){.nx-foot-grid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:540px){.nx-foot-grid{grid-template-columns:1fr}}
+  .nx-foot-col h4{margin:0 0 12px;color:var(--gold);font-size:15px}
+  .nx-foot-col a{display:block;opacity:.9;padding:7px 0;font-size:14px;transition:transform .4s ease, color .4s ease}
+  .nx-foot-col a:hover{opacity:1;transform:translateX(2px);color:#7a5b13}
+  .nx-foot-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+
+  /* ====== Slow Reveal ====== */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .9s ease, transform .9s ease}
+  .reveal.is-in{opacity:1; transform:none}
+</style>
+</head>
+<body>
+
+<!-- ====== NAVBAR (previous) ====== -->
+<header class="nx-navbar" id="nav">
+  <div class="nx-nav-inner">
+    <a class="nx-brand" href="index.html">
+      <img class="nx-logo" src="stoxgear-logo.jpg" alt="StocXinvest">
+      <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner">
+    </a>
+
+    <div class="nx-grow"></div>
+
+    <nav class="nx-menu" id="menu">
+      <div class="nx-item">
+        <a class="nx-link" href="#">Why Us</a>
+        <div class="nx-drop">
+          <a href="about.html">About Us</a>
+          <a href="BOARD of directors.html">Board of Directors / Management</a>
+          <a href="Mission.html">Mission / Vision</a>
+          <a href="associated companies.html">Associated Companies</a>
+          <a href="Ncb auditor details .html">Auditors / Legal Advisors</a>
+          <a href="services.html">Services</a>
+          <a href="Registered agents..html">Registered Agents</a>
+        </div>
+      </div>
+
+      <div class="nx-item">
+        <a class="nx-link" href="#">Education</a>
+        <div class="nx-drop">
+          <a href="New to trading.html">New to Trading</a>
+          <a href="Investorguid.html">Investor Guide</a>
+          <a href="Glossary.html">Glossary</a>
+        </div>
+      </div>
+
+      <div class="nx-item">
+        <a class="nx-link" href="#">Open Account</a>
+        <div class="nx-drop">
+          <a href="Rda.html">Roshan Digital Account (RDA)</a>
+          <a href="Acoocint opening.html">Open Digital Account</a>
+          <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
+        </div>
+      </div>
+
+      <div class="nx-item">
+        <a class="nx-link" href="#">Downloads</a>
+        <div class="nx-drop">
+          <a href="Forms.html">Forms</a>
+          <a href="software.html">Software</a>
+        </div>
+      </div>
+
+      <div class="nx-item">
+        <a class="nx-link" href="#">Support</a>
+        <div class="nx-drop">
+          <a href="investor complaint.html">Investor Complaint</a>
+          <a href="Annaual half yearly.html">Annual / Half yearly / Quarterly Financials</a>
+          <a href="Auditor.html">Statutory Auditor Details</a>
+          <a href="Ncb auditor details .html">NCB Auditor Details</a>
+          <a href="KYC poslicy.html">CDD / KYC Policy</a>
+          <a href="Pending investor complaun.html">Pending Investor Complaints</a>
+          <a href="Penal action.html">Details of Penal Action</a>
+          <a href="Secp complaint.html">SECP Complaint</a>
+          <a href="psx complaint.html">PSX Complaint</a>
+          <a href="UIs of NICCPL.html">UIS Services of NCCPL</a>
+          <a href="Eservices By CDC.html">EServices by CDC</a>
+        </div>
+      </div>
+    </nav>
+
+    <button class="nx-cta" onclick="location.href='Acoocint opening.html'">OPEN AN ACCOUNT</button>
+    <button class="nx-toggle" id="toggle" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 6h18M3 12h18M3 18h18"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- ====== HERO / INTRO ====== -->
+<main class="wrap" id="top">
+  <h1 class="title reveal">Welcome to StocXinvest</h1>
+  <p class="sub reveal">Your <strong>X</strong> factor to Investments — now in a clean White & Gold look.</p>
+
+  <!-- ====== EXAMPLE CARDS ====== -->
+  <section class="cards">
+    <article class="card reveal">
+      <h3>Best Investment Managers</h3>
+      <p class="muted">Access expert guidance and a second opinion before you invest.</p>
+    </article>
+
+    <article class="card reveal">
+      <h3>Trading Software</h3>
+      <p class="muted">Fast, transparent execution with advanced tools and analytics.</p>
+    </article>
+
+    <article class="card reveal">
+      <h3>Unlocking Insights</h3>
+      <p class="muted">Use technical and fundamental tools to make smarter decisions.</p>
+    </article>
+  </section>
+</main>
+
+<!-- ====== FOOTER (previous) ====== -->
+<footer class="nx-footer">
+  <div class="nx-foot-wrap">
+    <div class="nx-foot-top">
+      <a class="nx-foot-brand" href="index.html">
+        <img class="nx-foot-logo" src="stoxgear-logo.jpg" alt="StocXinvest">
+        <span class="nx-foot-tag">Your <span style="color:var(--gold);font-weight:700">X</span> factor to Investments</span>
+      </a>
+    </div>
+
+    <div class="nx-foot-grid">
+      <div class="nx-foot-col">
+        <h4>WHY US</h4>
+        <a href="about.html">About Us</a>
+        <a href="BOARD of directors.html">Board / Management</a>
+        <a href="Mission.html">Mission & Vision</a>
+      </div>
+
+      <div class="nx-foot-col">
+        <h4>EDUCATION</h4>
+        <a href="New to trading.html">New to Trading</a>
+        <a href="Investorguid.html">Investor Guide</a>
+        <a href="Glossary.html">Glossary</a>
+      </div>
+
+      <div class="nx-foot-col">
+        <h4>OPEN AN ACCOUNT</h4>
+        <a href="Rda.html">Roshan Digital Account</a>
+        <a href="Acoocint opening.html">Open Digital Account</a>
+        <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
+      </div>
+
+      <div class="nx-foot-col">
+        <h4>CONTACT</h4>
+        <a href="mailto:info@stocxinvest.com">info@stocxinvest.com</a>
+        <a href="tel:+923162288686">+92 316 2288686</a>
+        <a href="#">Karachi, Pakistan</a>
+      </div>
+    </div>
+
+    <div class="nx-foot-bottom">
+      <span>© <script>document.write(new Date().getFullYear())</script> StocXinvest</span>
+      <span><a href="#" style="color:var(--muted);text-decoration:none">Privacy</a> · <a href="#" style="color:var(--muted);text-decoration:none">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // mobile menu
+  const toggle = document.getElementById('toggle');
+  const menu   = document.getElementById('menu');
+  toggle?.addEventListener('click', ()=>{
+    menu.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', menu.classList.contains('is-open'));
+  });
+
+  // shrink on scroll (slow transition handled in CSS)
+  const nav = document.getElementById('nav');
+  let last = 0;
+  const onScroll = () => {
+    const y = window.scrollY || document.documentElement.scrollTop;
+    if (y > 6 && last <= 6) nav.classList.add('is-shrink');
+    if (y <= 6 && last > 6) nav.classList.remove('is-shrink');
+    last = y;
+  };
+  onScroll();
+  addEventListener('scroll', onScroll, {passive:true});
+
+  // slow reveal
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); }
+    });
+  }, {threshold:.2});
+  document.querySelectorAll('.reveal, .card').forEach(el=>io.observe(el));
+
+  // soft radial glow on card hover (cursor-based)
+  document.querySelectorAll('.card').forEach(card=>{
+    card.addEventListener('pointermove', e=>{
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', ((e.clientX-r.left)/r.width)*100 + '%');
+      card.style.setProperty('--my', ((e.clientY-r.top)/r.height)*100 + '%');
+    });
+  });
+</script>
+</body>
+</html>

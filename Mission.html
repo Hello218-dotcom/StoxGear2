@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mission Statement – STOXGEAR</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      /* —— White & Gold Theme —— */
+      --bg:#ffffff; --panel:#ffffff; --ink:#111827; --muted:#6b7280;
+      --brand:#caa03d; --brand-2:#e7c86c;
+      --radius:18px; --shadow:0 14px 34px rgba(17,24,39,.08);
+      --glow:0 0 18px rgba(202,160,61,.26),0 0 34px rgba(202,160,61,.18);
+      --maxw:1200px; --accent:#caa03d; --text-2:#6b7280; --line:#e5e7eb;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;}
+    a{color:var(--ink);text-decoration:none}
+    
+    /* Navbar */
+    .nx-navbar{position:sticky;top:0;z-index:99;background:rgba(255,255,255,.92);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--line);}
+    .nx-nav-inner{max-width:1200px;margin:auto;padding:14px 20px;display:flex;align-items:center;gap:18px;}
+    .nx-brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+    .nx-logo{height:36px;width:auto}
+    .nx-tag{font-size:13px;color:var(--muted)}
+    .nx-grow{flex:1}
+    .nx-menu{display:flex;align-items:center;gap:28px}
+    .nx-item{position:relative}
+    .nx-link{color:var(--muted);font-weight:600;transition:.2s}
+    .nx-link:hover{color:var(--brand)}
+    .nx-drop{position:absolute;top:calc(100% + 10px);left:0;min-width:240px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px;box-shadow:var(--shadow);opacity:0;pointer-events:none;transform:translateY(6px);transition:.25s}
+    .nx-item:hover .nx-drop{opacity:1;pointer-events:auto;transform:none}
+    .nx-drop a{display:block;padding:8px 12px;color:var(--ink);border-radius:10px;opacity:.95}
+    .nx-drop a:hover{background:rgba(202,160,61,.12);opacity:1}
+    .nx-cta{border:none;padding:10px 18px;border-radius:999px;font-weight:700;cursor:pointer;background:linear-gradient(90deg,var(--brand),var(--brand-2));color:#111;box-shadow:var(--glow);transition:.2s}
+    .nx-cta:hover{transform:translateY(-1px)}
+    .nx-toggle{display:none;width:42px;height:42px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+    @media(max-width:980px){
+      .nx-toggle{display:inline-grid;place-items:center}
+      .nx-menu{position:fixed;inset:70px 16px auto 16px;flex-direction:column;gap:12px;padding:14px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);transform:translateY(-10px);opacity:0;pointer-events:none;transition:.25s}
+      .nx-menu.is-open{opacity:1;pointer-events:auto;transform:none}
+      .nx-drop{position:static;opacity:1;pointer-events:auto;box-shadow:none;border:none;padding:4px}
+    }
+
+    /* Hero */
+    .hero{padding:70px 18px 40px;text-align:center;border-bottom:1px solid var(--line);
+          background:radial-gradient(900px 380px at 12% -6%,rgba(202,160,61,.10),transparent),
+                     radial-gradient(800px 280px at 90% 6%,rgba(202,160,61,.06),transparent);}
+    .hero h1{font-size:clamp(28px,4vw,46px);margin:0 0 10px;color:var(--brand);font-weight:800;text-shadow:0 0 12px rgba(202,160,61,.18);}
+    .hero p{max-width:860px;margin:0 auto;color:var(--muted)}
+
+    /* Mission Section */
+    section{padding:50px 18px;}
+    .wrap{max-width:var(--maxw);margin:auto;text-align:center;}
+    .mission-box{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:40px;text-align:left;}
+    .mission-box h2{color:var(--brand);margin-bottom:10px}
+    .mission-box p{color:var(--muted);margin-bottom:18px;line-height:1.8}
+    .mission-box ul{margin:10px 0 0 18px;padding:0}
+    .mission-box li{margin:8px 0;color:#222}
+    .mission-box li::marker{color:var(--brand)}
+
+    /* Footer */
+    .nx-footer{margin-top:60px;background:#fff;border-top:1px solid var(--line);color:var(--ink);}
+    .nx-foot-wrap{max-width:1200px;margin:auto;padding:48px 20px}
+    .nx-foot-top{display:flex;align-items:center;justify-content:space-between;padding-bottom:22px;border-bottom:1px solid var(--line)}
+    .nx-foot-brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink)}
+    .nx-foot-logo{height:36px}
+    .nx-foot-tag{font-size:13px;color:var(--muted)}
+    .nx-foot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:26px;padding:26px 0 6px}
+    .nx-foot-col h4{margin:0 0 12px;color:var(--brand);font-size:15px}
+    .nx-foot-col a{display:block;color:var(--ink);padding:7px 0;font-size:14px;opacity:.9;text-decoration:none}
+    .nx-foot-col a:hover{opacity:1;color:var(--brand)}
+    .nx-foot-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+    /* size the partner logo in header */
+.nx-logo2{
+  height:48px !important;
+  width:auto !important;
+  max-width:220px !important;
+  object-fit:contain;
+  margin-left:10px;
+}
+
+/* ensure footer logos are constrained even if they use .nx-logo/.nx-logo2 */
+.nx-footer .nx-logo,
+.nx-footer .nx-logo2{
+  height:50px !important;
+  width:auto !important;
+  max-width:240px !important;
+  object-fit:contain;
+  vertical-align:middle;
+}
+
+@media (max-width:768px){
+  .nx-logo2,
+  .nx-footer .nx-logo,
+  .nx-footer .nx-logo2{
+    height:40px !important;
+    max-width:180px !important;
+  }
+}
+
+
+  </style>
+</head>
+<body>
+  
+<header class="nx-navbar" id="nxHeader">
+  <div class="nx-nav-inner">
+    <a class="nx-brand" href="index.html">
+      <!-- main logo -->
+      <img class="nx-logo" src="stoxgear-logo.jpg" alt="StocXinvest">
+      <!-- partner/secondary logo (optional) -->
+      <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner">
+    </a>
+
+    <div class="nx-grow"></div>
+
+    <nav class="nx-menu" id="nxMenu">
+      <div class="nx-item">
+        <a class="nx-link" href="#">Why Us</a>
+        <div class="nx-drop">
+          <a href="about.html">About US</a>
+          <a href="BOARD of directors.html">Board of Directors / Management</a>
+          <a href="Mission.html">Mission / Vision</a>
+          <a href="associated companies.html">Associated Companies</a>
+          <a href="Ncb auditor details .html">Auditors / Legal Advisors</a>
+          <a href="services.html">Services</a>
+          <a href="Registered agents..html">Registered Agents</a>
+        </div>
+      </div>
+
+      <div class="nx-item">
+        <a class="nx-link" href="#">Education</a>
+        <div class="nx-drop">
+          <a href="New to trading.html">New to Trading</a>
+          <a href="Investorguid.html">Investor Guide</a>
+          <a href="Glossary.html">Glossary</a>
+        </div>
+      </div>
+
+      <div class="nx-item">
+        <a class="nx-link" href="#">Open Account</a>
+        <div class="nx-drop">
+          <a href="Rda.html">Roshan Digital Account (RDA)</a>
+          <a href="Acoocint opening.html">Open Digital Account</a>
+          <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
+        </div>
+      </div>
+
+      <div class="nx-item">
+        <a class="nx-link" href="#">Downloads</a>
+        <div class="nx-drop">
+          <a href="Forms.html">Forms</a>
+          <a href="software.html">Software</a>
+        </div>
+      </div>
+
+      <div class="nx-item">
+        <a class="nx-link" href="#">Support</a>
+        <div class="nx-drop">
+          <a href="investor complaint.html">Investor Complaint</a>
+          <a href="Annaual half yearly.html">Annual / Half yearly / Quarterly Financial Statements</a>
+          <a href="Auditor.html">Statutory Auditor Details</a>
+          <a href="Ncb auditor details .html">NCB Auditor Details</a>
+          <a href="KYC poslicy.html">CDD / KYC Policy</a>
+          <a href="Pending investor complaun.html">Pending Investor Complaints</a>
+          <a href="Penal action.html">Details of Penal Action</a>
+          <a href="Secp complaint.html">SECP Complaint</a>
+          <a href="psx complaint.html">PSX Complaint</a>
+          <a href="UIs of NICCPL.html">UIS Services of NCCPL</a>
+          <a href="Eservices By CDC.html">EServices by CDC</a>
+        </div>
+      </div>
+    </nav>
+
+    <button class="nx-cta">OPEN AN ACCOUNT</button>
+    <button class="nx-toggle" id="nxToggle" aria-label="Toggle menu" aria-controls="nxMenu" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<header class="hero">
+  <h1>Mission Statement</h1>
+  <p>Empowering investors with clarity, transparency and world-class tools for smarter financial decisions.</p>
+</header>
+
+<!-- MISSION CONTENT -->
+<section>
+  <div class="wrap">
+    <div class="mission-box">
+      <h2>Our Mission</h2>
+      <p>We aim to empower investors with the knowledge, technology, and transparency they need to navigate markets with confidence and purpose.</p>
+      <p>Through innovation, reliability, and trust, we strive to be the preferred investment partner that enables long-term financial growth and success.</p>
+      <ul>
+        <li>Deliver trusted, research-driven insights.</li>
+        <li>Encourage informed and responsible investing.</li>
+        <li>Promote transparency and investor protection.</li>
+        <li>Support long-term value creation.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="nx-footer">
+  <div class="nx-foot-wrap">
+    <div class="nx-foot-top">
+      <a class="nx-foot-brand" href="index.html">
+        <img class="nx-logo" src="stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
+  <!-- second/partner logo -->
+  <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 
+
+
+10.34.53_ed0e28f6.jpg" alt="Partner Logo">
+
+      </a>
+    </div>
+<footer class="nx-footer">
+  <div class="nx-foot-wrap">
+    <div class="nx-foot-top">
+      <a class="nx-brand" href="index.html">
+        <img class="nx-logo" src="stoxgear-logo.jpg" alt="StocXinvest">
+        <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner">
+      </a>
+    </div>
+
+    <div class="nx-foot-grid">
+      <div class="nx-foot-col">
+        <h4>WHY US</h4>
+        <a href="about.html">About Us</a>
+        <a href="BOARD of directors.html">Board / Management</a>
+        <a href="Mission.html">Mission & Vision</a>
+      </div>
+      <div class="nx-foot-col">
+        <h4>EDUCATION</h4>
+        <a href="New to trading.html">New to Trading</a>
+        <a href="Investorguid.html">Investor Guide</a>
+        <a href="Glossary.html">Glossary</a>
+      </div>
+      <div class="nx-foot-col">
+        <h4>ACCOUNT</h4>
+        <a href="Rda.html">Roshan Digital Account</a>
+        <a href="Acoocint opening.html">Open Digital Account</a>
+        <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
+      </div>
+      <div class="nx-foot-col" id="contact">
+        <h4>CONTACT</h4>
+        <a href="mailto:info@stocxinvest.com">info@stocxinvest.com</a>
+        <a href="tel:+923162288686">+92 316 2288686</a>
+        <a href="#">Karachi, Pakistan</a>
+      </div>
+    </div>
+
+    <div class="nx-foot-bottom">
+      <span>© <script>document.write(new Date().getFullYear())</script> StocXinvest</span>
+      <span><a href="#" style="color:var(--muted);text-decoration:none">Privacy</a> ·
+            <a href="#" style="color:var(--muted);text-decoration:none">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const toggle=document.getElementById('nxToggle');
+  const menu=document.getElementById('nxMenu');
+  toggle?.addEventListener('click',()=>{menu.classList.toggle('is-open');toggle.setAttribute('aria-expanded',menu.classList.contains('is-open'));});
+</script>
+
+</body>
+</html>

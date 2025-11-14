@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SECP Complaint Portal – StocXinvest</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    /* White & Gold theme */
+    --bg:#ffffff; --panel:#ffffff; --ink:#111827; --muted:#6b7280;
+    --gold:#caa03d; --gold-2:#e7c86c;
+    --line:rgba(17,24,39,.10); --r:16px; --shadow:0 12px 34px rgba(0,0,0,.08);
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; color:var(--ink);
+    background:
+      radial-gradient(1200px 420px at 8% -10%, rgba(202,160,61,.10), transparent 60%),
+      radial-gradient(900px 360px at 92% 110%, rgba(231,200,108,.12), transparent 60%),
+      var(--bg);
+  }
+
+  .wrap{max-width:900px;margin:56px auto;padding:0 20px}
+  h1.title{margin:0 0 10px;font-size:clamp(22px,3.4vw,36px);line-height:1.3;color:var(--gold)}
+  .sub{margin:0 0 26px;color:var(--muted)}
+
+  /* CARD STYLES */
+  .card{
+    position:relative;overflow:hidden;background:#fff;
+    border:1px solid var(--line);border-radius:var(--r);padding:26px;box-shadow:var(--shadow);
+    transition:transform .22s ease,border-color .25s ease,box-shadow .25s ease;margin-bottom:30px;
+  }
+  .card::before{
+    content:"";position:absolute;inset:-22%;
+    background:radial-gradient(520px 140px at var(--mx,20%) var(--my,20%), rgba(202,160,61,.15), transparent 60%);
+    opacity:0;transition:opacity .34s ease;
+  }
+  .card:hover{transform:translateY(-3px);border-color:rgba(202,160,61,.45);box-shadow:0 18px 46px rgba(0,0,0,.12)}
+  .card:hover::before{opacity:1}
+  .badge{display:inline-block;background:rgba(202,160,61,.14);border:1px solid rgba(202,160,61,.45);color:#7a5b13;
+    padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700;margin-bottom:12px;text-transform:uppercase;letter-spacing:.05em}
+  .info{display:flex;align-items:center;gap:14px;}
+  .ico{width:36px;height:36px;stroke:var(--gold);stroke-width:2;fill:none;flex:0 0 auto}
+  .msg{margin:0;font-size:20px;font-weight:600;color:#7a5b13}
+  .hint{margin:10px 0 0;color:var(--muted);font-size:15px;line-height:1.8}
+
+  /* ✅ NEW: simple grid for cards */
+  .cards{display:grid;grid-template-columns:1fr;gap:20px;margin-top:20px}
+  @media (min-width:800px){.cards{grid-template-columns:1fr 1fr}}
+
+  /* NAVBAR */
+  .nx-navbar{
+    position:sticky; top:0; z-index:999;
+    background:rgba(255,255,255,.96);
+    border-bottom:1px solid var(--line);
+    backdrop-filter:saturate(140%) blur(10px);
+    box-shadow:0 8px 20px rgba(0,0,0,.06);
+  }
+  .nx-nav-inner{max-width:1200px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:18px}
+  .nx-brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+  .nx-logo{height:30px;width:auto;display:block}
+  .nx-logo2{height:48px;width:auto;object-fit:contain;margin-left:10px;}
+  .nx-grow{flex:1}
+  .nx-menu{display:flex;align-items:center;gap:28px}
+  .nx-link{color:var(--ink);text-decoration:none;font-weight:600;font-size:15px;opacity:.92;position:relative}
+  .nx-link:hover{opacity:1}
+  .nx-link:after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);transform:scaleX(0);transition:transform .22s ease}
+  .nx-link:hover:after{transform:scaleX(1)}
+  .nx-item{position:relative}
+  .nx-drop{
+    position:absolute;top:calc(100% + 14px);left:0;min-width:240px;background:#fff;border:1px solid var(--line);border-radius:14px;
+    padding:10px;box-shadow:0 16px 36px rgba(0,0,0,.08);opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .2s ease, transform .2s ease
+  }
+  .nx-item:hover .nx-drop{opacity:1;transform:none;pointer-events:auto}
+  .nx-drop a{display:block;color:var(--ink);padding:10px 12px;border-radius:10px;text-decoration:none}
+  .nx-drop a:hover{background:rgba(202,160,61,.10)}
+  .nx-cta{border:none;cursor:pointer;padding:10px 16px;font-weight:700;color:#111;background:linear-gradient(180deg,var(--gold),var(--gold-2));
+    border-radius:999px;box-shadow:0 10px 22px rgba(202,160,61,.22)}
+
+  /* FOOTER */
+  .nx-footer{margin-top:60px;background:#fff;border-top:1px solid var(--line);color:var(--ink);}
+  .nx-foot-wrap{max-width:1200px;margin:0 auto;padding:48px 20px 28px}
+  .nx-foot-top{display:flex;align-items:center;justify-content:space-between;gap:18px;padding-bottom:22px;border-bottom:1px solid var(--line)}
+  .nx-foot-brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink)}
+  .nx-foot-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;padding:26px 0 6px}
+  .nx-foot-col h4{margin:0 0 12px;color:var(--gold);font-size:15px}
+  .nx-foot-col a{display:block;color:var(--ink);text-decoration:none;opacity:.9;padding:7px 0;font-size:14px}
+  .nx-foot-col a:hover{opacity:1;color:#7a5b13}
+  .nx-foot-bottom{display:flex;justify-content:space-between;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+<!-- ====== NAVBAR ====== -->
+<header class="nx-navbar" id="nxHeader">
+  <div class="nx-nav-inner">
+    <a class="nx-brand" href="index.html">
+      <img class="nx-logo" src="stoxgear-logo.jpg" alt="StocXinvest">
+      <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner">
+    </a>
+
+    <div class="nx-grow"></div>
+
+    <nav class="nx-menu" id="nxMenu">
+      <div class="nx-item">
+        <a class="nx-link" href="#">Why Us</a>
+        <div class="nx-drop">
+          <a href="about.html">About Us</a>
+          <a href="BOARD of directors.html">Board of Directors / Management</a>
+          <a href="Mission.html">Mission / Vision</a>
+          <a href="associated companies.html">Associated Companies</a>
+          <a href="Ncb auditor details .html">Auditors / Legal Advisors</a>
+          <a href="services.html">Services</a>
+          <a href="Registered agents..html">Registered Agents</a>
+        </div>
+      </div>
+
+      <div class="nx-item">
+        <a class="nx-link" href="#">Education</a>
+        <div class="nx-drop">
+          <a href="New to trading.html">New to Trading</a>
+          <a href="Investorguid.html">Investor Guide</a>
+          <a href="Glossary.html">Glossary</a>
+        </div>
+      </div>
+
+      <div class="nx-item">
+        <a class="nx-link" href="#">Open Account</a>
+        <div class="nx-drop">
+          <a href="Rda.html">Roshan Digital Account (RDA)</a>
+          <a href="Acoocint opening.html">Open Digital Account</a>
+          <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
+        </div>
+      </div>
+
+      <div class="nx-item">
+        <a class="nx-link" href="#">Downloads</a>
+        <div class="nx-drop">
+          <a href="Forms.html">Forms</a>
+          <a href="software.html">Software</a>
+        </div>
+      </div>
+
+      <div class="nx-item">
+        <a class="nx-link" href="#">Support</a>
+        <div class="nx-drop">
+          <a href="investor complaint.html">Investor Complaint</a>
+          <a href="Annaual half yearly.html">Annual / Half yearly / Quarterly Financials</a>
+          <a href="Auditor.html">Statutory Auditor Details</a>
+          <a href="Ncb auditor details .html">NCB Auditor Details</a>
+          <a href="KYC poslicy.html">CDD / KYC Policy</a>
+          <a href="Pending investor complaun.html">Pending Investor Complaints</a>
+          <a href="Penal action.html">Details of Penal Action</a>
+          <a href="Secp complaint.html">SECP Complaint</a>
+          <a href="psx complaint.html">PSX Complaint</a>
+          <a href="UIs of NICCPL.html">UIS Services of NCCPL</a>
+          <a href="Eservices By CDC.html">EServices by CDC</a>
+        </div>
+      </div>
+    </nav>
+
+    <button class="nx-cta">OPEN AN ACCOUNT</button>
+    <button class="nx-toggle" id="nxToggle" aria-label="Toggle menu" aria-controls="nxMenu" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<script>
+  const toggle=document.getElementById('nxToggle');
+  const menu=document.getElementById('nxMenu');
+  toggle?.addEventListener('click',()=>{
+    menu.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded',menu.classList.contains('is-open'));
+  });
+</script>
+
+
+    
+<!-- MAIN CONTENT -->
+<main class="wrap" id="top" style="padding-top:80px;">
+
+  <h1 class="title reveal">SECP Complaint Portal</h1>
+  <p class="sub reveal">Access the official Securities & Exchange Commission of Pakistan complaint system.</p>
+
+  <!-- ✅ NEW: Card grid with 3 cards -->
+  <div class="cards">
+    <!-- Card 1: SECP -->
+    <article class="card">
+      <span class="badge">Official Link</span>
+      <div class="info">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M12 8l4 4-4 4M8 12h8"></path>
+        </svg>
+        <p class="msg">SECP Complaint Management System</p>
+      </div>
+      <p class="hint">
+        File or track investor complaints with SECP’s official portal.
+      </p>
+      <a href="https://sdms.secp.gov.pk/ach/open.php" target="_blank" rel="noopener noreferrer"
+         style="display:inline-block;background:linear-gradient(180deg,#caa03d,#e7c86c);color:#111;font-weight:700;text-decoration:none;padding:12px 28px;border-radius:30px;box-shadow:0 6px 16px rgba(202,160,61,.3);transition:.25s ease;">
+        Visit SECP Portal
+      </a>
+    </article>
+
+    <!-- Card 2: PSX -->
+    <article class="card">
+      <span class="badge">Official Link</span>
+      <div class="info">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M12 8l4 4-4 4M8 12h8"></path>
+        </svg>
+        <p class="msg">PSX Complaint Management System</p>
+      </div>
+      <p class="hint">
+        Submit complaints with Pakistan Stock Exchange (PSX) and track resolution status.
+      </p>
+      <a href="https://cms.psx.com.pk/login" target="_blank" rel="noopener noreferrer"
+         style="display:inline-block;background:linear-gradient(180deg,#caa03d,#e7c86c);color:#111;font-weight:700;text-decoration:none;padding:12px 28px;border-radius:30px;box-shadow:0 6px 16px rgba(202,160,61,.3);transition:.25s ease;">
+        Visit PSX Portal
+      </a>
+    </article>
+
+    <!-- Card 3: CDC eServices -->
+    <article class="card">
+      <span class="badge">Investor Utility</span>
+      <div class="info">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M12 8l4 4-4 4M8 12h8"></path>
+        </svg>
+        <p class="msg">CDC eServices (Investor Accounts)</p>
+      </div>
+      <p class="hint">
+        Access CDC’s online services for investor account statements and requests.
+      </p>
+      <a href="https://eservices.cdcaccess.com.pk/" target="_blank" rel="noopener noreferrer"
+         style="display:inline-block;background:linear-gradient(180deg,#caa03d,#e7c86c);color:#111;font-weight:700;text-decoration:none;padding:12px 28px;border-radius:30px;box-shadow:0 6px 16px rgba(202,160,61,.3);transition:.25s ease;">
+        Go to CDC eServices
+      </a>
+    </article>
+  </div>
+
+  <!-- Your existing standalone button (left as-is) -->
+  <a href="https://sdms.secp.gov.pk/ach/open.php" 
+     target="_blank" 
+     rel="noopener noreferrer"
+     class="gold-btn"
+     style="
+       display:inline-block;
+       background:linear-gradient(180deg,#caa03d,#e7c86c);
+       color:#111;
+       font-weight:700;
+       text-decoration:none;
+       padding:12px 28px;
+       border-radius:30px;
+       box-shadow:0 6px 16px rgba(202,160,61,.3);
+       transition:.25s ease;
+       cursor:pointer;">
+    Visit SECP Complaint Portal
+  </a>
+
+</main>
+<!-- ========== FOOTER ========== -->
+<footer class="nx-footer">
+  <div class="nx-foot-wrap">
+    <div class="nx-foot-top">
+      <a class="nx-foot-brand" href="index.html">
+        <img class="nx-logo" src="stoxgear-logo.jpg" alt="StocXinvest">
+        <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner Logo">
+      </a>
+    </div>
+    <div class="nx-foot-grid">
+      <div class="nx-foot-col">
+        <h4>WHY US</h4>
+        <a href="about.html">About Us</a>
+        <a href="BOARD of directors.html">Board / Management</a>
+        <a href="Mission.html">Mission & Vision</a>
+      </div>
+      <div class="nx-foot-col">
+        <h4>EDUCATION</h4>
+        <a href="New to trading.html">New to Trading</a>
+        <a href="Investorguid.html">Investor Guide</a>
+        <a href="Glossary.html">Glossary</a>
+      </div>
+      <div class="nx-foot-col">
+        <h4>ACCOUNT</h4>
+        <a href="Rda.html">Roshan Digital Account</a>
+        <a href="Acoocint opening.html">Open Digital Account</a>
+        <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
+      </div>
+      <div class="nx-foot-col">
+        <h4>CONTACT</h4>
+        <a href="mailto:info@stocxinvest.com">info@stocxinvest.com</a>
+        <a href="tel:+923162288686">+92 316 2288686</a>
+        <a href="#">Karachi, Pakistan</a>
+      </div>
+    </div>
+    <div class="nx-foot-bottom">
+      <span>© <script>document.write(new Date().getFullYear())</script> StocXinvest</span>
+      <span><a href="#" style="color:var(--muted);text-decoration:none">Privacy</a> · <a href="#" style="color:var(--muted);text-decoration:none">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+
+
+
+  // card glow
+  document.querySelectorAll('.card').forEach(card=>{
+    card.addEventListener('pointermove',e=>{
+      const r=card.getBoundingClientRect();
+      card.style.setProperty('--mx',((e.clientX-r.left)/r.width)*100+'%');
+      card.style.setProperty('--my',((e.clientY-r.top)/r.height)*100+'%');
+    });
+  });
+</script>
+</body>
+</html>

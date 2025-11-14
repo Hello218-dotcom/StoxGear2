@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>StocXinvest — Investor Guide</title>
+
+<style>
+  :root{
+    /* — White & Gold palette — */
+    --bg:#ffffff;
+    --card:#ffffff;
+    --text:#111827;      /* slate-900 */
+    --muted:#6b7280;     /* slate-500 */
+    --brand:#caa03d;     /* gold */
+    --brand-2:#e7c86c;   /* light gold */
+    --gold-t:rgba(202,160,61,.12);
+
+    --radius:18px;
+    --line:rgba(17,24,39,.12);
+    --shadow:0 12px 28px rgba(17,24,39,.08);
+  }
+
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font:16px/1.6 Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    color:var(--text);
+    background:
+      radial-gradient(1100px 420px at 8% -10%, rgba(202,160,61,.08), transparent 60%),
+      radial-gradient(900px 360px at 92% 110%, rgba(202,160,61,.06), transparent 60%),
+      var(--bg);
+  }
+
+  /* ------- PAGE LAYOUT ------- */
+  .section{ max-width:1200px; margin:54px auto; padding:0 20px; }
+  .section h2{ margin:0 0 18px; font-size:clamp(24px, 3vw, 36px); letter-spacing:.2px; color:var(--text); }
+  .section .lead{ color:var(--muted); margin:-6px 0 24px; }
+
+  .grid{ display:grid; gap:18px; grid-template-columns: repeat(12, minmax(0,1fr)); }
+  .col-12{ grid-column: span 12; } .col-6{ grid-column: span 6; }
+  .col-4{ grid-column: span 4; } .col-3{ grid-column: span 3; }
+  @media (max-width:1100px){ .col-3{ grid-column: span 4; } }
+  @media (max-width:900px){ .col-6{ grid-column: span 12; } .col-4,.col-3{ grid-column: span 6; } }
+  @media (max-width:640px){ .col-4,.col-3{ grid-column: span 12; } }
+
+  /* ------- CARD ------- */
+  .card{
+    border-radius:var(--radius);
+    background:var(--card);
+    border:1px solid #e5e7eb;                 /* subtle grey ring */
+    box-shadow: var(--shadow);
+    overflow:hidden; position:relative; isolation:isolate;
+    transform: translateY(14px) scale(.98);
+    opacity:0;
+    transition: transform .6s cubic-bezier(.2,.8,.2,1), opacity .6s ease, border-color .25s ease, box-shadow .25s ease, background .25s ease;
+  }
+  .card.in-view{ transform: translateY(0) scale(1); opacity:1; }
+  .card:hover{ transform: translateY(-4px) scale(1.01); border-color: rgba(202,160,61,.40); box-shadow:0 14px 30px rgba(17,24,39,.12); background:#fffdf7; }
+
+  .card .media{ aspect-ratio:16/9; width:100%; overflow:hidden; background:#f3f4f6; }
+  .card .media img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .card .content{ padding:18px 18px 20px; }
+  .pill{ display:inline-block; padding:7px 12px; border-radius:999px; background: var(--gold-t); color:#8b6a1a; font-weight:700; font-size:12px; letter-spacing:.3px; }
+  .card h3{ margin:10px 0 6px; font-size:20px; color:var(--text); }
+  .card p{ margin:0; color:var(--muted); }
+  .bullet{ display:grid; gap:8px; margin:8px 0 0; padding-left:18px; }
+  .bullet li{ color:#374151; }                 /* darker for readability */
+  .bullet li::marker{ color:var(--brand); }
+
+  .split{ display:grid; gap:24px; align-items:center; grid-template-columns: repeat(12, minmax(0,1fr)); }
+  .split .img{ grid-column: span 6; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); background:#fff; border:1px solid #e5e7eb; }
+  .split .img img{ width:100%; height:auto; display:block; }
+  .split .copy{ grid-column: span 6; }
+  @media (max-width:900px){ .split .img, .split .copy{ grid-column: span 12; } }
+
+  .kicker{ font-weight:900; text-transform:uppercase; font-size:12px; letter-spacing:.24em; color: var(--brand); }
+
+  /* ------- NAVBAR (light) ------- */
+  .nx-navbar{
+    position:sticky; top:0; z-index:999;
+    backdrop-filter:saturate(140%) blur(10px);
+    background:rgba(255,255,255,.92);
+    border-bottom:1px solid var(--line);
+    transition: box-shadow .26s ease, padding .26s ease;
+  }
+  .nx-nav-inner{max-width:1200px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:18px}
+  .nx-brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--text)}
+  .nx-logo{height:30px;width:auto;display:block}
+  .nx-tag{font-size:12px;color:var(--muted)}
+  .nx-grow{flex:1}
+  .nx-menu{display:flex;align-items:center;gap:28px}
+  .nx-link{position:relative;color:var(--muted);text-decoration:none;font-weight:600;font-size:15px;letter-spacing:.2px}
+  .nx-link:hover{color:var(--brand)}
+  .nx-link:after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:2px;background:linear-gradient(90deg,var(--brand),transparent);transform:scaleX(0);transform-origin:left;transition:transform .22s ease;border-radius:2px}
+  .nx-link:hover:after{transform:scaleX(1)}
+  .nx-cta{appearance:none;border:none;cursor:pointer;padding:10px 16px;font-weight:700;color:#0b0b0b;background:linear-gradient(180deg,var(--brand),var(--brand-2));border-radius:999px;box-shadow:0 10px 22px rgba(202,160,61,.28);transition:transform .15s ease, box-shadow .3s ease}
+  .nx-cta:hover{transform:translateY(-1px);box-shadow:0 14px 26px rgba(202,160,61,.36)}
+  .nx-toggle{display:none;width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--text);cursor:pointer}
+  .nx-toggle svg{width:20px;height:20px}
+  .nx-navbar.is-shrink .nx-nav-inner{padding:10px 20px}
+  .nx-navbar.is-shrink{box-shadow:0 8px 24px rgba(17,24,39,.10)}
+  .nx-item{position:relative}
+  .nx-drop{position:absolute;top:calc(100% + 14px);left:0;min-width:240px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px;box-shadow:var(--shadow);opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .2s ease, transform .2s ease}
+  .nx-item:hover .nx-drop{opacity:1;transform:none;pointer-events:auto}
+  .nx-drop a{display:block;color:var(--text);text-decoration:none;padding:10px 12px;border-radius:10px}
+  .nx-drop a:hover{background:var(--gold-t);color:var(--brand)}
+  .nx-badge{margin-left:8px;font-size:11px;font-weight:700;color:#0b0b0b;background:var(--brand);border-radius:999px;padding:2px 8px}
+  @media (max-width:1024px){
+    .nx-toggle{display:inline-grid;place-items:center}
+    .nx-menu{position:fixed;inset:70px 16px auto 16px;flex-direction:column;gap:14px;padding:16px;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);transform:translateY(-12px);opacity:0;pointer-events:none;transition:.25s ease}
+    .nx-menu.is-open{transform:none;opacity:1;pointer-events:auto}
+    .nx-drop{position:static;transform:none;opacity:1;pointer-events:auto;box-shadow:none;border:none;padding:4px}
+  }
+
+  /* ------- FOOTER (light) ------- */
+  .nx-footer{
+    margin-top:60px;
+    background:#fff;
+    border-top:1px solid var(--line);
+    color:var(--text);
+  }
+  .nx-foot-wrap{max-width:1200px;margin:0 auto;padding:48px 20px 28px}
+  .nx-foot-top{display:flex;align-items:center;justify-content:space-between;gap:18px;padding-bottom:22px;border-bottom:1px solid var(--line)}
+  .nx-foot-brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--text)}
+  .nx-foot-logo{height:36px;width:auto}
+  .nx-foot-tag{font-size:13px;color:var(--muted)}
+  .nx-foot-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px;padding:26px 0 6px}
+  @media (max-width:900px){.nx-foot-grid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:540px){.nx-foot-grid{grid-template-columns:1fr}}
+  .nx-foot-col h4{margin:0 0 12px;color:var(--brand);font-size:15px;letter-spacing:.03em}
+  .nx-foot-col a{display:block;color:#111827;text-decoration:none;padding:7px 0;font-size:14px}
+  .nx-foot-col a:hover{color:var(--brand)}
+  .nx-foot-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+  /* size the partner logo in header */
+.nx-logo2{
+  height:48px !important;
+  width:auto !important;
+  max-width:220px !important;
+  object-fit:contain;
+  margin-left:10px;
+}
+
+/* ensure footer logos are constrained even if they use .nx-logo/.nx-logo2 */
+.nx-footer .nx-logo,
+.nx-footer .nx-logo2{
+  height:50px !important;
+  width:auto !important;
+  max-width:240px !important;
+  object-fit:contain;
+  vertical-align:middle;
+}
+
+@media (max-width:768px){
+  .nx-logo2,
+  .nx-footer .nx-logo,
+  .nx-footer .nx-logo2{
+    height:40px !important;
+    max-width:180px !important;
+  }
+}
+
+
+
+</style>
+</head>
+<body>
+<header class="nx-navbar" id="nxHeader">
+  <div class="nx-nav-inner">
+    <a class="nx-brand" href="index.html">
+      <!-- main logo -->
+      <img class="nx-logo" src="stoxgear-logo.jpg" alt="StocXinvest">
+      <!-- partner/secondary logo (optional) -->
+      <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner">
+    </a>
+
+    <div class="nx-grow"></div>
+
+    <nav class="nx-menu" id="nxMenu">
+      <div class="nx-item">
+        <a class="nx-link" href="#">Why Us</a>
+        <div class="nx-drop">
+          <a href="about.html">About US</a>
+          <a href="BOARD of directors.html">Board of Directors / Management</a>
+          <a href="Mission.html">Mission / Vision</a>
+          <a href="associated companies.html">Associated Companies</a>
+          <a href="Ncb auditor details .html">Auditors / Legal Advisors</a>
+          <a href="services.html">Services</a>
+          <a href="Registered agents..html">Registered Agents</a>
+        </div>
+      </div>
+
+      <div class="nx-item">
+        <a class="nx-link" href="#">Education</a>
+        <div class="nx-drop">
+          <a href="New to trading.html">New to Trading</a>
+          <a href="Investorguid.html">Investor Guide</a>
+          <a href="Glossary.html">Glossary</a>
+        </div>
+      </div>
+
+      <div class="nx-item">
+        <a class="nx-link" href="#">Open Account</a>
+        <div class="nx-drop">
+          <a href="Rda.html">Roshan Digital Account (RDA)</a>
+          <a href="Acoocint opening.html">Open Digital Account</a>
+          <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
+        </div>
+      </div>
+
+      <div class="nx-item">
+        <a class="nx-link" href="#">Downloads</a>
+        <div class="nx-drop">
+          <a href="Forms.html">Forms</a>
+          <a href="software.html">Software</a>
+        </div>
+      </div>
+
+      <div class="nx-item">
+        <a class="nx-link" href="#">Support</a>
+        <div class="nx-drop">
+          <a href="investor complaint.html">Investor Complaint</a>
+          <a href="Annaual half yearly.html">Annual / Half yearly / Quarterly Financial Statements</a>
+          <a href="Auditor.html">Statutory Auditor Details</a>
+          <a href="Ncb auditor details .html">NCB Auditor Details</a>
+          <a href="KYC poslicy.html">CDD / KYC Policy</a>
+          <a href="Pending investor complaun.html">Pending Investor Complaints</a>
+          <a href="Penal action.html">Details of Penal Action</a>
+          <a href="Secp complaint.html">SECP Complaint</a>
+          <a href="psx complaint.html">PSX Complaint</a>
+          <a href="UIs of NICCPL.html">UIS Services of NCCPL</a>
+          <a href="Eservices By CDC.html">EServices by CDC</a>
+        </div>
+      </div>
+    </nav>
+
+    <button class="nx-cta">OPEN AN ACCOUNT</button>
+    <button class="nx-toggle" id="nxToggle" aria-label="Toggle menu" aria-controls="nxMenu" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+
+<main id="top">
+  <!-- (content left exactly as you provided) -->
+  <!-- HERO / GUIDE -->
+  <section class="section" id="guide">
+    <h2>Unlock your financial potential with smart investments.</h2>
+    <p class="lead">Start with the essentials—clear, simple, and actionable.</p>
+
+    <div class="grid">
+      <article class="card col-4">
+        <div class="media"><img src="assets/bright-01.png" alt="Invest wisely"></div>
+        <div class="content">
+          <span class="pill">Investor Guide</span>
+          <h3>Suggestions for making smart investments</h3>
+          <ul class="bullet">
+            <li>Avoid greed; don’t repeat mistakes.</li>
+            <li>Diversify; don’t put all eggs in one basket.</li>
+            <li>Control emotions; rely on research.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="card col-4">
+        <div class="media"><img src="assets/bright-02.png" alt="Trade wisely"></div>
+        <div class="content">
+          <span class="pill">Trading</span>
+          <h3>Before you buy a stock</h3>
+          <ul class="bullet">
+            <li>Know the business & profitability.</li>
+            <li>Study earnings history & outlook.</li>
+            <li>Identify competitors & management.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="card col-4">
+        <div class="media"><img src="assets/bright-03.png" alt="Ownership"></div>
+        <div class="content">
+          <span class="pill">Ownership</span>
+          <h3>Why stocks are vital for superior growth</h3>
+          <p>Equities drive long-term growth and can provide dividend income when companies profit.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- WHAT IS CDC -->
+  <section class="section" id="cdc">
+    <div class="split">
+      <div class="img card in-view"><img src="assets/bright-cdc.png" alt="CDC"></div>
+      <div class="copy">
+        <div class="kicker">Market Plumbing</div>
+        <h2>What is CDC (Central Depository Company)?</h2>
+        <p class="lead">Electronic custody and settlement that reduces risk, paperwork, and delays.</p>
+        <div class="grid">
+          <article class="card col-6">
+            <div class="content">
+              <span class="pill">Before CDS</span>
+              <h3>Capital markets prior to CDS</h3>
+              <ul class="bullet">
+                <li>Paper certificates: damaged/lost/forged risks.</li>
+                <li>Transfer delays (weeks), stamp duty costs.</li>
+                <li>Heavy manual processing & long dispatch times.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="card col-6">
+            <div class="content">
+              <span class="pill">After CDS</span>
+              <h3>Benefits after CDS was incorporated</h3>
+              <ul class="bullet">
+                <li>Instant ownership transfers; no stamp duty.</li>
+                <li>Credit of bonus/rights/new issues faster.</li>
+                <li>Lower paperwork & capital/time required.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY CONSIDERATIONS -->
+  <section class="section" id="keys">
+    <h2>Key considerations for investment in equities</h2>
+    <div class="grid">
+      <article class="card col-3">
+        <div class="content">
+          <span class="pill">Goals</span>
+          <h3>Define objectives</h3>
+          <ul class="bullet"><li>Purpose of funds</li><li>Risk comfort</li><li>Timeframe</li></ul>
+        </div>
+      </article>
+      <article class="card col-3">
+        <div class="content">
+          <span class="pill">Scams</span>
+          <h3>How to spot scams</h3>
+          <ul class="bullet">
+            <li>Unrealistic returns / urgency</li>
+            <li>Unsolicited contacts</li>
+            <li>Requests for sensitive info</li>
+          </ul>
+        </div>
+      </article>
+      <article class="card col-3">
+        <div class="content">
+          <span class="pill">Tracking</span>
+          <h3>Monitor your stocks</h3>
+          <ul class="bullet">
+            <li>Symbol, Volume, High/Low/Close</li>
+            <li>Net change</li>
+            <li>Use company reports</li>
+          </ul>
+        </div>
+      </article>
+      <article class="card col-3">
+        <div class="content">
+          <span class="pill">Ownership</span>
+          <h3>Shares & registers</h3>
+          <p>When shares are transferred to your name, you get dividends, voting rights and company reports.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- STYLES -->
+  <section class="section" id="styles">
+    <h2>Investing Styles & Finding Your Fit</h2>
+    <div class="grid">
+      <article class="card col-4">
+        <div class="media"><img src="assets/bright-style-1.png" alt=""></div>
+        <div class="content">
+          <span class="pill">Conservative</span>
+          <h3>Capital protection first</h3>
+          <p>Prefer lower risk and stability; willing to trade some growth for peace of mind.</p>
+        </div>
+      </article>
+      <article class="card col-4">
+        <div class="media"><img src="assets/bright-style-2.png" alt=""></div>
+        <div class="content">
+          <span class="pill">Moderate</span>
+          <h3>Balanced growth</h3>
+          <p>Blend of growth & income; diversification to smooth volatility.</p>
+        </div>
+      </article>
+      <article class="card col-4">
+        <div class="media"><img src="assets/bright-style-3.png" alt=""></div>
+        <div class="content">
+          <span class="pill">Aggressive</span>
+          <h3>Higher risk, higher return</h3>
+          <p>Pursue strong growth, accept larger swings and possible losses.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- COSTS -->
+  <section class="section" id="costs">
+    <div class="split">
+      <div class="copy">
+        <div class="kicker">Fees & Charges</div>
+        <h2>Costs to be aware of</h2>
+        <p class="lead">Understand your broker’s tariff so you know your true net returns.</p>
+        <div class="grid">
+          <article class="card col-6">
+            <div class="content">
+              <span class="pill">Trading</span>
+              <h3>Intraday & Delivery</h3>
+              <p>Daily trade charges vs. delivery charges for holding shares beyond the day.</p>
+            </div>
+          </article>
+          <article class="card col-6">
+            <div class="content">
+              <span class="pill">Other</span>
+              <h3>Taxes & Misc</h3>
+              <p>Taxes, regulatory, and platform/clearing fees may apply depending on your market.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div class="img card in-view"><img src="assets/bright-costs.png" alt=""></div>
+    </div>
+  </section>
+
+  <!-- RISKS -->
+  <section class="section" id="risks">
+    <h2>Risks & Good Practice</h2>
+    <div class="grid">
+      <article class="card col-6">
+        <div class="content">
+          <span class="pill">Risk</span>
+          <h3>Questions to ask yourself</h3>
+          <ul class="bullet">
+            <li>How much volatility can I handle?</li>
+            <li>What if I miss my objectives?</li>
+            <li>What is my maximum loss tolerance?</li>
+            <li>Will I use leverage?</li>
+          </ul>
+        </div>
+      </article>
+      <article class="card col-6">
+        <div class="content">
+          <span class="pill">Discipline</span>
+          <h3>Guidelines</h3>
+          <ul class="bullet">
+            <li>Match risk to goals and horizon.</li>
+            <li>Diversify across sectors.</li>
+            <li>Review performance objectively.</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section" id="open">
+    <div class="grid">
+      <article class="card col-12" style="text-align:center;padding:26px">
+        <div class="content">
+          <h2 style="margin-top:8px;">Ready to begin?</h2>
+          <p class="lead">Open an account in minutes and start investing with confidence.</p>
+          <a href="#" class="nx-cta" style="display:inline-block;margin-top:8px;">OPEN AN ACCOUNT</a>
+        </div>
+      </article>
+    </div>
+  </section>
+</main>
+
+<!-- ================= FOOTER (unchanged structure) ================= -->
+<footer class="nx-footer">
+  <div class="nx-foot-wrap">
+    <div class="nx-foot-top">
+      <a class="nx-foot-brand" href="#top">
+       <img class="nx-logo" src="stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
+  <!-- second/partner logo -->
+  <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 
+
+
+10.34.53_ed0e28f6.jpg" alt="Partner Logo">
+
+      
+      </a>
+    </div>
+
+    <div class="nx-foot-grid">
+      <div class="nx-foot-col">
+        <h4>WHY US</h4>
+        <a href="#">About Us</a>
+        <a href="#">Board of Directors / Management</a>
+        <a href="#">Mission / Vision</a>
+      </div>
+      <div class="nx-foot-col">
+        <h4>EDUCATION</h4>
+        <a href="#">New to Trading</a>
+        <a href="#">Investor Guide</a>
+        <a href="#">Glossary</a>
+      </div>
+      <div class="nx-foot-col">
+        <h4>OPEN AN ACCOUNT</h4>
+        <a href="Rda.html">Roshan Digital Account (RDA)</a>
+        <a href="Acoocint opening.html">Open Digital Account</a>
+        <a href="#">Manage Funds</a>
+      </div>
+      <div class="nx-foot-col">
+        <h4>CONTACT</h4>
+        <a href="mailto:info@stocXinvest.com">info@stocXinvest.com</a>
+        <a href="#">+92 316 2288686</a>
+        <a href="#">Karachi, Pakistan</a>
+      </div>
+    </div>
+
+    <div class="nx-foot-bottom">
+      <span>© <script>document.write(new Date().getFullYear())</script> StocXinvest</span>
+      <span><a href="#" style="color:var(--muted); text-decoration:none">Privacy</a> · <a href="#" style="color:var(--muted); text-decoration:none">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Intersection Observer for cards (unchanged)
+  const io = new IntersectionObserver((entries)=>{
+    for(const e of entries){
+      if(e.isIntersecting){
+        e.target.classList.add('in-view');
+        io.unobserve(e.target);
+      }
+    }
+  }, {threshold:.18});
+  document.querySelectorAll('.card').forEach(c=>io.observe(c));
+
+  // Section spy (kept)
+  const sections = [...document.querySelectorAll('section[id]')];
+  const spy = ()=>{
+    const pos = window.scrollY + 120;
+    let activeId = sections[0]?.id;
+    for(const s of sections){
+      const top = s.offsetTop, bottom = top + s.offsetHeight;
+      if(pos >= top && pos < bottom){ activeId = s.id; break; }
+    }
+  };
+  window.addEventListener('scroll', spy, {passive:true}); spy();
+
+  // Navbar interactions (kept)
+  const toggle = document.getElementById('toggle');
+  const menu   = document.getElementById('menu');
+  toggle?.addEventListener('click', ()=> menu.classList.toggle('is-open'));
+
+  const nav = document.getElementById('nav');
+  let last = 0;
+  const onScroll = () => {
+    const y = window.scrollY || document.documentElement.scrollTop;
+    if (y > 6 && last <= 6) nav.classList.add('is-shrink');
+    if (y <= 6 && last > 6) nav.classList.remove('is-shrink');
+    last = y;
+  };
+  onScroll();
+  addEventListener('scroll', onScroll, {passive:true});
+</script>
+</body>
+</html>
