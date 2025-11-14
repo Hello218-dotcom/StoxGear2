@@ -3,146 +3,368 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>StocXinvest – Your X factor to Investments</title>
+  <title>Associated Companies – StocXinvest</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+
   <style>
-    /* ================= WHITE + GOLD (default) ================ */
+    /* ================= NEW THEME: MIDNIGHT BLUE + CYAN ================ */
     :root{
-      --bg:#ffffff;               /* page background */
-      --surface:#ffffff;          /* cards/panels */
-      --ink:#141414;              /* main text */
-      --muted:#666666;            /* secondary text */
-      --accent:#c9a646;           /* gold */
-      --accent-ink:#ffffff;       /* text on gold */
-      --ring:rgba(201,166,70,.28);
-      --line:#e5e5e5;
-      --radius:16px;
-      --shadow:0 10px 26px rgba(0,0,0,.10);
-    }
-    /* optional dark mode if ever needed: add class="dark" on <html> */
-    :root.dark{
-      --bg:#0b0b0b; --surface:#111; --ink:#eaeaea; --muted:#bdbdbd;
-      --accent:#a6ff00; --accent-ink:#0b0b0b; --ring:rgba(166,255,0,.3);
-      --line:rgba(255,255,255,.08);
-      --shadow:0 10px 28px rgba(0,0,0,.35);
+      --bg:#050815;               /* page background */
+      --surface:#0b1020;          /* cards/panels */
+      --ink:#f5f7ff;              /* main text */
+      --muted:#8f9bb8;            /* secondary text */
+      --accent:#38bdf8;           /* cyan */
+      --accent-soft:rgba(56,189,248,.18);
+      --accent-ink:#020617;       /* text on accent */
+      --ring:rgba(56,189,248,.35);
+      --line:rgba(148,163,184,.22);
+      --radius:18px;
+      --shadow:0 18px 45px rgba(15,23,42,.65);
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif}
+    body{
+      margin:0;
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,.16), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(59,130,246,.18), transparent 55%),
+        var(--bg);
+      color:var(--ink);
+      font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
+    }
     a{color:inherit;text-decoration:none}
     .container{max-width:1200px;margin:auto;padding:0 20px}
-    .btn{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:var(--accent-ink);padding:12px 18px;border-radius:999px;font-weight:800;border:1px solid #0000;box-shadow:var(--shadow);transition:transform .2s,filter .2s}
-    .btn:hover{transform:translateY(-1px);filter:brightness(1.05)}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;
+      background:var(--accent);color:var(--accent-ink);
+      padding:12px 18px;border-radius:999px;font-weight:800;
+      border:1px solid transparent;box-shadow:var(--shadow);
+      transition:transform .2s,filter .2s,box-shadow .2s;
+      font-size:14px;letter-spacing:.04em;text-transform:uppercase;
+    }
+    .btn:hover{transform:translateY(-1px);filter:brightness(1.05);box-shadow:0 22px 60px rgba(15,23,42,.9)}
 
-    /* ===== NAVBAR (light) ===== */
-    .nx-navbar{position:sticky;top:0;z-index:999;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 4px 12px rgba(0,0,0,.05)}
-    .nx-nav-inner{max-width:1200px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:18px}
-    .nx-brand{display:flex;align-items:center;gap:12px;color:var(--ink);text-decoration:none}
-    .nx-logo{height:34px;width:auto;display:block}
+    /* ===== NAVBAR (dark glass) ===== */
+    .nx-navbar{
+      position:sticky;top:0;z-index:999;
+      background:rgba(15,23,42,.92);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(148,163,184,.35);
+      box-shadow:0 10px 30px rgba(2,6,23,.85);
+    }
+    .nx-nav-inner{
+      max-width:1200px;margin:0 auto;
+      padding:14px 24px;
+      display:flex;align-items:center;gap:18px;
+    }
+    .nx-brand{
+      display:flex;align-items:center;gap:12px;
+      color:var(--ink);text-decoration:none;
+    }
+    .nx-logo{height:34px;width:auto;display:block;border-radius:10px;box-shadow:0 0 0 1px rgba(148,163,184,.3)}
     .nx-logo2{
-  height:30px;          /* same as .nx-logo */
-  width:auto;
-  display:block;
-  object-fit:contain;
-  margin-left:10px;     /* small gap */
-}
-
-<footer class="nx-footer"> … <a class="nx-brand" href="#"> … </a>
-
-    .nx-tag{font-size:12px;color:var(--muted)}
+      height:30px;
+      width:auto;
+      display:block;
+      object-fit:contain;
+      margin-left:4px;
+      border-radius:10px;
+      box-shadow:0 0 0 1px rgba(148,163,184,.3);
+    }
     .nx-grow{flex:1}
     .nx-menu{display:flex;align-items:center;gap:26px}
     .nx-item{position:relative}
-    .nx-link{color:var(--muted);font-weight:600;text-decoration:none;font-size:15px;position:relative}
-    .nx-link:after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--accent);transform:scaleX(0);transition:.25s}
-    .nx-link:hover{color:var(--accent)}
+    .nx-link{
+      color:var(--muted);font-weight:600;
+      text-decoration:none;font-size:14px;
+      position:relative;padding:4px 0;
+      letter-spacing:.03em;text-transform:uppercase;
+    }
+    .nx-link:after{
+      content:"";
+      position:absolute;left:0;right:0;bottom:-6px;
+      height:2px;background:linear-gradient(90deg,var(--accent),#4ade80);
+      transform:scaleX(0);transform-origin:center;
+      transition:.25s;
+      border-radius:999px;
+    }
+    .nx-link:hover{color:var(--ink)}
     .nx-link:hover:after{transform:scaleX(1)}
     .nx-drop{
       position:absolute;top:calc(100% + 10px);left:0;min-width:240px;
-      background:#fff;border:1px solid var(--line);
-      border-radius:14px;padding:10px;box-shadow:0 12px 28px rgba(0,0,0,.08);display:none
+      background:rgba(15,23,42,.98);
+      border:1px solid var(--line);
+      border-radius:14px;padding:10px;
+      box-shadow:0 18px 46px rgba(15,23,42,.9);
+      display:none;
     }
-    .nx-drop a{display:block;color:var(--ink);text-decoration:none;padding:8px 12px;border-radius:10px}
-    .nx-drop a:hover{background:#f6f6f6;color:var(--accent)}
-    .nx-cta{border:none;background:var(--accent);color:#fff;padding:10px 18px;border-radius:999px;font-weight:700;cursor:pointer;box-shadow:0 0 14px rgba(201,166,70,.22)}
-    .nx-cta:hover{background:#b38b2e}
+    .nx-drop a{
+      display:block;color:var(--ink);
+      text-decoration:none;padding:8px 12px;border-radius:10px;
+      font-size:14px;
+    }
+    .nx-drop a:hover{
+      background:rgba(15,23,42,.9);
+      color:var(--accent);
+    }
+    .nx-cta{
+      border:none;background:var(--accent);color:#020617;
+      padding:10px 18px;border-radius:999px;
+      font-weight:800;cursor:pointer;
+      box-shadow:0 0 0 1px rgba(15,23,42,.6),0 14px 40px rgba(8,47,73,.9);
+      text-transform:uppercase;font-size:12px;letter-spacing:.15em;
+    }
+    .nx-cta:hover{background:#0ea5e9}
+
     /* desktop hover */
-    @media (min-width:1025px){ .nx-item:hover>.nx-drop{display:block} .nx-toggle{display:none} }
+    @media (min-width:1025px){
+      .nx-item:hover>.nx-drop{display:block}
+      .nx-toggle{display:none}
+    }
     /* mobile menu */
     @media (max-width:1024px){
       .nx-menu{
         display:none; position:absolute; top:100%; left:0; right:0;
-        background:#fff; border-top:1px solid var(--line);
-        padding:10px 12px; z-index:9999; flex-direction:column; gap:0
+        background:rgba(15,23,42,.97);
+        border-top:1px solid var(--line);
+        padding:10px 12px; z-index:9999;
+        flex-direction:column; gap:0;
       }
       .nx-item{width:100%}
       .nx-link{display:block;padding:12px 6px}
-      .nx-drop{position:static;display:none;border:none;box-shadow:none;background:transparent;padding:0}
+      .nx-drop{
+        position:static;display:none;
+        border:none;box-shadow:none;
+        background:transparent;padding:0;
+      }
       .nx-item.open>.nx-drop{display:block}
-      .nx-toggle{display:inline-block;margin-left:10px;color:var(--accent);background:none;border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:20px}
+      .nx-toggle{
+        display:inline-block;margin-left:10px;
+        color:var(--accent);
+        background:none;border:1px solid var(--line);
+        border-radius:10px;padding:6px 10px;font-size:20px;
+      }
       .nx-navbar.is-open .nx-menu{display:flex}
     }
 
-    /* ===== HERO (light) ===== */
-    .hero{position:relative;overflow:hidden;background:#fff}
-    .hero__inner{display:grid;grid-template-columns: 1.1fr 0.9fr;gap:28px;align-items:center;padding:38px 0 22px}
-    .hero h1{font-size:clamp(28px,5vw,56px);line-height:1.05;margin:10px 0 16px}
-    .hero h1 .hl{color:var(--accent)}
-    .hero p{color:var(--muted);max-width:640px}
-    .hero__art .frame{position:relative;border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
-    .hero__art img{display:block;width:100%;height:auto}
-
-    /* ticker (light strip) */
-    .ticker{position:relative;background:#f7f8f9;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-    .ticker__row{display:flex;gap:28px;white-space:nowrap;animation:marq 30s linear infinite;padding:10px 0}
-    @keyframes marq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-    .tick{display:flex;gap:8px;align-items:baseline;color:var(--ink)}
-    .tick .sym{font-weight:800}
-    .tick.up{color:#0c8a0c}.tick.down{color:#c0392b}
-
-    /* ===== FEATURE CARDS ===== */
-    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin:40px 0}
-    .card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow);transition:transform .2s, box-shadow .2s}
-    .card:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(0,0,0,.14)}
-    .card img{width:100%;height:auto;border-radius:14px;margin-bottom:12px}
-    .card h3{margin:6px 0 8px}
-    .card p{color:var(--muted)}
-
-    /* ===== STEPS ===== */
-    .steps{text-align:center;margin:16px 0 60px}
-    .steps h2{color:var(--accent);font-size:clamp(24px,4vw,40px)}
-    .steps__row{display:grid;grid-template-columns:repeat(3,1fr);gap:38px;margin-top:16px}
-    .step{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:var(--shadow)}
-    .step .num{display:inline-grid;place-items:center;width:58px;height:58px;border-radius:50%;border:2px solid var(--accent);font-weight:900;margin-bottom:12px}
-    .step p{color:var(--muted)}
-
     /* ===== FLOATING CONTACT RIBBON + WHATSAPP ===== */
-    .ribbon{position:fixed;right:0;top:40%;transform:translateY(-50%);background:var(--accent);color:#fff;padding:14px 10px;border-radius:10px 0 0 10px;writing-mode:vertical-rl;text-orientation:mixed;font-weight:800;letter-spacing:.08em;box-shadow:var(--shadow);z-index:60}
-    .fab{position:fixed;right:22px;bottom:22px;width:58px;height:58px;border-radius:50%;background:var(--accent);box-shadow:var(--shadow);display:grid;place-items:center;font-weight:900;color:#fff;z-index:60}
-
-    /* ===== UTIL ===== */
-    .mt-2{margin-top:12px}.mt-3{margin-top:18px}.mt-4{margin-top:24px}
+    .ribbon{
+      position:fixed;right:0;top:40%;transform:translateY(-50%);
+      background:linear-gradient(180deg,var(--accent),#4ade80);
+      color:#020617;padding:14px 10px;
+      border-radius:10px 0 0 10px;
+      writing-mode:vertical-rl;text-orientation:mixed;
+      font-weight:800;letter-spacing:.08em;
+      box-shadow:var(--shadow);z-index:60;
+      font-size:11px;text-transform:uppercase;
+    }
+    .ribbon:hover{filter:brightness(1.05);transform:translateY(-50%) translateX(-2px)}
+    .fab{
+      position:fixed;right:22px;bottom:22px;
+      width:58px;height:58px;border-radius:50%;
+      background:#22c55e;
+      box-shadow:0 18px 36px rgba(5,46,22,.85);
+      display:grid;place-items:center;
+      font-weight:900;color:#022c22;
+      z-index:60;
+      font-size:14px;
+    }
+    .fab:hover{transform:translateY(-2px);transition:.2s}
 
     /* safety: hide any stray duplicates accidentally left in body */
     body > .nx-brand, body > .nx-foot-brand { display:none !important; }
 
-    /* ===== FOOTER (site) ===== */
-    .nx-footer{margin-top:60px;background:#f7f7f7;border-top:1px solid var(--line);color:var(--muted)}
-    .nx-foot-wrap{max-width:1200px;margin:0 auto;padding:48px 20px 28px}
-    .nx-foot-top{display:flex;align-items:center;justify-content:space-between;gap:18px;padding-bottom:22px;border-bottom:1px solid var(--line)}
-    .nx-foot-brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink)}
-    .nx-foot-logo{height:36px;width:auto}
-    .nx-foot-tag{font-size:13px;color:var(--muted)}
-    .nx-foot-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px;padding:26px 0 6px}
+
+    /* ================= ASSOCIATED COMPANIES PAGE ================= */
+
+    .ac-shell{
+      padding:48px 0 80px;
+    }
+
+    .ac-header{
+      max-width:720px;
+      margin:0 auto 36px;
+      text-align:center;
+      animation:fadeDown .7s ease-out both;
+    }
+    .ac-pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:4px 12px;border-radius:999px;
+      background:rgba(15,23,42,.9);
+      border:1px solid var(--accent-soft);
+      color:var(--muted);
+      font-size:11px;text-transform:uppercase;
+      letter-spacing:.16em;
+      margin-bottom:14px;
+    }
+    .ac-pill-dot{
+      width:6px;height:6px;border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 12px var(--accent-soft);
+    }
+    .ac-title{
+      font-size:clamp(26px,4vw,40px);
+      margin:0 0 12px;
+      letter-spacing:.02em;
+    }
+    .ac-title span{
+      background:linear-gradient(120deg,var(--accent),#4ade80);
+      -webkit-background-clip:text;
+      color:transparent;
+    }
+    .ac-sub{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .ac-grid{
+      margin-top:40px;
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:26px;
+    }
+    @media(max-width:1024px){
+      .ac-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+    @media(max-width:640px){
+      .ac-grid{grid-template-columns:1fr}
+    }
+
+    .ac-card{
+      position:relative;
+      background:radial-gradient(circle at top left,rgba(56,189,248,.22),transparent 55%),var(--surface);
+      border-radius:var(--radius);
+      border:1px solid rgba(148,163,184,.4);
+      padding:20px 18px 20px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      cursor:pointer;
+      transform-origin:top center;
+      animation:floatIn .65s ease-out both;
+    }
+    .ac-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at top,var(--accent-soft),transparent 55%);
+      opacity:0;
+      transition:opacity .25s;
+      pointer-events:none;
+    }
+    .ac-card:hover::before{opacity:1}
+    .ac-tag-row{
+      display:flex;align-items:center;justify-content:space-between;
+      margin-bottom:10px;font-size:11px;text-transform:uppercase;
+      letter-spacing:.14em;color:var(--muted);
+    }
+    .ac-chip{
+      padding:3px 9px;border-radius:999px;
+      border:1px solid rgba(148,163,184,.5);
+      background:rgba(15,23,42,.85);
+      display:inline-flex;align-items:center;gap:6px;
+    }
+    .ac-chip-dot{
+      width:6px;height:6px;border-radius:50%;
+      background:#22c55e;
+      box-shadow:0 0 8px rgba(34,197,94,.9);
+    }
+    .ac-name{
+      margin:2px 0 4px;font-size:17px;
+    }
+    .ac-rel{
+      font-size:13px;color:var(--muted);margin-bottom:10px;
+    }
+    .ac-text{
+      font-size:13px;color:var(--muted);
+    }
+    .ac-meta{
+      margin-top:14px;
+      display:flex;flex-wrap:wrap;gap:8px;
+      font-size:11px;color:var(--muted);
+    }
+    .ac-pill-mini{
+      padding:4px 9px;border-radius:999px;
+      background:rgba(15,23,42,.9);
+      border:1px solid rgba(148,163,184,.4);
+    }
+    .ac-highlight{
+      font-weight:600;color:var(--accent);
+    }
+
+    .ac-card:nth-child(1){animation-delay:.05s}
+    .ac-card:nth-child(2){animation-delay:.12s}
+    .ac-card:nth-child(3){animation-delay:.19s}
+    .ac-card:nth-child(4){animation-delay:.26s}
+    .ac-card:nth-child(5){animation-delay:.33s}
+    .ac-card:nth-child(6){animation-delay:.4s}
+
+    .ac-footer-strip{
+      margin-top:40px;
+      padding:18px 18px;
+      border-radius:var(--radius);
+      border:1px dashed rgba(148,163,184,.5);
+      background:rgba(15,23,42,.8);
+      display:flex;justify-content:space-between;align-items:center;
+      gap:16px;
+      font-size:13px;color:var(--muted);
+    }
+    @media(max-width:640px){
+      .ac-footer-strip{flex-direction:column;align-items:flex-start}
+    }
+
+    /* ========== SITE FOOTER NAV ========== */
+    .nx-footer{
+      margin-top:36px;
+      background:rgba(10,16,33,.98);
+      border-top:1px solid rgba(148,163,184,.3);
+      color:var(--muted);
+    }
+    .nx-foot-wrap{max-width:1200px;margin:0 auto;padding:40px 20px 24px}
+    .nx-foot-top{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:18px;padding-bottom:18px;border-bottom:1px solid rgba(148,163,184,.35);
+    }
+    .nx-foot-grid{
+      display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:26px;padding:24px 0 6px;
+    }
     @media(max-width:900px){.nx-foot-grid{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:540px){.nx-foot-grid{grid-template-columns:1fr}}
-    .nx-foot-col h4{margin:0 0 12px;color:var(--accent);font-size:15px}
-    .nx-foot-col a{display:block;color:var(--ink);text-decoration:none;opacity:.9;padding:7px 0;font-size:14px}
+    .nx-foot-col h4{
+      margin:0 0 10px;
+      color:var(--accent);
+      font-size:13px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+    }
+    .nx-foot-col a{
+      display:block;color:var(--ink);text-decoration:none;
+      opacity:.85;padding:5px 0;font-size:13px;
+    }
     .nx-foot-col a:hover{opacity:1;color:var(--accent)}
-    .nx-foot-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+    .nx-foot-bottom{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:12px;padding-top:14px;
+      border-top:1px solid rgba(148,163,184,.35);
+      color:var(--muted);font-size:12px;
+    }
+    @media(max-width:640px){
+      .nx-foot-bottom{flex-direction:column;align-items:flex-start}
+    }
+
+    /* ========== KEYFRAMES ========== */
+    @keyframes floatIn{
+      0%{opacity:0;transform:translateY(20px) scale(.96);}
+      100%{opacity:1;transform:translateY(0) scale(1);}
+    }
+    @keyframes fadeDown{
+      0%{opacity:0;transform:translateY(-10px);}
+      100%{opacity:1;transform:translateY(0);}
+    }
   </style>
 </head>
 <body>
@@ -151,12 +373,10 @@
   <header class="nx-navbar" id="nxHeader">
     <div class="nx-nav-inner">
       <a class="nx-brand" href="index.html">
-<!-- main logo -->
-  <img class="nx-logo" src="stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
-  <!-- second/partner logo -->
-  <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner Logo">
-</a>
-       
+        <!-- main logo -->
+        <img class="nx-logo" src="stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
+        <!-- second/partner logo -->
+        <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner Logo">
       </a>
 
       <div class="nx-grow"></div>
@@ -224,7 +444,7 @@
         </div>
       </nav>
 
-      <button class="nx-cta">OPEN AN ACCOUNT</button>
+      <button class="nx-cta">Open an Account</button>
       <button class="nx-toggle" id="nxToggle" aria-label="Toggle menu" aria-controls="nxMenu" aria-expanded="false">☰</button>
     </div>
   </header>
@@ -233,159 +453,188 @@
   <a class="ribbon" href="#contact">CONTACT US NOW</a>
   <a class="fab" href="https://wa.me/" aria-label="WhatsApp">WA</a>
 
-  <!-- ===== HERO ===== -->
-  <section class="hero">
-    <div class="container hero__inner">
-      <div>
-        <h1>Save time. Get <span class="hl">higher return</span>. Multiply wealth.</h1>
-        <p>Take your stock trading to the next level with fast execution, pro-grade tools, and trusted custody. Desktop & mobile trading with one secure login.</p>
-        <div class="mt-3">
-          <a class="btn" href="#downloads">Download Trading App</a>
+  <!-- ========== MAIN: ASSOCIATED COMPANIES ========== -->
+  <main class="container ac-shell">
+    <header class="ac-header">
+      <div class="ac-pill">
+        <span class="ac-pill-dot"></span>
+        <span>Group Structure · Associated Companies</span>
+      </div>
+      <h1 class="ac-title">
+        Our <span>Associated Companies</span>
+      </h1>
+      <p class="ac-sub">
+        StocXinvest operates alongside a network of associated businesses that strengthen our
+        research, execution, technology and client servicing capabilities across Pakistan and beyond.
+      </p>
+    </header>
+
+    <section class="ac-grid">
+
+      <!-- CARD 1 -->
+      <article class="ac-card">
+        <div class="ac-tag-row">
+          <span>Brokerage &amp; Trading</span>
+          <span class="ac-chip"><span class="ac-chip-dot"></span> Core Associate</span>
         </div>
-      </div>
-      <div class="hero__art">
-        <div class="frame">
-          <!-- Replace with your banner asset -->
-          <img src="/mnt/data/4552a923-d84e-4e1f-91d9-c922dc1ad1ce.png" alt="Desktop & mobile trading application"/>
+        <h2 class="ac-name">StocXinvest Securities (Private) Limited</h2>
+        <p class="ac-rel">Licensed brokerage house · PSX focused</p>
+        <p class="ac-text">
+          Provides equity and fixed-income brokerage, online trading platforms, and execution services
+          to retail, HNW and institutional clients, backed by disciplined risk management and
+          transparent reporting standards.
+        </p>
+        <div class="ac-meta">
+          <span class="ac-pill-mini">PSX Member</span>
+          <span class="ac-pill-mini">Online Trading</span>
+          <span class="ac-pill-mini ac-highlight">Client-first Execution</span>
         </div>
-      </div>
-    </div>
+      </article>
 
-    <!-- Live ticker strip -->
-    <div class="ticker" aria-label="Market ticker">
-      <div class="container" style="overflow:hidden">
-        <div class="ticker__row">
-          <div class="tick down"><span class="sym">ALLSHR</span> 99845.79 <span>−0.42%</span></div>
-          <div class="tick down"><span class="sym">KSE100</span> 163806.21 <span>−0.39%</span></div>
-          <div class="tick down"><span class="sym">KMI30</span> 238530.50 <span>−0.36%</span></div>
-          <div class="tick up"><span class="sym">POWER</span> 19.11 <span>+5.17%</span></div>
-          <div class="tick up"><span class="sym">PAKRI</span> 17 <span>+10.03%</span></div>
-          <div class="tick up"><span class="sym">SBL</span> 12.98 <span>+10.00%</span></div>
-          <div class="tick down"><span class="sym">FDPL</span> 8.16 <span>−0.61%</span></div>
-          <div class="tick up"><span class="sym">THCCL</span> 90.38 <span>+1.86%</span></div>
-          <div class="tick down"><span class="sym">TPLP</span> 11.58 <span>−1.86%</span></div>
-          <!-- duplicate set for seamless loop -->
-          <div class="tick down"><span class="sym">ALLSHR</span> 99845.79 <span>−0.42%</span></div>
-          <div class="tick down"><span class="sym">KSE100</span> 163806.21 <span>−0.39%</span></div>
-          <div class="tick down"><span class="sym">KMI30</span> 238530.50 <span>−0.36%</span></div>
-          <div class="tick up"><span class="sym">POWER</span> 19.11 <span>+5.17%</span></div>
-          <div class="tick up"><span class="sym">PAKRI</span> 17 <span>+10.03%</span></div>
-          <div class="tick up"><span class="sym">SBL</span> 12.98 <span>+10.00%</span></div>
-          <div class="tick down"><span class="sym">FDPL</span> 8.16 <span>−0.61%</span></div>
-          <div class="tick up"><span class="sym">THCCL</span> 90.38 <span>+1.86%</span></div>
-          <div class="tick down"><span class="sym">TPLP</span> 11.58 <span>−1.86%</span></div>
+      <!-- CARD 2 -->
+      <article class="ac-card">
+        <div class="ac-tag-row">
+          <span>Advisory &amp; Investment Banking</span>
+          <span class="ac-chip"><span class="ac-chip-dot"></span> Strategic Partner</span>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== FEATURE CARDS ===== -->
-  <section class="container" id="why">
-    <div class="features">
-      <article class="card">
-        <img src="/mnt/data/b25f53e5-4931-421b-a8f5-e85ffb6c577d.png" alt="Investment managers"/>
-        <h3>Best investment managers</h3>
-        <p>Seasoned professionals monitoring markets and managing risk to help you stay on track.</p>
+        <h2 class="ac-name">EHHED Consulting Limited</h2>
+        <p class="ac-rel">Corporate finance &amp; capital markets advisory</p>
+        <p class="ac-text">
+          Specializes in transaction advisory, capital raising, restructuring and valuation services for
+          mid-market and growth companies, supporting StocXinvest clients with end-to-end deal
+          execution capability.
+        </p>
+        <div class="ac-meta">
+          <span class="ac-pill-mini">M&amp;A Advisory</span>
+          <span class="ac-pill-mini">Capital Markets</span>
+          <span class="ac-pill-mini ac-highlight">Structuring Expertise</span>
+        </div>
       </article>
-      <article class="card">
-        <img src="/mnt/data/436dd17f-10c0-4d64-9e32-32ed662781f9.png" alt="Trading software"/>
-        <h3>StocXinvest – Trading Software</h3>
-        <p>Desktop & mobile apps with fast order entry, live quotes, and customizable watchlists.</p>
+
+      <!-- CARD 3 -->
+      <article class="ac-card">
+        <div class="ac-tag-row">
+          <span>Technology &amp; Infrastructure</span>
+          <span class="ac-chip"><span class="ac-chip-dot"></span> Tech Associate</span>
+        </div>
+        <h2 class="ac-name">StocX Technologies</h2>
+        <p class="ac-rel">Trading infrastructure &amp; digital solutions</p>
+        <p class="ac-text">
+          Designs, maintains and upgrades core trading infrastructure, APIs and internal tools,
+          ensuring low-latency connectivity, robust cyber-security and a smooth digital experience for
+          StocXinvest customers.
+        </p>
+        <div class="ac-meta">
+          <span class="ac-pill-mini">Order Management</span>
+          <span class="ac-pill-mini">APIs</span>
+          <span class="ac-pill-mini ac-highlight">Always-On Support</span>
+        </div>
       </article>
-      <article class="card">
-        <img src="/mnt/data/f8b9f145-b0c4-42dc-a977-820c0f0f75e4.png" alt="Unlocking insights"/>
-        <h3>Unlocking Insights</h3>
-        <p>Research, screeners, and market data to discover opportunities and make better decisions.</p>
+
+      <!-- CARD 4 -->
+      <article class="ac-card">
+        <div class="ac-tag-row">
+          <span>Back-Office &amp; Support</span>
+          <span class="ac-chip"><span class="ac-chip-dot"></span> Shared Services</span>
+        </div>
+        <h2 class="ac-name">StocX Shared Services</h2>
+        <p class="ac-rel">Accounting, compliance &amp; operations</p>
+        <p class="ac-text">
+          Centralized platform for accounting, reconciliations, KYC / AML and regulatory reporting
+          that serves group entities and associated companies, helping maintain consistent controls
+          and operational efficiency.
+        </p>
+        <div class="ac-meta">
+          <span class="ac-pill-mini">KYC / AML</span>
+          <span class="ac-pill-mini">Regulatory Filings</span>
+          <span class="ac-pill-mini ac-highlight">Process Discipline</span>
+        </div>
       </article>
-    </div>
-  </section>
 
-  <!-- ===== STEPS ===== -->
-  <section class="container steps" id="open">
-    <h2>Simple steps to start trade.</h2>
-    <div class="steps__row">
-      <div class="step">
-        <div class="num">1</div>
-        <h3>Register account</h3>
-        <p>Create your profile and complete KYC quickly with our guided flow.</p>
-      </div>
-      <div class="step">
-        <div class="num">2</div>
-        <h3>Fund your account</h3>
-        <p>Deposit securely via bank transfer or supported payment partners.</p>
-      </div>
-      <div class="step">
-        <div class="num">3</div>
-        <h3>Start your trade</h3>
-        <p>Use desktop or mobile app to place orders, manage positions and track P&L.</p>
-      </div>
-    </div>
+      <!-- CARD 5 -->
+      <article class="ac-card">
+        <div class="ac-tag-row">
+          <span>Education &amp; Investor Awareness</span>
+          <span class="ac-chip"><span class="ac-chip-dot"></span> Content Partner</span>
+        </div>
+        <h2 class="ac-name">StocX Academy</h2>
+        <p class="ac-rel">Training &amp; financial literacy initiatives</p>
+        <p class="ac-text">
+          Develops training content, webinars and learning paths for new as well as experienced
+          investors, aligning with SECP and PSX investor awareness initiatives and group compliance
+          standards.
+        </p>
+        <div class="ac-meta">
+          <span class="ac-pill-mini">Workshops</span>
+          <span class="ac-pill-mini">Digital Content</span>
+          <span class="ac-pill-mini ac-highlight">Investor Education</span>
+        </div>
+      </article>
 
-    <div class="mt-4" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
-      <a href="#" class="card" style="text-align:center">
-        <img src="/mnt/data/94e35001-ff54-42a9-8b26-a142e0aa539b.png" alt="SECP complaints banner"/>
-        <strong>SECP SDMS</strong>
-      </a>
-      <a href="#" class="card" style="text-align:center">
-        <img src="/mnt/data/bf066c17-2159-40d1-903d-b84b69badbe4.png" alt="JamaPunji banner"/>
-        <strong>JamaPunji – IFMP</strong>
-      </a>
-      <a href="#" class="card" style="text-align:center">
-        <img src="/mnt/data/1e0d9eef-8768-4650-be2e-54d992a6a33d.png" alt="Gateway portal banner"/>
-        <strong>Centralized Gateway</strong>
-      </a>
-    </div>
-  </section>
+      <!-- CARD 6 -->
+      <article class="ac-card">
+        <div class="ac-tag-row">
+          <span>Future Associates</span>
+          <span class="ac-chip"><span class="ac-chip-dot"></span> Pipeline</span>
+        </div>
+        <h2 class="ac-name">Regional &amp; International Partnerships</h2>
+        <p class="ac-rel">In progress · subject to approvals</p>
+        <p class="ac-text">
+          StocXinvest is actively exploring cross-border collaborations with regional brokers, fintech
+          platforms and research providers to expand access, products and market coverage for its
+          clients.
+        </p>
+        <div class="ac-meta">
+          <span class="ac-pill-mini">Cross-Border Access</span>
+          <span class="ac-pill-mini">Fintech Alliances</span>
+          <span class="ac-pill-mini ac-highlight">Growth Focused</span>
+        </div>
+      </article>
 
-  <footer class="container" style="padding:60px 0;color:var(--muted)">
-    <div style="display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap">
-      <div>
-        <div class="logo" style="font-size:22px"><span>Stoc<span style="color:var(--accent);font-weight:900">X</span>invest</span></div>
-        <div class="mt-2">© <span id="yr"></span> StocXinvest Securities (Pvt.) Limited</div>
-      </div>
-      <div>
-        <strong>Need help?</strong>
-        <div class="mt-2">Email: support@stocxinvest.example</div>
-        <div>Phone: +92 300 0000000</div>
-      </div>
+    </section>
+
+    <div class="ac-footer-strip">
+      <span>
+        The list above reflects associated and group entities which support StocXinvest in delivering
+        a complete investing experience. Any changes, additions or regulatory updates will be
+        communicated through official notices and disclosures.
+      </span>
+      <a href="contact.html" class="btn">Contact for more details</a>
     </div>
-  </footer>
+  </main>
 
   <!-- ========== FOOTER (site nav) ========== -->
-  <footer class="nx-footer">
+  <footer class="nx-footer" id="contact">
     <div class="nx-foot-wrap">
       <div class="nx-foot-top">
-       <!-- main logo -->
-  <a class="nx-brand" href="index.html">
-  <!-- main logo -->
-  <img class="nx-logo" src="stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
-  <!-- second/partner logo -->
-  <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner Logo">
-</a>
-
+        <!-- main logo -->
+        <a class="nx-brand" href="index.html">
+          <img class="nx-logo" src="stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
+          <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner Logo">
+        </a>
       </div>
 
       <div class="nx-foot-grid">
         <div class="nx-foot-col">
-          <h4>WHY US</h4>
+          <h4>Why Us</h4>
           <a href="about.html">About Us</a>
           <a href="BOARD of directors.html">Board / Management</a>
-          <a href="Mission.html">Mission & Vision</a>
+          <a href="Mission.html">Mission &amp; Vision</a>
         </div>
         <div class="nx-foot-col">
-          <h4>EDUCATION</h4>
+          <h4>Education</h4>
           <a href="New to trading.html">New to Trading</a>
           <a href="Investorguid.html">Investor Guide</a>
           <a href="Glossary.html">Glossary</a>
         </div>
         <div class="nx-foot-col">
-          <h4>ACCOUNT</h4>
+          <h4>Account</h4>
           <a href="Rda.html">Roshan Digital Account</a>
           <a href="Acoocint opening.html">Open Digital Account</a>
           <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
         </div>
         <div class="nx-foot-col">
-          <h4>CONTACT</h4>
+          <h4>Contact</h4>
           <a href="mailto:info@stocxinvest.com">info@stocxinvest.com</a>
           <a href="tel:+923162288686">+92 316 2288686</a>
           <a href="#">Karachi, Pakistan</a>
@@ -393,9 +642,11 @@
       </div>
 
       <div class="nx-foot-bottom">
-        <span>© <script>document.write(new Date().getFullYear())</script> StocX Invest</span>
-        <span><a href="#" style="color:var(--muted);text-decoration:none">Privacy</a> ·
-              <a href="#" style="color:var(--muted);text-decoration:none">Terms</a></span>
+        <span>© <span id="yr"></span> StocX Invest</span>
+        <span>
+          <a href="#" style="color:inherit;text-decoration:none">Privacy</a> ·
+          <a href="#" style="color:inherit;text-decoration:none">Terms</a>
+        </span>
       </div>
     </div>
   </footer>
@@ -427,7 +678,7 @@
         });
       });
       document.addEventListener('click', (e)=>{
-        const isMobile = window.matchMedia('(max-width:1024px)').matches;
+        const isMobile = window.matchMedia('(max-width:1024px')).matches;
         if (isMobile && header && !header.contains(e.target)){
           header.classList.remove('is-open');
           toggle && toggle.setAttribute('aria-expanded','false');
