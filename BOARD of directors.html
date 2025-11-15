@@ -300,6 +300,7 @@
     <a href="#">Procedure To Cancel Pending Orders</a>
     <a href="#">Glossary</a>
     <a href="#">FAQs</a>
+            <a href="Contact.html">Contact</a>
         </div>
       </div>
     </nav>
@@ -538,7 +539,7 @@
   (function(){
     const rows = Array.from(document.querySelectorAll('#sponsorBody tr'));
     const fmt = (n)=> n.toLocaleString('en-US');
-    const total = rows.reduce((s, r)=> s + Number(r.getAttribute('data-shares')||0), 0);
+    const total = rows.reduce((s, r)=> s + Number(r.getAttribute('data-shares')||0), 0);sup
     rows.forEach(r=>{
       const shares = Number(r.getAttribute('data-shares')||0);
       const pctCell = r.querySelector('.pct');
@@ -555,6 +556,7 @@
 
 </body>
 </html>
+
 
 
 
