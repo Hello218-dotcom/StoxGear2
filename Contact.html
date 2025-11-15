@@ -10,7 +10,14 @@
 
   <style>
     /* ===== WHITE + GOLD THEME ===== */
+    /* Fix long dropdown cutting — enable full visibility */
+.nx-drop{
+  max-height: 380px;    /* adjust if needed */
+  overflow-y: auto;     /* makes dropdown scroll */
+}
+
     :root{
+      
       --bg:#ffffff;
       --card:#ffffff;
       --ink:#141414;
