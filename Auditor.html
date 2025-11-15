@@ -6,6 +6,12 @@
 <title>StocX Invest – Statutory Auditors & Legal Advisor</title>
 
 <style>
+  /* Fix long dropdown cutting — enable full visibility */
+.nx-drop{
+  max-height: 380px;    /* adjust if needed */
+  overflow-y: auto;     /* makes dropdown scroll */
+}
+
 :root{
   --bg:#ffffff;
   --surface:#fafafa;
@@ -401,4 +407,5 @@ document.querySelectorAll('.info-card, .fade-up').forEach(el => observer.observe
 </script>
 </body>
 </html>
+
 
