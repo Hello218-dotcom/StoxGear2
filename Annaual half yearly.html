@@ -10,6 +10,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
+  /* Fix long dropdown cutting — enable full visibility */
+.nx-drop{
+  max-height: 380px;    /* adjust if needed */
+  overflow-y: auto;     /* makes dropdown scroll */
+}
+
   /* --- FIX DROPDOWN MENU STYLE (LIGHT THEME) --- */
 .nx-item { position: relative; }
 .nx-drop {
@@ -485,6 +491,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 </body>
 </html>
+
 
 
 
