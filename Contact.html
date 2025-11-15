@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Us – Stoxgear</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== WHITE + GOLD THEME ===== */
+    :root{
+      --bg:#ffffff;
+      --card:#ffffff;
+      --ink:#141414;
+      --muted:#5f6573;
+      --accent:#c9a646;      /* gold */
+      --accent-2:#e6c463;
+      --radius:18px;
+      --ring: rgba(201,166,70,.28);
+      --maxw:1200px;
+      --line:#e8e8e8;
+      --shadow:0 10px 28px rgba(0,0,0,.08);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(1200px 360px at 12% -10%, rgba(201,166,70,.08), transparent 60%),
+        radial-gradient(900px 320px at 90% 110%, rgba(201,166,70,.06), transparent 60%),
+        var(--bg);
+      color:var(--ink);
+    }
+
+    .wrap{
+      max-width:var(--maxw);
+      margin:auto;
+      padding:40px 20px 80px;
+    }
+
+    .title{
+      font-size:clamp(28px,4vw,44px);
+      margin:0 0 8px;
+      font-weight:800;
+      letter-spacing:.2px;
+      color:var(--accent);
+    }
+
+    /* ===== CONTACT GRID & CARDS ===== */
+    .contact-grid{
+      margin-top:30px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:22px;
+    }
+
+    .contact-card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:18px 20px;
+      position:relative;
+      overflow:hidden;
+      transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+
+    .contact-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at top left, rgba(201,166,70,.14), transparent 55%);
+      opacity:0;
+      transition:opacity .25s ease;
+      pointer-events:none;
+    }
+
+    .contact-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 16px 36px rgba(0,0,0,.12);
+      border-color:var(--accent-2);
+    }
+    .contact-card:hover::before{opacity:1;}
+
+    .contact-card h2{
+      margin:0 0 8px;
+      font-size:18px;
+      letter-spacing:.2px;
+      color:var(--accent);
+    }
+
+    .contact-card p{
+      margin:0;
+      line-height:1.7;
+      color:#2d2f36;
+      font-size:14px;
+    }
+
+    .contact-card a{
+      color:inherit;
+      text-decoration:none;
+      border-bottom:1px dashed rgba(0,0,0,.25);
+    }
+    .contact-card a:hover{
+      color:var(--accent);
+      border-bottom-color:var(--accent);
+    }
+
+    /* Map card */
+    .map-card{
+      margin-top:26px;
+      border-radius:var(--radius);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      background:#fff;
+    }
+
+    .map-card-header{
+      padding:14px 18px;
+      border-bottom:1px solid var(--line);
+      font-weight:600;
+      color:var(--accent);
+      font-size:15px;
+    }
+
+    .map-card iframe{
+      display:block;
+      width:100%;
+      height:320px;
+      border:0;
+    }
+
+    /* ===== Scroll reveal animation ===== */
+    .reveal{
+      opacity:0;
+      transform:translateY(22px) scale(.985);
+      transition:opacity .8s ease, transform .8s ease;
+    }
+    .reveal.show{
+      opacity:1;
+      transform:none;
+    }
+
+    /* ===== NAVBAR (light) ===== */
+    .nx-navbar{
+      position: sticky; top: 0; z-index: 9999;
+      background:#fff;
+      border-bottom:1px solid var(--line);
+      box-shadow:0 6px 18px rgba(0,0,0,.06);
+    }
+    .nx-nav-inner{
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .nx-brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:var(--ink);
+      text-decoration:none;
+    }
+    .nx-logo{
+      height:36px;
+      width:auto;
+      display:block;
+    }
+    .nx-logo2{
+      height:30px;
+      width:auto;
+      display:block;
+      object-fit:contain;
+      margin-left:10px;
+    }
+    .nx-grow{ flex:1; }
+
+    .nx-menu{
+      display:flex;
+      align-items:center;
+      gap:26px;
+    }
+    .nx-item{ position:relative; }
+    .nx-link{
+      font-weight:600;
+      color: var(--muted);
+      text-decoration: none;
+      position:relative;
+      font-size:14px;
+    }
+    .nx-link:after{
+      content:"";
+      position:absolute;
+      left:0;right:0;
+      bottom:-6px;
+      height:2px;
+      background:var(--accent);
+      transform:scaleX(0);
+      transition:.25s;
+    }
+    .nx-link:hover{ color: var(--accent); }
+    .nx-link:hover:after{transform:scaleX(1);}
+
+    .nx-drop{
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 0;
+      min-width: 240px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 8px;
+      box-shadow: 0 12px 26px rgba(0,0,0,.08);
+      display: none;
+      z-index:9999;
+    }
+    .nx-drop a{
+      display:block;
+      color: var(--ink);
+      text-decoration:none;
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-size:14px;
+    }
+    .nx-drop a:hover{
+      background: #f6f6f6;
+      color: var(--accent);
+    }
+
+    .nx-cta{
+      background:var(--accent);
+      color:#1b1b1b;
+      border:none;
+      padding:10px 14px;
+      border-radius:12px;
+      font-weight:700;
+      cursor:pointer;
+      font-size:13px;
+    }
+
+    .nx-toggle{
+      margin-left:8px;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:10px;
+      padding:6px 10px;
+      font-size:18px;
+      cursor:pointer;
+      display:none;
+    }
+
+    @media (min-width:1025px){
+      .nx-item:hover > .nx-drop { display:block; }
+    }
+
+    @media (max-width:1024px){
+      .nx-menu{
+        position:absolute;
+        top:100%;
+        left:0;
+        right:0;
+        background:#fff;
+        display:none;
+        flex-direction:column;
+        padding:10px 16px 16px;
+        border-bottom:1px solid var(--line);
+      }
+      .nx-item{width:100%;}
+      .nx-item .nx-link{display:block;padding:8px 0;}
+      .nx-drop{
+        position:static;
+        box-shadow:none;
+        border:none;
+        padding:4px 0 8px;
+      }
+      .nx-toggle{display:block;}
+    }
+
+    /* ===== FOOTER ===== */
+    .nx-footer{
+      margin-top:60px;
+      background:#f7f7f7;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+    }
+    .nx-foot-wrap{
+      max-width:1200px;
+      margin:0 auto;
+      padding:48px 20px 28px;
+    }
+    .nx-foot-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      padding-bottom:22px;
+      border-bottom:1px solid var(--line);
+    }
+    .nx-foot-brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      text-decoration:none;
+      color:var(--ink);
+    }
+    .nx-foot-logo{height:36px;width:auto}
+    .nx-foot-tag{font-size:13px;color:var(--muted)}
+
+    .nx-foot-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:26px;
+      padding:26px 0 6px;
+    }
+    @media(max-width:900px){
+      .nx-foot-grid{grid-template-columns:repeat(2,1fr);}
+    }
+    @media(max-width:540px){
+      .nx-foot-grid{grid-template-columns:1fr;}
+    }
+    .nx-foot-col h4{
+      margin:0 0 12px;
+      color:var(--accent);
+      font-size:15px;
+    }
+    .nx-foot-col a{
+      display:block;
+      color:var(--ink);
+      text-decoration:none;
+      opacity:.9;
+      padding:7px 0;
+      font-size:14px;
+    }
+    .nx-foot-col a:hover{
+      opacity:1;
+      color:var(--accent);
+    }
+
+    .nx-foot-bottom{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding-top:16px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-size:13px;
+    }
+    .nx-foot-bottom a{
+      color:var(--muted);
+      text-decoration:none;
+    }
+  </style>
+</head>
+<body>
+  <!-- ========== NAVBAR ========== -->
+  <header class="nx-navbar">
+    <div class="nx-nav-inner">
+      <a class="nx-brand" href="index.html">
+        <!-- main logo -->
+        <img class="nx-logo" src="stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
+        <!-- second/partner logo -->
+        <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner Logo">
+      </a>
+
+      <div class="nx-grow"></div>
+
+      <nav class="nx-menu" id="nxMenu">
+        <!-- WHY US -->
+        <div class="nx-item">
+          <a class="nx-link" href="#">Why Us</a>
+          <div class="nx-drop">
+            <a href="about.html">About US</a>
+            <a href="BOARD of directors.html">Board of Directors / Management</a>
+            <a href="Mission.html">Mission / Vision</a>
+            <a href="associated companies.html">Associated Companies</a>
+            <a href="Ncb auditor details .html">Auditors / Legal Advisors</a>
+            <a href="services.html">Services</a>
+            <a href="Registered agents..html">Registered Agents</a>
+          </div>
+        </div>
+
+        <!-- EDUCATION -->
+        <div class="nx-item">
+          <a class="nx-link" href="#">Education</a>
+          <div class="nx-drop">
+            <a href="New to trading.html">New to Trading</a>
+            <a href="Investorguid.html">Investor Guide</a>
+            <a href="Glossary.html">Glossary</a>
+            <a href="psx-rule-book.html">PSX Rule Book</a>
+            <a href="common-terms-share-market.html">Common Terms of Share Market</a>
+            <a href="online-order-execution-flow.html">Online Order Execution Flow</a>
+            <a href="order-settlement-flow.html">Order Settlement Flow</a>
+            <a href="arbitration-procedure.html">Arbitration Procedure</a>
+            <a href="risk-disclosure-document.html">Risk Disclosure Document</a>
+            <a href="procedure-cancel-pending-orders.html">Procedure To Cancel Pending Orders</a>
+            <a href="faqs.html">FAQs</a>
+          </div>
+        </div>
+
+        <!-- OPEN ACCOUNT -->
+        <div class="nx-item">
+          <a class="nx-link" href="#">Open Account</a>
+          <div class="nx-drop">
+            <a href="Rda.html">Roshan Digital Account (RDA)</a>
+            <a href="Acoocint opening.html">Open Digital Account</a>
+            <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
+          </div>
+        </div>
+
+        <!-- DOWNLOADS -->
+        <div class="nx-item">
+          <a class="nx-link" href="#">Downloads</a>
+          <div class="nx-drop">
+            <a href="Forms.html">Forms</a>
+            <a href="software.html">Software</a>
+          </div>
+        </div>
+
+        <!-- SUPPORT -->
+        <div class="nx-item">
+          <a class="nx-link" href="#">Support</a>
+          <div class="nx-drop">
+            <a href="investor complaint.html">Investor Complaint</a>
+            <a href="Annaual half yearly.html">Annual / Half yearly / Quarterly Financial Statements</a>
+            <a href="Auditor.html">Statutory Auditor Details</a>
+            <a href="Ncb auditor details .html">NCB Auditor Details</a>
+            <a href="KYC poslicy.html">CDD / KYC Policy</a>
+            <a href="Pending investor complaun.html">Pending Investor Complaints</a>
+            <a href="Penal action.html">Details of Penal Action</a>
+            <a href="Secp complaint.html">SECP Complaint</a>
+            <a href="psx complaint.html">PSX Complaint</a>
+            <a href="UIs of NICCPL.html">UIS Services of NCCPL</a>
+            <a href="Eservices By CDC.html">EServices by CDC</a>
+          </div>
+        </div>
+      </nav>
+
+      <button class="nx-cta">OPEN AN ACCOUNT</button>
+      <button class="nx-toggle" aria-label="Toggle menu" aria-controls="nxMenu" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="wrap">
+    <h1 class="title">Contact Us</h1>
+
+    <section class="contact-grid">
+      <!-- Address Card -->
+      <div class="contact-card reveal">
+        <h2>Office Address</h2>
+        <p>
+          Office No. 6, 4th floor, Mall of KPK,<br>
+          University Road, Jahangir&nbsp;Abad, Peshawar
+        </p>
+      </div>
+
+      <!-- Mobile / Phone Card -->
+      <div class="contact-card reveal">
+        <h2>Mobile</h2>
+        <p>
+          <a href="tel:+923158706976">+92 315 8706976</a>
+        </p>
+      </div>
+
+      <!-- Email Card -->
+      <div class="contact-card reveal">
+        <h2>Email</h2>
+        <p>
+          <a href="mailto:stoxgear@.com">stoxgear@.com</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- Google Maps Card -->
+    <section class="map-card reveal" aria-label="Location on Google Maps">
+      <div class="map-card-header">Location – Google Maps</div>
+      <iframe
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=Mall%20of%20KPK,%20University%20Road,%20Jahangir%20Abad,%20Peshawar&output=embed">
+      </iframe>
+    </section>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="nx-footer">
+    <div class="nx-foot-wrap">
+      <div class="nx-foot-top">
+        <a class="nx-foot-brand" href="index.html">
+          <!-- main logo -->
+          <img class="nx-logo" src="stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
+          <!-- second/partner logo -->
+          <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner Logo">
+        </a>
+      </div>
+
+      <div class="nx-foot-grid">
+        <div class="nx-foot-col">
+          <h4>WHY US</h4>
+          <a href="about.html">About Us</a>
+          <a href="BOARD of directors.html">Board / Management</a>
+          <a href="Mission.html">Mission & Vision</a>
+        </div>
+        <div class="nx-foot-col">
+          <h4>EDUCATION</h4>
+          <a href="New to trading.html">New to Trading</a>
+          <a href="Investorguid.html">Investor Guide</a>
+          <a href="Glossary.html">Glossary</a>
+        </div>
+        <div class="nx-foot-col">
+          <h4>ACCOUNT</h4>
+          <a href="Rda.html">Roshan Digital Account</a>
+          <a href="Acoocint opening.html">Open Digital Account</a>
+          <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
+        </div>
+        <div class="nx-foot-col">
+          <h4>CONTACT</h4>
+          <a href="mailto:info@StoxGear.com">info@StoxGear.com</a>
+          <a href="tel:+923162288686">+92 316 2288686</a>
+          <a href="#">Karachi, Pakistan</a>
+        </div>
+      </div>
+
+      <div class="nx-foot-bottom">
+        <span>© <script>document.write(new Date().getFullYear())</script> StocX Invest</span>
+        <span>
+          <a href="#">Privacy</a> ·
+          <a href="#">Terms</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll reveal -->
+  <script>
+    (function(){
+      const io = new IntersectionObserver((entries)=>{
+        for (const e of entries){
+          if(e.isIntersecting){
+            e.target.classList.add('show');
+            io.unobserve(e.target);
+          }
+        }
+      }, {threshold:.15});
+      document.querySelectorAll('.reveal').forEach(n=>io.observe(n));
+    })();
+  </script>
+
+  <!-- Mobile menu + dropdown toggles -->
+  <script>
+    (function(){
+      const menu = document.getElementById('nxMenu');
+      const toggle = document.querySelector('.nx-toggle');
+
+      if (toggle && menu){
+        const mq = window.matchMedia('(max-width:1024px)');
+        const apply = () => {
+          if(mq.matches){ menu.style.display='none'; }
+          else{ menu.style.display='flex'; }
+        };
+        apply();
+        mq.addEventListener('change', apply);
+
+        toggle.addEventListener('click', () => {
+          const open = getComputedStyle(menu).display === 'none';
+          menu.style.display = open ? 'block' : 'none';
+          toggle.setAttribute('aria-expanded', String(open));
+        });
+      }
+
+      // tap to open submenus on mobile
+      document.querySelectorAll('.nx-item > .nx-link').forEach(link=>{
+        link.addEventListener('click',(e)=>{
+          const isMobile = window.matchMedia('(max-width:1024px)').matches;
+          const drop = link.nextElementSibling;
+          if(isMobile && drop && drop.classList.contains('nx-drop')){
+            e.preventDefault();
+            link.parentElement.classList.toggle('open');
+            drop.style.display = drop.style.display === 'block' ? 'none' : 'block';
+          }
+        });
+      });
+
+      // close menu when clicking outside (mobile)
+      document.addEventListener('click',(e)=>{
+        const nav = document.querySelector('.nx-navbar');
+        const isMobile = window.matchMedia('(max-width:1024px)').matches;
+        if(isMobile && nav && !nav.contains(e.target)){
+          if (menu) menu.style.display = 'none';
+          if (toggle) toggle.setAttribute('aria-expanded','false');
+          document.querySelectorAll('.nx-drop').forEach(d=>d.style.display='none');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
