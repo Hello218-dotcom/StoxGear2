@@ -6,6 +6,12 @@
 <title>StocX Invest – Neon Theme</title>
 
 <style>
+  /* Fix long dropdown cutting — enable full visibility */
+.nx-drop{
+  max-height: 380px;    /* adjust if needed */
+  overflow-y: auto;     /* makes dropdown scroll */
+}
+
 :root{
   --bg:#ffffff;
   --surface:#fafafa;
@@ -294,6 +300,7 @@ document.querySelectorAll('.req-card,.fade-up').forEach(el=>observer.observe(el)
 </script>
 </body>
 </html>
+
 
 
 
