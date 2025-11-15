@@ -17,6 +17,7 @@
   --surface-2: #f7f8fb;
   --text: #0f1220;
   --text-dim: #5e6676;
+  --muted:#5e6676;          /* added so var(--muted) works */
   --lime: #c9a646;          /* gold */
   --lime-soft: #dab867;     /* lighter gold */
   --shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
@@ -102,17 +103,17 @@ body {
 }
 
 /* ---------- PAGE HEADER ---------- */
-header {
+header.page-hero {
   text-align: center;
   margin: 40px auto 30px;
 }
-header h1 {
+header.page-hero h1 {
   font-size: clamp(32px, 4vw, 56px);
   color: var(--lime);
   margin: 0 0 8px;
   text-shadow: 0 0 12px rgba(201,166,70,.18);
 }
-header p {
+header.page-hero p {
   color: var(--text-dim);
   max-width: 700px;
   margin: 0 auto;
@@ -335,63 +336,110 @@ li { margin-bottom: 6px; }
     max-width:180px !important;
   }
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- ===== NAVBAR ===== -->
+<!-- ===== NAVBAR (from Team & Sponsors) ===== -->
 <header class="nx-navbar">
   <div class="nx-nav-inner">
     <a class="nx-brand" href="index.html">
+      <!-- main logo -->
       <img class="nx-logo" src="stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
-  <!-- second/partner logo -->
-  <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 
-
-
-10.34.53_ed0e28f6.jpg" alt="Partner Logo">
-
+      <!-- second/partner logo -->
+      <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner Logo">
+    </a>
 
     <div class="nx-grow"></div>
+
     <nav class="nx-menu" id="nxMenu">
-      <div class="nx-item"><a class="nx-link" href="#">Why Us</a>
+      <!-- WHY US -->
+      <div class="nx-item">
+        <a class="nx-link" href="#">Why Us</a>
         <div class="nx-drop">
-          <a href="about.html">About Us</a>
-          <a href="BOARD of directors.html">Board / Management</a>
+          <a href="about.html">About US</a>
+          <a href="BOARD of directors.html">Board of Directors / Management</a>
           <a href="Mission.html">Mission / Vision</a>
+          <a href="associated companies.html">Associated Companies</a>
+          <a href="Ncb auditor details .html">Auditors / Legal Advisors</a>
           <a href="services.html">Services</a>
+          <a href="Registered agents..html">Registered Agents</a>
         </div>
       </div>
-      <div class="nx-item"><a class="nx-link" href="#">Education</a>
+
+      <!-- EDUCATION -->
+      <div class="nx-item">
+        <a class="nx-link" href="#">Education</a>
         <div class="nx-drop">
           <a href="New to trading.html">New to Trading</a>
           <a href="Investorguid.html">Investor Guide</a>
           <a href="Glossary.html">Glossary</a>
+          <a href="psx-rule-book.html">PSX Rule Book</a>
+          <a href="common-terms-share-market.html">Common Terms of Share Market</a>
+          <a href="online-order-execution-flow.html">Online Order Execution Flow</a>
+          <a href="order-settlement-flow.html">Order Settlement Flow</a>
+          <a href="arbitration-procedure.html">Arbitration Procedure</a>
+          <a href="risk-disclosure-document.html">Risk Disclosure Document</a>
+          <a href="procedure-cancel-pending-orders.html">Procedure To Cancel Pending Orders</a>
+          <a href="faqs.html">FAQs</a>
         </div>
       </div>
-      <div class="nx-item"><a class="nx-link" href="#">Open Account</a>
+
+      <!-- OPEN ACCOUNT -->
+      <div class="nx-item">
+        <a class="nx-link" href="#">Open Account</a>
         <div class="nx-drop">
-          <a href="Rda.html">Roshan Digital Account</a>
+          <a href="Rda.html">Roshan Digital Account (RDA)</a>
           <a href="Acoocint opening.html">Open Digital Account</a>
           <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
         </div>
       </div>
-      <div class="nx-item"><a class="nx-link" href="#">Support</a>
+
+      <!-- DOWNLOADS -->
+      <div class="nx-item">
+        <a class="nx-link" href="#">Downloads</a>
+        <div class="nx-drop">
+          <a href="Forms.html">Forms</a>
+          <a href="software.html">Software</a>
+        </div>
+      </div>
+
+      <!-- SUPPORT -->
+      <div class="nx-item">
+        <a class="nx-link" href="#">Support</a>
         <div class="nx-drop">
           <a href="investor complaint.html">Investor Complaint</a>
-          <a href="Penal action.html">Penal Actions</a>
+          <a href="Annaual half yearly.html">Annual / Half yearly / Quarterly Financial Statements</a>
+          <a href="Auditor.html">Statutory Auditor Details</a>
+          <a href="Ncb auditor details .html">NCB Auditor Details</a>
+          <a href="KYC poslicy.html">CDD / KYC Policy</a>
+          <a href="Pending investor complaun.html">Pending Investor Complaints</a>
+          <a href="Penal action.html">Details of Penal Action</a>
           <a href="Secp complaint.html">SECP Complaint</a>
+          <a href="psx complaint.html">PSX Complaint</a>
+          <a href="UIs of NICCPL.html">UIS Services of NCCPL</a>
+          <a href="Eservices By CDC.html">EServices by CDC</a>
+          <a href="#">PSX Rule Book</a>
+          <a href="#">Common Terms of Share Market</a>
+          <a href="#">Online Order Execution Flow</a>
+          <a href="#">Order Settlement Flow</a>
+          <a href="#">Arbitration Procedure</a>
+          <a href="#">Risk Disclosure Document</a>
+          <a href="#">Procedure To Cancel Pending Orders</a>
+          <a href="#">Glossary</a>
+          <a href="#">FAQs</a>
         </div>
       </div>
     </nav>
+
     <button class="nx-cta">OPEN AN ACCOUNT</button>
-    <button class="nx-toggle" id="nxToggle">☰</button>
+    <button class="nx-toggle" id="nxToggle" aria-label="Toggle menu" aria-controls="nxMenu" aria-expanded="false">☰</button>
   </div>
 </header>
 
-<!-- ===== PAGE CONTENT (unchanged structure) ===== -->
-<header>
+<!-- ===== PAGE CONTENT ===== -->
+<header class="page-hero">
   <h1>Manage Funds</h1>
   <p>Deposit or withdraw funds, check our official bank accounts, and review fees, taxes, and minimum balance requirements.</p>
 </header>
@@ -400,54 +448,86 @@ li { margin-bottom: 6px; }
 <section>
   <h2>Fund Deposit</h2>
   <div class="grid">
-    <div class="card"><div class="icon">💸</div><h3>Online Transfer</h3><p>Transfer funds online and email screenshot to <a href="mailto:info@StoxGear.com">info@StoxGear.com</a>.</p></div>
-    <div class="card"><div class="icon">🏦</div><h3>Deposit via Cheque</h3><p>Deposit funds and email cheque & slip copy to <a href="mailto:info@StoxGear.com">info@StoxGear.com</a>.</p></div>
-    <div class="card"><div class="icon">🧾</div><h3>File Requirements</h3><p>Uploads must be under <strong>400KB</strong> in JPEG or PNG format.</p></div>
+    <div class="card">
+      <div class="icon">💸</div>
+      <h3>Online Transfer</h3>
+      <p>Transfer funds online and email screenshot to <a href="mailto:info@StoxGear.com">info@StoxGear.com</a>.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🏦</div>
+      <h3>Deposit via Cheque</h3>
+      <p>Deposit funds and email cheque &amp; slip copy to <a href="mailto:info@StoxGear.com">info@StoxGear.com</a>.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🧾</div>
+      <h3>File Requirements</h3>
+      <p>Uploads must be under <strong>400KB</strong> in JPEG or PNG format.</p>
+    </div>
   </div>
 
   <!-- BANK TABLE -->
   <div class="table-wrap">
     <table class="mf-table" id="bank-table">
-      <thead><tr><th>S. No.</th><th>Bank Name</th><th>Account Number</th><th>IBAN</th><th>SWIFT Code</th></tr></thead>
+      <thead>
+        <tr>
+          <th>S. No.</th>
+          <th>Bank Name</th>
+          <th>Account Number</th>
+          <th>IBAN</th>
+          <th>SWIFT Code</th>
+        </tr>
+      </thead>
       <tbody>
-        <tr><td data-col="S. No.">1</td><td data-col="Bank Name">Bank Al Habib</td><td data-col="Account Number" data-copy>1012-0081-007510-01-5</td><td data-col="IBAN" data-copy>PK45BAHL1012008100751001</td><td data-col="SWIFT Code">BAHLPKKA</td></tr>
-        <tr><td data-col="S. No.">2</td><td data-col="Bank Name">MCB Bank Limited</td><td data-col="Account Number" data-copy>1337416781002852</td><td data-col="IBAN" data-copy>PK12MUCB1337416781002852</td><td data-col="SWIFT Code">MUCBPKKA</td></tr>
-        <tr><td data-col="S. No.">3</td><td data-col="Bank Name">Meezan Bank</td><td data-col="Account Number" data-copy>0105501341</td><td data-col="IBAN" data-copy>PK27MEZN00990901055501341</td><td data-col="SWIFT Code">MEZNPKKA</td></tr>
+        <tr>
+          <td data-col="S. No.">1</td>
+          <td data-col="Bank Name">Bank Al Habib</td>
+          <td data-col="Account Number" data-copy>1012-0081-007510-01-5</td>
+          <td data-col="IBAN" data-copy>PK45BAHL1012008100751001</td>
+          <td data-col="SWIFT Code">BAHLPKKA</td>
+        </tr>
+        <tr>
+          <td data-col="S. No.">2</td>
+          <td data-col="Bank Name">MCB Bank Limited</td>
+          <td data-col="Account Number" data-copy>1337416781002852</td>
+          <td data-col="IBAN" data-copy>PK12MUCB1337416781002852</td>
+          <td data-col="SWIFT Code">MUCBPKKA</td>
+        </tr>
+        <tr>
+          <td data-col="S. No.">3</td>
+          <td data-col="Bank Name">Meezan Bank</td>
+          <td data-col="Account Number" data-copy>0105501341</td>
+          <td data-col="IBAN" data-copy>PK27MEZN00990901055501341</td>
+          <td data-col="SWIFT Code">MEZNPKKA</td>
+        </tr>
       </tbody>
     </table>
   </div>
 </section>
-<!-- ========== FOOTER ========== -->
+
+<!-- ========== FOOTER (from Team & Sponsors) ========== -->
 <footer class="nx-footer">
   <div class="nx-foot-wrap">
     <div class="nx-foot-top">
       <a class="nx-foot-brand" href="index.html">
-        <img class="nx-logo" src="stoxgear-logo.jpg" alt="StoxGear">
+        <!-- main logo -->
+        <img class="nx-logo" src="stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
+        <!-- second/partner logo -->
         <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner Logo">
       </a>
     </div>
+
     <div class="nx-foot-grid">
       <div class="nx-foot-col">
         <h4>WHY US</h4>
         <a href="about.html">About Us</a>
         <a href="BOARD of directors.html">Board / Management</a>
-        <a href="Mission.html">Mission & Vision</a>
+        <a href="Mission.html">Mission &amp; Vision</a>
       </div>
       <div class="nx-foot-col">
         <h4>EDUCATION</h4>
         <a href="New to trading.html">New to Trading</a>
         <a href="Investorguid.html">Investor Guide</a>
         <a href="Glossary.html">Glossary</a>
-<!-- put these inside your existing <div class="nx-drop"> ... </div> -->
-<a href="psx-rule-book.html">PSX Rule Book</a>
-<a href="common-terms-share-market.html">Common Terms of Share Market</a>
-<a href="online-order-execution-flow.html">Online Order Execution Flow</a>
-<a href="order-settlement-flow.html">Order Settlement Flow</a>
-<a href="arbitration-procedure.html">Arbitration Procedure</a>
-<a href="risk-disclosure-document.html">Risk Disclosure Document</a>
-<a href="procedure-cancel-pending-orders.html">Procedure To Cancel Pending Orders</a>
-<a href="faqs.html">FAQs</a>
-
       </div>
       <div class="nx-foot-col">
         <h4>ACCOUNT</h4>
@@ -462,16 +542,19 @@ li { margin-bottom: 6px; }
         <a href="#">Karachi, Pakistan</a>
       </div>
     </div>
+
     <div class="nx-foot-bottom">
-      <span>© <script>document.write(new Date().getFullYear())</script> StoxGear</span>
-      <span><a href="#" style="color:var(--muted);text-decoration:none">Privacy</a> · <a href="#" style="color:var(--muted);text-decoration:none">Terms</a></span>
+      <span>© <script>document.write(new Date().getFullYear())</script> StocX Invest</span>
+      <span>
+        <a href="#" style="color:var(--muted);text-decoration:none">Privacy</a> ·
+        <a href="#" style="color:var(--muted);text-decoration:none">Terms</a>
+      </span>
     </div>
   </div>
 </footer>
 
-
 <script>
-/* ===== Mobile navbar toggle (unchanged) ===== */
+/* ===== Mobile navbar toggle (works with new navbar) ===== */
 (function(){
   const toggle = document.getElementById('nxToggle');
   const menu   = document.getElementById('nxMenu');
@@ -486,6 +569,7 @@ li { margin-bottom: 6px; }
   toggle?.addEventListener('click', (e)=>{
     e.stopPropagation();
     const open = getComputedStyle(menu).display !== 'block';
+    menu.style.display = 'block';
     menu.style.display = open ? 'block' : 'none';
     toggle.setAttribute('aria-expanded', String(open));
   });
@@ -564,5 +648,3 @@ li { margin-bottom: 6px; }
 </script>
 </body>
 </html>
-
-
