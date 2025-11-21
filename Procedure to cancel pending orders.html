@@ -18,9 +18,16 @@
     --glow:0 0 16px rgba(202,160,61,.25),0 0 38px rgba(202,160,61,.15);
     --maxw:1100px;
   }
-  *{box-sizing:border-box}
-  html,body{margin:0;background:var(--bg);color:var(--ink);
-            font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;}
+  *,
+  *::before,
+  *::after{box-sizing:border-box}
+  html,body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    scroll-behavior:smooth;
+  }
   a{color:var(--ink);text-decoration:none}
 
   /* NAVBAR (light) */
@@ -31,127 +38,406 @@
     backdrop-filter:saturate(140%) blur(8px);
     box-shadow:0 10px 24px rgba(0,0,0,.06);
   }
-  .nx-nav-inner{max-width:1200px;margin:auto;padding:14px 20px;display:flex;align-items:center;gap:18px;}
-  .nx-brand{display:flex;align-items:center;gap:14px;text-decoration:none;}
+  .nx-nav-inner{
+    max-width:1200px;
+    margin:auto;
+    padding:14px 20px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+  }
+  .nx-brand{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    text-decoration:none;
+  }
   .nx-logo{height:40px;width:auto;}
-  .nx-tag{font-size:12px;color:var(--muted);}
+  .nx-logo2{
+    height:48px !important;
+    width:auto !important;
+    max-width:220px !important;
+    object-fit:contain;
+    margin-left:10px;
+  }
   .nx-grow{flex:1;}
-  .nx-menu{display:flex;align-items:center;gap:28px;}
-  .nx-link{color:var(--ink);text-decoration:none;font-weight:600;font-size:15px;opacity:.9;transition:.2s;}
-  .nx-link:hover{opacity:1}
+  .nx-menu{
+    display:flex;
+    align-items:center;
+    gap:28px;
+  }
+  .nx-link{
+    color:var(--ink);
+    text-decoration:none;
+    font-weight:600;
+    font-size:15px;
+    opacity:.9;
+    transition:.2s;
+    position:relative;
+  }
+  .nx-link:hover{
+    opacity:1;
+    color:var(--gold);
+  }
+  .nx-link::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-6px;
+    height:2px;
+    width:0;
+    background:linear-gradient(90deg,var(--gold),transparent);
+    transition:width .25s ease;
+  }
+  .nx-link:hover::after{
+    width:100%;
+  }
   .nx-item{position:relative;}
   .nx-drop{
-    position:absolute;top:calc(100% + 10px);left:0;min-width:240px;background:#fff;border:1px solid var(--line);
-    border-radius:12px;padding:10px;box-shadow:0 12px 28px rgba(0,0,0,.08);opacity:0;transform:translateY(8px);pointer-events:none;transition:.2s ease;
+    position:absolute;
+    top:calc(100% + 10px);
+    left:0;
+    min-width:240px;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:10px;
+    box-shadow:0 12px 28px rgba(0,0,0,.08);
+    opacity:0;
+    transform:translateY(8px);
+    pointer-events:none;
+    transition:.2s ease;
+    max-height:60vh;        /* so the big menus fit */
+    overflow-y:auto;
   }
-  .nx-item:hover .nx-drop{opacity:1;transform:none;pointer-events:auto;}
-  .nx-drop a{display:block;color:var(--ink);text-decoration:none;padding:8px 10px;border-radius:8px;font-size:14px;}
-  .nx-drop a:hover{background:rgba(202,160,61,.12);}
+  .nx-item:hover .nx-drop{
+    opacity:1;
+    transform:none;
+    pointer-events:auto;
+  }
+  .nx-drop a{
+    display:block;
+    color:var(--ink);
+    text-decoration:none;
+    padding:8px 10px;
+    border-radius:8px;
+    font-size:14px;
+  }
+  .nx-drop a:hover{
+    background:rgba(202,160,61,.12);
+    color:var(--gold);
+  }
   .nx-cta{
-    appearance:none;border:none;cursor:pointer;padding:10px 16px;font-weight:700;color:#111;
-    background:linear-gradient(180deg,var(--gold),var(--gold-2));border-radius:999px;
+    appearance:none;
+    border:none;
+    cursor:pointer;
+    padding:10px 16px;
+    font-weight:700;
+    color:#111;
+    background:linear-gradient(180deg,var(--gold),var(--gold-2));
+    border-radius:999px;
     box-shadow:0 10px 22px rgba(202,160,61,.22);
+    transition:transform .18s ease, box-shadow .18s ease;
   }
-  .nx-toggle{display:none;background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:8px;width:44px;height:44px;}
+  .nx-cta:hover{
+    transform:translateY(-1px);
+    box-shadow:0 14px 30px rgba(202,160,61,.32);
+  }
+  .nx-toggle{
+    display:none;
+    background:#fff;
+    color:var(--ink);
+    border:1px solid var(--line);
+    border-radius:8px;
+    width:44px;
+    height:44px;
+  }
   @media (max-width:1024px){
     .nx-toggle{display:grid;place-items:center;}
     .nx-menu{
-      position:fixed;inset:70px 16px auto 16px;flex-direction:column;gap:14px;background:#fff;padding:18px;
-      border-radius:16px;border:1px solid var(--line);transform:translateY(-20px);opacity:0;pointer-events:none;transition:.25s ease;
+      position:fixed;
+      inset:70px 16px auto 16px;
+      flex-direction:column;
+      gap:14px;
+      background:#fff;
+      padding:18px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      transform:translateY(-20px);
+      opacity:0;
+      pointer-events:none;
+      transition:.25s ease;
       box-shadow:0 16px 36px rgba(0,0,0,.08);
     }
-    .nx-menu.is-open{opacity:1;transform:none;pointer-events:auto;}
-    .nx-drop{position:static;transform:none;opacity:1;pointer-events:auto;border:none;box-shadow:none;padding:4px;}
+    .nx-menu.is-open{
+      opacity:1;
+      transform:none;
+      pointer-events:auto;
+    }
+    .nx-drop{
+      position:static;
+      transform:none;
+      opacity:1;
+      pointer-events:auto;
+      border:none;
+      box-shadow:none;
+      padding:4px 0;
+      max-height:none;
+      overflow:visible;
+    }
   }
 
   /* HERO */
   .hero{
-    padding:72px 18px 34px;text-align:center;border-bottom:1px solid var(--line);
+    padding:72px 18px 34px;
+    border-bottom:1px solid var(--line);
     background:
       radial-gradient(900px 380px at 12% -6%,rgba(202,160,61,.10),transparent),
       radial-gradient(800px 280px at 90% 6%,rgba(231,200,108,.12),transparent);
   }
-  .hero h1{
-    font-size:clamp(26px,4vw,44px);margin:0 0 10px;color:#7a5b13;
-    font-weight:800;text-shadow:0 0 10px rgba(202,160,61,.25);
+  .hero-inner{
+    max-width:var(--maxw);
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);
+    gap:26px;
+    align-items:center;
   }
-  .hero p{max-width:860px;margin:0 auto;color:var(--muted);}
+  .hero-text{
+    opacity:0;
+    transform:translateY(22px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .hero-text h1{
+    font-size:clamp(26px,4vw,44px);
+    margin:0 0 10px;
+    color:#7a5b13;
+    font-weight:800;
+    text-shadow:0 0 10px rgba(202,160,61,.25);
+  }
+  .hero-text p{
+    margin:0;
+    max-width:560px;
+    color:var(--muted);
+    line-height:1.7;
+  }
+  .hero-visual{
+    display:flex;
+    justify-content:center;
+  }
+  .hero-visual img{
+    width:230px;
+    max-width:100%;
+    height:auto;
+    border-radius:22px;
+    background:#fff;
+    padding:14px;
+    box-shadow:0 14px 34px rgba(0,0,0,.10);
+    opacity:0;
+    transform:translateY(24px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .hero-visual img.show{
+    opacity:1;
+    transform:translateY(0);
+  }
+  @media(max-width:720px){
+    .hero-inner{
+      grid-template-columns:1fr;
+      text-align:center;
+    }
+    .hero-visual{order:-1;}
+    .hero-text p{margin:0 auto;}
+  }
 
   /* CONTENT */
-  section{padding:44px 18px;}
-  .wrap{max-width:var(--maxw);margin:0 auto;}
+  section.content{
+    padding:44px 18px 60px;
+  }
+  .wrap{
+    max-width:var(--maxw);
+    margin:0 auto;
+  }
   .panel{
-    background:var(--panel);border:1px solid var(--line);
-    border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:22px 22px 26px;
+    opacity:0;
+    transform:translateY(24px);
+    transition:opacity .7s ease, transform .7s ease, box-shadow .25s ease, border-color .25s ease;
   }
-  h2{margin:0 0 10px;font-size:clamp(20px,2.4vw,28px);font-weight:800;color:#7a5b13;}
-  .lead{color:var(--muted);line-height:1.7;}
-  .steps{margin:18px 0 8px;padding-left:18px;}
-  .steps li{margin:10px 0;line-height:1.65;}
+  .panel.in{
+    opacity:1;
+    transform:translateY(0);
+  }
+  .panel:hover{
+    box-shadow:0 18px 46px rgba(0,0,0,.12);
+    border-color:rgba(202,160,61,.45);
+  }
+  h2{
+    margin:0 0 10px;
+    font-size:clamp(20px,2.4vw,28px);
+    font-weight:800;
+    color:#7a5b13;
+  }
+  .lead{
+    color:var(--muted);
+    line-height:1.7;
+  }
+  .steps{
+    margin:18px 0 8px;
+    padding-left:20px;
+  }
+  .steps li{
+    margin:10px 0;
+    line-height:1.65;
+  }
+  .steps li strong{color:#7a5b13;}
   .callout{
-    margin-top:18px;padding:14px 16px;border:1px dashed rgba(202,160,61,.55);
-    border-radius:14px;background:linear-gradient(180deg,#fff,#f9f6ee);
+    margin-top:18px;
+    padding:14px 16px;
+    border:1px dashed rgba(202,160,61,.55);
+    border-radius:14px;
+    background:linear-gradient(180deg,#fff,#f9f6ee);
+    font-size:14px;
+    color:#7a5b13;
   }
+  .callout span{font-weight:700;}
   .cta{
-    display:inline-flex;align-items:center;gap:10px;margin-top:14px;padding:12px 18px;
-    border-radius:999px;background:linear-gradient(90deg,var(--gold),var(--gold-2));
-    color:#111;font-weight:800;box-shadow:var(--glow);transition:transform .12s;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    margin-top:16px;
+    padding:12px 18px;
+    border-radius:999px;
+    background:linear-gradient(90deg,var(--gold),var(--gold-2));
+    color:#111;
+    font-weight:800;
+    box-shadow:var(--glow);
+    transition:transform .12s;
   }
   .cta:hover{transform:translateY(-2px);}
-  .contacts{margin-top:6px;}
-  .contacts h3{margin:14px 0 6px;color:#7a5b13;}
-  .contacts a{
-    display:inline-block;margin:4px 0;padding:8px 12px;border:1px solid var(--line);
-    border-radius:12px;background:#fff;
+  .cta-icon{
+    display:inline-flex;
+    width:18px;
+    height:18px;
+    align-items:center;
+    justify-content:center;
   }
-  .contacts a:hover{box-shadow:var(--glow);}
+  .cta-icon svg{
+    width:18px;
+    height:18px;
+    fill:none;
+    stroke:#111;
+    stroke-width:2;
+  }
+  .contacts{
+    margin-top:10px;
+    font-size:14px;
+  }
+  .contacts h3{
+    margin:18px 0 6px;
+    color:#7a5b13;
+  }
+  .contacts a{
+    display:inline-block;
+    margin:4px 0;
+    padding:8px 12px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:#fff;
+  }
+  .contacts a:hover{
+    box-shadow:var(--glow);
+  }
 
   /* FOOTER (light) */
-  .nx-footer{margin-top:60px;background:#fff;border-top:1px solid var(--line);color:var(--ink);}
-  .nx-foot-wrap{max-width:1200px;margin:auto;padding:48px 20px 28px;}
-  .nx-foot-top{display:flex;align-items:center;justify-content:space-between;gap:18px;padding-bottom:22px;border-bottom:1px solid var(--line);}
-  .nx-foot-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);}
-  .nx-foot-logo{height:36px;width:auto;}
-  .nx-foot-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px;padding:26px 0 6px;}
-  @media(max-width:900px){.nx-foot-grid{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:540px){.nx-foot-grid{grid-template-columns:1fr}}
-  .nx-foot-col h4{color:var(--gold);margin-bottom:10px;}
-  .nx-foot-col a{display:block;color:var(--ink);opacity:.9;text-decoration:none;padding:6px 0;font-size:14px;}
-  .nx-foot-col a:hover{opacity:1;transform:translateX(2px);color:var(--gold);}
-  .nx-foot-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;}
-  
-/* size the partner logo in header */
-.nx-logo2{
-  height:48px !important;
-  width:auto !important;
-  max-width:220px !important;
-  object-fit:contain;
-  margin-left:10px;
-}
-
-/* ensure footer logos are constrained even if they use .nx-logo/.nx-logo2 */
-.nx-footer .nx-logo,
-.nx-footer .nx-logo2{
-  height:50px !important;
-  width:auto !important;
-  max-width:240px !important;
-  object-fit:contain;
-  vertical-align:middle;
-}
-
-@media (max-width:768px){
-  .nx-logo2,
-  .nx-footer .nx-logo,
-  .nx-footer .nx-logo2{
-    height:40px !important;
-    max-width:180px !important;
+  .nx-footer{
+    background:#fff;
+    border-top:1px solid var(--line);
+    color:var(--ink);
   }
-}
+  .nx-foot-wrap{
+    max-width:1200px;
+    margin:auto;
+    padding:48px 20px 28px;
+  }
+  .nx-foot-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:18px;
+    padding-bottom:22px;
+    border-bottom:1px solid var(--line);
+  }
+  .nx-foot-brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    color:var(--ink);
+  }
+  .nx-foot-logo{
+    height:40px !important;
+    width:auto !important;
+    max-width:240px !important;
+    object-fit:contain;
+  }
+  .nx-foot-grid{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:26px;
+    padding:26px 0 6px;
+  }
+  @media(max-width:900px){
+    .nx-foot-grid{grid-template-columns:repeat(2,1fr)}
+  }
+  @media(max-width:540px){
+    .nx-foot-grid{grid-template-columns:1fr}
+  }
+  .nx-foot-col h4{
+    color:var(--gold);
+    margin-bottom:10px;
+    font-size:15px;
+  }
+  .nx-foot-col a{
+    display:block;
+    color:var(--ink);
+    opacity:.9;
+    text-decoration:none;
+    padding:6px 0;
+    font-size:14px;
+  }
+  .nx-foot-col a:hover{
+    opacity:1;
+    transform:translateX(2px);
+    color:var(--gold);
+  }
+  .nx-foot-bottom{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    color:var(--muted);
+    font-size:13px;
+  }
 
-
+  @media (max-width:768px){
+    .nx-logo2,
+    .nx-footer .nx-logo,
+    .nx-footer .nx-logo2{
+      height:40px !important;
+      max-width:180px !important;
+    }
+  }
 </style>
 </head>
 <body>
+
 <!-- ====== NAVBAR ====== -->
 <header class="nx-navbar" id="nxHeader">
   <div class="nx-nav-inner">
@@ -182,16 +468,14 @@
           <a href="New to trading.html">New to Trading</a>
           <a href="Investorguid.html">Investor Guide</a>
           <a href="Glossary.html">Glossary</a>
-          <!-- put these inside your existing <div class="nx-drop"> ... </div> -->
-<a href="psx-rule-book.html">PSX Rule Book</a>
-<a href="common-terms-share-market.html">Common Terms of Share Market</a>
-<a href="online-order-execution-flow.html">Online Order Execution Flow</a>
-<a href="order-settlement-flow.html">Order Settlement Flow</a>
-<a href="arbitration-procedure.html">Arbitration Procedure</a>
-<a href="risk-disclosure-document.html">Risk Disclosure Document</a>
-<a href="procedure-cancel-pending-orders.html">Procedure To Cancel Pending Orders</a>
-<a href="faqs.html">FAQs</a>
-
+          <a href="psx-rule-book.html">PSX Rule Book</a>
+          <a href="common-terms-share-market.html">Common Terms of Share Market</a>
+          <a href="online-order-execution-flow.html">Online Order Execution Flow</a>
+          <a href="order-settlement-flow.html">Order Settlement Flow</a>
+          <a href="arbitration-procedure.html">Arbitration Procedure</a>
+          <a href="risk-disclosure-document.html">Risk Disclosure Document</a>
+          <a href="procedure-cancel-pending-orders.html">Procedure To Cancel Pending Orders</a>
+          <a href="faqs.html">FAQs</a>
         </div>
       </div>
 
@@ -226,50 +510,57 @@
           <a href="psx complaint.html">PSX Complaint</a>
           <a href="UIs of NICCPL.html">UIS Services of NCCPL</a>
           <a href="Eservices By CDC.html">EServices by CDC</a>
-            <a href="Contact.html">Contact</a>
+          <a href="Contact.html">Contact</a>
         </div>
       </div>
     </nav>
 
-    <button class="nx-cta">OPEN AN ACCOUNT</button>
+    <button class="nx-cta" onclick="location.href='Acoocint opening.html'">OPEN AN ACCOUNT</button>
     <button class="nx-toggle" id="nxToggle" aria-label="Toggle menu" aria-controls="nxMenu" aria-expanded="false">☰</button>
   </div>
 </header>
 
-<script>
-  const toggle=document.getElementById('nxToggle');
-  const menu=document.getElementById('nxMenu');
-  toggle?.addEventListener('click',()=>{
-    menu.classList.toggle('is-open');
-    toggle.setAttribute('aria-expanded',menu.classList.contains('is-open'));
-  });
-</script>
-
 <!-- ========== HERO ========== -->
 <header class="hero">
-  <h1>Procedure to Cancel Pending Orders During System Failure</h1>
-  <p>Guidance for investors to manage orders in case of IBTS, broker-side, or third-party software outages.</p>
+  <div class="hero-inner">
+    <div class="hero-visual">
+      <!-- Put your own white+gold system failure illustration here -->
+      <img src="system-failure-illustration.png"
+           alt="System outage and order support illustration"
+           id="heroImage">
+    </div>
+    <div class="hero-text" id="heroText">
+      <h1>Procedure to Cancel Pending Orders During System Failure</h1>
+      <p>
+        If IBTS/KITS or related trading systems are down — whether on the investor side, broker side,
+        or due to a third-party vendor — investors can still manage their orders through the broker’s
+        KATS desk using the steps below.
+      </p>
+    </div>
+  </div>
 </header>
 
 <!-- ========== CONTENT ========== -->
-<section>
+<section class="content">
   <div class="wrap">
-    <div class="panel">
+    <div class="panel" id="mainPanel">
       <h2>What to do if the IBTS/KITS is down</h2>
       <p class="lead">
         In case of IBTS system failure due to any reason — investor’s side, broker’s side, or third-party
         software vendor’s part — you can call the KATS operator of the broker to:
       </p>
       <ol class="steps">
-        <li>Get an update regarding your lined-up orders.</li>
+        <li>Get an update regarding your <strong>lined-up orders</strong>.</li>
         <li>Give instructions to the KATS operator to <strong>cancel</strong> pending orders.</li>
         <li>Ask the operator to <strong>place new / further orders</strong> on your behalf.</li>
-        <li>Request <strong>amendments</strong> to any lined-up orders if required.</li>
+        <li>Request <strong>amendments</strong> to any lined-up orders, if required.</li>
       </ol>
       <div class="callout">
-        ✅ Tip: Keep your <strong>Client ID</strong>, <strong>CNIC last 6 digits</strong>, and the
-        <strong>symbol/quantity</strong> of the order ready before you call.
+        ✅ <span>Tip:</span> Before you call, keep your <strong>Client ID</strong>,
+        <strong>last 6 digits of CNIC</strong>, and <strong>symbol / quantity</strong> of the order with you
+        so that the KATS operator can verify and execute your instructions quickly.
       </div>
+
       <div id="contacts" class="contacts">
         <h3>Head Office — Contact Details</h3>
         <p><strong>Telephone Numbers (Landline):</strong>
@@ -278,7 +569,14 @@
         <p><strong>Telephone Numbers (Call Center):</strong>
           <a href="tel:+9221111253253">021 111 253 253</a>
         </p>
-        <a class="cta" href="tel:+9221111253253">📞 Call Now (Call Center)</a>
+        <a class="cta" href="tel:+9221111253253">
+          <span class="cta-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 4h4l2 5-3 2a16 16 0 007 7l2-3 5 2v4a2 2 0 01-2 2A17 17 0 015 6a2 2 0 012-2z"/>
+            </svg>
+          </span>
+          Call Now (Call Center)
+        </a>
       </div>
     </div>
   </div>
@@ -289,12 +587,8 @@
   <div class="nx-foot-wrap">
     <div class="nx-foot-top">
       <a class="nx-foot-brand" href="index.html">
-       <img class="nx-logo" src="stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
-  <!-- second/partner logo -->
-  <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 
-
-
-10.34.53_ed0e28f6.jpg" alt="Partner Logo">
+        <img class="nx-foot-logo" src="stoxgear-logo.jpg" alt="StoxGear Securities (Private) Limited">
+        <img class="nx-foot-logo" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner Logo">
       </a>
     </div>
     <div class="nx-foot-grid">
@@ -318,29 +612,67 @@
       </div>
       <div class="nx-foot-col">
         <h4>CONTACT</h4>
-        <a href="mailto:info@StoxGear.com">info@StoxGear.com</a>
-        <a href="tel:+923162288686">+92 316 2288686</a>
+        <!-- unified updated email & phone -->
+        <a href="mailto:info@stoxgear.com">info@stoxgear.com</a>
+        <a href="tel:+923158706976">+92 315 8706976</a>
         <a href="#">Karachi, Pakistan</a>
       </div>
     </div>
     <div class="nx-foot-bottom">
       <span>© <script>document.write(new Date().getFullYear())</script> StoxGear</span>
-      <span><a href="#" style="color:var(--muted);text-decoration:none">Privacy</a> · <a href="#" style="color:var(--muted);text-decoration:none">Terms</a></span>
+      <span>
+        <a href="#" style="color:var(--muted);text-decoration:none">Privacy</a> ·
+        <a href="#" style="color:var(--muted);text-decoration:none">Terms</a>
+      </span>
     </div>
   </div>
 </footer>
 
 <script>
+  // detect mobile / desktop and set body classes
+  function setDeviceClass(){
+    const w = window.innerWidth;
+    document.body.classList.toggle('is-mobile', w <= 768);
+    document.body.classList.toggle('is-desktop', w > 768);
+  }
+  setDeviceClass();
+  window.addEventListener('resize', setDeviceClass);
+
+  // navbar toggle
   const nxToggle=document.getElementById('nxToggle');
   const nxMenu=document.getElementById('nxMenu');
   nxToggle?.addEventListener('click',()=>{
     nxMenu.classList.toggle('is-open');
     nxToggle.setAttribute('aria-expanded', nxMenu.classList.contains('is-open'));
   });
+
+  // simple scroll animations
+  const heroText=document.getElementById('heroText');
+  const heroImage=document.getElementById('heroImage');
+  const mainPanel=document.getElementById('mainPanel');
+
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        if(e.target === heroText){
+          heroText.style.opacity='1';
+          heroText.style.transform='translateY(0)';
+        }
+        if(e.target === heroImage){
+          heroImage.classList.add('show');
+        }
+        if(e.target === mainPanel){
+          mainPanel.classList.add('in');
+        }
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:.25});
+
+  io.observe(heroText);
+  io.observe(heroImage);
+  io.observe(mainPanel);
 </script>
 
 </body>
 </html>
-
-
-
