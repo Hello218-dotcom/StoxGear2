@@ -11,7 +11,6 @@
 
 <style>
 :root{
-  /* —— White & Gold theme —— */
   --bg:#ffffff;
   --panel:#ffffff;
   --ink:#1a1a1a;
@@ -29,7 +28,8 @@ html,body{
   background:var(--bg);
   color:var(--ink);
   font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  display:flex;flex-direction:column;min-height:100vh;
+  display:flex;flex-direction:column;
+  min-height:100vh;
 }
 
 /* NAVBAR */
@@ -39,23 +39,31 @@ html,body{
   border-bottom:1px solid var(--line);
   box-shadow:0 6px 18px rgba(0,0,0,.06);
 }
+
 .nx-nav-inner{
   max-width:1200px;margin:auto;
   padding:12px 20px;
   display:flex;align-items:center;gap:16px;
 }
-.nx-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
-.nx-logo{height:38px;width:auto}
 
-.nx-tag{font-size:13px;color:var(--muted)}
+.nx-brand{
+  display:flex;align-items:center;gap:10px;
+  text-decoration:none;color:var(--ink)
+}
+
+.nx-logo{height:38px;width:auto}
+.nx-logo2{height:42px;width:auto}
 
 .nx-grow{flex:1}
+
 .nx-cta{
-  background:var(--brand);color:#000;font-weight:700;
+  background:linear-gradient(90deg,var(--brand),var(--brand-2));
+  color:#000;font-weight:700;
   border:none;border-radius:999px;
-  padding:10px 22px;cursor:pointer;transition:.25s ease;
+  padding:10px 22px;cursor:pointer;
+  transition:.25s ease;
 }
-.nx-cta:hover{background:var(--brand-2)}
+.nx-cta:hover{opacity:.85}
 
 .nx-toggle{
   background:none;border:1px solid var(--line);border-radius:10px;
@@ -69,65 +77,68 @@ html,body{
 .nx-link{
   color:var(--muted);
   font-weight:600;
-  position:relative;
   text-decoration:none;
 }
 
-/* DROPDOWN — medium smooth animation */
+/* DROPDOWN ANIMATION */
 .nx-drop{
-  position:absolute;top:calc(100% + 12px);left:0;
-  background:#fff;border:1px solid var(--line);
+  position:absolute;
+  top:calc(100% + 12px);
+  left:0;
+  background:#fff;
+  border:1px solid var(--line);
   border-radius:12px;
   padding:8px;
   min-width:240px;
-  display:block;
   opacity:0;
-  transform:translateY(14px);
   pointer-events:none;
+  transform:translateY(14px);
   transition:opacity .55s ease, transform .55s ease;
-  box-shadow:0 12px 26px rgba(0,0,0,.08);
+  box-shadow:var(--shadow);
 }
 
-/* desktop hover show */
+/* Desktop hover */
 @media (min-width:1025px){
   .nx-item:hover>.nx-drop{
     opacity:1;
-    transform:translateY(0);
     pointer-events:auto;
+    transform:translateY(0);
   }
 }
 
 .nx-drop a{
-  display:block;color:var(--ink);
-  padding:8px 12px;border-radius:8px;
+  display:block;
+  color:var(--ink);
+  padding:8px 12px;
+  border-radius:8px;
   text-decoration:none;
 }
-.nx-drop a:hover{background:#f6f6f6;color:var(--brand)}
+
+.nx-drop a:hover{
+  background:#f7f7f7;
+  color:var(--brand);
+}
 
 /* MOBILE */
 @media (max-width:1024px){
   .nx-toggle{display:block}
+
   .nx-menu{
     display:none;flex-direction:column;
     position:absolute;top:100%;left:0;right:0;
     background:#fff;
     border-top:1px solid var(--line);
-    box-shadow:0 12px 26px rgba(0,0,0,.08);
+    box-shadow:var(--shadow);
     padding:10px 12px;
   }
+
   .nx-item{width:100%}
 
   .nx-drop{
-    opacity:1;
-    pointer-events:auto;
-    transform:none;
-    position:static;
-    background:none;
-    border:none;
-    border-radius:0;
-    box-shadow:none;
-    padding:0;
-    display:none;
+    opacity:1;pointer-events:auto;
+    transform:none;position:static;
+    background:none;border:none;box-shadow:none;
+    padding:0;display:none;
   }
 
   .nx-item.open>.nx-drop{
@@ -135,15 +146,15 @@ html,body{
   }
 }
 
-/* MAIN SECTION */
+/* MAIN */
 main{
   flex:1;
   display:flex;flex-direction:column;
   align-items:center;justify-content:center;
   text-align:center;padding:56px 18px;
   background:
-    radial-gradient(1200px 420px at 8% -10%, rgba(201,162,39,.10), transparent 60%),
-    radial-gradient(900px 360px at 92% 110%, rgba(201,162,39,.08), transparent 60%),
+    radial-gradient(1100px 420px at 6% -10%, rgba(201,162,39,.10), transparent 60%),
+    radial-gradient(900px 360px at 90% 110%, rgba(201,162,39,.08), transparent 60%),
     var(--bg);
 }
 
@@ -152,8 +163,9 @@ h1{
   font-size:clamp(28px,4vw,46px);
   font-weight:800;
   margin-bottom:12px;
-  text-shadow:0 0 12px rgba(201,162,39,.2);
+  text-shadow:0 0 10px rgba(201,162,39,.25);
 }
+
 p{
   font-size:1.12rem;
   color:var(--muted);
@@ -162,9 +174,13 @@ p{
 
 /* FOOTER */
 .nx-footer{
-  background:#f7f7f7;border-top:1px solid var(--line);
-  color:var(--muted);font-size:14px;margin-top:60px;
+  background:#f7f7f7;
+  border-top:1px solid var(--line);
+  margin-top:60px;
+  color:var(--muted);
+  font-size:14px;
 }
+
 .nx-foot-wrap{max-width:1200px;margin:auto;padding:40px 20px}
 .nx-foot-top{display:flex;gap:12px;margin-bottom:30px}
 .nx-foot-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
@@ -172,10 +188,10 @@ p{
 
 .nx-foot-grid{
   display:grid;grid-template-columns:repeat(4,1fr);
-  gap:20px;text-align:left;align-items:start;
+  gap:20px;text-align:left;
 }
 .nx-foot-col h4{color:var(--brand);margin-bottom:10px}
-.nx-foot-col a{display:block;color:#2d2f36;margin:4px 0;text-decoration:none}
+.nx-foot-col a{display:block;margin:4px 0;color:#2d2f36;text-decoration:none}
 .nx-foot-col a:hover{color:var(--brand)}
 
 .nx-foot-bottom{
@@ -183,13 +199,12 @@ p{
   flex-wrap:wrap;margin-top:40px;color:var(--muted);
 }
 
-/* Responsive footer */
-@media (max-width:900px){
+@media(max-width:900px){
   .nx-foot-grid{grid-template-columns:repeat(2,1fr);text-align:center}
 }
-@media (max-width:600px){
+
+@media(max-width:600px){
   .nx-foot-grid{grid-template-columns:1fr}
-  .nx-foot-top{justify-content:center}
   .nx-foot-bottom{flex-direction:column;gap:10px;text-align:center}
 }
 </style>
@@ -202,86 +217,81 @@ p{
 
     <a class="nx-brand" href="index.html">
       <img class="nx-logo" src="assets/stoxgear-logo.jpg" alt="STOXGEAR Securities">
-      <span class="nx-tag">Your <span style="color:var(--brand)">X</span> factor to Investments</span>
+      <img class="nx-logo2" src="assets/partner-logo.jpg" alt="Partner">
     </a>
 
     <div class="nx-grow"></div>
 
     <nav class="nx-menu" id="nxMenu">
 
-      <!-- WHY US -->
       <div class="nx-item">
         <a class="nx-link" href="#">Why Us</a>
         <div class="nx-drop">
           <a href="about.html">About Us</a>
-          <a href="BOARD of directors.html">Board / Management</a>
-          <a href="Mission.html">Mission / Vision</a>
-          <a href="associated companies.html">Associated Companies</a>
-          <a href="Ncb auditor details .html">Auditors / Legal Advisors</a>
+          <a href="board-of-directors.html">Board / Management</a>
+          <a href="mission.html">Mission / Vision</a>
+          <a href="associated-companies.html">Associated Companies</a>
+          <a href="ncb-auditor-details.html">Auditors / Legal Advisors</a>
           <a href="services.html">Services</a>
-          <a href="Registered agents..html">Registered Agents</a>
+          <a href="registered-agents.html">Registered Agents</a>
         </div>
       </div>
 
-      <!-- EDUCATION -->
       <div class="nx-item">
         <a class="nx-link" href="#">Education</a>
         <div class="nx-drop">
-          <a href="New to trading.html">New to Trading</a>
-          <a href="Investorguid.html">Investor Guide</a>
-          <a href="Glossary.html">Glossary</a>
+          <a href="new-to-trading.html">New to Trading</a>
+          <a href="investorguide.html">Investor Guide</a>
+          <a href="glossary.html">Glossary</a>
           <a href="psx-rule-book.html">PSX Rule Book</a>
           <a href="common-terms-share-market.html">Common Terms of Share Market</a>
-          <a href="online-order-execution-flow.html">Online Order Execution Flow</a>
+          <a href="online-order-execution-flow.html">Order Execution Flow</a>
           <a href="order-settlement-flow.html">Order Settlement Flow</a>
           <a href="arbitration-procedure.html">Arbitration Procedure</a>
-          <a href="risk-disclosure-document.html">Risk Disclosure Document</a>
-          <a href="procedure-cancel-pending-orders.html">Procedure To Cancel Pending Orders</a>
+          <a href="risk-disclosure-document.html">Risk Disclosure</a>
+          <a href="procedure-cancel-pending-orders.html">Cancel Pending Orders</a>
           <a href="faqs.html">FAQs</a>
         </div>
       </div>
 
-      <!-- OPEN ACCOUNT -->
       <div class="nx-item">
         <a class="nx-link" href="#">Open Account</a>
         <div class="nx-drop">
-          <a href="Rda.html">Roshan Digital Account (RDA)</a>
-          <a href="Acoocint opening.html">Open Digital Account</a>
-          <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
+          <a href="rda.html">Roshan Digital Account</a>
+          <a href="acoocint-opening.html">Open Digital Account</a>
+          <a href="manage-funds.html">Manage Funds</a>
         </div>
       </div>
 
-      <!-- DOWNLOADS -->
       <div class="nx-item">
         <a class="nx-link" href="#">Downloads</a>
         <div class="nx-drop">
-          <a href="Forms.html">Forms</a>
+          <a href="forms.html">Forms</a>
           <a href="software.html">Software</a>
         </div>
       </div>
 
-      <!-- SUPPORT -->
       <div class="nx-item">
         <a class="nx-link" href="#">Support</a>
         <div class="nx-drop">
-          <a href="investor complaint.html">Investor Complaint</a>
-          <a href="Annaual half yearly.html">Annual / Half yearly / Quarterly Statements</a>
-          <a href="Auditor.html">Statutory Auditor Details</a>
-          <a href="Ncb auditor details .html">NCB Auditor Details</a>
-          <a href="KYC poslicy.html">CDD / KYC Policy</a>
-          <a href="Pending investor complaun.html">Pending Investor Complaints</a>
-          <a href="Penal action.html">Penal Actions</a>
-          <a href="Secp complaint.html">SECP Complaint</a>
-          <a href="psx complaint.html">PSX Complaint</a>
-          <a href="UIs of NICCPL.html">UIS Services of NCCPL</a>
-          <a href="Eservices By CDC.html">eServices by CDC</a>
-          <a href="Contact.html">Contact</a>
+          <a href="investor-complaint.html">Investor Complaint</a>
+          <a href="financial-statements.html">Financial Statements</a>
+          <a href="auditor.html">Statutory Auditor</a>
+          <a href="ncb-auditor-details.html">NCB Auditor</a>
+          <a href="kyc-policy.html">CDD / KYC Policy</a>
+          <a href="pending-investor-complaints.html">Pending Complaints</a>
+          <a href="penal-action.html">Penal Actions</a>
+          <a href="secp-complaint.html">SECP Complaint</a>
+          <a href="psx-complaint.html">PSX Complaint</a>
+          <a href="uis-nccpl.html">UIS NCCPL</a>
+          <a href="eservices-cdc.html">eServices CDC</a>
+          <a href="contact.html">Contact</a>
         </div>
       </div>
 
     </nav>
 
-    <button class="nx-cta" onclick="location.href='Acoocint opening.html'">OPEN AN ACCOUNT</button>
+    <button class="nx-cta" onclick="location.href='acoocint-opening.html'">OPEN AN ACCOUNT</button>
     <button class="nx-toggle" id="nxToggle">☰</button>
 
   </div>
@@ -290,7 +300,7 @@ p{
 <!-- MAIN -->
 <main>
   <h1>Coming Soon</h1>
-  <p>We’re working on something awesome — your digital forms will be available here shortly.</p>
+  <p>Your digital forms will be available shortly.</p>
 </main>
 
 <!-- FOOTER -->
@@ -299,34 +309,33 @@ p{
 
     <div class="nx-foot-top">
       <a class="nx-foot-brand" href="index.html">
-        <img class="nx-foot-logo" src="assets/stoxgear-logo.jpg" alt="STOXGEAR">
-        <span class="nx-foot-tag">Your <span style="color:var(--brand)">X</span> factor to Investments</span>
+        <img class="nx-foot-logo" src="assets/stoxgear-logo.jpg">
       </a>
     </div>
 
     <div class="nx-foot-grid">
 
       <div class="nx-foot-col">
-        <h4>WHY US</h4>
+        <h4>Why Us</h4>
         <a href="about.html">About Us</a>
-        <a href="Mission.html">Mission & Vision</a>
+        <a href="mission.html">Mission & Vision</a>
       </div>
 
       <div class="nx-foot-col">
-        <h4>EDUCATION</h4>
-        <a href="Investorguid.html">Investor Guide</a>
-        <a href="Glossary.html">Glossary</a>
+        <h4>Education</h4>
+        <a href="investorguide.html">Investor Guide</a>
+        <a href="glossary.html">Glossary</a>
       </div>
 
       <div class="nx-foot-col">
-        <h4>SUPPORT</h4>
-        <a href="Penal action.html">Penal Actions</a>
-        <a href="Secp complaint.html">SECP Complaint</a>
-        <a href="Eservices By CDC.html">eServices by CDC</a>
+        <h4>Support</h4>
+        <a href="penal-action.html">Penal Actions</a>
+        <a href="secp-complaint.html">SECP Complaint</a>
+        <a href="eservices-cdc.html">eServices by CDC</a>
       </div>
 
       <div class="nx-foot-col">
-        <h4>CONTACT</h4>
+        <h4>Contact</h4>
         <a href="mailto:info@StoxGear.com">info@StoxGear.com</a>
         <a href="tel:+923158706976">+92 315 8706976</a>
       </div>
@@ -334,7 +343,7 @@ p{
     </div>
 
     <div class="nx-foot-bottom">
-      <span>© <script>document.write(new Date().getFullYear())</script> STOXGEAR Securities (Private) Limited</span>
+      <span>© <script>document.write(new Date().getFullYear())</script> STOXGEAR Securities</span>
       <span><a href="#">Privacy</a> · <a href="#">Terms</a></span>
     </div>
 
@@ -342,7 +351,6 @@ p{
 </footer>
 
 <script>
-/* mobile menu toggle */
 const toggle=document.getElementById('nxToggle');
 const menu=document.getElementById('nxMenu');
 
@@ -351,7 +359,6 @@ toggle.addEventListener('click',()=>{
   menu.style.display = open ? 'none' : 'block';
 });
 
-/* mobile dropdown */
 document.querySelectorAll('.nx-item>.nx-link').forEach(link=>{
   link.addEventListener('click',e=>{
     if(window.innerWidth<=1024){
@@ -361,10 +368,9 @@ document.querySelectorAll('.nx-item>.nx-link').forEach(link=>{
   });
 });
 
-/* close menu by tapping outside */
 document.addEventListener('click',e=>{
   if(window.innerWidth<=1024){
-    const nav = document.querySelector('.nx-navbar');
+    const nav=document.querySelector('.nx-navbar');
     if(!nav.contains(e.target)){
       menu.style.display='none';
       document.querySelectorAll('.nx-item.open')
