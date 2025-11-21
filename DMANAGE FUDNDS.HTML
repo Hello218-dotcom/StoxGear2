@@ -10,12 +10,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* Fix long dropdown cutting — enable full visibility */
-.nx-drop{
-  max-height: 380px;    /* adjust if needed */
-  overflow-y: auto;     /* makes dropdown scroll */
-}
-
 /* ---------- THEME VARIABLES (White & Gold) ---------- */
 :root {
   --bg: #ffffff;
@@ -23,7 +17,7 @@
   --surface-2: #f7f8fb;
   --text: #0f1220;
   --text-dim: #5e6676;
-  --muted:#5e6676;          /* added so var(--muted) works */
+  --muted:#5e6676;
   --lime: #c9a646;          /* gold */
   --lime-soft: #dab867;     /* lighter gold */
   --shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
@@ -66,6 +60,8 @@ body {
   border:none;border-radius:999px;
   padding:10px 22px;cursor:pointer;
   transition:.22s ease;
+  text-decoration:none;
+  display:inline-block;
 }
 .nx-cta:hover{filter:brightness(1.07)}
 .nx-toggle{
@@ -105,7 +101,9 @@ body {
   }
   .nx-item{width:100%}
   .nx-link{display:block;padding:10px 0}
-  .nx-item.open>.nx-drop{display:block;position:static;background:none;border:none;box-shadow:none;padding:0}
+  .nx-item.open>.nx-drop{
+    display:block;position:static;background:none;border:none;box-shadow:none;padding:0;
+  }
 }
 
 /* ---------- PAGE HEADER ---------- */
@@ -237,18 +235,6 @@ tbody tr:hover { background: rgba(201,166,70,.10); }
   font-weight: 700;
 }
 
-/* ---------- BULLETS / CALLOUT ---------- */
-ul { padding-left: 20px; }
-li { margin-bottom: 6px; }
-.callout {
-  background: linear-gradient(180deg, #ffffff, #fafbfe);
-  border: 1px solid var(--lime);
-  border-radius: var(--radius);
-  padding: 18px;
-  margin-top: 20px;
-  box-shadow: inset 0 0 0 4px rgba(201,166,70,0.08);
-}
-
 /* ---------- MOBILE TABLE STACK ---------- */
 @media (max-width: 800px) {
   table { min-width: 0; font-size: 15px; }
@@ -315,6 +301,7 @@ li { margin-bottom: 6px; }
   .nx-foot-top{justify-content:center}
   .nx-foot-bottom{flex-direction:column;gap:10px;text-align:center}
 }
+
 /* size the partner logo in header */
 .nx-logo2{
   height:48px !important;
@@ -347,13 +334,11 @@ li { margin-bottom: 6px; }
 
 <body>
 
-<!-- ===== NAVBAR (from Team & Sponsors) ===== -->
+<!-- ===== NAVBAR ===== -->
 <header class="nx-navbar">
   <div class="nx-nav-inner">
     <a class="nx-brand" href="index.html">
-      <!-- main logo -->
       <img class="nx-logo" src="stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
-      <!-- second/partner logo -->
       <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner Logo">
     </a>
 
@@ -426,21 +411,13 @@ li { margin-bottom: 6px; }
           <a href="psx complaint.html">PSX Complaint</a>
           <a href="UIs of NICCPL.html">UIS Services of NCCPL</a>
           <a href="Eservices By CDC.html">EServices by CDC</a>
-          <a href="#">PSX Rule Book</a>
-          <a href="#">Common Terms of Share Market</a>
-          <a href="#">Online Order Execution Flow</a>
-          <a href="#">Order Settlement Flow</a>
-          <a href="#">Arbitration Procedure</a>
-          <a href="#">Risk Disclosure Document</a>
-          <a href="#">Procedure To Cancel Pending Orders</a>
-          <a href="#">Glossary</a>
-          <a href="#">FAQs</a>
-  <a href="Contact.html">Contact</a>
+          <a href="Contact.html">Contact</a>
         </div>
       </div>
     </nav>
 
-    <button class="nx-cta">OPEN AN ACCOUNT</button>
+    <!-- OPEN AN ACCOUNT now links to Acoocint opening.html -->
+    <a class="nx-cta" href="Acoocint opening.html">OPEN AN ACCOUNT</a>
     <button class="nx-toggle" id="nxToggle" aria-label="Toggle menu" aria-controls="nxMenu" aria-expanded="false">☰</button>
   </div>
 </header>
@@ -511,15 +488,13 @@ li { margin-bottom: 6px; }
   </div>
 </section>
 
-<!-- ========== FOOTER (from Team & Sponsors) ========== -->
+<!-- ===== FOOTER ===== -->
 <footer class="nx-footer">
   <div class="nx-foot-wrap">
     <div class="nx-foot-top">
       <a class="nx-foot-brand" href="index.html">
-        <!-- main logo -->
-        <img class="nx-logo" src="stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
-        <!-- second/partner logo -->
-        <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner Logo">
+        <img class="nx-foot-logo" src="stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
+        <img class="nx-foot-logo" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner Logo">
       </a>
     </div>
 
@@ -549,15 +524,11 @@ li { margin-bottom: 6px; }
         <a href="#">Karachi, Pakistan</a>
       </div>
     </div>
-
-  
-      </span>
-   
   </div>
 </footer>
 
 <script>
-/* ===== Mobile navbar toggle (works with new navbar) ===== */
+/* ===== Mobile navbar toggle ===== */
 (function(){
   const toggle = document.getElementById('nxToggle');
   const menu   = document.getElementById('nxMenu');
@@ -571,8 +542,8 @@ li { margin-bottom: 6px; }
 
   toggle?.addEventListener('click', (e)=>{
     e.stopPropagation();
+    if(!menu) return;
     const open = getComputedStyle(menu).display !== 'block';
-    menu.style.display = 'block';
     menu.style.display = open ? 'block' : 'none';
     toggle.setAttribute('aria-expanded', String(open));
   });
@@ -597,7 +568,9 @@ li { margin-bottom: 6px; }
   });
 
   window.addEventListener('resize', ()=>{
-    if(window.innerWidth > 1024){ menu && (menu.style.display = ''); }
+    if(window.innerWidth > 1024 && menu){
+      menu.style.display = '';
+    }
   });
 })();
 
@@ -651,6 +624,3 @@ li { margin-bottom: 6px; }
 </script>
 </body>
 </html>
-
-
-
