@@ -3,9 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>
-  
-  – Statutory Auditors & Legal Advisor</title>
+<title>Stoxgear Securities – Statutory Auditors & Legal Advisor</title>
+
+<!-- Poppins font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
   /* Fix long dropdown cutting — enable full visibility */
@@ -66,13 +69,18 @@ header.nx-navbar{
 .nx-link:after{content:"";position:absolute;bottom:-6px;left:0;height:2px;width:0;background:var(--accent);transition:.25s ease;}
 .nx-link:hover:after{width:100%}
 .nx-item{position:relative}
+
+/* dropdown controlled by .open (desktop + mobile) */
 .nx-drop{
   position:absolute;top:calc(100% + 10px);left:0;min-width:240px;
   background:#fff;border:1px solid rgba(0,0,0,.08);
   border-radius:14px;padding:10px;box-shadow:0 10px 25px rgba(0,0,0,.12);
-  opacity:0;transform:translateY(8px);pointer-events:none;transition:.25s ease;
+  display:none;
+  z-index:1000;
 }
-.nx-item:hover .nx-drop{opacity:1;transform:none;pointer-events:auto;}
+.nx-item.open > .nx-drop{
+  display:block;
+}
 .nx-drop a{display:block;color:var(--text);padding:8px 12px;border-radius:10px;}
 .nx-drop a:hover{background:var(--surface);color:var(--accent);}
 .nx-cta{
@@ -83,7 +91,16 @@ header.nx-navbar{
   transition:.2s;
 }
 .nx-cta:hover{transform:translateY(-2px);background:var(--accent-2)}
-.nx-toggle{display:none}
+.nx-toggle{
+  display:none;
+  margin-left:8px;
+  padding:6px 10px;
+  border-radius:10px;
+  border:1px solid rgba(0,0,0,.12);
+  font-size:20px;
+  background:#fff;
+  cursor:pointer;
+}
 
 /* ===== PAGE WRAP & HEADING ===== */
 .page-wrap{
@@ -204,14 +221,45 @@ header.nx-navbar{
 .nx-foot-col a:hover{opacity:1;transform:translateX(2px);color:#000}
 .nx-foot-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;
   padding-top:16px;border-top:1px solid rgba(0,0,0,.08);color:var(--text-2);font-size:13px}
+
+/* RESPONSIVE NAVBAR */
+@media (max-width:1024px){
+  .nx-menu{
+    display:none;
+    position:absolute;
+    top:100%;
+    left:0;right:0;
+    background:#fff;
+    border-top:1px solid rgba(0,0,0,.08);
+    padding:10px 12px;
+    z-index:9999;
+    flex-direction:column;
+    gap:0;
+  }
+  .nx-item{width:100%}
+  .nx-link{display:block;padding:12px 6px}
+  .nx-drop{
+    position:static;
+    display:none;
+    border:none;
+    box-shadow:none;
+    background:transparent;
+    padding:0;
+  }
+  .nx-item.open>.nx-drop{display:block !important}
+  .nx-toggle{
+    display:inline-block;
+  }
+  .nx-navbar.is-open .nx-menu{display:flex}
+}
 </style>
 </head>
 
 <body>
 <!-- ========== NAVBAR ========== -->
-<header class="nx-navbar">
+<header class="nx-navbar" id="nxHeader">
   <div class="nx-nav-inner">
-    <a class="nx-brand" href="#">
+    <a class="nx-brand" href="index.html">
       <!-- main logo -->
       <img class="nx-logo" src="stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
       <!-- second/partner logo -->
@@ -220,7 +268,7 @@ header.nx-navbar{
 
     <div class="nx-grow"></div>
 
-    <nav class="nx-menu">
+    <nav class="nx-menu" id="nxMenu">
       <!-- WHY US -->
       <div class="nx-item">
         <a class="nx-link" href="#">Why Us</a>
@@ -287,34 +335,25 @@ header.nx-navbar{
           <a href="psx complaint.html">PSX Complaint</a>
           <a href="UIs of NICCPL.html">UIS Services of NCCPL</a>
           <a href="Eservices By CDC.html">EServices by CDC</a>
-          <a href="#">PSX Rule Book</a>
-          <a href="#">Common Terms of Share Market</a>
-          <a href="#">Online Order Execution Flow</a>
-          <a href="#">Order Settlement Flow</a>
-          <a href="#">Arbitration Procedure</a>
-          <a href="#">Risk Disclosure Document</a>
-          <a href="#">Procedure To Cancel Pending Orders</a>
-          <a href="#">Glossary</a>
-          <a href="#">FAQs</a>
-            <a href="Contact.html">Contact</a>
+          <a href="Contact.html">Contact</a>
         </div>
       </div>
     </nav>
 
     <button class="nx-cta">OPEN AN ACCOUNT</button>
-    <button class="nx-toggle">☰</button>
+    <button class="nx-toggle" id="nxToggle" aria-label="Toggle menu" aria-controls="nxMenu" aria-expanded="false">☰</button>
   </div>
 </header>
 
-<!-- hidden brand/footer logos kept (if used elsewhere by you) -->
+<!-- hidden brand/footer logos kept, tagline removed -->
 <a class="nx-brand" href="#" style="display:none">
   <img class="nx-logo" src="./stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
-  <span class="nx-tag">Your <span style="color:var(--accent)">X</span> factor to Investments</span>
+  <span class="nx-tag">Stoxgear Securities</span>
 </a>
 
 <a class="nx-foot-brand" href="#" style="display:none">
   <img class="nx-foot-logo" src="./stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
-  <span class="nx-foot-tag">Your <span style="color:var(--accent)">X</span> factor to Investments</span>
+  <span class="nx-foot-tag">Stoxgear Securities</span>
 </a>
 
 <!-- ========== MAIN CONTENT ========== -->
@@ -353,7 +392,7 @@ header.nx-navbar{
 <footer class="nx-footer">
   <div class="nx-foot-wrap">
     <div class="nx-foot-top">
-      <a class="nx-foot-brand" href="#">
+      <a class="nx-foot-brand" href="index.html">
         <img class="nx-foot-logo" src="stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
         <img class="nx-foot-logo" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner Logo" style="margin-left:10px;">
       </a>
@@ -373,26 +412,88 @@ header.nx-navbar{
       </div>
       <div class="nx-foot-col">
         <h4>ACCOUNT</h4>
-        <a href="#">Roshan Digital Account</a>
-        <a href="Rda.html">Open Digital Account</a>
+        <a href="Rda.html">Roshan Digital Account</a>
+        <a href="Acoocint opening.html">Open Digital Account</a>
         <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
       </div>
       <div class="nx-foot-col">
         <h4>CONTACT</h4>
-        <a href="mailto:info@StoxGear.com">info@StoxGear.com</a>
-        <a href="#">+92 316 2288686</a>
+        <a href="mailto:info@stoxgear.com.pk">info@stoxgear.com.pk</a>
+        <a href="tel:0913168395">0913168395</a>
         <a href="#">Karachi, Pakistan</a>
       </div>
     </div>
     <div class="nx-foot-bottom">
-      
+      <span>© <script>document.write(new Date().getFullYear())</script> Stoxgear Securities (Private) Limited</span>
       <span>
-        <a href="#" style="color:var(--text-2);text-decoration:none">Privacy</a> ·
-        <a href="#" style="color:var(--text-2);text-decoration:none">Terms</a>
+        <a href="privacy.html" style="color:var(--text-2);text-decoration:none">Privacy</a> ·
+        <a href="terms.html" style="color:var(--text-2);text-decoration:none">Terms</a>
       </span>
     </div>
   </div>
 </footer>
+
+<script>
+// navbar behaviour: mobile toggle + hover delay for dropdowns
+(function(){
+  const header = document.getElementById('nxHeader');
+  const menu   = document.getElementById('nxMenu');
+  const toggle = document.getElementById('nxToggle');
+
+  if (toggle && header){
+    toggle.addEventListener('click', ()=>{
+      const open = !header.classList.contains('is-open');
+      header.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+  }
+
+  // MOBILE: click to open dropdown
+  document.querySelectorAll('.nx-item > .nx-link').forEach(link=>{
+    link.addEventListener('click', (e)=>{
+      const drop = link.nextElementSibling;
+      const isMobile = window.matchMedia('(max-width:1024px)').matches;
+      if (isMobile && drop && drop.classList.contains('nx-drop')){
+        e.preventDefault();
+        link.parentElement.classList.toggle('open');
+      }
+    });
+  });
+
+  // DESKTOP: hover with slight delay to open / close dropdown
+  document.querySelectorAll('.nx-item').forEach(item=>{
+    let enterTimer, leaveTimer;
+
+    item.addEventListener('mouseenter', ()=>{
+      const isDesktop = window.matchMedia('(min-width:1025px)').matches;
+      if(!isDesktop) return;
+      clearTimeout(leaveTimer);
+      enterTimer = setTimeout(()=>{
+        item.classList.add('open');
+      }, 130); // delay before showing
+    });
+
+    item.addEventListener('mouseleave', ()=>{
+      const isDesktop = window.matchMedia('(min-width:1025px)').matches;
+      if(!isDesktop) return;
+      clearTimeout(enterTimer);
+      leaveTimer = setTimeout(()=>{
+        item.classList.remove('open');
+      }, 180); // delay before hiding
+    });
+  });
+
+  // click outside to close on mobile
+  document.addEventListener('click', (e)=>{
+    const isMobile = window.matchMedia('(max-width:1024px)').matches;
+    if (isMobile && header && !header.contains(e.target)){
+      header.classList.remove('is-open');
+      if (toggle) toggle.setAttribute('aria-expanded','false');
+      document.querySelectorAll('.nx-item.open').forEach(i=>i.classList.remove('open'));
+    }
+  });
+})();
+</script>
 
 <script>
 // simple intersection observer for fade / card animation
@@ -400,6 +501,7 @@ const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if(entry.isIntersecting){
       entry.target.classList.add('in','show');
+      observer.unobserve(entry.target);
     }
   });
 },{threshold:.2});
@@ -409,7 +511,3 @@ document.querySelectorAll('.info-card, .fade-up').forEach(el => observer.observe
 </script>
 </body>
 </html>
-
-
-
-
