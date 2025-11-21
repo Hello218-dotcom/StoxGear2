@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>StocX Invest – Statutory Auditors & Legal Advisor</title>
+<title>StoxGear – Statutory Auditors & Legal Advisor</title>
 
 <style>
 :root{
@@ -11,9 +11,8 @@
   --surface:#fafafa;
   --text:#111111;
   --text-2:#555555;
-  --accent:#c9a646;   /* gold */
-  --accent-2:#b38b2e; /* deeper gold */
-  --accent-3:#c9a646; /* link gold */
+  --accent:#c9a646;
+  --accent-2:#b38b2e;
   --radius:16px;
   --shadow:0 8px 20px rgba(0,0,0,.1);
 }
@@ -22,383 +21,309 @@ html,body{
   color:var(--text);
   font-family:"Poppins",sans-serif;
   margin:0;
-  scroll-behavior:smooth;
 }
-a{color:var(--accent-3);text-decoration:none;transition:.2s}
-a:hover{color:var(--accent-2);text-decoration:underline}
-.btn,.btn-cta{
-  background:var(--accent);
-  color:#fff;font-weight:700;
-  padding:10px 20px;border:none;border-radius:50px;
-  box-shadow:0 0 12px rgba(201,166,70,.25);
-  transition:.2s;
-}
-.btn:hover,.btn-cta:hover{transform:translateY(-2px);background:var(--accent-2)}
+a{color:var(--accent);text-decoration:none;transition:.2s}
+a:hover{color:var(--accent-2)}
 
-/* ===== NAVBAR ===== */
+/* NAVBAR */
 header.nx-navbar{
   position:sticky;top:0;z-index:999;
-  backdrop-filter:blur(8px);
   background:rgba(255,255,255,.95);
+  backdrop-filter:blur(8px);
   border-bottom:1px solid rgba(0,0,0,.08);
-  box-shadow:0 3px 10px rgba(0,0,0,.05);
 }
 .nx-nav-inner{
-  max-width:1200px;margin:0 auto;
-  padding:14px 24px;display:flex;align-items:center;gap:18px;
+  max-width:1200px;margin:auto;
+  padding:14px 24px;
+  display:flex;align-items:center;gap:18px;
 }
 .nx-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text)}
-.nx-logo{height:36px;width:auto;display:block;object-fit:contain}
-.nx-logo2{height:36px;width:auto;display:block;object-fit:contain;margin-left:10px}
-.nx-tag{font-size:12px;color:var(--text-2)}
+.nx-logo{height:36px;width:auto;object-fit:contain}
+.nx-logo2{height:36px;width:auto;object-fit:contain;margin-left:10px}
 .nx-grow{flex:1}
 .nx-menu{display:flex;align-items:center;gap:26px;}
-.nx-link{position:relative;color:var(--text-2);font-weight:600;text-decoration:none;font-size:15px;}
+.nx-link{color:var(--text-2);font-weight:600;}
 .nx-link:hover{color:var(--accent)}
-.nx-link:after{content:"";position:absolute;bottom:-6px;left:0;height:2px;width:0;background:var(--accent);transition:.25s ease;}
-.nx-link:hover:after{width:100%}
 .nx-item{position:relative}
-.nx-drop{
-  position:absolute;top:calc(100% + 10px);left:0;min-width:240px;
-  background:#fff;border:1px solid rgba(0,0,0,.08);
-  border-radius:14px;padding:10px;box-shadow:0 10px 25px rgba(0,0,0,.12);
-  opacity:0;transform:translateY(8px);pointer-events:none;transition:.25s ease;
-}
-.nx-item:hover .nx-drop{opacity:1;transform:none;pointer-events:auto;}
-.nx-drop a{display:block;color:var(--text);padding:8px 12px;border-radius:10px;}
-.nx-drop a:hover{background:var(--surface);color:var(--accent);}
-.nx-cta{
-  margin-left:auto;background:var(--accent);
-  color:#fff;font-weight:700;border:none;border-radius:30px;
-  padding:10px 20px;cursor:pointer;
-  box-shadow:0 0 20px rgba(201,166,70,.25);
-  transition:.2s;
-}
-.nx-cta:hover{transform:translateY(-2px);background:var(--accent-2)}
-.nx-toggle{display:none}
 
-/* ===== PAGE WRAP & HEADING ===== */
+.nx-drop{
+  position:absolute;top:calc(100% + 10px);left:0;
+  min-width:240px;background:#fff;
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:14px;padding:10px;
+  box-shadow:0 10px 22px rgba(0,0,0,.12);
+  opacity:0;pointer-events:none;
+  transform:translateY(8px);
+  transition:.45s ease;
+}
+.nx-item:hover .nx-drop{
+  opacity:1;pointer-events:auto;
+  transform:translateY(0);
+}
+.nx-drop a{display:block;padding:8px 12px;border-radius:8px;color:var(--text)}
+.nx-drop a:hover{background:#f3f3f3;color:var(--accent)}
+
+.nx-cta{
+  background:var(--accent);
+  color:#fff;font-weight:700;
+  border:none;border-radius:30px;
+  padding:10px 20px;
+  cursor:pointer;
+}
+
+/* PAGE */
 .page-wrap{
   max-width:1200px;
-  margin:70px auto 40px;
-  padding:0 20px 40px;
+  margin:60px auto 40px;
+  padding:0 20px;
 }
 .page-heading{
-  margin-bottom:30px;
-  border-bottom:1px solid rgba(0,0,0,.08);
+  margin-bottom:30px;border-bottom:1px solid rgba(0,0,0,.08);
   padding-bottom:10px;
 }
 .page-heading h1{
-  font-size:32px;
-  font-weight:600;
-  color:var(--text);
-  margin:0;
+  font-size:32px;font-weight:600;margin:0;
 }
 
-/* ===== INFO CARDS (Auditors & Legal Advisor) ===== */
+/* CARDS */
 .info-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:24px;
 }
 .info-card{
-  background:#fff;
-  border-radius:var(--radius);
+  background:#fff;border-radius:var(--radius);
   border:1px solid rgba(0,0,0,.06);
+  padding:22px;
   box-shadow:var(--shadow);
-  padding:20px 20px 22px;
-  position:relative;
-  overflow:hidden;
-  transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease,
-             opacity .45s ease, transform .45s ease;
-  opacity:0;
-  transform:translateY(18px);
-}
-.info-card.in{
-  opacity:1;
-  transform:translateY(0);
-}
-.info-card:before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:radial-gradient(circle at top left, rgba(201,166,70,.16), transparent 55%);
-  opacity:0;
-  transition:opacity .35s ease;
-  pointer-events:none;
+  transition:0.3s ease;
 }
 .info-card:hover{
   transform:translateY(-4px);
-  box-shadow:0 14px 32px rgba(0,0,0,.16);
   border-color:var(--accent);
-}
-.info-card:hover:before{
-  opacity:1;
+  box-shadow:0 14px 30px rgba(0,0,0,.16);
 }
 .info-label{
   font-size:13px;
-  letter-spacing:.08em;
   text-transform:uppercase;
   color:var(--accent-2);
-  margin-bottom:6px;
 }
 .info-title{
-  font-size:18px;
-  font-weight:700;
-  margin:0 0 12px;
-  color:var(--text);
+  font-size:18px;font-weight:700;margin:6px 0 12px;
 }
-.info-body{
-  font-size:14px;
-  line-height:1.6;
-  color:var(--text-2);
-}
+.info-body{font-size:14px;line-height:1.6;color:var(--text-2)}
 .info-pill{
-  display:inline-block;
-  margin-top:10px;
-  padding:4px 10px;
-  border-radius:999px;
-  font-size:12px;
-  background:rgba(201,166,70,.08);
+  display:inline-block;margin-top:10px;
+  padding:4px 10px;font-size:12px;
+  border-radius:20px;
+  background:rgba(201,166,70,.1);
   color:var(--accent-2);
-  font-weight:600;
 }
 
-/* simple fade-up helper for heading section */
-.fade-up{
-  opacity:0;
-  transform:translateY(22px);
-  transition:opacity .5s ease, transform .5s ease;
-}
-.fade-up.show{
-  opacity:1;
-  transform:translateY(0);
-}
-
-/* ===== FOOTER ===== */
+/* FOOTER */
 .nx-footer{
-  margin-top:40px;
-  background:var(--surface);
+  margin-top:50px;
+  background:#fafafa;
+  padding:40px 20px;
   border-top:1px solid rgba(0,0,0,.08);
-  color:var(--text-2);
 }
-.nx-foot-wrap{max-width:1200px;margin:0 auto;padding:48px 20px 28px}
-.nx-foot-top{display:flex;align-items:center;justify-content:space-between;gap:18px;
-  padding-bottom:22px;border-bottom:1px solid rgba(0,0,0,.08)}
-.nx-foot-brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--text)}
-.nx-foot-logo{height:36px;width:auto;filter:none}
-.nx-foot-tag{font-size:13px;color:var(--text-2)}
-.nx-foot-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px;padding:26px 0 6px}
+.nx-foot-wrap{
+  max-width:1200px;margin:auto;
+}
+.nx-foot-top{
+  display:flex;align-items:center;gap:18px;margin-bottom:22px;
+}
+.nx-foot-logo{height:36px;width:auto}
+
+.nx-foot-grid{
+  display:grid;gap:26px;
+  grid-template-columns:repeat(4,1fr);
+}
 @media(max-width:900px){.nx-foot-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:540px){.nx-foot-grid{grid-template-columns:1fr}}
-.nx-foot-col h4{margin:0 0 12px;color:var(--accent);font-size:15px}
-.nx-foot-col a{display:block;color:var(--text);text-decoration:none;opacity:.9;padding:7px 0;font-size:14px}
-.nx-foot-col a:hover{opacity:1;transform:translateX(2px);color:#000}
-.nx-foot-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;
-  padding-top:16px;border-top:1px solid rgba(0,0,0,.08);color:var(--text-2);font-size:13px}
+@media(max-width:600px){.nx-foot-grid{grid-template-columns:1fr}}
+
+.nx-foot-col h4{
+  color:var(--accent);margin-bottom:12px;font-size:15px;
+}
+.nx-foot-col a{
+  display:block;padding:7px 0;
+  font-size:14px;color:var(--text);
+}
+.nx-foot-bottom{
+  margin-top:22px;
+  display:flex;justify-content:space-between;
+  font-size:13px;color:var(--text-2);
+}
 </style>
 </head>
 
 <body>
-<!-- ========== NAVBAR ========== -->
+
+<!-- NAVBAR -->
 <header class="nx-navbar">
   <div class="nx-nav-inner">
-    <a class="nx-brand" href="#">
-      <!-- main logo -->
-      <img class="nx-logo" src="stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
-      <!-- second/partner logo -->
-      <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner Logo">
+    <a class="nx-brand" href="index.html">
+      <img class="nx-logo" src="assets/stoxgear-logo.jpg">
+      <img class="nx-logo2" src="assets/partner-logo.jpg">
     </a>
 
     <div class="nx-grow"></div>
 
     <nav class="nx-menu">
-      <!-- WHY US -->
+
       <div class="nx-item">
         <a class="nx-link" href="#">Why Us</a>
         <div class="nx-drop">
-          <a href="about.html">About US</a>
-          <a href="BOARD of directors.html">Board of Directors / Management</a>
-          <a href="Mission.html">Mission / Vision</a>
-          <a href="associated companies.html">Associated Companies</a>
-          <a href="Ncb auditor details .html">Auditors / Legal Advisors</a>
+          <a href="about.html">About Us</a>
+          <a href="board-of-directors.html">Board / Management</a>
+          <a href="mission.html">Mission / Vision</a>
+          <a href="associated-companies.html">Associated Companies</a>
+          <a href="ncb-auditor-details.html">Auditors / Legal Advisors</a>
           <a href="services.html">Services</a>
-          <a href="Registered agents..html">Registered Agents</a>
+          <a href="registered-agents.html">Registered Agents</a>
         </div>
       </div>
 
-      <!-- EDUCATION -->
       <div class="nx-item">
         <a class="nx-link" href="#">Education</a>
         <div class="nx-drop">
-          <a href="New to trading.html">New to Trading</a>
-          <a href="Investorguid.html">Investor Guide</a>
-          <a href="Glossary.html">Glossary</a>
+          <a href="new-to-trading.html">New to Trading</a>
+          <a href="investor-guide.html">Investor Guide</a>
+          <a href="glossary.html">Glossary</a>
           <a href="psx-rule-book.html">PSX Rule Book</a>
-          <a href="common-terms-share-market.html">Common Terms of Share Market</a>
-          <a href="online-order-execution-flow.html">Online Order Execution Flow</a>
-          <a href="order-settlement-flow.html">Order Settlement Flow</a>
-          <a href="arbitration-procedure.html">Arbitration Procedure</a>
-          <a href="risk-disclosure-document.html">Risk Disclosure Document</a>
-          <a href="procedure-cancel-pending-orders.html">Procedure To Cancel Pending Orders</a>
+          <a href="common-terms-share-market.html">Common Terms</a>
+          <a href="online-order-execution-flow.html">Order Execution Flow</a>
+          <a href="order-settlement-flow.html">Settlement Flow</a>
+          <a href="arbitration-procedure.html">Arbitration</a>
+          <a href="risk-disclosure-document.html">Risk Disclosure</a>
+          <a href="procedure-cancel-pending-orders.html">Cancel Orders</a>
           <a href="faqs.html">FAQs</a>
         </div>
       </div>
 
-      <!-- OPEN ACCOUNT -->
       <div class="nx-item">
         <a class="nx-link" href="#">Open Account</a>
         <div class="nx-drop">
-          <a href="Rda.html">Roshan Digital Account (RDA)</a>
-          <a href="Acoocint opening.html">Open Digital Account</a>
-          <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
+          <a href="rda.html">Roshan Digital Account</a>
+          <a href="open-account.html">Open Digital Account</a>
+          <a href="manage-funds.html">Manage Funds</a>
         </div>
       </div>
 
-      <!-- DOWNLOADS -->
       <div class="nx-item">
         <a class="nx-link" href="#">Downloads</a>
         <div class="nx-drop">
-          <a href="Forms.html">Forms</a>
+          <a href="forms.html">Forms</a>
           <a href="software.html">Software</a>
         </div>
       </div>
 
-      <!-- SUPPORT -->
       <div class="nx-item">
         <a class="nx-link" href="#">Support</a>
         <div class="nx-drop">
-          <a href="investor complaint.html">Investor Complaint</a>
-          <a href="Annaual half yearly.html">Annual / Half yearly / Quarterly Financial Statements</a>
-          <a href="Auditor.html">Statutory Auditor Details</a>
-          <a href="Ncb auditor details .html">NCB Auditor Details</a>
-          <a href="KYC poslicy.html">CDD / KYC Policy</a>
-          <a href="Pending investor complaun.html">Pending Investor Complaints</a>
-          <a href="Penal action.html">Details of Penal Action</a>
-          <a href="Secp complaint.html">SECP Complaint</a>
-          <a href="psx complaint.html">PSX Complaint</a>
-          <a href="UIs of NICCPL.html">UIS Services of NCCPL</a>
-          <a href="Eservices By CDC.html">EServices by CDC</a>
-          <a href="#">PSX Rule Book</a>
-          <a href="#">Common Terms of Share Market</a>
-          <a href="#">Online Order Execution Flow</a>
-          <a href="#">Order Settlement Flow</a>
-          <a href="#">Arbitration Procedure</a>
-          <a href="#">Risk Disclosure Document</a>
-          <a href="#">Procedure To Cancel Pending Orders</a>
-          <a href="#">Glossary</a>
-          <a href="#">FAQs</a>
-            <a href="Contact.html">Contact</a>
+          <a href="investor-complaint.html">Investor Complaint</a>
+          <a href="annual-half-yearly.html">Financial Statements</a>
+          <a href="auditor.html">Statutory Auditor</a>
+          <a href="ncb-auditor-details.html">NCB Auditor</a>
+          <a href="cdd-kyc-policy.html">CDD / KYC Policy</a>
+          <a href="pending-investor-complaints.html">Pending Complaints</a>
+          <a href="penal-action.html">Penal Actions</a>
+          <a href="secp-complaint.html">SECP Complaint</a>
+          <a href="psx-complaint.html">PSX Complaint</a>
+          <a href="uis-nccpl.html">UIS – NCCPL</a>
+          <a href="eservices-cdc.html">eServices by CDC</a>
+          <a href="contact.html">Contact</a>
         </div>
       </div>
+
     </nav>
 
-    <button class="nx-cta">OPEN AN ACCOUNT</button>
-    <button class="nx-toggle">☰</button>
+    <button class="nx-cta" onclick="location.href='open-account.html'">OPEN AN ACCOUNT</button>
+
   </div>
 </header>
 
-<!-- hidden brand/footer logos kept (if used elsewhere by you) -->
-<a class="nx-brand" href="#" style="display:none">
-  <img class="nx-logo" src="./stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
-  <span class="nx-tag">Your <span style="color:var(--accent)">X</span> factor to Investments</span>
-</a>
-
-<a class="nx-foot-brand" href="#" style="display:none">
-  <img class="nx-foot-logo" src="./stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
-  <span class="nx-foot-tag">Your <span style="color:var(--accent)">X</span> factor to Investments</span>
-</a>
-
-<!-- ========== MAIN CONTENT ========== -->
+<!-- PAGE -->
 <main class="page-wrap">
-  <header class="page-heading fade-up">
-    <h1>Statutory Auditors &amp; Legal Advisor</h1>
+
+  <header class="page-heading">
+    <h1>Statutory Auditors & Legal Advisor</h1>
   </header>
 
   <section class="info-grid">
-    <!-- Statutory Auditors card -->
+
     <article class="info-card">
       <div class="info-label">Statutory Auditors</div>
-      <h2 class="info-title">S.M. Suhail &amp; Co., Chartered Accountants</h2>
+      <h2 class="info-title">S.M. Suhail & Co., Chartered Accountants</h2>
       <p class="info-body">
-        Located in: Mohammad Ali Jinnah University<br>
+        Mohammad Ali Jinnah University<br>
         Office No. 1112, 11th Floor, Park Avenue,<br>
-        Shahra-e-Faisal, P.E.C.H.S, Block 2 &amp; Block 6,<br>
+        Shahra-e-Faisal, P.E.C.H.S Block 2 & 6,<br>
         Karachi, Pakistan.
       </p>
-      <span class="info-pill">External Statutory Auditors</span>
+      <span class="info-pill">External Statutory Auditor</span>
     </article>
 
-    <!-- Legal Advisors card -->
     <article class="info-card">
-      <div class="info-label">Legal Advisors</div>
-      <h2 class="info-title">Legal Advisors</h2>
+      <div class="info-label">Legal Advisor</div>
+      <h2 class="info-title">Not Yet Appointed</h2>
       <p class="info-body">
-        Currently <strong>NILL</strong> – no legal advisor has been appointed at present.
+        Currently <strong>NILL</strong> – no legal advisor has been appointed.
       </p>
-      <span class="info-pill">To be appointed</span>
+      <span class="info-pill">Pending Appointment</span>
     </article>
+
   </section>
 </main>
 
-<!-- ========== FOOTER ========== -->
+<!-- FOOTER -->
 <footer class="nx-footer">
   <div class="nx-foot-wrap">
+
     <div class="nx-foot-top">
-      <a class="nx-foot-brand" href="#">
-        <img class="nx-foot-logo" src="stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
-        <img class="nx-foot-logo" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner Logo" style="margin-left:10px;">
-      </a>
+      <img class="nx-foot-logo" src="assets/stoxgear-logo.jpg">
+      <img class="nx-foot-logo" src="assets/partner-logo.jpg" style="margin-left:10px;">
     </div>
+
     <div class="nx-foot-grid">
+
       <div class="nx-foot-col">
         <h4>WHY US</h4>
         <a href="about.html">About Us</a>
-        <a href="BOARD of directors.html">Board / Management</a>
-        <a href="Mission.html">Mission & Vision</a>
+        <a href="board-of-directors.html">Board / Management</a>
+        <a href="mission.html">Mission & Vision</a>
       </div>
+
       <div class="nx-foot-col">
         <h4>EDUCATION</h4>
-        <a href="New to trading.html">New to Trading</a>
-        <a href="Investorguid.html">Investor Guide</a>
-        <a href="Glossary.html">Glossary</a>
+        <a href="new-to-trading.html">New to Trading</a>
+        <a href="investor-guide.html">Investor Guide</a>
+        <a href="glossary.html">Glossary</a>
       </div>
+
       <div class="nx-foot-col">
         <h4>ACCOUNT</h4>
-        <a href="#">Roshan Digital Account</a>
-        <a href="Rda.html">Open Digital Account</a>
-        <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
+        <a href="rda.html">Roshan Digital Account</a>
+        <a href="open-account.html">Open Digital Account</a>
+        <a href="manage-funds.html">Manage Funds</a>
       </div>
+
       <div class="nx-foot-col">
         <h4>CONTACT</h4>
-        <a href="mailto:info@StoxGear.com">info@StoxGear.com</a>
-        <a href="#">+92 316 2288686</a>
+        <a href="mailto:info@stoxgear.com">info@stoxgear.com</a>
+        <a href="tel:+923158706976">+92 315 8706976</a>
         <a href="#">Karachi, Pakistan</a>
       </div>
+
     </div>
+
     <div class="nx-foot-bottom">
-      <span>© <script>document.write(new Date().getFullYear())</script> StocX Invest</span>
-      <span>
-        <a href="#" style="color:var(--text-2);text-decoration:none">Privacy</a> ·
-        <a href="#" style="color:var(--text-2);text-decoration:none">Terms</a>
-      </span>
+      <span>© <script>document.write(new Date().getFullYear())</script> StoxGear Securities (Pvt) Limited</span>
+      <span><a href="#">Privacy</a> · <a href="#">Terms</a></span>
     </div>
+
   </div>
 </footer>
 
-<script>
-// simple intersection observer for fade / card animation
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.classList.add('in','show');
-    }
-  });
-},{threshold:.2});
-
-// animate heading + cards
-document.querySelectorAll('.info-card, .fade-up').forEach(el => observer.observe(el));
-</script>
 </body>
 </html>
-
