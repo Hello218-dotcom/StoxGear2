@@ -9,62 +9,62 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
     /* Fix long dropdown cutting — enable full visibility */
-.nx-drop{
-  max-height: 380px;    /* adjust if needed */
-  overflow-y: auto;     /* makes dropdown scroll */
-}
+    .nx-drop{
+      max-height: 380px;    /* adjust if needed */
+      overflow-y: auto;     /* makes dropdown scroll */
+    }
 
     /* ——— Committees & Contact cards ——— */
-.info-grid{
-  max-width:820px;
-  margin:34px auto 0;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:22px;
-}
-@media (max-width:800px){ .info-grid{ grid-template-columns:1fr; } }
+    .info-grid{
+      max-width:820px;
+      margin:34px auto 0;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+    }
+    @media (max-width:800px){ .info-grid{ grid-template-columns:1fr; } }
 
-.info-card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:14px;
-  box-shadow:var(--shadow);
-  padding:18px 20px;
-  text-align:left;
-}
+    .info-card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:14px;
+      box-shadow:var(--shadow);
+      padding:18px 20px;
+      text-align:left;
+    }
 
-.info-card h3{
-  margin:0 0 10px;
-  font-size:20px;
-  color:var(--accent);
-  letter-spacing:.2px;
-}
+    .info-card h3{
+      margin:0 0 10px;
+      font-size:20px;
+      color:var(--accent);
+      letter-spacing:.2px;
+    }
 
-.info-card ul{ margin:0; padding:0; list-style:none; }
-.info-card li{
-  position:relative;
-  padding:8px 0 8px 22px;
-  color:#2d2f36;
-}
-.info-card li::before{
-  content:"";
-  position:absolute;
-  left:6px; top:12px;
-  width:8px; height:8px; border-radius:50%;
-  background:linear-gradient(180deg,var(--accent),var(--accent-2));
-  opacity:.85;
-}
+    .info-card ul{ margin:0; padding:0; list-style:none; }
+    .info-card li{
+      position:relative;
+      padding:8px 0 8px 22px;
+      color:#2d2f36;
+    }
+    .info-card li::before{
+      content:"";
+      position:absolute;
+      left:6px; top:12px;
+      width:8px; height:8px; border-radius:50%;
+      background:linear-gradient(180deg,var(--accent),var(--accent-2));
+      opacity:.85;
+    }
 
-.info-card p{ margin:0 0 6px; line-height:1.7; }
-.info-card.contact a{
-  color:inherit;                    /* no blue */
-  text-decoration:none;             /* no underline */
-  border-bottom:1px dashed rgba(0,0,0,.25);
-}
-.info-card.contact a:hover{
-  color:var(--accent);
-  border-bottom-color:var(--accent);
-}
+    .info-card p{ margin:0 0 6px; line-height:1.7; }
+    .info-card.contact a{
+      color:inherit;                    /* no blue */
+      text-decoration:none;             /* no underline */
+      border-bottom:1px dashed rgba(0,0,0,.25);
+    }
+    .info-card.contact a:hover{
+      color:var(--accent);
+      border-bottom-color:var(--accent);
+    }
 
     :root{
       /* ===== White + Gold theme ===== */
@@ -98,7 +98,13 @@
 
     /* ===== Member Layout ===== */
     .member{
-      display:grid;grid-template-columns: 1.1fr 1.3fr;gap:42px;align-items:center;margin:56px 0;padding:24px;border-radius:var(--radius);
+      display:grid;
+      grid-template-columns: 1.1fr 1.3fr;
+      gap:42px;
+      align-items:center;
+      margin:56px 0;
+      padding:24px;
+      border-radius:var(--radius);
       background: linear-gradient(180deg, rgba(201,166,70,.08), transparent 45%), var(--card);
       border:1px solid var(--line);
       box-shadow:var(--shadow);
@@ -184,19 +190,62 @@
       border-radius: 12px; padding: 8px;
       box-shadow: 0 12px 26px rgba(0,0,0,.08);
       display: none;
+      z-index: 1000;
     }
+    /* shown when .open is applied via JS */
+    .nx-item.open > .nx-drop{
+      display:block;
+    }
+
     .nx-drop a{ display:block; color: var(--ink); text-decoration:none; padding: 8px 10px; border-radius: 8px; }
     .nx-drop a:hover{ background: #f6f6f6; color: var(--accent); }
-
-    @media (min-width:1025px){
-      .nx-item:hover > .nx-drop { display:block; }
-      .nx-toggle{ display:none; }
-    }
-    @media (min-width:1025px){ .nx-menu{display:flex} }
 
     .nx-cta{
       background:var(--accent); color:#1b1b1b; border:none; padding:10px 14px;
       border-radius:12px; font-weight:700; cursor:pointer;
+    }
+
+    .nx-toggle{
+      display:none;
+      margin-left:8px;
+      padding:6px 10px;
+      border-radius:10px;
+      border:1px solid rgba(0,0,0,.12);
+      font-size:20px;
+      background:#fff;
+      cursor:pointer;
+    }
+
+    @media (max-width:1024px){
+      .nx-menu{
+        display:none;
+        position:absolute;
+        top:100%;
+        left:0;right:0;
+        background:#fff;
+        border-top:1px solid var(--line);
+        padding:10px 12px;
+        z-index:9999;
+        flex-direction:column;
+        gap:0;
+      }
+      .nx-item{width:100%}
+      .nx-link{display:block;padding:12px 6px}
+      .nx-drop{
+        position:static;
+        display:none;
+        border:none;
+        box-shadow:none;
+        background:transparent;
+        padding:0;
+      }
+      .nx-item.open>.nx-drop{display:block!important}
+      .nx-toggle{display:inline-block;}
+      .nx-navbar.is-open .nx-menu{display:flex}
+    }
+
+    @media (min-width:1025px){
+      .nx-menu{display:flex}
     }
 
     /* ===== Footer (site nav) ===== */
@@ -217,9 +266,9 @@
 </head>
 <body>
   <!-- ========== NAVBAR ========== -->
-<header class="nx-navbar">
+<header class="nx-navbar" id="nxHeader">
   <div class="nx-nav-inner">
-    <a class="nx-brand" href="#">
+    <a class="nx-brand" href="index.html">
       <!-- main logo -->
       <img class="nx-logo" src="stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
       <!-- second/partner logo -->
@@ -250,16 +299,14 @@
           <a href="New to trading.html">New to Trading</a>
           <a href="Investorguid.html">Investor Guide</a>
           <a href="Glossary.html">Glossary</a>
-          <!-- put these inside your existing <div class="nx-drop"> ... </div> -->
-<a href="psx-rule-book.html">PSX Rule Book</a>
-<a href="common-terms-share-market.html">Common Terms of Share Market</a>
-<a href="online-order-execution-flow.html">Online Order Execution Flow</a>
-<a href="order-settlement-flow.html">Order Settlement Flow</a>
-<a href="arbitration-procedure.html">Arbitration Procedure</a>
-<a href="risk-disclosure-document.html">Risk Disclosure Document</a>
-<a href="procedure-cancel-pending-orders.html">Procedure To Cancel Pending Orders</a>
-<a href="faqs.html">FAQs</a>
-
+          <a href="psx-rule-book.html">PSX Rule Book</a>
+          <a href="common-terms-share-market.html">Common Terms of Share Market</a>
+          <a href="online-order-execution-flow.html">Online Order Execution Flow</a>
+          <a href="order-settlement-flow.html">Order Settlement Flow</a>
+          <a href="arbitration-procedure.html">Arbitration Procedure</a>
+          <a href="risk-disclosure-document.html">Risk Disclosure Document</a>
+          <a href="procedure-cancel-pending-orders.html">Procedure To Cancel Pending Orders</a>
+          <a href="faqs.html">FAQs</a>
         </div>
       </div>
 
@@ -297,22 +344,25 @@
           <a href="psx complaint.html">PSX Complaint</a>
           <a href="UIs of NICCPL.html">UIS Services of NCCPL</a>
           <a href="Eservices By CDC.html">EServices by CDC</a>
-          <a href="#">PSX Rule Book</a>
-    <a href="#">Common Terms of Share Market</a>
-    <a href="#">Online Order Execution Flow</a>
-    <a href="#">Order Settlement Flow</a>
-    <a href="#">Arbitration Procedure</a>
-    <a href="#">Risk Disclosure Document</a>
-    <a href="#">Procedure To Cancel Pending Orders</a>
-    <a href="#">Glossary</a>
-    <a href="#">FAQs</a>
-            <a href="Contact.html">Contact</a>
+
+          <!-- Previously dead (#) links – now mapped to real pages -->
+          <a href="psx-rule-book.html">PSX Rule Book</a>
+          <a href="common-terms-share-market.html">Common Terms of Share Market</a>
+          <a href="online-order-execution-flow.html">Online Order Execution Flow</a>
+          <a href="order-settlement-flow.html">Order Settlement Flow</a>
+          <a href="arbitration-procedure.html">Arbitration Procedure</a>
+          <a href="risk-disclosure-document.html">Risk Disclosure Document</a>
+          <a href="procedure-cancel-pending-orders.html">Procedure To Cancel Pending Orders</a>
+          <a href="Glossary.html">Glossary</a>
+          <a href="faqs.html">FAQs</a>
+
+          <a href="Contact.html">Contact</a>
         </div>
       </div>
     </nav>
 
     <button class="nx-cta">OPEN AN ACCOUNT</button>
-    <button class="nx-toggle" aria-label="Toggle menu" aria-controls="nxMenu" aria-expanded="false">☰</button>
+    <button class="nx-toggle" id="nxToggle" aria-label="Toggle menu" aria-controls="nxMenu" aria-expanded="false">☰</button>
   </div>
 </header>
 
@@ -375,7 +425,7 @@
           <span class="chip">IFMP Certified</span>
         </div>
         <p>Mr. Sajid brings over eight years of diversified experience across leading brokerage houses (AKD Securities Limited and Market 786 (Pvt.) Ltd.). He successfully opened and managed 800+ equity accounts (cumulative portfolio &gt; PKR 1.4 billion), 25 mutual fund accounts (~PKR 950 million), and 30 commodity accounts (~PKR 30 million), handling end-to-end client service, administration, and portfolio support.</p>
-        <p><strong>Certifications (IFMP & others):</strong> Stock Brokers Certification (SBC), Mutual Fund Distributor’s Certification (MFDC), Fixed Income Securities Certification (FISC), Financial Derivatives Traders’ Certification (FDTC), Pakistan Market Regulations Certification (PMRC), Financial Advisors Certification (FAC), plus certifications in Taxation Laws, Digital Marketing, QuickBooks & E-Commerce Management.</p>
+        <p><strong>Certifications (IFMP &amp; others):</strong> Stock Brokers Certification (SBC), Mutual Fund Distributor’s Certification (MFDC), Fixed Income Securities Certification (FISC), Financial Derivatives Traders’ Certification (FDTC), Pakistan Market Regulations Certification (PMRC), Financial Advisors Certification (FAC), plus certifications in Taxation Laws, Digital Marketing, QuickBooks &amp; E-Commerce Management.</p>
         <p>He holds an M.Com. from The Islamia University of Bahawalpur with a focus on Financial Management, Investment Analysis, Corporate Finance, and Accounting.</p>
       </div>
     </section>
@@ -416,23 +466,25 @@
           </tfoot>
         </table>
       </div>
-<section class="info-grid">
-  <div class="info-card">
-    <h3>Committees & Roles</h3>
-    <ul>
-      <li><strong>Audit Committee:</strong> Mr. Salman Hussain (Chairperson), Mr. Muhammad Usman Sajid (Member)</li>
-      <li><strong>Compliance Officer:</strong> Mr. Muhammad Usman Sajid</li>
-      <li><strong>Management Rating:</strong> Business Judiciary Rating BFR4++</li>
-    </ul>
-  </div>
 
-  <div class="info-card contact">
-    <h3>Contact Information</h3>
-    <p>Office No. 6, 4th Floor, Mall of KPK,</p>
-    <p>University Road, Jahangir Abad, Peshawar</p>
-    <p>Mobile: <a href="tel:+923158706976">0315-8706976</a> (Salman Hussain)</p>
-  </div>
-</section>
+      <section class="info-grid">
+        <div class="info-card">
+          <h3>Committees & Roles</h3>
+          <ul>
+            <li><strong>Audit Committee:</strong> Mr. Salman Hussain (Chairperson), Mr. Muhammad Usman Sajid (Member)</li>
+            <li><strong>Compliance Officer:</strong> Mr. Muhammad Usman Sajid</li>
+            <li><strong>Management Rating:</strong> Business Judiciary Rating BFR4++</li>
+          </ul>
+        </div>
+
+        <div class="info-card contact">
+          <h3>Contact Information</h3>
+          <p>Office No. 6, 4th Floor, Mall of KPK,</p>
+          <p>University Road, Jahangir Abad, Peshawar</p>
+          <p>Mobile: <a href="tel:+923158706976">0315-8706976</a> (Salman Hussain)</p>
+        </div>
+      </section>
+    </section>
 
   </main>
 
@@ -442,9 +494,9 @@
     <div class="nx-foot-top">
       <a class="nx-foot-brand" href="index.html">
        <!-- main logo -->
-      <img class="nx-logo" src="stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
+      <img class="nx-foot-logo" src="stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
       <!-- second/partner logo -->
-      <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner Logo">
+      <img class="nx-foot-logo" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner Logo">
       </a>
     </div>
 
@@ -469,8 +521,8 @@
       </div>
       <div class="nx-foot-col">
         <h4>CONTACT</h4>
-        <a href="mailto:info@StoxGear.com">info@StoxGear.com</a>
-        <a href="tel:+923162288686">+92 316 2288686</a>
+        <a href="mailto:info@stoxgear.com.pk">info@stoxgear.com.pk</a>
+        <a href="tel:0913168395">0913168395</a>
         <a href="#">Karachi, Pakistan</a>
       </div>
     </div>
@@ -491,20 +543,16 @@
   </script>
 
   <script>
-  // Mobile menu + dropdown toggles
+  // Mobile + desktop menu with hover delay
   (function(){
-    const menu = document.getElementById('nxMenu');
-    const toggle = document.querySelector('.nx-toggle');
+    const header = document.getElementById('nxHeader');
+    const menu   = document.getElementById('nxMenu');
+    const toggle = document.getElementById('nxToggle');
 
-    if (toggle && menu){
-      // default mobile: hide menu
-      const mq = window.matchMedia('(max-width:1024px)');
-      const apply = () => { if(mq.matches){ menu.style.display='none'; } else { menu.style.display='flex'; } };
-      apply(); mq.addEventListener('change', apply);
-
+    if (toggle && header && menu){
       toggle.addEventListener('click', () => {
-        const open = getComputedStyle(menu).display === 'none';
-        menu.style.display = open ? 'block' : 'none';
+        const open = !header.classList.contains('is-open');
+        header.classList.toggle('is-open', open);
         toggle.setAttribute('aria-expanded', String(open));
       });
     }
@@ -517,19 +565,36 @@
         if(isMobile && drop && drop.classList.contains('nx-drop')){
           e.preventDefault();
           link.parentElement.classList.toggle('open');
-          drop.style.display = drop.style.display === 'block' ? 'none' : 'block';
         }
+      });
+    });
+
+    // Desktop hover with small delay
+    document.querySelectorAll('.nx-item').forEach(item=>{
+      let enterTimer, leaveTimer;
+
+      item.addEventListener('mouseenter', ()=>{
+        const isDesktop = window.matchMedia('(min-width:1025px)').matches;
+        if(!isDesktop) return;
+        clearTimeout(leaveTimer);
+        enterTimer = setTimeout(()=> item.classList.add('open'), 130);
+      });
+
+      item.addEventListener('mouseleave', ()=>{
+        const isDesktop = window.matchMedia('(min-width:1025px)').matches;
+        if(!isDesktop) return;
+        clearTimeout(enterTimer);
+        leaveTimer = setTimeout(()=> item.classList.remove('open'), 180);
       });
     });
 
     // close menu when clicking outside (mobile)
     document.addEventListener('click',(e)=>{
-      const nav = document.querySelector('.nx-navbar');
       const isMobile = window.matchMedia('(max-width:1024px)').matches;
-      if(isMobile && nav && !nav.contains(e.target)){
-        if (menu) menu.style.display = 'none';
+      if(isMobile && header && !header.contains(e.target)){
+        header.classList.remove('is-open');
         if (toggle) toggle.setAttribute('aria-expanded','false');
-        document.querySelectorAll('.nx-drop').forEach(d=>d.style.display='none');
+        document.querySelectorAll('.nx-item.open').forEach(i=>i.classList.remove('open'));
       }
     });
   })();
@@ -540,7 +605,7 @@
   (function(){
     const rows = Array.from(document.querySelectorAll('#sponsorBody tr'));
     const fmt = (n)=> n.toLocaleString('en-US');
-    const total = rows.reduce((s, r)=> s + Number(r.getAttribute('data-shares')||0), 0);sup
+    const total = rows.reduce((s, r)=> s + Number(r.getAttribute('data-shares')||0), 0);
     rows.forEach(r=>{
       const shares = Number(r.getAttribute('data-shares')||0);
       const pctCell = r.querySelector('.pct');
@@ -557,9 +622,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
