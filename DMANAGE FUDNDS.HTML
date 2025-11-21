@@ -76,19 +76,45 @@ body {
 .nx-link:after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--lime);transform:scaleX(0);transition:.25s}
 .nx-link:hover{color:var(--lime)}
 .nx-link:hover:after{transform:scaleX(1)}
+
+/* ===== DROPDOWN – SLOW FADE / SLIDE (NO SCROLL) ===== */
 .nx-drop{
-  position:absolute;top:calc(100% + 10px);left:0;
-  background:#fff;border:1px solid var(--line);
-  border-radius:10px;padding:8px;
-  display:none;min-width:240px;z-index:9999;
+  position:absolute;
+  top:calc(100% + 10px);
+  left:0;
+  min-width:240px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:8px;
   box-shadow:0 12px 26px rgba(0,0,0,.08);
+
+  opacity:0;
+  transform:translateY(12px);
+  pointer-events:none;
+  transition:
+    opacity .45s ease,
+    transform .45s ease;
 }
 .nx-drop a{
-  display:block;color:var(--text);
-  text-decoration:none;padding:8px 12px;border-radius:8px;
+  display:block;
+  color:var(--text);
+  text-decoration:none;
+  padding:8px 12px;
+  border-radius:8px;
 }
 .nx-drop a:hover{background:#f6f6f6;color:var(--lime)}
-@media (min-width:1025px){.nx-item:hover>.nx-drop{display:block}}
+
+/* Desktop hover behaviour */
+@media (min-width:1025px){
+  .nx-item:hover > .nx-drop{
+    opacity:1;
+    transform:translateY(0);
+    pointer-events:auto;
+  }
+}
+
+/* Mobile behaviour (tap-to-open) */
 @media (max-width:1024px){
   .nx-toggle{display:block}
   .nx-menu{
@@ -101,8 +127,19 @@ body {
   }
   .nx-item{width:100%}
   .nx-link{display:block;padding:10px 0}
-  .nx-item.open>.nx-drop{
-    display:block;position:static;background:none;border:none;box-shadow:none;padding:0;
+
+  .nx-drop{
+    position:static;
+    box-shadow:none;
+    border:none;
+    padding:4px 0 8px;
+    opacity:1;
+    transform:none;
+    pointer-events:auto;
+    display:none; /* controlled by .open */
+  }
+  .nx-item.open > .nx-drop{
+    display:block;
   }
 }
 
@@ -416,7 +453,7 @@ tbody tr:hover { background: rgba(201,166,70,.10); }
       </div>
     </nav>
 
-    <!-- OPEN AN ACCOUNT now links to Acoocint opening.html -->
+    <!-- OPEN AN ACCOUNT -> Acoocint opening.html -->
     <a class="nx-cta" href="Acoocint opening.html">OPEN AN ACCOUNT</a>
     <button class="nx-toggle" id="nxToggle" aria-label="Toggle menu" aria-controls="nxMenu" aria-expanded="false">☰</button>
   </div>
@@ -520,7 +557,8 @@ tbody tr:hover { background: rgba(201,166,70,.10); }
       <div class="nx-foot-col">
         <h4>CONTACT</h4>
         <a href="mailto:info@StoxGear.com">info@StoxGear.com</a>
-        <a href="tel:+923162288686">+92 316 2288686</a>
+        <!-- PHONE NUMBER UPDATED HERE -->
+        <a href="tel:+923158706976">+92 315 8706976</a>
         <a href="#">Karachi, Pakistan</a>
       </div>
     </div>
