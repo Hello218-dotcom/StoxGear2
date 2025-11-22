@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Stoxgear Securities – Account Opening</title>
 
-<!-- Poppins font -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -14,238 +13,253 @@
   --surface:#fafafa;
   --text:#111111;
   --text-2:#555555;
-  --accent:#c9a646;   /* gold */
-  --accent-2:#b38b2e; /* deeper gold */
-  --accent-3:#c9a646; /* link gold */
-  --radius:16px;
+  --accent:#c9a646;
+  --accent-2:#b38b2e;
   --shadow:0 8px 20px rgba(0,0,0,.1);
+  --radius:16px;
 }
-html,body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:"Poppins",sans-serif;
+
+/* General */
+body{
   margin:0;
+  font-family:"Poppins",sans-serif;
+  background:#fff;
+  color:var(--text);
   scroll-behavior:smooth;
 }
-a{color:var(--accent-3);text-decoration:none;transition:.2s}
-a:hover{color:var(--accent-2);text-decoration:underline}
-.btn,.btn-cta{
-  background:var(--accent);
-  color:#fff;font-weight:700;
-  padding:10px 20px;border:none;border-radius:50px;
-  box-shadow:0 0 12px rgba(201,166,70,.25);
-  transition:.2s;
-  cursor:pointer;
+a{
+  color:var(--accent);
+  text-decoration:none;
+  transition:.3s;
 }
-.btn:hover,.btn-cta:hover{transform:translateY(-2px);background:var(--accent-2)}
+a:hover{color:var(--accent-2);}
 
-/* ===== NAVBAR ===== */
+/* Buttons */
+.btn, .btn-cta{
+  background:var(--accent);
+  color:#fff;
+  padding:10px 22px;
+  border-radius:50px;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+  box-shadow:0 0 12px rgba(201,166,70,.25);
+  transition:.25s;
+}
+.btn:hover,.btn-cta:hover{
+  background:var(--accent-2);
+  transform:translateY(-2px);
+}
+
+/* Navbar */
 header.nx-navbar{
   position:sticky;top:0;z-index:999;
-  backdrop-filter:blur(8px);
   background:rgba(255,255,255,.95);
+  backdrop-filter:blur(10px);
   border-bottom:1px solid rgba(0,0,0,.08);
-  box-shadow:0 3px 10px rgba(0,0,0,.05);
 }
 .nx-nav-inner{
-  max-width:1200px;margin:0 auto;
-  padding:14px 24px;display:flex;align-items:center;gap:18px;
+  max-width:1200px;
+  margin:auto;
+  padding:14px 24px;
+  display:flex;
+  align-items:center;
 }
-.nx-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text)}
-.nx-logo{height:36px;width:auto;display:block;object-fit:contain}
-.nx-logo2{height:36px;width:auto;display:block;object-fit:contain;margin-left:10px}
-.nx-tag{font-size:12px;color:var(--text-2)}
-.nx-grow{flex:1}
-.nx-menu{display:flex;align-items:center;gap:26px;}
-.nx-link{position:relative;color:var(--text-2);font-weight:600;text-decoration:none;font-size:15px;}
-.nx-link:hover{color:var(--accent)}
-.nx-link:after{content:"";position:absolute;bottom:-6px;left:0;height:2px;width:0;background:var(--accent);transition:.25s ease;}
-.nx-link:hover:after{width:100%}
-.nx-item{position:relative}
+.nx-brand{display:flex;align-items:center;gap:12px;}
+.nx-logo{height:36px;transition:.3s;}
+.nx-logo:hover{transform:translateY(-2px);}
+.nx-logo2{height:36px;margin-left:8px;}
 
-/* DROPDOWN – desktop default */
+.nx-grow{flex:1;}
+.nx-menu{display:flex;gap:26px;}
+.nx-link{
+  font-weight:600;
+  color:var(--text-2);
+  position:relative;
+}
+.nx-link:hover{color:var(--accent);}
+.nx-item{position:relative;}
+
+/* Dropdown */
 .nx-drop{
   position:absolute;
-  top:calc(100% + 10px);
+  top:110%;
   left:0;
   min-width:240px;
   background:#fff;
-  border:1px solid rgba(0,0,0,.08);
   border-radius:14px;
   padding:10px;
-  box-shadow:0 10px 25px rgba(0,0,0,.12);
   opacity:0;
-  transform:translateY(8px);
+  transform:translateY(15px);
   pointer-events:none;
-  transition:.25s ease;
-  max-height:380px;     /* so long dropdowns fit */
-  overflow-y:auto;      /* scroll if too long */
-  z-index:1000;
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow:0 10px 25px rgba(0,0,0,.12);
+  transition:.45s ease;
 }
-.nx-item:hover .nx-drop,
-.nx-item.open .nx-drop{
+.nx-item:hover .nx-drop{
   opacity:1;
-  transform:none;
+  transform:translateY(0);
   pointer-events:auto;
 }
 .nx-drop a{
   display:block;
-  color:var(--text);
   padding:8px 12px;
   border-radius:10px;
+  color:var(--text);
+  transition:.25s;
 }
 .nx-drop a:hover{
   background:var(--surface);
   color:var(--accent);
 }
-.nx-cta{
-  margin-left:auto;
-  background:var(--accent);
-  color:#fff;font-weight:700;border:none;border-radius:30px;
-  padding:10px 20px;cursor:pointer;
-  box-shadow:0 0 20px rgba(201,166,70,.25);
-  transition:.2s;
-}
-.nx-cta:hover{transform:translateY(-2px);background:var(--accent-2)}
 
-/* MOBILE TOGGLE */
+/* Mobile Nav */
 .nx-toggle{
   display:none;
-  margin-left:8px;
-  padding:6px 10px;
-  border-radius:10px;
-  border:1px solid rgba(0,0,0,.12);
-  font-size:20px;
   background:#fff;
+  padding:6px 10px;
+  border:1px solid rgba(0,0,0,.12);
+  border-radius:10px;
+  font-size:20px;
   cursor:pointer;
 }
+@media(max-width:900px){
+  .nx-menu{
+    display:none;
+    flex-direction:column;
+    background:#fff;
+    padding:12px;
+    position:absolute;
+    right:16px;
+    left:16px;
+    top:70px;
+    border-radius:18px;
+    box-shadow:0 15px 40px rgba(0,0,0,.15);
+  }
+  .nx-menu.active{display:flex;}
+  .nx-toggle{display:block;}
+  .nx-drop{
+    position:static;
+    transform:none;
+    opacity:1;
+    pointer-events:auto;
+    box-shadow:none;
+    margin-top:4px;
+  }
+}
 
-/* ===== ACCOUNT OPENING ===== */
-.account-opening.wrap{max-width:1200px;margin:80px auto;padding:0 20px;}
-.ao-head{text-align:center;margin-bottom:30px;}
-.ao-head h2{font-size:36px;color:var(--accent);margin:0;}
-.ao-head .sub{text-transform:uppercase;letter-spacing:2px;color:var(--text-2);}
-.req-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;}
+/* Main Section */
+.account-opening.wrap{
+  max-width:1200px;
+  margin:60px auto;
+  padding:0 20px;
+}
+.ao-head{text-align:center;}
+.ao-head h2{
+  color:var(--accent);
+  font-size:34px;
+  margin-bottom:6px;
+}
+.ao-head .sub{
+  color:var(--text-2);
+  letter-spacing:2px;
+  font-size:13px;
+}
+
+.ao-hero{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:28px;
+  margin:40px 0;
+  align-items:center;
+}
+.ao-visual{
+  background:linear-gradient(145deg,#ffffff,#f2ecda);
+  padding:20px;
+  border-radius:20px;
+  box-shadow:0 20px 40px rgba(0,0,0,.1);
+  animation:floatHero 6s infinite ease-in-out;
+}
+@keyframes floatHero{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-5px);}
+}
+
+@media(max-width:900px){
+  .ao-hero{
+    grid-template-columns:1fr;
+  }
+}
+
+.req-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
 .req-card{
-  display:flex;align-items:center;gap:12px;
-  background:#fff;
-  border:1px solid rgba(0,0,0,.08);
-  border-radius:var(--radius);
+  display:flex;
+  align-items:center;
+  gap:12px;
   padding:16px;
+  background:#fff;
+  border-radius:var(--radius);
+  border:1px solid rgba(0,0,0,.08);
   box-shadow:var(--shadow);
   transition:.3s;
 }
-.req-card:hover{border-color:var(--accent);box-shadow:0 0 16px rgba(201,166,70,.2);transform:translateY(-2px)}
+.req-card:hover{
+  transform:translateY(-3px);
+  border-color:var(--accent);
+  box-shadow:0 0 16px rgba(201,166,70,.25);
+}
 .req-ico{
-  width:45px;height:45px;border-radius:12px;
-  background:radial-gradient(circle at 20% 0, #fff, rgba(201,166,70,.4));
-  display:grid;place-items:center;
-  font-size:22px;color:var(--accent);
+  width:45px;height:45px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  font-size:20px;
+  color:var(--accent);
+  background:rgba(201,166,70,.15);
 }
-.req-text{font-weight:700;color:var(--text);}
-.hint{text-align:center;color:var(--text-2);margin-top:10px;}
-.cta-row{text-align:center;margin-top:25px;}
 
-/* simple scroll reveal animation */
-.fade-up,
-.req-card{
+/* Animations */
+.fade-up{
   opacity:0;
-  transform:translateY(18px);
-  transition:opacity .5s ease, transform .5s ease;
+  transform:translateY(20px);
+  transition:.6s ease;
 }
-.fade-up.in,
-.req-card.in{
+.fade-up.in{
   opacity:1;
   transform:translateY(0);
 }
 
-/* ===== FOOTER ===== */
+/* Footer */
 .nx-footer{
   margin-top:60px;
   background:var(--surface);
-  border-top:1px solid rgba(0,0,0,.08);
-  color:var(--text-2);
+  border-top:1px solid rgba(0,0,0,.1);
+  padding:40px 20px;
 }
-.nx-foot-wrap{max-width:1200px;margin:0 auto;padding:48px 20px 28px}
-.nx-foot-top{display:flex;align-items:center;justify-content:space-between;gap:18px;
-  padding-bottom:22px;border-bottom:1px solid rgba(0,0,0,.08)}
-.nx-foot-brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--text)}
-.nx-foot-logo{height:36px;width:auto;filter:none}
-.nx-foot-tag{font-size:13px;color:var(--text-2)}
-.nx-foot-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px;padding:26px 0 6px}
-@media(max-width:900px){.nx-foot-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:540px){.nx-foot-grid{grid-template-columns:1fr}}
-.nx-foot-col h4{margin:0 0 12px;color:var(--accent);font-size:15px}
-.nx-foot-col a{display:block;color:var(--text);text-decoration:none;opacity:.9;padding:7px 0;font-size:14px}
-.nx-foot-col a:hover{opacity:1;transform:translateX(2px);color:#000}
-.nx-foot-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;
-  padding-top:16px;border-top:1px solid rgba(0,0,0,.08);color:var(--text-2);font-size:13px}
-
-/* ===== RESPONSIVE NAV / LAYOUT ===== */
-@media(max-width:900px){
-  .nx-menu{
-    display:none;
-    position:absolute;
-    top:64px;
-    right:16px;
-    left:16px;
-    flex-direction:column;
-    align-items:flex-start;
-    padding:12px;
-    background:#fff;
-    border-radius:16px;
-    box-shadow:0 12px 30px rgba(0,0,0,.15);
-  }
-  .nx-menu.active{
-    display:flex;
-  }
-  .nx-item{width:100%;}
-  .nx-link{
-    display:flex;
-    justify-content:space-between;
-    width:100%;
-    padding:8px 4px;
-  }
-  .nx-toggle{
-    display:inline-block;
-  }
-  /* dropdown inside mobile menu – full width, no big shadow */
-  .nx-drop{
-    position:static;
-    margin-top:4px;
-    width:100%;
-    box-shadow:none;
-    max-height:260px;
-  }
-}
-
-/* tiny extra for very small screens */
-@media(max-width:480px){
-  .nx-nav-inner{
-    padding:10px 14px;
-  }
-  .ao-head h2{
-    font-size:28px;
-  }
+.nx-foot-wrap{
+  max-width:1200px;
+  margin:auto;
 }
 </style>
 </head>
 
 <body>
-<!-- ========== NAVBAR ========== -->
+
+<!-- NAVBAR -->
 <header class="nx-navbar">
   <div class="nx-nav-inner">
-    <a class="nx-brand" href="#">
-      <!-- main logo -->
-      <img class="nx-logo" src="stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
-      <!-- second/partner logo -->
-      <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner Logo">
+    <a class="nx-brand" href="index.html">
+      <img class="nx-logo" src="stoxgear-logo.jpg">
+      <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg">
     </a>
 
     <div class="nx-grow"></div>
 
     <nav class="nx-menu">
-      <!-- WHY US -->
       <div class="nx-item">
         <a class="nx-link" href="#">Why Us</a>
         <div class="nx-drop">
@@ -259,14 +273,12 @@ header.nx-navbar{
         </div>
       </div>
 
-      <!-- EDUCATION -->
       <div class="nx-item">
         <a class="nx-link" href="#">Education</a>
         <div class="nx-drop">
           <a href="New to trading.html">New to Trading</a>
           <a href="Investorguid.html">Investor Guide</a>
           <a href="Glossary.html">Glossary</a>
-
           <a href="psx-rule-book.html">PSX Rule Book</a>
           <a href="common-terms-share-market.html">Common Terms of Share Market</a>
           <a href="online-order-execution-flow.html">Online Order Execution Flow</a>
@@ -278,7 +290,6 @@ header.nx-navbar{
         </div>
       </div>
 
-      <!-- OPEN ACCOUNT -->
       <div class="nx-item">
         <a class="nx-link" href="#">Open Account</a>
         <div class="nx-drop">
@@ -288,7 +299,6 @@ header.nx-navbar{
         </div>
       </div>
 
-      <!-- DOWNLOADS -->
       <div class="nx-item">
         <a class="nx-link" href="#">Downloads</a>
         <div class="nx-drop">
@@ -297,7 +307,6 @@ header.nx-navbar{
         </div>
       </div>
 
-      <!-- SUPPORT -->
       <div class="nx-item">
         <a class="nx-link" href="#">Support</a>
         <div class="nx-drop">
@@ -312,162 +321,84 @@ header.nx-navbar{
           <a href="psx complaint.html">PSX Complaint</a>
           <a href="UIs of NICCPL.html">UIS Services of NCCPL</a>
           <a href="Eservices By CDC.html">EServices by CDC</a>
-          <a href="#">PSX Rule Book</a>
-          <a href="">Common Terms of Share Market</a>
-          <a href="#">Online Order Execution Flow</a>
-          <a href="#">Order Settlement Flow</a>
-          <a href="#">Arbitration Procedure</a>
-          <a href="#">Risk Disclosure Document</a>
-          <a href="#">Procedure To Cancel Pending Orders</a>
-          <a href="#">Glossary</a>
-          <a href="#">FAQs</a>
           <a href="Contact.html">Contact</a>
         </div>
       </div>
     </nav>
 
-    <button class="nx-cta">OPEN AN ACCOUNT</button>
-    <button class="nx-toggle" aria-label="Toggle menu">☰</button>
+    <a href="Acoocint opening.html" class="nx-cta">OPEN AN ACCOUNT</a>
+    <button class="nx-toggle">☰</button>
   </div>
 </header>
 
-<!-- NAVBAR (kept but hidden, text changed – no X factor tagline) -->
-<a class="nx-brand" href="#" style="display:none">
-  <img class="nx-logo" src="./stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
-  <span class="nx-tag">Stoxgear Securities</span>
-</a>
-
-<!-- FOOTER (kept duplicate but hidden, text changed) -->
-<a class="nx-foot-brand" href="#" style="display:none">
-  <img class="nx-foot-logo" src="./stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
-  <span class="nx-foot-tag">Stoxgear Securities</span>
-</a>
-
-<!-- ========== MAIN CONTENT ========== -->
+<!-- MAIN -->
 <section class="account-opening wrap fade-up">
   <header class="ao-head">
     <h2>ACCOUNT OPENING</h2>
     <p class="sub">DOCUMENT REQUIREMENTS</p>
   </header>
 
-  <div class="req-grid">
-    <article class="req-card"><span class="req-ico">🪪</span><span class="req-text">CNIC</span></article>
-    <article class="req-card"><span class="req-ico">👥</span><span class="req-text">Nominee CNIC</span></article>
-    <article class="req-card"><span class="req-ico">📱</span><span class="req-text">Registered Mobile Number</span></article>
-    <article class="req-card"><span class="req-ico">🏦</span><span class="req-text">IBAN / Bank Account (cheque)</span></article>
-    <article class="req-card"><span class="req-ico">👩‍👦</span><span class="req-text">Mother’s Maiden Name</span></article>
-    <article class="req-card"><span class="req-ico">✉️</span><span class="req-text">Email</span></article>
-    <article class="req-card"><span class="req-ico">💼</span><span class="req-text">Source of Income</span></article>
-    <article class="req-card"><span class="req-ico">✍️</span><span class="req-text">Signature Picture</span></article>
-    <article class="req-card"><span class="req-ico">🧾</span><span class="req-text">Zakat Declaration</span></article>
-    <article class="req-card"><span class="req-ico">📄</span><span class="req-text">Tax Return Summary</span></article>
+  <div class="ao-hero fade-up">
+    <div>
+      <h3 style="margin:0 0 10px;">Open your trading account online</h3>
+      <p>Submit your documents digitally and start investing without visiting our office.</p>
+      <p>Stoxgear provides seamless onboarding powered by CDC & NCCPL integrations.</p>
+      <br>
+      <a href="Acoocint opening.html" class="btn-cta">Proceed to Open Account</a>
+    </div>
+
+    <div class="ao-visual">
+      <img src="https://images.unsplash.com/photo-1569025690938-a00729c9e8d7?q=80&w=800" style="width:100%;border-radius:14px;">
+    </div>
   </div>
 
-  <p class="hint">* Files should be less than 400kb (JPEG/PNG)</p>
-  <div class="cta-row">
-    <a href="#open-digital-account" class="btn-cta">Proceed to Open Digital Account</a>
+  <div class="req-grid fade-up">
+    <div class="req-card"><div class="req-ico">🪪</div> CNIC</div>
+    <div class="req-card"><div class="req-ico">👥</div> Nominee CNIC</div>
+    <div class="req-card"><div class="req-ico">📱</div> Registered Mobile Number</div>
+    <div class="req-card"><div class="req-ico">🏦</div> IBAN / Bank Account</div>
+    <div class="req-card"><div class="req-ico">👩‍👦</div> Mother's Maiden Name</div>
+    <div class="req-card"><div class="req-ico">✉️</div> Email</div>
+    <div class="req-card"><div class="req-ico">💼</div> Source of Income</div>
+    <div class="req-card"><div class="req-ico">✍️</div> Signature Picture</div>
+    <div class="req-card"><div class="req-ico">🧾</div> Zakat Declaration</div>
+    <div class="req-card"><div class="req-ico">📄</div> Tax Return Summary</div>
+  </div>
+
+  <p class="fade-up" style="text-align:center;margin-top:15px;color:var(--text-2);">
+    * Files must be under 400kb (JPG/PNG)
+  </p>
+
+  <div class="cta-row fade-up" style="text-align:center;margin-top:20px;">
+    <a href="Acoocint opening.html" class="btn-cta">Open Digital Account</a>
   </div>
 </section>
 
-<!-- ========== FOOTER ========== -->
+<!-- FOOTER -->
 <footer class="nx-footer">
   <div class="nx-foot-wrap">
-    <div class="nx-foot-top">
-      <a class="nx-foot-brand" href="#">
-        <img class="nx-foot-logo" src="stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
-        <img class="nx-foot-logo" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner Logo" style="margin-left:10px;">
-      </a>
-    </div>
-    <div class="nx-foot-grid">
-      <div class="nx-foot-col">
-        <h4>WHY US</h4>
-        <a href="about.html">About Us</a>
-        <a href="BOARD of directors.html">Board / Management</a>
-        <a href="Mission.html">Mission & Vision</a>
-      </div>
-      <div class="nx-foot-col">
-        <h4>EDUCATION</h4>
-        <a href="New to trading.html">New to Trading</a>
-        <a href="Investorguid.html">Investor Guide</a>
-        <a href="Glossary.html">Glossary</a>
-      </div>
-      <div class="nx-foot-col">
-        <h4>ACCOUNT</h4>
-        <a href="#">Roshan Digital Account</a>
-        <a href="Rda.html">Open Digital Account</a>
-        <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
-      </div>
-      <div class="nx-foot-col">
-        <h4>CONTACT</h4>
-        <a href="mailto:info@stoxgear.com.pk">info@stoxgear.com.pk</a>
-        <a href="tel:0913168395">0913168395</a>
-        <a href="#">Karachi, Pakistan</a>
-      </div>
-    </div>
-    <div class="nx-foot-bottom">
-      <span>© <script>document.write(new Date().getFullYear())</script> Stoxgear Securities</span>
-      <span><a href="#" style="color:var(--text-2);text-decoration:none">Privacy</a> · <a href="#" style="color:var(--text-2);text-decoration:none">Terms</a></span>
-    </div>
+    <p>© <script>document.write(new Date().getFullYear())</script> Stoxgear Securities</p>
   </div>
 </footer>
 
 <script>
-// scroll animation for cards + section
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add('in');
-      observer.unobserve(entry.target);
+// Fade-up animation
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add("in");
+      obs.unobserve(e.target);
     }
   });
 },{threshold:.2});
-document.querySelectorAll('.req-card,.fade-up').forEach(el=>observer.observe(el));
 
-// mobile / desktop flag (auto-detect)
-function updateDeviceFlag(){
-  if(window.innerWidth<=900){
-    document.body.classList.add('is-mobile');
-  }else{
-    document.body.classList.remove('is-mobile');
-  }
-}
-window.addEventListener('load',updateDeviceFlag);
-window.addEventListener('resize',updateDeviceFlag);
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
 
-// mobile menu toggle
-const toggleBtn = document.querySelector('.nx-toggle');
-const menu = document.querySelector('.nx-menu');
-
-if(toggleBtn && menu){
-  toggleBtn.addEventListener('click', ()=>{
-    menu.classList.toggle('active');
-  });
-}
-
-// dropdown click behaviour on mobile – open/close on tap
-document.querySelectorAll('.nx-item > .nx-link').forEach(link=>{
-  link.addEventListener('click', (e)=>{
-    const isDesktop = window.innerWidth > 900;
-    if(!isDesktop){
-      e.preventDefault();
-      const parent = link.parentElement;
-      const alreadyOpen = parent.classList.contains('open');
-      document.querySelectorAll('.nx-item.open').forEach(i=>i.classList.remove('open'));
-      if(!alreadyOpen){
-        parent.classList.add('open');
-      }
-    }
-  });
-});
-
-// click outside to close dropdowns (mainly mobile)
-document.addEventListener('click', (e)=>{
-  const nav = document.querySelector('.nx-navbar');
-  if(!nav.contains(e.target)){
-    document.querySelectorAll('.nx-item.open').forEach(i=>i.classList.remove('open'));
-    if(menu) menu.classList.remove('active');
-  }
-});
+// Mobile menu
+const toggle=document.querySelector('.nx-toggle');
+const menu=document.querySelector('.nx-menu');
+toggle.addEventListener('click',()=>menu.classList.toggle('active'));
 </script>
+
 </body>
 </html>
