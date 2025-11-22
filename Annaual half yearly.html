@@ -43,8 +43,8 @@ body{
   display:flex; align-items:center; gap:20px;
 }
 .nx-brand{display:flex;align-items:center;gap:10px;color:var(--ink);}
-.nx-logo{height:30px;}
-.nx-logo2{height:30px;margin-left:10px;}
+.nx-logo{height:45px;}
+.nx-logo2{height:40px;margin-left:10px;}
 
 .nx-grow{flex:1;}
 .nx-menu{display:flex;gap:26px;align-items:center;}
@@ -71,8 +71,7 @@ body{
   box-shadow:0 12px 26px rgba(0,0,0,.15);
   opacity:0; pointer-events:none;
   transform:translateY(10px);
-  transition:all .28s ease;
-  white-space:nowrap;
+  transition:all .24s ease;
 }
 .nx-item.open .nx-drop{
   opacity:1; transform:translateY(0); pointer-events:auto;
@@ -88,7 +87,6 @@ body{
 
 .nx-toggle{display:none;}
 
-/* mobile */
 @media(max-width:1024px){
   .nx-menu{
     display:none; flex-direction:column;
@@ -114,7 +112,7 @@ body{
   }
 }
 
-/* Hero (image removed) */
+/* Hero */
 .fin-hero{
   padding:40px 20px;
   border-bottom:1px solid var(--line);
@@ -235,8 +233,8 @@ body{
 <header class="nx-navbar" id="nxHeader">
   <div class="nx-nav-inner">
     <a class="nx-brand" href="index.html">
-      <img class="nx-logo" src="stoxgear-logo.jpg">
-      <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg">
+      <img class="nx-logo" src="/mnt/data/5833ae4c-e468-42ca-b0b4-e979c0d7d542.png">
+      <img class="nx-logo2" src="/mnt/data/452cde52-fb63-4f7a-b730-d167a552958a.png">
     </a>
 
     <div class="nx-grow"></div>
@@ -251,15 +249,20 @@ body{
           <a href="BOARD of directors.html">Board of Directors</a>
           <a href="Mission.html">Mission / Vision</a>
           <a href="associated companies.html">Associated Companies</a>
-          <a href="Ncb auditor details .html">Auditors / Legal Advisors</a>
           <a href="services.html">Services</a>
           <a href="Registered agents..html">Registered Agents</a>
         </div>
       </div>
 
-      <!-- EDUCATION (single link) -->
+      <!-- EDUCATION -->
       <div class="nx-item">
-        <a class="nx-link" href="New to trading.html">Education</a>
+        <a class="nx-link" href="#">Education</a>
+        <div class="nx-drop">
+          <a href="New to trading.html">New to Trading</a>
+          <a href="Investorguid.html">Investor Guide</a>
+          <a href="Glossary.html">Glossary</a>
+          <a href="faqs.html">FAQs</a>
+        </div>
       </div>
 
       <!-- OPEN ACCOUNT -->
@@ -272,7 +275,7 @@ body{
         </div>
       </div>
 
-      <!-- 1 — Guides -->
+      <!-- GUIDES -->
       <div class="nx-item">
         <a class="nx-link" href="#">Guides</a>
         <div class="nx-drop">
@@ -283,7 +286,7 @@ body{
         </div>
       </div>
 
-      <!-- 2 — Trading Processes -->
+      <!-- TRADING PROCESSES -->
       <div class="nx-item">
         <a class="nx-link" href="#">Trading Processes</a>
         <div class="nx-drop">
@@ -296,7 +299,7 @@ body{
         </div>
       </div>
 
-      <!-- 3 — Financial Reports -->
+      <!-- FINANCIAL REPORTS -->
       <div class="nx-item">
         <a class="nx-link" href="#">Financial Reports</a>
         <div class="nx-drop">
@@ -309,7 +312,7 @@ body{
         </div>
       </div>
 
-      <!-- 4 — Downloads -->
+      <!-- DOWNLOADS -->
       <div class="nx-item">
         <a class="nx-link" href="#">Downloads</a>
         <div class="nx-drop">
@@ -318,7 +321,7 @@ body{
         </div>
       </div>
 
-      <!-- SUPPORT (complaints only) -->
+      <!-- SUPPORT -->
       <div class="nx-item">
         <a class="nx-link" href="#">Support</a>
         <div class="nx-drop">
@@ -335,14 +338,15 @@ body{
 
     <a class="nx-cta" href="Acoocint opening.html">OPEN AN ACCOUNT</a>
     <button class="nx-toggle" id="nxToggle">☰</button>
+
   </div>
 </header>
 
-<!-- HERO (image removed) -->
+<!-- HERO -->
 <section class="fin-hero">
   <div class="fin-wrap">
     <div class="fin-head">
-      <div class="fin-badge"><span></span>Latest Audited & Interim Financials</div>
+      <div class="fin-badge">Latest Audited & Interim Financials</div>
       <h2>Annual / Half Yearly / Quarterly Financials</h2>
       <p class="sub">View and download financial statements for recent years.</p>
       <p class="fin-meta-small">Documents open in a new tab.</p>
@@ -455,44 +459,4 @@ Object.keys(REPORTS).sort((a,b)=>b-a).forEach(y=>{
   box.className="fin-card-year";
   box.innerHTML=`
     <div class="fin-chip">${y=='2024'?'Latest':'Archive'}</div>
-    <h3>${y}</h3>
-    <p>${REPORTS[y].length} files available</p>
-  `;
-  box.onclick=()=>openSheet(y);
-  yearsDiv.appendChild(box);
-});
-
-/* Sheet logic */
-const sheet=document.getElementById("sheet");
-const sheetTitle=document.getElementById("sheetTitle");
-const sheetList=document.getElementById("sheetList");
-const sheetClose=document.getElementById("sheetClose");
-const sheetSearch=document.getElementById("sheetSearch");
-
-function openSheet(year){
-  sheetTitle.textContent="Reports – "+year;
-  renderList(REPORTS[year]);
-  sheet.classList.add("is-open");
-  sheetSearch.value='';
-  sheetSearch.oninput=()=>{
-    const q=sheetSearch.value.toLowerCase();
-    renderList(REPORTS[year].filter(r=>r.title.toLowerCase().includes(q)));
-  };
-}
-function renderList(arr){
-  sheetList.innerHTML="";
-  arr.forEach(r=>{
-    sheetList.innerHTML+=`
-      <a class="item" href="${r.url}" target="_blank">
-        <div>
-          <h4><span class="badge">${r.kind}</span> ${r.title}</h4>
-        </div>
-      </a>
-    `;
-  });
-}
-sheetClose.onclick=()=>sheet.classList.remove("is-open");
-</script>
-
-</body>
-</html>
+    <h3>${y}</h
