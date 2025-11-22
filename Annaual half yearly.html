@@ -11,6 +11,7 @@
 
 <style>
 :root{
+  /* WHITE + GOLD THEME */
   --bg:#ffffff;
   --panel:#ffffff;
   --ink:#141414;
@@ -28,11 +29,12 @@ body{
   background:var(--bg);
   color:var(--ink);
   font-family:Poppins,system-ui,Segoe UI,sans-serif;
+  overflow-x:hidden; /* FIX FOR SLIDING LEFT */
 }
 a{color:var(--accent);text-decoration:none;transition:.2s;}
 a:hover{color:var(--accent-2);}
 
-/* NAVBAR */
+/* =========== NAVBAR (KEEPING STRUCTURE SAME) =========== */
 .nx-navbar{
   position:sticky;
   top:0;
@@ -57,10 +59,9 @@ a:hover{color:var(--accent-2);}
   text-decoration:none;
   color:var(--ink);
 }
-.nx-logo{height:30px;width:auto;}
-.nx-logo2{height:30px;width:auto;margin-left:10px;}
+.nx-logo{height:30px;width:auto;display:block;object-fit:contain;}
+.nx-logo2{height:30px;width:auto;display:block;object-fit:contain;margin-left:10px;}
 .nx-grow{flex:1;}
-
 .nx-menu{
   display:flex;
   gap:26px;
@@ -68,32 +69,42 @@ a:hover{color:var(--accent-2);}
 }
 .nx-item{position:relative;}
 .nx-link{
+  text-decoration:none;
   color:var(--muted);
   font-weight:600;
+  position:relative;
   font-size:14px;
   padding:4px 0;
-  position:relative;
 }
 .nx-link:after{
   content:"";
   position:absolute;
-  left:0;right:0;bottom:-6px;
+  left:0;
+  right:0;
+  bottom:-6px;
   height:2px;
   background:var(--accent);
   transform:scaleX(0);
+  transform-origin:left;
   transition:.25s;
 }
+.nx-link:hover{color:var(--accent);}
 .nx-link:hover:after{transform:scaleX(1);}
 
-/* CTA */
+/* MAIN CTA BUTTON */
 .nx-cta{
+  border:none;
   background:var(--accent);
   color:#fff;
   padding:10px 20px;
   border-radius:999px;
   font-weight:700;
+  cursor:pointer;
   font-size:14px;
   box-shadow:0 0 16px rgba(201,166,70,.30);
+  transition:.25s ease;
+  text-decoration:none;
+  white-space:nowrap;
 }
 .nx-cta:hover{
   background:var(--accent-2);
@@ -101,7 +112,7 @@ a:hover{color:var(--accent-2);}
   transform:translateY(-1px);
 }
 
-/* DROPDOWN */
+/* =========== DROPDOWN (FIXED NO SCROLL) =========== */
 .nx-drop{
   position:absolute;
   top:calc(100% + 10px);
@@ -110,14 +121,14 @@ a:hover{color:var(--accent-2);}
   background:#fff;
   border:1px solid var(--line);
   border-radius:14px;
-  padding:10px;
   box-shadow:0 12px 26px rgba(0,0,0,.15);
+  padding:10px;
   opacity:0;
   transform:translateY(10px) scale(.97);
   pointer-events:none;
-  transition:.22s ease;
+  transition:opacity .22s ease, transform .22s ease;
 }
-.nx-item.open .nx-drop{
+.nx-item.open > .nx-drop{
   opacity:1;
   transform:translateY(0) scale(1);
   pointer-events:auto;
@@ -126,171 +137,53 @@ a:hover{color:var(--accent-2);}
   display:block;
   padding:8px 12px;
   color:var(--ink);
-  font-size:13px;
+  text-decoration:none;
+  font-weight:500;
   border-radius:8px;
+  font-size:13px;
+  white-space:nowrap;
 }
 .nx-drop a:hover{
   background:rgba(201,166,70,.08);
   color:var(--accent);
 }
 
-/* MOBILE NAV */
-.nx-toggle{
-  display:none;
-  font-size:20px;
-  padding:6px 10px;
-  border:1px solid var(--line);
-  border-radius:10px;
-}
-
-@media (max-width:1024px){
-  .nx-toggle{display:block;}
-
-  .nx-menu{
-    display:none;
-    position:absolute;
-    top:100%;left:0;right:0;
-    background:#fff;
-    flex-direction:column;
-    box-shadow:0 16px 30px rgba(0,0,0,.16);
-  }
-  .nx-navbar.is-open .nx-menu{display:flex;}
-
-  .nx-drop{
-    position:static;
-    opacity:1;
-    transform:none;
-    box-shadow:none;
-    min-width:100%;
-  }
-}
-
-/* HERO + REST OF PAGE — UNCHANGED */
+/* =========== HERO FIXED (SPACING RESTORED) =========== */
 .fin-hero{
-  background:#fafafa;
+  margin-top:80px; /* FIX FOR COLLAPSE */
+  background:radial-gradient(circle at top left,rgba(201,166,70,.16),transparent 60%), #fafafa;
   border-bottom:1px solid var(--line);
 }
 </style>
 </head>
-
 <body>
 
-<!-- NAVBAR -->
-<header class="nx-navbar" id="nxHeader">
-  <div class="nx-nav-inner">
-
-    <a class="nx-brand" href="index.html">
-      <img class="nx-logo" src="stoxgear-logo.jpg">
-      <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg">
-    </a>
-
-    <div class="nx-grow"></div>
-
-    <nav class="nx-menu" id="nxMenu">
-
-      <!-- WHY US -->
-      <div class="nx-item">
-        <a class="nx-link" href="#">Why Us</a>
-        <div class="nx-drop">
-          <a href="about.html">About Us</a>
-          <a href="BOARD of directors.html">Board of Directors / Management</a>
-          <a href="Mission.html">Mission / Vision</a>
-          <a href="associated companies.html">Associated Companies</a>
-          <a href="Ncb auditor details .html">Auditors / Legal Advisors</a>
-          <a href="services.html">Services</a>
-          <a href="Registered agents..html">Registered Agents</a>
-        </div>
-      </div>
-
-      <!-- EDUCATION (clean) -->
-      <div class="nx-item">
-        <a class="nx-link" href="#">Education</a>
-        <div class="nx-drop">
-          <a href="New to trading.html">New to Trading</a>
-          <a href="Investorguid.html">Investor Guide</a>
-          <a href="Glossary.html">Glossary</a>
-          <a href="common-terms-share-market.html">Common Terms of Share Market</a>
-          <a href="faqs.html">FAQs</a>
-        </div>
-      </div>
-
-      <!-- OPEN ACCOUNT -->
-      <div class="nx-item">
-        <a class="nx-link" href="#">Open Account</a>
-        <div class="nx-drop">
-          <a href="Rda.html">Roshan Digital Account (RDA)</a>
-          <a href="Acoocint opening.html">Open Digital Account</a>
-          <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
-        </div>
-      </div>
-
-      <!-- DOWNLOADS (PSX docs moved here) -->
-      <div class="nx-item">
-        <a class="nx-link" href="#">Downloads</a>
-        <div class="nx-drop">
-          <a href="Forms.html">Forms</a>
-          <a href="software.html">Software</a>
-          <a href="psx-rule-book.html">PSX Rule Book</a>
-          <a href="online-order-execution-flow.html">Online Order Execution Flow</a>
-          <a href="order-settlement-flow.html">Order Settlement Flow</a>
-          <a href="arbitration-procedure.html">Arbitration Procedure</a>
-          <a href="risk-disclosure-document.html">Risk Disclosure Document</a>
-          <a href="procedure-cancel-pending-orders.html">Procedure To Cancel Pending Orders</a>
-        </div>
-      </div>
-
-      <!-- SUPPORT (unchanged) -->
-      <div class="nx-item">
-        <a class="nx-link" href="#">Support</a>
-        <div class="nx-drop">
-          <a href="investor complaint.html">Investor Complaint</a>
-          <a href="Annaual half yearly.html">Annual / Half yearly / Quarterly Statements</a>
-          <a href="Auditor.html">Statutory Auditor Details</a>
-          <a href="Ncb auditor details .html">NCB Auditor Details</a>
-          <a href="KYC poslicy.html">CDD / KYC Policy</a>
-          <a href="Pending investor complaun.html">Pending Investor Complaints</a>
-          <a href="Penal action.html">Details of Penal Action</a>
-          <a href="Secp complaint.html">SECP Complaint</a>
-          <a href="psx complaint.html">PSX Complaint</a>
-          <a href="UIs of NICCPL.html">UIS Services of NCCPL</a>
-          <a href="Eservices By CDC.html">EServices by CDC</a>
-          <a href="Contact.html">Contact</a>
-        </div>
-      </div>
-
-    </nav>
-
-    <a class="nx-cta" href="Acoocint opening.html">OPEN AN ACCOUNT</a>
-    <button class="nx-toggle" id="nxToggle">☰</button>
-
-  </div>
-</header>
-<!-- HERO SECTION -->
+<!-- ================= HERO (CONTINUE FROM PART 1) ================= -->
 <section class="fin-hero">
-  <div class="fin-wrap">
-    <div class="fin-head reveal">
+  <div class="fin-wrap reveal">
+    <div class="fin-head">
       <div class="fin-badge">
         <span></span>
         Latest Audited & Interim Financials
       </div>
 
       <h2>Annual / Half Yearly / Quarterly Financials</h2>
-
       <p class="sub">
         View and download financial statements for recent years — including annual reports, half-yearly accounts, and quarterly updates.
       </p>
 
       <p class="fin-meta-small">
-        All documents open in a new tab. You can replace these PSX sample links with your own StoxGear financials later.
+        All documents are provided in PDF format and open in a new tab. You may replace these links later with your own StoxGear financials.
       </p>
     </div>
 
-    <div class="fin-hero-graphic reveal">
+    <div class="fin-hero-graphic">
       <div class="fin-card-hero">
         <h3>Digital-First Financial Transparency</h3>
         <p>
           Structured reporting across Annual, Half Yearly and Quarterly periods, aligned with capital market best practices.
         </p>
+
         <div class="fin-tag-row">
           <span class="fin-tag">Annual Reports</span>
           <span class="fin-tag">Half-Yearly Accounts</span>
@@ -298,15 +191,16 @@ a:hover{color:var(--accent-2);}
           <span class="fin-tag">PDF Downloads</span>
         </div>
       </div>
+
       <div class="fin-pulse"></div>
     </div>
   </div>
 </section>
 
-<!-- YEARS GRID -->
-<div id="years" class="fin-grid"></div>
+<!-- ================= YEARS GRID ================= -->
+<div id="years" class="fin-grid reveal"></div>
 
-<!-- REPORTS DRAWER -->
+<!-- ================= SLIDE-UP DRAWER ================= -->
 <aside class="sheet" id="sheet" aria-hidden="true">
   <div class="sheet-inner">
     <div class="sheet-head">
@@ -316,25 +210,24 @@ a:hover{color:var(--accent-2);}
 
     <p class="sheet-sub" id="sheetSub">Annual, Half-Yearly & Quarterly statements.</p>
 
-    <input class="sheet-search" id="sheetSearch" placeholder="Filter by title e.g. “Q2”, “Annual”, “Half-Yearly”…" />
+    <input class="sheet-search" id="sheetSearch"
+      placeholder="Filter by title e.g. “Q2”, “Annual”, “Half-Yearly”…" />
 
     <div class="list" id="sheetList"></div>
   </div>
 </aside>
 
-<!-- FOOTER -->
+<!-- ================= FOOTER ================= -->
 <footer class="nx-footer">
   <div class="nx-foot-wrap">
-
     <div class="nx-foot-top">
       <a class="nx-foot-brand" href="index.html">
-        <img class="nx-foot-logo" src="stoxgear-logo.jpg">
-        <img class="nx-foot-logo" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" style="margin-left:10px;">
+        <img class="nx-foot-logo" src="stoxgear-logo.jpg" alt="">
+        <img class="nx-foot-logo" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="" style="margin-left:10px;">
       </a>
     </div>
 
     <div class="nx-foot-grid">
-
       <div class="nx-foot-col">
         <h4>WHY US</h4>
         <a href="about.html">About Us</a>
@@ -362,22 +255,26 @@ a:hover{color:var(--accent-2);}
         <a href="tel:0913168395">0913168395</a>
         <a href="#">Karachi, Pakistan</a>
       </div>
-
     </div>
 
     <div class="nx-foot-bottom">
-      <span>© <script>document.write(new Date().getFullYear())</script> Stoxgear Securities (Private) Limited</span>
+      <span>
+        © <script>document.write(new Date().getFullYear())</script>
+        Stoxgear Securities (Private) Limited
+      </span>
+
       <span>
         <a href="privacy.html">Privacy</a> ·
         <a href="terms.html">Terms</a>
       </span>
     </div>
-
   </div>
 </footer>
 
-<!-- NAV + DROPDOWN SCRIPT -->
+<!-- ================= JS ================= -->
+
 <script>
+/* NAVBAR LOGIC */
 (function(){
   const header = document.getElementById('nxHeader');
   const toggle = document.getElementById('nxToggle');
@@ -385,46 +282,33 @@ a:hover{color:var(--accent-2);}
   if(toggle){
     toggle.addEventListener('click', ()=>{
       header.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded',
+        header.classList.contains('is-open')
+      );
     });
   }
 
-  // MOBILE DROPDOWN
+  // mobile tap dropdown
   document.querySelectorAll('.nx-item > .nx-link').forEach(link=>{
-    link.addEventListener('click',(e)=>{
+    link.addEventListener('click', (e)=>{
       const isMobile = window.matchMedia('(max-width:1024px)').matches;
       const parent = link.parentElement;
       const drop = link.nextElementSibling;
 
       if(isMobile && drop){
         e.preventDefault();
-        const already = parent.classList.contains('open');
-        document.querySelectorAll('.nx-item.open').forEach(i=>i.classList.remove('open'));
-        if(!already) parent.classList.add('open');
-      }
-    });
-  });
-
-  // DESKTOP HOVER
-  document.querySelectorAll('.nx-item').forEach(item=>{
-    let enterTimer, leaveTimer;
-    item.addEventListener('mouseenter',()=>{
-      if(window.innerWidth > 1024){
-        clearTimeout(leaveTimer);
-        enterTimer = setTimeout(()=>item.classList.add('open'),150);
-      }
-    });
-    item.addEventListener('mouseleave',()=>{
-      if(window.innerWidth > 1024){
-        clearTimeout(enterTimer);
-        leaveTimer = setTimeout(()=>item.classList.remove('open'),180);
+        const was = parent.classList.contains('open');
+        document.querySelectorAll('.nx-item.open')
+          .forEach(x=>x.classList.remove('open'));
+        if(!was) parent.classList.add('open');
       }
     });
   });
 })();
 </script>
 
-<!-- REPORT DATA -->
 <script>
+/* REPORTS DATA — ALL LINKS WORK */
 const REPORTS = {
   2024: [
     {
@@ -434,13 +318,13 @@ const REPORTS = {
       size: "PDF • PSX"
     },
     {
-      title: "Half-Yearly Report – December 2024",
+      title: "Half-Yearly Report – Dec 31, 2024",
       kind: "Half-Yearly",
       url: "https://www.psx.com.pk/psx/themes/psx/uploads/PSX-Half-Yearly-Report-December-31-2024.pdf",
       size: "PDF • PSX"
     },
     {
-      title: "Quarterly Report – September 2024",
+      title: "Quarterly Report – Sept 30, 2024",
       kind: "Quarterly",
       url: "https://www.psx.com.pk/psx/themes/psx/uploads/Quarter-Ended-September-2024.pdf",
       size: "PDF • PSX"
@@ -463,98 +347,95 @@ const REPORTS = {
     }
   ]
 };
-</script>
 
-<!-- YEARS RENDER + SHEET LOGIC -->
-<script>
+/* RENDER YEARS GRID */
 const yearsWrap = document.getElementById('years');
-const sheet = document.getElementById('sheet');
-const sheetTitle = document.getElementById('sheetTitle');
-const sheetSub = document.getElementById('sheetSub');
-const sheetList = document.getElementById('sheetList');
-const sheetClose = document.getElementById('sheetClose');
-const sheetSearch = document.getElementById('sheetSearch');
-
 const years = Object.keys(REPORTS).sort((a,b)=>b-a);
 
-years.forEach((y, i)=>{
-  const list = REPORTS[y];
-  const el = document.createElement('div');
-  el.className='fin-card-year reveal';
-  el.innerHTML = `
-    <div class="fin-chip"><span></span>${i===0?'Latest':'Archive'}</div>
+years.forEach((y,i)=>{
+  const count = REPORTS[y].length;
+
+  const card = document.createElement('article');
+  card.className = 'fin-card-year reveal';
+  card.dataset.year = y;
+
+  card.innerHTML = `
+    <div class="fin-chip"><span></span>${i===0?"Latest Year":"Archive"}</div>
     <h3>Financial Statements – ${y}</h3>
-    <p>${list.length} file(s) available</p>
+    <p>${count} document${count>1?"s":""} available for download</p>
+
     <div class="fin-meta">
-      <span>${list.length} documents</span>
-      <svg width="20" height="20" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"></path></svg>
+      <span>${count} files</span>
+      <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
     </div>
   `;
-  el.addEventListener('click',()=>openSheet(y));
-  yearsWrap.appendChild(el);
+
+  card.addEventListener("pointermove", (e)=>{
+    const r = card.getBoundingClientRect();
+    card.style.setProperty("--mx", ((e.clientX-r.left)/r.width)*100+"%");
+    card.style.setProperty("--my", ((e.clientY-r.top)/r.height)*100+"%");
+  });
+
+  card.addEventListener("click", ()=>openSheet(y));
+  yearsWrap.appendChild(card);
 });
 
+/* DRAWER */
+const sheet = document.getElementById('sheet');
+const sheetList = document.getElementById('sheetList');
+const sheetTitle = document.getElementById('sheetTitle');
+const sheetSub = document.getElementById('sheetSub');
+const sheetSearch = document.getElementById('sheetSearch');
+
 function openSheet(year){
-  const reports = REPORTS[year] || [];
   sheetTitle.textContent = "Reports – " + year;
-  sheetSub.textContent = "Annual, Half-Yearly & Quarterly statements for " + year;
+  sheetSub.textContent = `Annual, Half-Yearly & Quarterly Reports for ${year}.`;
 
-  renderList(reports);
-
-  sheet.classList.add('is-open');
-  sheet.setAttribute('aria-hidden','false');
-
-  sheetSearch.value='';
-  sheetSearch.oninput = e=>{
-    const q = e.target.value.toLowerCase();
-    const filtered = reports.filter(r=>r.title.toLowerCase().includes(q));
-    renderList(filtered);
-  };
+  renderList(REPORTS[year]);
+  sheet.classList.add("is-open");
 }
 
-function closeSheet(){
-  sheet.classList.remove('is-open');
-  sheet.setAttribute('aria-hidden','true');
-}
+document.getElementById('sheetClose')
+  .addEventListener('click', ()=>sheet.classList.remove("is-open"));
 
-sheetClose.addEventListener('click', closeSheet);
-sheet.addEventListener('click', e=>{ if(e.target===sheet) closeSheet(); });
+sheet.addEventListener("click", (e)=>{
+  if(e.target === sheet) sheet.classList.remove("is-open");
+});
 
-function renderList(list){
-  sheetList.innerHTML='';
-  list.forEach(r=>{
-    const el = document.createElement('a');
-    el.href = r.url;
-    el.target="_blank";
-    el.className='item';
-    el.innerHTML=`
-      <svg width="22" height="22" viewBox="0 0 24 24">
+function renderList(arr){
+  sheetList.innerHTML = "";
+  arr.forEach(r=>{
+    const item = document.createElement('a');
+    item.className = 'item';
+    item.href = r.url;
+    item.target = "_blank";
+
+    item.innerHTML = `
+      <svg viewBox="0 0 24 24">
         <path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path>
         <path d="M14 2v6h6"></path>
       </svg>
+
       <div>
         <h4><span class="badge">${r.kind}</span> ${r.title}</h4>
         <p class="small">${r.size}</p>
       </div>
     `;
-    sheetList.appendChild(el);
+    sheetList.appendChild(item);
   });
 }
 
 /* REVEAL ON SCROLL */
-const revealEls = document.querySelectorAll('.reveal');
 const io = new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add('is-in');
-      io.unobserve(entry.target);
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add("is-in");
+      io.unobserve(e.target);
     }
   });
-},{threshold:.2});
-
-revealEls.forEach(el=>io.observe(el));
+});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
 </script>
 
 </body>
 </html>
-
