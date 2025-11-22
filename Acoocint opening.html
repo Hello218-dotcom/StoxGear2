@@ -1,404 +1,1451 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stoxgear Securities – Account Opening</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>StoxGear Securities – Premium Brokerage & Investment Services</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Poppins font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<style>
-:root{
-  --bg:#ffffff;
-  --surface:#fafafa;
-  --text:#111111;
-  --text-2:#555555;
-  --accent:#c9a646;
-  --accent-2:#b38b2e;
-  --shadow:0 8px 20px rgba(0,0,0,.1);
-  --radius:16px;
-}
+  <style>
+    :root{
+      /* White & Gold Premium Theme */
+      --bg:#050814;
+      --bg-soft:#0b1020;
+      --panel:#0f1628;
+      --panel-soft:#12182b;
+      --ink:#f9fafb;
+      --muted:#9ca3af;
+      --gold:#caa03d;
+      --gold-soft:#e6c767;
+      --accent:#3b82f6;
+      --line:rgba(255,255,255,.08);
+      --radius-lg:22px;
+      --radius-md:16px;
+      --shadow-lg:0 22px 60px rgba(0,0,0,.55);
+      --shadow-md:0 16px 40px rgba(0,0,0,.45);
+      --blur:18px;
+      --nav-height:80px;
+    }
 
-/* General */
-body{
-  margin:0;
-  font-family:"Poppins",sans-serif;
-  background:#fff;
-  color:var(--text);
-  scroll-behavior:smooth;
-}
-a{
-  color:var(--accent);
-  text-decoration:none;
-  transition:.3s;
-}
-a:hover{color:var(--accent-2);}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    html,body{
+      margin:0;
+      padding:0;
+      background:radial-gradient(circle at top,#111827 0,#020617 52%,#020617 100%);
+      color:var(--ink);
+      font-family:Poppins,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      scroll-behavior:smooth;
+    }
+    body.is-mobile{
+      /* can tweak for mobile specific if needed */
+    }
+    a{text-decoration:none;color:inherit;}
+    img{max-width:100%;display:block;}
 
-/* Buttons */
-.btn, .btn-cta{
-  background:var(--accent);
-  color:#fff;
-  padding:10px 22px;
-  border-radius:50px;
-  border:none;
-  cursor:pointer;
-  font-weight:600;
-  box-shadow:0 0 12px rgba(201,166,70,.25);
-  transition:.25s;
-}
-.btn:hover,.btn-cta:hover{
-  background:var(--accent-2);
-  transform:translateY(-2px);
-}
+    /* Layout container */
+    .wrap{
+      max-width:1200px;
+      margin:0 auto;
+      padding:0 20px;
+    }
 
-/* Navbar */
-header.nx-navbar{
-  position:sticky;top:0;z-index:999;
-  background:rgba(255,255,255,.95);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid rgba(0,0,0,.08);
-}
-.nx-nav-inner{
-  max-width:1200px;
-  margin:auto;
-  padding:14px 24px;
-  display:flex;
-  align-items:center;
-}
-.nx-brand{display:flex;align-items:center;gap:12px;}
-.nx-logo{height:36px;transition:.3s;}
-.nx-logo:hover{transform:translateY(-2px);}
-.nx-logo2{height:36px;margin-left:8px;}
+    /* ===== TOP BAR ===== */
+    .top-bar{
+      background:linear-gradient(90deg,#020617,#111827);
+      border-bottom:1px solid rgba(255,255,255,.05);
+      font-size:12px;
+      color:var(--muted);
+    }
+    .top-bar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:6px 20px;
+      max-width:1200px;
+      margin:0 auto;
+    }
+    .top-bar-left,
+    .top-bar-right{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+    .top-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:4px 10px;
+      border-radius:999px;
+      background:rgba(15,23,42,.7);
+      border:1px solid rgba(148,163,184,.5);
+      backdrop-filter:blur(10px);
+    }
+    .top-pill span.icon{
+      width:16px;
+      height:16px;
+      border-radius:999px;
+      background:conic-gradient(from 220deg,#facc15,#f97316,#22d3ee,#facc15);
+    }
+    .top-link{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      opacity:.9;
+      transition:opacity .25s ease,transform .25s ease;
+      cursor:pointer;
+    }
+    .top-link:hover{
+      opacity:1;
+      transform:translateY(-1px);
+    }
 
-.nx-grow{flex:1;}
-.nx-menu{display:flex;gap:26px;}
-.nx-link{
-  font-weight:600;
-  color:var(--text-2);
-  position:relative;
-}
-.nx-link:hover{color:var(--accent);}
-.nx-item{position:relative;}
+    /* ===== NAVBAR ===== */
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter:blur(16px);
+      background:rgba(2,6,23,.88);
+      border-bottom:1px solid rgba(148,163,184,.35);
+    }
+    .nav{
+      max-width:1200px;
+      margin:0 auto;
+      padding:10px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      height:var(--nav-height);
+    }
+    .nav-brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .nav-logo{
+      width:40px;
+      height:40px;
+      border-radius:14px;
+      background:
+        radial-gradient(circle at 10% 0%,rgba(250,204,21,.22) 0,transparent 50%),
+        radial-gradient(circle at 90% 100%,rgba(56,189,248,.28) 0,transparent 55%),
+        linear-gradient(145deg,#020617,#020617 45%,#111827 100%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 12px 30px rgba(0,0,0,.7);
+      position:relative;
+      overflow:hidden;
+    }
+    .nav-logo::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:inherit;
+      border:1px solid rgba(250,204,21,.35);
+      opacity:.6;
+    }
+    .nav-logo-mark{
+      width:20px;
+      height:20px;
+      border-radius:999px;
+      border:2px solid #fde68a;
+      box-shadow:0 0 14px rgba(250,204,21,.6);
+      position:relative;
+    }
+    .nav-logo-mark::before{
+      content:"";
+      position:absolute;
+      inset:3px;
+      border-radius:inherit;
+      border:2px solid rgba(59,130,246,.9);
+      opacity:.9;
+    }
+    .nav-title-block{
+      display:flex;
+      flex-direction:column;
+      line-height:1.1;
+    }
+    .nav-title{
+      font-size:18px;
+      font-weight:600;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .nav-subtitle{
+      font-size:11px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.15em;
+    }
 
-/* Dropdown */
-.nx-drop{
-  position:absolute;
-  top:110%;
-  left:0;
-  min-width:240px;
-  background:#fff;
-  border-radius:14px;
-  padding:10px;
-  opacity:0;
-  transform:translateY(15px);
-  pointer-events:none;
-  border:1px solid rgba(0,0,0,.08);
-  box-shadow:0 10px 25px rgba(0,0,0,.12);
-  transition:.45s ease;
-}
-.nx-item:hover .nx-drop{
-  opacity:1;
-  transform:translateY(0);
-  pointer-events:auto;
-}
-.nx-drop a{
-  display:block;
-  padding:8px 12px;
-  border-radius:10px;
-  color:var(--text);
-  transition:.25s;
-}
-.nx-drop a:hover{
-  background:var(--surface);
-  color:var(--accent);
-}
+    .nav-main{
+      display:flex;
+      align-items:center;
+      gap:22px;
+    }
+    .nav-links{
+      list-style:none;
+      display:flex;
+      align-items:center;
+      gap:18px;
+      font-size:14px;
+    }
+    .nav-links>li{
+      position:relative;
+    }
+    .nav-link-btn{
+      border:none;
+      background:none;
+      color:var(--ink);
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 8px;
+      border-radius:999px;
+      font:inherit;
+      position:relative;
+      overflow:hidden;
+    }
+    .nav-link-btn span.label{
+      position:relative;
+      z-index:1;
+    }
+    .nav-link-btn::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:inherit;
+      background:radial-gradient(circle at top,#1f2937,#020617);
+      opacity:0;
+      transition:opacity .28s ease;
+    }
+    .nav-link-btn:hover::before{
+      opacity:.7;
+    }
+    .nav-link-btn .chevron{
+      width:14px;height:14px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.8);
+      display:flex;align-items:center;justify-content:center;
+      font-size:9px;
+    }
 
-/* Mobile Nav */
-.nx-toggle{
-  display:none;
-  background:#fff;
-  padding:6px 10px;
-  border:1px solid rgba(0,0,0,.12);
-  border-radius:10px;
-  font-size:20px;
-  cursor:pointer;
-}
-@media(max-width:900px){
-  .nx-menu{
-    display:none;
-    flex-direction:column;
-    background:#fff;
-    padding:12px;
-    position:absolute;
-    right:16px;
-    left:16px;
-    top:70px;
-    border-radius:18px;
-    box-shadow:0 15px 40px rgba(0,0,0,.15);
-  }
-  .nx-menu.active{display:flex;}
-  .nx-toggle{display:block;}
-  .nx-drop{
-    position:static;
-    transform:none;
-    opacity:1;
-    pointer-events:auto;
-    box-shadow:none;
-    margin-top:4px;
-  }
-}
+    .nav-cta-wrap{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .nav-cta{
+      padding:8px 14px;
+      border-radius:999px;
+      border:1px solid rgba(250,204,21,.55);
+      background:radial-gradient(circle at 0 0,rgba(250,204,21,.18),transparent 55%),
+                 linear-gradient(135deg,#1e293b,#020617);
+      color:#fefce8;
+      font-size:13px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      box-shadow:0 16px 40px rgba(0,0,0,.75);
+      cursor:pointer;
+      transition:transform .25s ease,box-shadow .25s ease,background .25s ease;
+    }
+    .nav-cta:hover{
+      transform:translateY(-1px);
+      box-shadow:0 20px 50px rgba(0,0,0,.9);
+      background:radial-gradient(circle at 10% 0,rgba(250,204,21,.28),transparent 50%),
+                 linear-gradient(135deg,#111827,#020617);
+    }
+    .nav-cta-dot{
+      width:6px;height:6px;border-radius:999px;
+      background:#22c55e;
+      box-shadow:0 0 12px rgba(34,197,94,.9);
+    }
 
-/* Main Section */
-.account-opening.wrap{
-  max-width:1200px;
-  margin:60px auto;
-  padding:0 20px;
-}
-.ao-head{text-align:center;}
-.ao-head h2{
-  color:var(--accent);
-  font-size:34px;
-  margin-bottom:6px;
-}
-.ao-head .sub{
-  color:var(--text-2);
-  letter-spacing:2px;
-  font-size:13px;
-}
+    .nav-contact-mini{
+      display:flex;
+      flex-direction:column;
+      font-size:10px;
+      color:var(--muted);
+      line-height:1.2;
+      text-align:right;
+    }
 
-.ao-hero{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:28px;
-  margin:40px 0;
-  align-items:center;
-}
-.ao-visual{
-  background:linear-gradient(145deg,#ffffff,#f2ecda);
-  padding:20px;
-  border-radius:20px;
-  box-shadow:0 20px 40px rgba(0,0,0,.1);
-  animation:floatHero 6s infinite ease-in-out;
-}
-@keyframes floatHero{
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-5px);}
-}
+    /* Burger for mobile */
+    .nav-burger{
+      display:none;
+      flex-direction:column;
+      gap:4px;
+      cursor:pointer;
+      padding:4px 2px;
+    }
+    .nav-burger span{
+      display:block;
+      width:20px;
+      height:2px;
+      border-radius:999px;
+      background:#e5e7eb;
+      transition:transform .28s ease,opacity .28s ease;
+    }
+    .nav-burger.active span:nth-child(1){
+      transform:translateY(3px) rotate(45deg);
+    }
+    .nav-burger.active span:nth-child(2){
+      opacity:0;
+    }
+    .nav-burger.active span:nth-child(3){
+      transform:translateY(-3px) rotate(-45deg);
+    }
 
-@media(max-width:900px){
-  .ao-hero{
-    grid-template-columns:1fr;
-  }
-}
+    /* ===== DROPDOWN / MEGAMENU ===== */
+    .nx-drop{
+      position:absolute;
+      top:calc(100% + 14px);
+      left:50%;
+      transform:translateX(-50%) translateY(-8px);
+      min-width:640px;
+      max-width:780px;
+      padding:18px 18px 16px;
+      background:radial-gradient(circle at top,#111827,#020617);
+      border-radius:20px;
+      border:1px solid rgba(148,163,184,.5);
+      box-shadow:var(--shadow-lg);
+      display:grid;
+      grid-template-columns:1.3fr 1fr;
+      gap:16px;
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+      transition:
+        opacity .28s ease-out,
+        transform .28s ease-out,
+        visibility 0s linear .28s;
+      /* slight delay so user can move pointer easily */
+    }
+    .nx-drop.show{
+      opacity:1;
+      visibility:visible;
+      pointer-events:auto;
+      transform:translateX(-50%) translateY(0);
+      transition:
+        opacity .3s ease-out .08s,
+        transform .3s ease-out .08s,
+        visibility 0s;
+    }
+    .nx-drop-col{
+      padding:10px 12px;
+      border-radius:16px;
+      background:rgba(15,23,42,.9);
+      border:1px solid rgba(148,163,184,.35);
+      backdrop-filter:blur(18px);
+    }
+    .nx-drop-title{
+      font-size:13px;
+      font-weight:600;
+      margin-bottom:2px;
+    }
+    .nx-drop-text{
+      font-size:11px;
+      color:var(--muted);
+      margin-bottom:10px;
+    }
+    .nx-drop-list{
+      list-style:none;
+      display:grid;
+      gap:4px;
+      font-size:12px;
+    }
+    .nx-drop-item a{
+      display:flex;
+      align-items:flex-start;
+      gap:8px;
+      padding:6px 7px;
+      border-radius:12px;
+      transition:background .22s ease,transform .22s ease;
+    }
+    .nx-drop-item a:hover{
+      background:rgba(15,23,42,.95);
+      transform:translateY(-1px);
+    }
+    .nx-badge{
+      font-size:10px;
+      padding:2px 6px;
+      border-radius:999px;
+      background:rgba(56,189,248,.15);
+      border:1px solid rgba(56,189,248,.7);
+      color:#e0f2fe;
+      margin-left:4px;
+    }
+    .nx-pill{
+      font-size:10px;
+      padding:2px 6px;
+      border-radius:999px;
+      border:1px solid rgba(250,204,21,.55);
+      color:#facc15;
+    }
 
-.req-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
-}
-.req-card{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:16px;
-  background:#fff;
-  border-radius:var(--radius);
-  border:1px solid rgba(0,0,0,.08);
-  box-shadow:var(--shadow);
-  transition:.3s;
-}
-.req-card:hover{
-  transform:translateY(-3px);
-  border-color:var(--accent);
-  box-shadow:0 0 16px rgba(201,166,70,.25);
-}
-.req-ico{
-  width:45px;height:45px;
-  border-radius:12px;
-  display:grid;
-  place-items:center;
-  font-size:20px;
-  color:var(--accent);
-  background:rgba(201,166,70,.15);
-}
+    .nx-drop-highlight{
+      position:relative;
+      overflow:hidden;
+    }
+    .nx-drop-highlight-bg{
+      position:absolute;
+      inset:-40%;
+      background:radial-gradient(circle at 0 0,rgba(250,204,21,.18),transparent 60%),
+                 radial-gradient(circle at 100% 100%,rgba(56,189,248,.22),transparent 60%);
+      opacity:.9;
+    }
+    .nx-drop-highlight-inner{
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      z-index:1;
+    }
+    .nx-drop-tagline{
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      color:#e5e7eb;
+    }
+    .nx-drop-hero{
+      font-size:16px;
+      font-weight:600;
+    }
+    .nx-drop-hero span{
+      color:#facc15;
+    }
+    .nx-drop-illus{
+      position:relative;
+      height:90px;
+      margin-top:6px;
+      border-radius:14px;
+      overflow:hidden;
+      border:1px solid rgba(15,23,42,.7);
+      box-shadow:0 18px 40px rgba(15,23,42,.8);
+    }
+    .nx-drop-illus img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:saturate(1.2);
+      transform:scale(1.03);
+    }
+    .nx-drop-illus-overlay{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(135deg,rgba(15,23,42,.85),rgba(15,23,42,.4),transparent);
+    }
+    .nx-drop-illus-caption{
+      position:absolute;
+      bottom:10px;
+      left:10px;
+      font-size:11px;
+      color:#e5e7eb;
+    }
 
-/* Animations */
-.fade-up{
-  opacity:0;
-  transform:translateY(20px);
-  transition:.6s ease;
-}
-.fade-up.in{
-  opacity:1;
-  transform:translateY(0);
-}
+    /* ===== HERO SECTION ===== */
+    .hero{
+      padding:40px 0 34px;
+    }
+    .hero-inner{
+      display:grid;
+      grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);
+      gap:32px;
+      align-items:center;
+    }
+    .hero-kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:11px;
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.6);
+      background:rgba(15,23,42,.9);
+      color:var(--muted);
+      margin-bottom:14px;
+    }
+    .hero-kicker-dot{
+      width:8px;height:8px;border-radius:999px;
+      background:radial-gradient(circle at 30% 30%,#facc15,#f97316);
+      box-shadow:0 0 12px rgba(250,204,21,.8);
+    }
+    .hero-title{
+      font-size:32px;
+      line-height:1.15;
+      font-weight:600;
+      margin-bottom:10px;
+    }
+    .hero-title span{
+      background:linear-gradient(120deg,#facc15,#f97316,#38bdf8);
+      -webkit-background-clip:text;
+      color:transparent;
+    }
+    .hero-body{
+      font-size:13px;
+      color:var(--muted);
+      line-height:1.7;
+      margin-bottom:18px;
+    }
+    .hero-badges{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-bottom:18px;
+    }
+    .hero-badge{
+      font-size:11px;
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.6);
+      background:rgba(15,23,42,.85);
+    }
+    .hero-cta-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      margin-bottom:18px;
+    }
+    .hero-primary{
+      padding:9px 18px;
+      border-radius:999px;
+      border:none;
+      cursor:pointer;
+      background:linear-gradient(135deg,#facc15,#f97316);
+      color:#111827;
+      font-size:13px;
+      font-weight:600;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      box-shadow:0 18px 40px rgba(250,204,21,.55);
+      transition:transform .24s ease,box-shadow .24s ease;
+    }
+    .hero-primary:hover{
+      transform:translateY(-1px);
+      box-shadow:0 22px 56px rgba(250,204,21,.75);
+    }
+    .hero-secondary{
+      padding:8px 15px;
+      border-radius:999px;
+      border:1px dashed rgba(156,163,175,.8);
+      background:rgba(15,23,42,.7);
+      color:var(--muted);
+      font-size:12px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      cursor:pointer;
+    }
+    .hero-footnote{
+      font-size:11px;
+      color:var(--muted);
+    }
 
-/* Footer */
-.nx-footer{
-  margin-top:60px;
-  background:var(--surface);
-  border-top:1px solid rgba(0,0,0,.1);
-  padding:40px 20px;
-}
-.nx-foot-wrap{
-  max-width:1200px;
-  margin:auto;
-}
-</style>
+    .hero-right{
+      position:relative;
+    }
+    .hero-card{
+      position:relative;
+      border-radius:var(--radius-lg);
+      background:radial-gradient(circle at 0 0,rgba(250,204,21,.12),transparent 55%),
+                 radial-gradient(circle at 100% 100%,rgba(56,189,248,.16),transparent 60%),
+                 linear-gradient(145deg,#020617,#020617 40%,#020617 100%);
+      border:1px solid rgba(148,163,184,.6);
+      padding:16px;
+      box-shadow:var(--shadow-lg);
+      overflow:hidden;
+    }
+    .hero-card::before{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background:radial-gradient(circle at 0 0,rgba(250,204,21,.12),transparent 45%),
+                 radial-gradient(circle at 100% 100%,rgba(56,189,248,.14),transparent 60%);
+      opacity:.7;
+    }
+    .hero-card-inner{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr);
+      gap:10px;
+      align-items:center;
+    }
+    .hero-card-info-title{
+      font-size:13px;
+      font-weight:600;
+      margin-bottom:4px;
+    }
+    .hero-card-info-text{
+      font-size:11px;
+      color:var(--muted);
+      margin-bottom:10px;
+    }
+    .hero-metrics{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:8px;
+      font-size:11px;
+    }
+    .hero-metric{
+      padding:6px 8px;
+      border-radius:12px;
+      border:1px solid rgba(148,163,184,.7);
+      background:rgba(15,23,42,.86);
+    }
+    .hero-metric-label{
+      color:var(--muted);
+    }
+    .hero-metric-value{
+      font-size:13px;
+      font-weight:600;
+      margin-top:1px;
+    }
+
+    .hero-chart-shell{
+      position:relative;
+      border-radius:14px;
+      overflow:hidden;
+      background:#020617;
+      border:1px solid rgba(15,23,42,.7);
+      box-shadow:0 16px 40px rgba(0,0,0,.8);
+    }
+    .hero-chart-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:8px 10px;
+      border-bottom:1px solid rgba(15,23,42,.9);
+      background:radial-gradient(circle at 0 0,rgba(59,130,246,.26),transparent 60%);
+    }
+    .hero-chart-header span{
+      font-size:11px;
+    }
+    .hero-chart-tag{
+      font-size:10px;
+      padding:2px 6px;
+      border-radius:999px;
+      background:rgba(15,23,42,.9);
+      border:1px solid rgba(148,163,184,.7);
+    }
+    .hero-chart-body{
+      position:relative;
+      height:120px;
+      overflow:hidden;
+    }
+    .hero-chart-grid{
+      position:absolute;
+      inset:0;
+      background-image:linear-gradient(to right,rgba(148,163,184,.18) 1px,transparent 1px),
+                       linear-gradient(to top,rgba(148,163,184,.18) 1px,transparent 1px);
+      background-size:40px 30px;
+      opacity:.65;
+    }
+    .hero-chart-line{
+      position:absolute;
+      inset:10px 6px 4px;
+      display:flex;
+      align-items:flex-end;
+      gap:4px;
+    }
+    .hero-chart-bar{
+      flex:1;
+      border-radius:999px;
+      background:linear-gradient(to top,rgba(250,204,21,.1),rgba(250,204,21,.9));
+      box-shadow:0 0 16px rgba(250,204,21,.6);
+      transform-origin:bottom;
+      animation:bar-rise 1.2s ease-out forwards;
+    }
+    .hero-chart-bar:nth-child(3),
+    .hero-chart-bar:nth-child(4){
+      background:linear-gradient(to top,#38bdf8,#facc15);
+    }
+
+    @keyframes bar-rise{
+      from{transform:scaleY(.1);opacity:.2;}
+      to{transform:scaleY(1);opacity:1;}
+    }
+
+    /* ===== SECTIONS BELOW HERO – KEEP YOUR EXISTING CONTENT HERE ===== */
+    /* Generic panel styling for any existing sections */
+    .section{
+      padding:24px 0 30px;
+    }
+    .panel{
+      border-radius:var(--radius-md);
+      background:radial-gradient(circle at 0 0,#020617,#020617 60%);
+      border:1px solid rgba(148,163,184,.45);
+      padding:16px 18px;
+      box-shadow:var(--shadow-md);
+    }
+    .panel-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:12px;
+      margin-bottom:10px;
+    }
+    .panel-title{
+      font-size:16px;
+      font-weight:600;
+    }
+    .panel-subtitle{
+      font-size:11px;
+      color:var(--muted);
+    }
+
+    /* Example table style, apply to your financials table / others */
+    table{
+      width:100%;
+      border-collapse:collapse;
+      font-size:11px;
+      margin-top:8px;
+    }
+    th,td{
+      padding:6px 8px;
+      text-align:left;
+      border-bottom:1px solid rgba(15,23,42,.9);
+    }
+    th{
+      color:#e5e7eb;
+      background:rgba(15,23,42,.9);
+      position:sticky;
+      top:0;
+      z-index:1;
+    }
+    tr:nth-child(even) td{
+      background:rgba(15,23,42,.5);
+    }
+
+    /* ===== FOOTER ===== */
+    footer{
+      margin-top:28px;
+      border-top:1px solid rgba(15,23,42,.9);
+      background:#020617;
+    }
+    .footer-inner{
+      max-width:1200px;
+      margin:0 auto;
+      padding:16px 20px 24px;
+      display:grid;
+      grid-template-columns:1.2fr 1fr 1fr;
+      gap:18px;
+      font-size:12px;
+    }
+    .footer-brand{
+      color:var(--muted);
+    }
+    .footer-brand-title{
+      font-weight:600;
+      font-size:14px;
+      margin-bottom:4px;
+      color:#e5e7eb;
+    }
+    .footer-links{
+      list-style:none;
+      display:grid;
+      gap:6px;
+      color:var(--muted);
+    }
+    .footer-links a{
+      font-size:12px;
+      opacity:.9;
+      transition:opacity .2s ease,transform .2s ease;
+    }
+    .footer-links a:hover{
+      opacity:1;
+      transform:translateX(2px);
+    }
+    .footer-bottom{
+      max-width:1200px;
+      margin:0 auto;
+      padding:10px 20px 16px;
+      border-top:1px solid rgba(15,23,42,.85);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      color:var(--muted);
+      font-size:11px;
+    }
+
+    /* ===== SCROLL ANIMATIONS ===== */
+    .reveal{
+      opacity:0;
+      transform:translateY(12px);
+      transition:opacity .5s ease-out,transform .5s ease-out;
+    }
+    .reveal.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width:1024px){
+      .nx-drop{
+        min-width:480px;
+        max-width:90vw;
+      }
+    }
+    @media (max-width:880px){
+      .nav-main{
+        display:none;
+      }
+      .nav-main.open{
+        display:flex;
+        flex-direction:column;
+        align-items:flex-start;
+        position:absolute;
+        left:0;right:0;
+        top:var(--nav-height);
+        background:rgba(2,6,23,.98);
+        padding:14px 18px 16px;
+        border-bottom:1px solid rgba(148,163,184,.4);
+        gap:16px;
+      }
+      .nav-links{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:10px;
+      }
+      .nav-burger{
+        display:flex;
+      }
+      .nx-drop{
+        position:static;
+        transform:none;
+        max-width:none;
+        min-width:0;
+        width:100%;
+        margin-top:8px;
+        box-shadow:none;
+        visibility:visible !important;
+        opacity:1 !important;
+        pointer-events:auto;
+        transition:none;
+      }
+      .nx-drop.show{
+        transform:none;
+      }
+      .hero-inner{
+        grid-template-columns:minmax(0,1fr);
+      }
+      .hero{
+        padding-top:26px;
+      }
+    }
+    @media (max-width:640px){
+      .top-bar-inner{
+        padding-inline:12px;
+      }
+      .nav{
+        padding-inline:12px;
+      }
+      .wrap{
+        padding-inline:12px;
+      }
+      .hero-title{
+        font-size:24px;
+      }
+      .hero-card-inner{
+        grid-template-columns:minmax(0,1fr);
+      }
+      .footer-inner{
+        grid-template-columns:minmax(0,1fr);
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <!-- Auto device flag (add class is-mobile via JS) -->
+  <script>
+    (function(){
+      function updateDeviceClass(){
+        if(window.matchMedia("(max-width: 880px)").matches){
+          document.body.classList.add("is-mobile");
+        }else{
+          document.body.classList.remove("is-mobile");
+        }
+      }
+      updateDeviceClass();
+      window.addEventListener("resize",updateDeviceClass);
+    })();
+  </script>
 
-<!-- NAVBAR -->
-<header class="nx-navbar">
-  <div class="nx-nav-inner">
-    <a class="nx-brand" href="index.html">
-      <img class="nx-logo" src="stoxgear-logo.jpg">
-      <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg">
-    </a>
+  <!-- TOP CONTACT BAR -->
+  <div class="top-bar">
+    <div class="top-bar-inner">
+      <div class="top-bar-left">
+        <div class="top-pill">
+          <span class="icon"></span>
+          <span>PSX Licensed Brokerage (Proposed)</span>
+        </div>
+        <div class="top-link">
+          <span>Call:</span>
+          <strong>0913168395</strong>
+        </div>
+        <div class="top-link">
+          <span>Email:</span>
+          <strong>info@stoxgear.com.pk</strong>
+        </div>
+      </div>
+      <div class="top-bar-right">
+        <a href="https://www.psx.com.pk/" target="_blank" class="top-link">
+          <span>Pakistan Stock Exchange</span>
+        </a>
+        <a href="https://www.cdcpakistan.com" target="_blank" class="top-link">
+          <span>CDC</span>
+        </a>
+        <a href="https://www.secp.gov.pk" target="_blank" class="top-link">
+          <span>SECP</span>
+        </a>
+      </div>
+    </div>
+  </div>
 
-    <div class="nx-grow"></div>
-
-    <nav class="nx-menu">
-      <div class="nx-item">
-        <a class="nx-link" href="#">Why Us</a>
-        <div class="nx-drop">
-          <a href="about.html">About US</a>
-          <a href="BOARD of directors.html">Board of Directors / Management</a>
-          <a href="Mission.html">Mission / Vision</a>
-          <a href="associated companies.html">Associated Companies</a>
-          <a href="Ncb auditor details .html">Auditors / Legal Advisors</a>
-          <a href="services.html">Services</a>
-          <a href="Registered agents..html">Registered Agents</a>
+  <!-- NAVBAR -->
+  <header>
+    <nav class="nav">
+      <div class="nav-brand">
+        <div class="nav-logo">
+          <div class="nav-logo-mark"></div>
+        </div>
+        <div class="nav-title-block">
+          <div class="nav-title">StoxGear</div>
+          <div class="nav-subtitle">Securities &amp; Investments</div>
         </div>
       </div>
 
-      <div class="nx-item">
-        <a class="nx-link" href="#">Education</a>
-        <div class="nx-drop">
-          <a href="New to trading.html">New to Trading</a>
-          <a href="Investorguid.html">Investor Guide</a>
-          <a href="Glossary.html">Glossary</a>
-          <a href="psx-rule-book.html">PSX Rule Book</a>
-          <a href="common-terms-share-market.html">Common Terms of Share Market</a>
-          <a href="online-order-execution-flow.html">Online Order Execution Flow</a>
-          <a href="order-settlement-flow.html">Order Settlement Flow</a>
-          <a href="arbitration-procedure.html">Arbitration Procedure</a>
-          <a href="risk-disclosure-document.html">Risk Disclosure Document</a>
-          <a href="procedure-cancel-pending-orders.html">Procedure To Cancel Pending Orders</a>
-          <a href="faqs.html">FAQs</a>
+      <div class="nav-main" id="navMain">
+        <ul class="nav-links">
+          <li>
+            <button class="nav-link-btn" data-drop="servicesDrop">
+              <span class="label">Services</span>
+              <span class="chevron">▾</span>
+            </button>
+            <!-- MEGAMENU – SERVICES -->
+            <div class="nx-drop" id="servicesDrop">
+              <div class="nx-drop-col">
+                <div class="nx-drop-title">Brokerage &amp; Trading</div>
+                <div class="nx-drop-text">
+                  Seamless access to Pakistan Stock Exchange through a modern, digital-first investment platform.
+                </div>
+                <ul class="nx-drop-list">
+                  <li class="nx-drop-item">
+                    <a href="https://www.psx.com.pk/psx/themes/psx/uploads/PSX_RuleBook.pdf" target="_blank">
+                      <div>
+                        <strong>Equity Trading</strong>
+                        <div class="nx-drop-text">Buy and sell listed shares via PSX with real-time execution and statements.</div>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="nx-drop-item">
+                    <a href="https://www.cdcpakistan.com/products-services/custody-settlement/" target="_blank">
+                      <div>
+                        <strong>Custody &amp; Settlement</strong>
+                        <div class="nx-drop-text">Integration with CDC for efficient custody, settlement and account maintenance.</div>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="nx-drop-item">
+                    <a href="https://www.psx.com.pk/psx/resources/publications" target="_blank">
+                      <div>
+                        <strong>Online Statements</strong>
+                        <div class="nx-drop-text">Digital access to contract notes, ledgers and portfolio snapshots.</div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="nx-drop-col nx-drop-highlight">
+                <div class="nx-drop-highlight-bg"></div>
+                <div class="nx-drop-highlight-inner">
+                  <div class="nx-drop-tagline">Built for serious investors</div>
+                  <div class="nx-drop-hero">
+                    One account. <span>Institutional-grade</span> access.
+                  </div>
+                  <div class="nx-drop-text">
+                    From day traders to long-term investors, StoxGear is designed to keep you informed, compliant and in control.
+                  </div>
+                  <div class="nx-drop-illus">
+                    <!-- Hero-inspired image (stocks / charts) -->
+                    <img src="https://images.pexels.com/photos/5668473/pexels-photo-5668473.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Trading desk with financial charts">
+                    <div class="nx-drop-illus-overlay"></div>
+                    <div class="nx-drop-illus-caption">
+                      Live market data, risk views &amp; detailed order history in one place.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <button class="nav-link-btn" data-drop="researchDrop">
+              <span class="label">Research</span>
+              <span class="chevron">▾</span>
+            </button>
+            <!-- MEGAMENU – RESEARCH -->
+            <div class="nx-drop" id="researchDrop">
+              <div class="nx-drop-col">
+                <div class="nx-drop-title">Insights &amp; Tools</div>
+                <div class="nx-drop-text">
+                  Access curated insights, corporate announcements and market data from reliable sources.
+                </div>
+                <ul class="nx-drop-list">
+                  <li class="nx-drop-item">
+                    <a href="https://dps.psx.com.pk/announcements" target="_blank">
+                      <div>
+                        <strong>Corporate Announcements</strong>
+                        <div class="nx-drop-text">Stay updated with PSX-listed company notices, financials and disclosures.</div>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="nx-drop-item">
+                    <a href="https://jamapunji.pk" target="_blank">
+                      <div>
+                        <strong>Investor Education <span class="nx-badge">SECP</span></strong>
+                        <div class="nx-drop-text">Learn the basics of capital markets, mutual funds and risk management.</div>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="nx-drop-item">
+                    <a href="https://www.psx.com.pk/psx/explorer/company" target="_blank">
+                      <div>
+                        <strong>Company Explorer</strong>
+                        <div class="nx-drop-text">Browse listed companies by sector, fundamentals and price performance.</div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="nx-drop-col nx-drop-highlight">
+                <div class="nx-drop-highlight-bg"></div>
+                <div class="nx-drop-highlight-inner">
+                  <div class="nx-drop-tagline">Data + discipline</div>
+                  <div class="nx-drop-hero">
+                    Make decisions backed by <span>real numbers</span>.
+                  </div>
+                  <div class="nx-drop-text">
+                    Combine live quotations with historical financials, analyst views and your own conviction.
+                  </div>
+                  <div class="nx-drop-illus">
+                    <img src="https://images.pexels.com/photos/7567440/pexels-photo-7567440.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Analytics dashboard with charts">
+                    <div class="nx-drop-illus-overlay"></div>
+                    <div class="nx-drop-illus-caption">
+                      A clean, focused information layer for serious portfolio tracking.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <button class="nav-link-btn" data-drop="supportDrop">
+              <span class="label">Support</span>
+              <span class="chevron">▾</span>
+            </button>
+            <!-- MEGAMENU – SUPPORT -->
+            <div class="nx-drop" id="supportDrop">
+              <div class="nx-drop-col">
+                <div class="nx-drop-title">Client Support</div>
+                <div class="nx-drop-text">
+                  Dedicated helpdesk for onboarding, e-services and regulatory queries.
+                </div>
+                <ul class="nx-drop-list">
+                  <li class="nx-drop-item">
+                    <a href="https://www.cdcpakistan.com/customer-services/eservices/" target="_blank">
+                      <div>
+                        <strong>CDC e-Services</strong>
+                        <div class="nx-drop-text">View CDC accounts, subscribe to IVR/SMS and monitor holdings in real time.</div>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="nx-drop-item">
+                    <a href="https://www.nccpl.com.pk/services" target="_blank">
+                      <div>
+                        <strong>NCCPL Services</strong>
+                        <div class="nx-drop-text">Understand clearing, settlement and risk management services of NCCPL.</div>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="nx-drop-item">
+                    <a href="https://www.secp.gov.pk/document/investor-complaints-guide/" target="_blank">
+                      <div>
+                        <strong>Investor Complaint Channels</strong>
+                        <div class="nx-drop-text">Escalation paths via broker, SECP and other formal forums.</div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="nx-drop-col nx-drop-highlight">
+                <div class="nx-drop-highlight-bg"></div>
+                <div class="nx-drop-highlight-inner">
+                  <div class="nx-drop-tagline">Here when you need us</div>
+                  <div class="nx-drop-hero">
+                    Human support, <span>backed by process</span>.
+                  </div>
+                  <div class="nx-drop-text">
+                    Clear documentation, transparent charges and a structured escalation framework protect your interests.
+                  </div>
+                  <div class="nx-drop-illus">
+                    <img src="https://images.pexels.com/photos/8867431/pexels-photo-8867431.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Customer support desk">
+                    <div class="nx-drop-illus-overlay"></div>
+                    <div class="nx-drop-illus-caption">
+                      Your relationship with StoxGear is managed with care and accountability.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+        <div class="nav-cta-wrap">
+          <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});">
+            <span class="nav-cta-dot"></span>
+            <span>Open Account</span>
+          </button>
+          <div class="nav-contact-mini">
+            <span>0913168395</span>
+            <span>info@stoxgear.com.pk</span>
+          </div>
         </div>
       </div>
 
-      <div class="nx-item">
-        <a class="nx-link" href="#">Open Account</a>
-        <div class="nx-drop">
-          <a href="Rda.html">Roshan Digital Account (RDA)</a>
-          <a href="Acoocint opening.html">Open Digital Account</a>
-          <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
-        </div>
-      </div>
-
-      <div class="nx-item">
-        <a class="nx-link" href="#">Downloads</a>
-        <div class="nx-drop">
-          <a href="Forms.html">Forms</a>
-          <a href="software.html">Software</a>
-        </div>
-      </div>
-
-      <div class="nx-item">
-        <a class="nx-link" href="#">Support</a>
-        <div class="nx-drop">
-          <a href="investor complaint.html">Investor Complaint</a>
-          <a href="Annaual half yearly.html">Annual / Half yearly / Quarterly Financial Statements</a>
-          <a href="Auditor.html">Statutory Auditor Details</a>
-          <a href="Ncb auditor details .html">NCB Auditor Details</a>
-          <a href="KYC poslicy.html">CDD / KYC Policy</a>
-          <a href="Pending investor complaun.html">Pending Investor Complaints</a>
-          <a href="Penal action.html">Details of Penal Action</a>
-          <a href="Secp complaint.html">SECP Complaint</a>
-          <a href="psx complaint.html">PSX Complaint</a>
-          <a href="UIs of NICCPL.html">UIS Services of NCCPL</a>
-          <a href="Eservices By CDC.html">EServices by CDC</a>
-          <a href="Contact.html">Contact</a>
-        </div>
+      <div class="nav-burger" id="navBurger" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
       </div>
     </nav>
-
-    <a href="Acoocint opening.html" class="nx-cta">OPEN AN ACCOUNT</a>
-    <button class="nx-toggle">☰</button>
-  </div>
-</header>
-
-<!-- MAIN -->
-<section class="account-opening wrap fade-up">
-  <header class="ao-head">
-    <h2>ACCOUNT OPENING</h2>
-    <p class="sub">DOCUMENT REQUIREMENTS</p>
   </header>
 
-  <div class="ao-hero fade-up">
-    <div>
-      <h3 style="margin:0 0 10px;">Open your trading account online</h3>
-      <p>Submit your documents digitally and start investing without visiting our office.</p>
-      <p>Stoxgear provides seamless onboarding powered by CDC & NCCPL integrations.</p>
-      <br>
-      <a href="Acoocint opening.html" class="btn-cta">Proceed to Open Account</a>
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-inner">
+          <div class="hero-left reveal">
+            <div class="hero-kicker">
+              <span class="hero-kicker-dot"></span>
+              <span>Digital brokerage crafted for Pakistan’s investors</span>
+            </div>
+            <h1 class="hero-title">
+              A modern way to access the <span>Pakistan Stock Exchange</span>.
+            </h1>
+            <p class="hero-body">
+              StoxGear aims to offer a clean, high-trust investing experience – from account opening and KYC
+              to order execution, research access and portfolio reporting. Built for individuals, professionals
+              and family offices who want more control and better visibility.
+            </p>
+            <div class="hero-badges">
+              <div class="hero-badge">Proposed PSX Trading Only Broker</div>
+              <div class="hero-badge">SECP-regulated capital market ecosystem</div>
+              <div class="hero-badge">Integrated with CDC &amp; NCCPL workflows</div>
+            </div>
+
+            <div class="hero-cta-row">
+              <button class="hero-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});">
+                Begin Onboarding
+                <span>→</span>
+              </button>
+              <a class="hero-secondary" href="https://jamapunji.pk/investor-education" target="_blank">
+                Investor education (JamaPunji)
+              </a>
+            </div>
+
+            <div class="hero-footnote">
+              Trading in shares involves risk of capital loss. Please read all risk disclosures carefully before investing.
+            </div>
+          </div>
+
+          <div class="hero-right reveal">
+            <div class="hero-card">
+              <div class="hero-card-inner">
+                <div>
+                  <div class="hero-card-info-title">Your portfolio, at a glance</div>
+                  <div class="hero-card-info-text">
+                    Visualise exposure by sector, top holdings and day-to-day P&amp;L on a single premium dashboard.
+                  </div>
+                  <div class="hero-metrics">
+                    <div class="hero-metric">
+                      <div class="hero-metric-label">1-Year Return (sample)</div>
+                      <div class="hero-metric-value">+18.4%</div>
+                    </div>
+                    <div class="hero-metric">
+                      <div class="hero-metric-label">Diversification score</div>
+                      <div class="hero-metric-value">Balanced</div>
+                    </div>
+                    <div class="hero-metric">
+                      <div class="hero-metric-label">Top sector weight</div>
+                      <div class="hero-metric-value">Banks &amp; E&amp;P</div>
+                    </div>
+                    <div class="hero-metric">
+                      <div class="hero-metric-label">Holdings</div>
+                      <div class="hero-metric-value">12 scrips</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="hero-chart-shell">
+                  <div class="hero-chart-header">
+                    <span>Sample equity curve</span>
+                    <span class="hero-chart-tag">For illustration only</span>
+                  </div>
+                  <div class="hero-chart-body">
+                    <div class="hero-chart-grid"></div>
+                    <div class="hero-chart-line">
+                      <div class="hero-chart-bar" style="height:30%;"></div>
+                      <div class="hero-chart-bar" style="height:45%;"></div>
+                      <div class="hero-chart-bar" style="height:70%;"></div>
+                      <div class="hero-chart-bar" style="height:80%;"></div>
+                      <div class="hero-chart-bar" style="height:60%;"></div>
+                      <div class="hero-chart-bar" style="height:75%;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><!-- hero-right -->
+        </div>
+      </div>
+    </section>
+
+    <!-- YOUR EXISTING CONTENT (tables / procedures / policies etc.) -->
+    <!-- Replace the dummy example below with your original sections, keeping panel structure if you want the same look -->
+
+    <section class="section reveal">
+      <div class="wrap">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <div class="panel-title">Annual / Half-Yearly / Quarterly Financials</div>
+              <div class="panel-subtitle">
+                Download audited and reviewed financial statements, directors’ reports and related disclosures.
+              </div>
+            </div>
+            <a href="https://dps.psx.com.pk/announcements" target="_blank" class="hero-secondary" style="border-style:solid;padding-inline:10px;">
+              View on PSX DPS
+            </a>
+          </div>
+
+          <!-- Example table – replace rows/links with your actual content but keep structure -->
+          <table>
+            <thead>
+              <tr>
+                <th>Period</th>
+                <th>Type</th>
+                <th>Financial Statements</th>
+                <th>Directors’ Report</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>FY 2024</td>
+                <td>Annual</td>
+                <td><a href="#" target="_blank">Download PDF</a></td>
+                <td><a href="#" target="_blank">Download PDF</a></td>
+                <td>Sample layout – replace with actual links for each period.</td>
+              </tr>
+              <tr>
+                <td>HY 2024</td>
+                <td>Half-Yearly</td>
+                <td><a href="#" target="_blank">Download PDF</a></td>
+                <td><a href="#" target="_blank">Download PDF</a></td>
+                <td>Unaudited interim accounts (illustrative).</td>
+              </tr>
+              <tr>
+                <td>Q1 2024</td>
+                <td>Quarterly</td>
+                <td><a href="#" target="_blank">Download PDF</a></td>
+                <td><a href="#" target="_blank">Download PDF</a></td>
+                <td>Template row – map to PSX DPS filings.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / ACCOUNT OPENING SECTION -->
+    <section class="section reveal" id="contact">
+      <div class="wrap">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <div class="panel-title">Get in touch</div>
+              <div class="panel-subtitle">
+                Share your details and we will guide you through the account opening and KYC formalities.
+              </div>
+            </div>
+          </div>
+
+          <form onsubmit="event.preventDefault(); alert('This is a static demo form. Connect it to your backend or email service.');">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:12px;">
+              <div>
+                <label style="font-size:11px;display:block;margin-bottom:3px;">Full Name</label>
+                <input type="text" required
+                  style="width:100%;padding:7px 9px;border-radius:10px;border:1px solid rgba(148,163,184,.7);background:#020617;color:#f9fafb;font-size:12px;">
+              </div>
+              <div>
+                <label style="font-size:11px;display:block;margin-bottom:3px;">Email</label>
+                <input type="email" required
+                  style="width:100%;padding:7px 9px;border-radius:10px;border:1px solid rgba(148,163,184,.7);background:#020617;color:#f9fafb;font-size:12px;">
+              </div>
+              <div>
+                <label style="font-size:11px;display:block;margin-bottom:3px;">Mobile</label>
+                <input type="tel"
+                  style="width:100%;padding:7px 9px;border-radius:10px;border:1px solid rgba(148,163,184,.7);background:#020617;color:#f9fafb;font-size:12px;">
+              </div>
+            </div>
+            <div style="margin-bottom:10px;">
+              <label style="font-size:11px;display:block;margin-bottom:3px;">Message / Requirements</label>
+              <textarea rows="3"
+                style="width:100%;padding:7px 9px;border-radius:10px;border:1px solid rgba(148,163,184,.7);background:#020617;color:#f9fafb;font-size:12px;resize:vertical;"></textarea>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;">
+              <button type="submit" class="hero-primary">
+                Submit Request
+                <span>→</span>
+              </button>
+              <span style="font-size:11px;color:var(--muted);">
+                Or reach us directly at <strong>0913168395</strong> • <strong>info@stoxgear.com.pk</strong>
+              </span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-brand-title">StoxGear Securities</div>
+        <p>
+          A proposed securities brokerage and capital markets advisory platform
+          focused on transparent execution, disciplined processes and premium experience.
+        </p>
+      </div>
+      <div>
+        <div class="footer-brand-title">Regulatory Links</div>
+        <ul class="footer-links">
+          <li><a href="https://www.psx.com.pk" target="_blank">Pakistan Stock Exchange</a></li>
+          <li><a href="https://www.cdcpakistan.com" target="_blank">CDC Pakistan</a></li>
+          <li><a href="https://www.nccpl.com.pk" target="_blank">NCCPL</a></li>
+          <li><a href="https://www.secp.gov.pk" target="_blank">SECP</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-brand-title">Contact</div>
+        <ul class="footer-links">
+          <li>Phone: 0913168395</li>
+          <li>Email: info@stoxgear.com.pk</li>
+          <li>Office: (Insert address here)</li>
+        </ul>
+      </div>
     </div>
-
-    <div class="ao-visual">
-      <img src="https://images.unsplash.com/photo-1569025690938-a00729c9e8d7?q=80&w=800" style="width:100%;border-radius:14px;">
+    <div class="footer-bottom">
+      <span>© <span id="yearSpan"></span> StoxGear Securities. All rights reserved.</span>
+      <span>Investments in capital markets are subject to market risk.</span>
     </div>
-  </div>
+  </footer>
 
-  <div class="req-grid fade-up">
-    <div class="req-card"><div class="req-ico">🪪</div> CNIC</div>
-    <div class="req-card"><div class="req-ico">👥</div> Nominee CNIC</div>
-    <div class="req-card"><div class="req-ico">📱</div> Registered Mobile Number</div>
-    <div class="req-card"><div class="req-ico">🏦</div> IBAN / Bank Account</div>
-    <div class="req-card"><div class="req-ico">👩‍👦</div> Mother's Maiden Name</div>
-    <div class="req-card"><div class="req-ico">✉️</div> Email</div>
-    <div class="req-card"><div class="req-ico">💼</div> Source of Income</div>
-    <div class="req-card"><div class="req-ico">✍️</div> Signature Picture</div>
-    <div class="req-card"><div class="req-ico">🧾</div> Zakat Declaration</div>
-    <div class="req-card"><div class="req-ico">📄</div> Tax Return Summary</div>
-  </div>
+  <!-- NAV + DROPDOWN JS -->
+  <script>
+    // Year in footer
+    document.getElementById("yearSpan").textContent = new Date().getFullYear();
 
-  <p class="fade-up" style="text-align:center;margin-top:15px;color:var(--text-2);">
-    * Files must be under 400kb (JPG/PNG)
-  </p>
+    // Burger toggle for mobile
+    const burger = document.getElementById("navBurger");
+    const navMain = document.getElementById("navMain");
+    burger.addEventListener("click", () => {
+      burger.classList.toggle("active");
+      navMain.classList.toggle("open");
+    });
 
-  <div class="cta-row fade-up" style="text-align:center;margin-top:20px;">
-    <a href="Acoocint opening.html" class="btn-cta">Open Digital Account</a>
-  </div>
-</section>
+    // Dropdowns
+    const buttons = document.querySelectorAll(".nav-link-btn");
+    const drops = document.querySelectorAll(".nx-drop");
 
-<!-- FOOTER -->
-<footer class="nx-footer">
-  <div class="nx-foot-wrap">
-    <p>© <script>document.write(new Date().getFullYear())</script> Stoxgear Securities</p>
-  </div>
-</footer>
-
-<script>
-// Fade-up animation
-const obs = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add("in");
-      obs.unobserve(e.target);
+    function closeAllDrops(){
+      drops.forEach(d => d.classList.remove("show"));
     }
-  });
-},{threshold:.2});
 
-document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+    // Desktop hover with slight delay; click for mobile
+    buttons.forEach(btn => {
+      const id = btn.getAttribute("data-drop");
+      const drop = document.getElementById(id);
+      let hoverTimeout;
 
-// Mobile menu
-const toggle=document.querySelector('.nx-toggle');
-const menu=document.querySelector('.nx-menu');
-toggle.addEventListener('click',()=>menu.classList.toggle('active'));
-</script>
+      // Desktop hover behaviour
+      btn.addEventListener("mouseenter", () => {
+        if(!window.matchMedia("(min-width: 881px)").matches) return;
+        clearTimeout(hoverTimeout);
+        hoverTimeout = setTimeout(() => {
+          closeAllDrops();
+          drop.classList.add("show");
+        },120); // small delay to make it easy to reach
+      });
+      btn.addEventListener("mouseleave", () => {
+        if(!window.matchMedia("(min-width: 881px)").matches) return;
+        hoverTimeout = setTimeout(() => {
+          drop.classList.remove("show");
+        },220); // delay close so user can move to menu
+      });
+      drop.addEventListener("mouseenter", () => {
+        if(!window.matchMedia("(min-width: 881px)").matches) return;
+        clearTimeout(hoverTimeout);
+      });
+      drop.addEventListener("mouseleave", () => {
+        if(!window.matchMedia("(min-width: 881px)").matches) return;
+        hoverTimeout = setTimeout(() => {
+          drop.classList.remove("show");
+        },200);
+      });
 
+      // Click toggle for mobile
+      btn.addEventListener("click", (e) => {
+        if(window.matchMedia("(min-width: 881px)").matches) return;
+        e.preventDefault();
+        if(drop.classList.contains("show")){
+          drop.classList.remove("show");
+        }else{
+          closeAllDrops();
+          drop.classList.add("show");
+        }
+      });
+    });
+
+    // Scroll reveal
+    const revealEls = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },{threshold:0.15});
+
+    revealEls.forEach(el=>observer.observe(el));
+  </script>
 </body>
 </html>
