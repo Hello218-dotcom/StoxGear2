@@ -1,1169 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Annual / Half Yearly / Quarterly Financials – StoxGear</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Account Opening – Document Requirements</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  /* WHITE + GOLD THEME */
   --bg:#ffffff;
-  --panel:#ffffff;
-  --ink:#141414;
-  --muted:#666666;
-  --accent:#c9a646;
+  --text:#0f1220;
+  --text-dim:#5e6676;
+  --accent:#c9a646; /* GOLD */
   --accent-2:#b38b2e;
-  --line:#e5e5e5;
   --radius:16px;
-  --shadow:0 10px 26px rgba(0,0,0,.10);
 }
-
-*{box-sizing:border-box;margin:0;padding:0;}
 
 body{
   margin:0;
+  padding:0;
   background:var(--bg);
-  color:var(--ink);
-  font-family:Poppins,system-ui,Segoe UI,sans-serif;
-}
-
-a{color:var(--accent);text-decoration:none;transition:.2s;}
-a:hover{color:var(--accent-2);}
-
-/* =========== NAVBAR (KEEPING STRUCTURE SAME) =========== */
-
-/* ================== NAVBAR (White & Gold) ================== */
-
-:root{
-  --text:#0f1220;
-  --text-dim:#5e6676;
-  --accent:#c9a646;
-  --accent-2:#b38b2e;
-  --line:#e7e9ee;
-  --radius:14px;
-}
-
-/* NAVBAR BASE */
-.nx-navbar{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:#fff;
-  border-bottom:1px solid var(--line);
-  box-shadow:0 6px 18px rgba(0,0,0,.06);
-}
-.nx-navbar.scrolled{
-  box-shadow:0 10px 28px rgba(0,0,0,.12);
-}
-
-/* NAVBAR INNER */
-.nx-nav-inner{
-  max-width:1200px;
-  margin:0 auto;
-  padding:14px 24px;
-  display:flex;
-  align-items:center;
-  gap:16px;
-}
-
-.nx-brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
+  font-family:Inter, sans-serif;
   color:var(--text);
 }
-.nx-logo{
-  height:38px;
-  width:auto;
-}
-.nx-logo2{
-  height:38px;
-  width:auto;
-  margin-left:10px;
+
+.page{
+  max-width:900px;
+  margin:60px auto;
+  padding:20px;
+  text-align:center;
 }
 
-.nx-grow{flex:1}
-
-/* CTA BUTTON */
-.nx-cta{
-  background:var(--accent);
-  color:#000;
-  font-weight:700;
-  border:none;
-  padding:10px 22px;
-  border-radius:999px;
-  cursor:pointer;
-  transition:.25s;
+/* TITLE */
+.page h1{
+  font-size:40px;
+  color:var(--accent);
+  font-weight:800;
+  margin-bottom:4px;
 }
-.nx-cta:hover{
-  filter:brightness(1.1);
-}
-
-/* HAMBURGER */
-.nx-toggle{
-  display:none;
-  background:#fff;
-  border:1px solid var(--line);
-  padding:6px 12px;
-  border-radius:10px;
-  font-size:20px;
-  cursor:pointer;
-}
-
-/* NAV MENU */
-.nx-menu{
-  display:flex;
-  align-items:center;
-  gap:26px;
-}
-.nx-item{
-  position:relative;
-}
-.nx-link{
+.page h2{
+  font-size:22px;
+  margin-bottom:40px;
   color:var(--text-dim);
   font-weight:600;
-  position:relative;
-}
-.nx-link:hover{
-  color:var(--accent);
-}
-.nx-link:after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:-6px;
-  width:0;
-  height:2px;
-  background:var(--accent);
-  transition:.25s;
-}
-.nx-link:hover:after{
-  width:100%;
+  letter-spacing:.5px;
 }
 
-/* DROPDOWN */
-.nx-drop{
-  position:absolute;
-  top:calc(100% + 10px);
-  left:0;
-  min-width:230px;
-  background:#fff;
-  border:1px solid var(--line);
-  padding:10px;
-  border-radius:var(--radius);
-  display:none;
-  box-shadow:0 12px 28px rgba(0,0,0,.12);
-}
-.nx-drop a{
-  display:block;
-  padding:8px 10px;
-  color:var(--text);
-  border-radius:10px;
-}
-.nx-drop a:hover{
-  background:#f6f6f6;
-  color:var(--accent);
-}
-
-/* DESKTOP HOVER LOGIC */
-@media (min-width:1025px){
-  .nx-item:hover>.nx-drop{
-    display:block;
-  }
-}
-
-/* MOBILE LOGIC */
-@media (max-width:1024px){
-
-  .nx-toggle{
-    display:block;
-  }
-
-  .nx-menu{
-    display:none;
-    position:absolute;
-    top:100%;
-    left:0;
-    right:0;
-    background:#fff;
-    border-top:1px solid var(--line);
-    flex-direction:column;
-    box-shadow:0 12px 26px rgba(0,0,0,.08);
-    padding:10px 12px;
-  }
-
-  .nx-navbar.is-open .nx-menu{
-    display:flex;
-  }
-
-  .nx-item{ width:100%; }
-  .nx-link{ display:block; padding:12px 6px; }
-
-  .nx-drop{
-    position:static;
-    border:none;
-    box-shadow:none;
-    background:none;
-    padding:0;
-    display:none;
-  }
-
-  .nx-item.open>.nx-drop{
-    display:block;
-  }
-}
-
-/* =========== MOBILE NAV =========== */
-
-.nx-toggle{
-  display:none;
-  margin-left:10px;
-  color:var(--accent);
-  background:none;
-  border:1px solid var(--line);
-  border-radius:10px;
-  padding:6px 10px;
-  font-size:20px;
-  cursor:pointer;
-}
-
-@media (max-width:1024px){
-  .nx-menu{
-    display:none;
-    position:absolute;
-    top:100%;
-    left:0;
-    right:0;
-    background:#fff;
-    border-top:1px solid var(--line);
-    padding:10px 12px 14px;
-    flex-direction:column;
-    gap:0;
-    box-shadow:0 16px 30px rgba(0,0,0,.16);
-  }
-
-  .nx-navbar.is-open .nx-menu{display:flex;}
-
-  .nx-item{width:100%;}
-
-  .nx-link{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:10px 4px;
-  }
-
-  .nx-drop{
-    position:static;
-    border:none;
-    box-shadow:none;
-    padding:4px 0 8px;
-    opacity:1;
-    transform:none;
-    pointer-events:auto;
-  }
-
-  .nx-drop a{
-    white-space:normal;
-    padding:6px 10px;
-  }
-
-  .nx-toggle{display:inline-block;}
-}
-
-/* =========== HERO / HEADER AREA =========== */
-
-.fin-hero{
-  background:radial-gradient(circle at top left,rgba(201,166,70,.16),transparent 60%), #fafafa;
-  border-bottom:1px solid var(--line);
-}
-
-.fin-wrap{
-  max-width:1200px;
-  margin:0 auto;
-  padding:34px 20px 30px;
+/* GRID LIST */
+.grid{
   display:grid;
-  grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);
-  gap:28px;
-  align-items:center;
-}
-
-.fin-head h2{
-  margin:0 0 8px;
-  font-size:clamp(22px,3vw,34px);
-  letter-spacing:.04em;
-}
-
-.fin-head .sub{
-  color:var(--muted);
-  font-size:14px;
-  margin-bottom:10px;
-}
-
-.fin-badge{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:3px 10px;
-  border-radius:999px;
-  background:#fff;
-  border:1px solid rgba(201,166,70,.40);
-  font-size:11px;
-  font-weight:600;
-  color:var(--accent-2);
-  margin-bottom:12px;
-}
-
-.fin-badge span{
-  display:inline-block;
-  width:7px;
-  height:7px;
-  border-radius:999px;
-  background:#22c55e;
-  box-shadow:0 0 0 4px rgba(34,197,94,.2);
-}
-
-.fin-meta-small{
-  font-size:12px;
-  color:var(--muted);
-}
-
-.fin-hero-graphic{
-  justify-self:end;
-  position:relative;
-}
-
-.fin-card-hero{
-  background:#fff;
-  border-radius:22px;
-  padding:18px 16px;
-  border:1px solid rgba(201,166,70,.40);
-  box-shadow:0 14px 34px rgba(0,0,0,.18);
-  max-width:320px;
-}
-
-.fin-card-hero h3{
-  margin:0 0 6px;
-  font-size:16px;
-}
-
-.fin-card-hero p{
-  margin:0 0 10px;
-  font-size:13px;
-  color:var(--muted);
-}
-
-.fin-tag-row{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-}
-
-.fin-tag{
-  font-size:11px;
-  padding:3px 9px;
-  border-radius:999px;
-  background:rgba(201,166,70,.08);
-  color:var(--accent-2);
-  border:1px solid rgba(201,166,70,.30);
-}
-
-.fin-pulse{
-  position:absolute;
-  inset:0;
-  border-radius:28px;
-  border:1px dashed rgba(201,166,70,.5);
-  transform:scale(1.04);
-  opacity:.6;
-  pointer-events:none;
-  animation:pulse 2.4s ease-out infinite;
-}
-
-@keyframes pulse{
-  0%{transform:scale(1.04);opacity:.6;}
-  70%{transform:scale(1.1);opacity:0;}
-  100%{transform:scale(1.1);opacity:0;}
-}
-
-@media(max-width:900px){
-  .fin-wrap{
-    grid-template-columns:1fr;
-  }
-  .fin-hero-graphic{
-    justify-self:flex-start;
-  }
-}
-
-/* =========== YEARS GRID =========== */
-
-.fin-grid{
-  display:grid;
-  gap:20px;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  padding:28px 20px 40px;
-  max-width:1200px;
-  margin:0 auto;
-}
-
-.fin-card-year{
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  padding:22px;
-  text-decoration:none;
-  color:var(--ink);
-  transition:transform .18s ease,border-color .25s ease,box-shadow .25s ease;
-  position:relative;
-  overflow:hidden;
-  cursor:pointer;
-  box-shadow:var(--shadow);
-}
-
-.fin-card-year:before{
-  content:"";
-  position:absolute;
-  inset:-30%;
-  background:radial-gradient(500px 160px at var(--mx,25%) var(--my,25%),rgba(201,166,70,.18),transparent 60%);
-  opacity:0;
-  transition:.3s;
-  z-index:-1;
-}
-
-.fin-card-year:hover{
-  transform:translateY(-4px);
-  border-color:rgba(201,166,70,.65);
-  box-shadow:0 18px 40px rgba(0,0,0,.18);
-}
-
-.fin-card-year:hover:before{opacity:1;}
-
-.fin-chip{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  background:var(--accent);
-  color:#fff;
-  font-weight:700;
-  padding:4px 11px;
-  border-radius:999px;
-  font-size:11px;
-  margin-bottom:10px;
-}
-
-.fin-chip span{
-  width:6px;
-  height:6px;
-  border-radius:999px;
-  background:#fff;
-}
-
-.fin-card-year h3{
-  margin:0 0 6px;
+  grid-template-columns:1fr 1fr;
+  gap:28px 60px;
+  text-align:left;
+  margin-bottom:40px;
   font-size:18px;
 }
 
-.fin-card-year p{
-  margin:0 0 14px;
-  font-size:13px;
-  color:var(--muted);
+@media(max-width:700px){
+  .grid{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
 }
 
-.fin-meta{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  color:var(--muted);
-  font-size:12px;
-}
-
-.fin-meta svg{
-  width:20px;
-  height:20px;
-  stroke:var(--ink);
-  fill:none;
-  stroke-width:2;
-}
-
-/* =========== DRAWER (SHEET) =========== */
-
-.sheet{
-  position:fixed;
-  left:0;
-  right:0;
-  bottom:-100%;
-  z-index:1000;
-  background:#fff;
-  border-top:1px solid var(--line);
-  border-radius:20px 20px 0 0;
-  box-shadow:0 -24px 60px rgba(0,0,0,.45);
-  transition:bottom .35s ease,transform .35s ease;
-  transform:translateY(22px);
-}
-
-.sheet.is-open{
-  bottom:0;
-  transform:none;
-}
-
-.sheet-inner{
-  max-width:1100px;
-  margin:0 auto;
-  padding:20px 20px 24px;
-}
-
-.sheet-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  margin-bottom:6px;
-}
-
-.sheet-title{font-size:20px;margin:0;}
-
-.sheet-close{
-  border:1px solid var(--line);
-  background:#fff;
-  color:var(--ink);
-  border-radius:12px;
-  padding:8px 12px;
-  cursor:pointer;
-  font-size:13px;
-}
-
-.sheet-sub{
-  color:var(--muted);
-  margin:6px 0 16px;
-  font-size:13px;
-}
-
-.sheet-search{
-  width:100%;
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:12px;
-  color:var(--ink);
-  padding:10px 12px;
-  margin-bottom:14px;
-  font-size:13px;
-}
-
-.list{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:12px 16px;
-}
-
-.item{
-  display:flex;
-  gap:10px;
-  align-items:flex-start;
-  text-decoration:none;
-  color:var(--ink);
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:10px 11px;
-  background:#fff;
-  transition:border-color .2s ease, transform .16s ease, box-shadow .2s ease;
-}
-
-.item:hover{
-  border-color:rgba(201,166,70,.7);
-  transform:translateY(-2px);
-  box-shadow:0 10px 24px rgba(0,0,0,.14);
-}
-
-.badge{
-  font-size:11px;
-  font-weight:700;
-  background:var(--accent);
-  color:#fff;
-  border-radius:999px;
-  padding:2px 7px;
-  margin-right:8px;
-}
-
-.item h4{
-  margin:0 0 4px;
+/* FOOTNOTE */
+.note{
   font-size:14px;
+  margin-top:20px;
+  color:var(--text-dim);
 }
 
-.small{
-  color:var(--muted);
-  font-size:12px;
-  margin:0;
-}
-
-.item svg{
-  min-width:22px;
-  height:22px;
-  stroke:var(--ink);
-  fill:none;
-  stroke-width:2;
-  margin-top:2px;
-}
-
-@media(max-width:640px){
-  .sheet-inner{padding:16px 14px 20px;}
-}
-
-/* =========== FOOTER (KEEPING LINKS / STRUCTURE) =========== */
-
-/* ======================== FOOTER ======================== */
-
-.nx-footer{
+/* BUTTON */
+.btn{
   margin-top:40px;
-  background:#fafafa;
-  border-top:1px solid var(--line);
-  color:var(--text-dim);
+  display:inline-block;
+  background:var(--accent);
+  padding:16px 32px;
+  border-radius:999px;
+  font-weight:700;
+  color:#000;
+  font-size:20px;
+  text-decoration:none;
+  transition:.25s;
 }
-
-.nx-foot-wrap{
-  max-width:1200px;
-  margin:0 auto;
-  padding:48px 20px 30px;
-}
-
-/* TOP ROW */
-.nx-foot-top{
-  display:flex;
-  align-items:center;
-  gap:16px;
-  padding-bottom:20px;
-  border-bottom:1px solid var(--line);
-}
-
-.nx-foot-brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  color:var(--text);
-}
-
-.nx-foot-logo{
-  height:38px;
-  width:auto;
-}
-
-/* GRID */
-.nx-foot-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:26px;
-  padding:26px 0 10px;
-}
-
-@media(max-width:900px){
-  .nx-foot-grid{ grid-template-columns:repeat(2,1fr); }
-}
-@media(max-width:540px){
-  .nx-foot-grid{ grid-template-columns:1fr; }
-}
-
-.nx-foot-col h4{
-  font-size:15px;
-  color:var(--accent);
-  margin-bottom:10px;
-}
-
-.nx-foot-col a{
-  color:var(--text);
-  padding:6px 0;
-  font-size:14px;
-  display:block;
-  opacity:.9;
-  transition:.2s ease;
-}
-.nx-foot-col a:hover{
-  opacity:1;
-  transform:translateX(2px);
-}
-
-/* BOTTOM ROW */
-.nx-foot-bottom{
-  padding-top:16px;
-  border-top:1px solid var(--line);
-  font-size:13px;
-  display:flex;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  color:var(--text-dim);
-}
-
-/* =========== SIMPLE REVEAL ANIMATION =========== */
-
-.reveal{
-  opacity:0;
-  transform:translateY(16px);
-  transition:opacity .55s ease, transform .55s ease;
-}
-
-.reveal.is-in{
-  opacity:1;
-  transform:none;
+.btn:hover{
+  background:var(--accent-2);
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= NAVBAR (UNCHANGED STRUCTURE) ================= -->
+<div class="page">
 
-<!-- ========== NAVBAR ========== -->
-<header class="nx-navbar" id="nxHeader">
-  <div class="nx-nav-inner">
+  <h1>ACCOUNT OPENING</h1>
+  <h2>DOCUMENT REQUIREMENTS</h2>
 
-    <!-- BRAND / LOGO -->
-    <a class="nx-brand" href="index.html">
-      <img class="nx-logo" src="stoxgear-logo.jpg" alt="Stoxgear">
-      <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner">
-    </a>
+  <div class="grid">
 
-    <div class="nx-grow"></div>
-
-    <nav class="nx-menu" id="nxMenu">
-
-      <!-- WHY US -->
-      <div class="nx-item">
-        <a class="nx-link" href="#">Why Us</a>
-        <div class="nx-drop">
-          <a href="about.html">About Us</a>
-          <a href="BOARD of directors.html">Board / Management</a>
-          <a href="Mission.html">Mission & Vision</a>
-          <a href="associated companies.html">Associated Companies</a>
-          <a href="Ncb auditor details .html">Auditors / Legal Advisors</a>
-          <a href="services.html">Services</a>
-          <a href="Registered agents..html">Registered Agents</a>
-        </div>
-      </div>
-
-      <!-- EDUCATION -->
-      <div class="nx-item">
-        <a class="nx-link" href="#">Education</a>
-        <div class="nx-drop">
-          <a href="New to trading.html">New to Trading</a>
-          <a href="Investorguid.html">Investor Guide</a>
-          <a href="Glossary.html">Glossary</a>
-          <a href="psx-rule-book.html">PSX Rule Book</a>
-          <a href="common-terms-share-market.html">Common Terms of Share Market</a>
-          <a href="online-order-execution-flow.html">Order Execution Flow</a>
-          <a href="order-settlement-flow.html">Order Settlement Flow</a>
-          <a href="arbitration-procedure.html">Arbitration Procedure</a>
-          <a href="risk-disclosure-document.html">Risk Disclosure Document</a>
-          <a href="procedure-cancel-pending-orders.html">Cancel Pending Orders</a>
-          <a href="faqs.html">FAQs</a>
-        </div>
-      </div>
-
-      <!-- OPEN ACCOUNT -->
-      <div class="nx-item">
-        <a class="nx-link" href="#">Open Account</a>
-        <div class="nx-drop">
-          <a href="Rda.html">Roshan Digital Account</a>
-          <a href="Acoocint opening.html">Open Digital Account</a>
-          <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
-        </div>
-      </div>
-
-      <!-- DOWNLOADS -->
-      <div class="nx-item">
-        <a class="nx-link" href="#">Downloads</a>
-        <div class="nx-drop">
-          <a href="Forms.html">Forms</a>
-          <a href="software.html">Software</a>
-          <a href="Annaual half yearly.html">Financial Statements</a>
-          <a href="KYC poslicy.html">CDD / KYC Policy</a>
-        </div>
-      </div>
-
-      <!-- SUPPORT -->
-      <div class="nx-item">
-        <a class="nx-link" href="#">Support</a>
-        <div class="nx-drop">
-          <a href="investor complaint.html">Investor Complaint</a>        
-          <a href="Pending investor complaun.html">Pending Complaints</a>
-          <a href="Penal action.html">Penal Action</a>
-          <a href="Secp complaint.html">SECP Complaint</a>
-          <a href="psx complaint.html">PSX Complaint</a>
-          <a href="UIs of NICCPL.html">UIS Services</a>
-          <a href="Eservices By CDC.html">EServices by CDC</a>
-        </div>
-      </div>
-
-      <!-- CONTACT (NO DROPDOWN) -->
-      <div class="nx-item">
-        <a class="nx-link" href="Contact.html">Contact</a>
-      </div>
-
-    </nav>
-
-    <button class="nx-cta">OPEN AN ACCOUNT</button>
-    <button class="nx-toggle" id="nxToggle">☰</button>
-
-  </div>
-</header>
-
-
-<!-- ================= HERO SECTION ================= -->
-
-<section class="fin-hero">
-  <div class="fin-wrap">
-
-    <div class="fin-head reveal">
-      <div class="fin-badge">
-        <span></span>
-        Latest Audited & Interim Financials
-      </div>
-
-      <h2>Annual / Half Yearly / Quarterly Financials</h2>
-
-      <p class="sub">
-        View and download financial statements for recent years — including annual reports, half-yearly accounts, and quarterly updates.
-      </p>
-
-      <p class="fin-meta-small">
-        All documents are provided in PDF format and open in a new tab.
-        You may replace these links later with your own StoxGear financials.
-      </p>
+    <div>
+      <p>• CNIC</p>
+      <p>• Nominee CNIC</p>
+      <p>• Registered Mobile Number</p>
+      <p>• IBAN Number Bank Account (cheque picture)</p>
+      <p>• Mother Maiden Name</p>
     </div>
 
-    <div class="fin-hero-graphic reveal">
-      <div class="fin-card-hero">
-        <h3>Digital-First Financial Transparency</h3>
-        <p>
-          Structured reporting across Annual, Half Yearly and Quarterly periods,
-          aligned with capital market best practices.
-        </p>
-        <div class="fin-tag-row">
-          <span class="fin-tag">Annual Reports</span>
-          <span class="fin-tag">Half-Yearly Accounts</span>
-          <span class="fin-tag">Quarterly Updates</span>
-          <span class="fin-tag">PDF Downloads</span>
-        </div>
-      </div>
-      <div class="fin-pulse"></div>
+    <div>
+      <p>• Email</p>
+      <p>• Source of Income / Salary Slip / Business Proof</p>
+      <p>• Picture of Signature</p>
+      <p>• Zakat Declaration</p>
+      <p>• Summary Page of Tax Return</p>
     </div>
 
   </div>
-</section>
 
-<!-- ================= YEARS GRID ================= -->
-<div id="years" class="fin-grid"></div>
+  <p class="note">
+    * Files must be below 400kb. Upload in JPEG or PNG only.
+  </p>
 
-<!-- ================= REPORTS DRAWER ================= -->
-<aside class="sheet" id="sheet" aria-hidden="true">
-  <div class="sheet-inner">
+  <a href="#" class="btn">Proceed to Open Digital Account</a>
 
-    <div class="sheet-head">
-      <h3 class="sheet-title" id="sheetTitle">Reports</h3>
-      <button class="sheet-close" id="sheetClose">Close</button>
-    </div>
-
-    <p class="sheet-sub" id="sheetSub">Annual, Half-Yearly & Quarterly statements.</p>
-
-    <input
-      class="sheet-search"
-      id="sheetSearch"
-      placeholder="Filter by title e.g. “Q2”, “Annual”, “Half-Yearly”…"
-    />
-
-    <div class="list" id="sheetList"></div>
-
-  </div>
-</aside>
-
-<!-- ================= FOOTER (KEEP STRUCTURE) ================= -->
-
-<!-- ========== FOOTER ========== -->
-<footer class="nx-footer">
-  <div class="nx-foot-wrap">
-
-    <!-- TOP BRAND -->
-    <div class="nx-foot-top">
-      <a class="nx-foot-brand" href="index.html">
-        <img class="nx-foot-logo" src="stoxgear-logo.jpg" alt="">
-        <img class="nx-foot-logo" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="">
-      </a>
-    </div>
-
-    <!-- GRID -->
-    <div class="nx-foot-grid">
-
-      <div class="nx-foot-col">
-        <h4>WHY US</h4>
-        <a href="about.html">About Us</a>
-        <a href="BOARD of directors.html">Board / Management</a>
-        <a href="Mission.html">Mission & Vision</a>
-      </div>
-
-      <div class="nx-foot-col">
-        <h4>EDUCATION</h4>
-        <a href="New to trading.html">New to Trading</a>
-        <a href="Investorguid.html">Investor Guide</a>
-        <a href="Glossary.html">Glossary</a>
-      </div>
-
-      <div class="nx-foot-col">
-        <h4>ACCOUNT</h4>
-        <a href="Rda.html">Roshan Digital Account</a>
-        <a href="Acoocint opening.html">Open Digital Account</a>
-        <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
-      </div>
-
-      <div class="nx-foot-col">
-        <h4>CONTACT</h4>
-        <a href="mailto:info@stoxgear.com.pk">info@stoxgear.com.pk</a>
-        <a href="tel:0913168395">091-3168395</a>
-        <a href="#">Karachi, Pakistan</a>
-      </div>
-
-    </div>
-
-    <!-- BOTTOM -->
-    <div class="nx-foot-bottom">
-      <span>© <script>document.write(new Date().getFullYear())</script> Stoxgear Securities (Private) Limited</span>
-      <span>
-        <a href="privacy.html">Privacy</a> ·
-        <a href="terms.html">Terms</a>
-      </span>
-    </div>
-
-  </div>
-</footer>
-
-<script>
-/* ========== NAVBAR BEHAVIOUR (DESKTOP HOVER + MOBILE TAP) ========== */
-(function(){
-  const header = document.getElementById('nxHeader');
-  const menu = document.getElementById('nxMenu');
-  const toggle = document.getElementById('nxToggle');
-
-  if (toggle && header){
-    toggle.addEventListener('click', ()=>{
-      const open = !header.classList.contains('is-open');
-      header.classList.toggle('is-open', open);
-      toggle.setAttribute('aria-expanded', String(open));
-    });
-  }
-
-  // MOBILE: tap link to open dropdown
-  document.querySelectorAll('.nx-item > .nx-link').forEach(link=>{
-    link.addEventListener('click', (e)=>{
-      const isMobile = window.matchMedia('(max-width:1024px)').matches;
-      const parent = link.parentElement;
-      const drop = link.nextElementSibling;
-
-      if(isMobile && drop && drop.classList.contains('nx-drop')){
-        e.preventDefault();
-
-        const alreadyOpen = parent.classList.contains('open');
-
-        document.querySelectorAll('.nx-item.open').forEach(i=>i.classList.remove('open'));
-
-        if(!alreadyOpen) parent.classList.add('open');
-      }
-    });
-  });
-
-  // DESKTOP: hover with slight delay so it "stays" for user
-  document.querySelectorAll('.nx-item').forEach(item=>{
-    let enterTimer, leaveTimer;
-
-    item.addEventListener('mouseenter', ()=>{
-      const isDesktop = window.matchMedia('(min-width:1025px)').matches;
-      if(!isDesktop) return;
-
-      clearTimeout(leaveTimer);
-      enterTimer = setTimeout(()=> item.classList.add('open'), 160);
-    });
-
-    item.addEventListener('mouseleave', ()=>{
-      const isDesktop = window.matchMedia('(min-width:1025px)').matches;
-      if(!isDesktop) return;
-
-      clearTimeout(enterTimer);
-      leaveTimer = setTimeout(()=> item.classList.remove('open'), 220);
-    });
-  });
-
-  // Click outside to close on mobile
-  document.addEventListener('click', (e)=>{
-    const isMobile = window.matchMedia('(max-width:1024px)').matches;
-
-    if(isMobile && header && !header.contains(e.target)){
-      header.classList.remove('is-open');
-      if(toggle) toggle.setAttribute('aria-expanded','false');
-      document.querySelectorAll('.nx-item.open').forEach(i=>i.classList.remove('open'));
-    }
-  });
-})();
-</script>
-
-<script>
-/* ========== REAL WORKING REPORT LINKS (PLACEHOLDERS FROM PSX) ========== */
-/* You can later replace these URLs with your own PDFs easily. */
-
-const REPORTS = {
-  2024: [
-    {
-      title: "Annual Report 2024",
-      kind: "Annual",
-      url: "https://dps.psx.com.pk/download/attachment/249143-1.pdf",
-      size: "PDF • PSX"
-    },
-    {
-      title: "Half-Yearly Report – December 31, 2024",
-      kind: "Half-Yearly",
-      url: "https://www.psx.com.pk/psx/themes/psx/uploads/PSX-Half-Yearly-Report-December-31-2024.pdf",
-      size: "PDF • PSX"
-    },
-    {
-      title: "Quarterly Report – September 30, 2024",
-      kind: "Quarterly",
-      url: "https://www.psx.com.pk/psx/themes/psx/uploads/Quarter-Ended-September-2024.pdf",
-      size: "PDF • PSX"
-    }
-  ],
-
-  2023: [
-    {
-      title: "Annual Report 2023",
-      kind: "Annual",
-      url: "https://www.psx.com.pk/psx/themes/psx/uploads/Annual-Report-2023.pdf",
-      size: "PDF • PSX"
-    }
-  ],
-
-  2022: [
-    {
-      title: "Annual Report 2022",
-      kind: "Annual",
-      url: "https://www.psx.com.pk/psx/file-attachment/199407.pdf",
-      size: "PDF • PSX"
-    }
-  ]
-};
-
-/* ========== RENDER YEARS ========== */
-
-const yearsWrap = document.getElementById('years');
-const years = Object.keys(REPORTS).sort((a,b)=>b-a);
-
-years.forEach((y, i)=>{
-  const total = REPORTS[y].length;
-
-  const el = document.createElement('article');
-  el.className = 'fin-card-year reveal';
-  el.setAttribute('data-year', y);
-
-  el.innerHTML =
-    <div class="fin-chip"><span></span>${i === 0 ? 'Latest Year' : 'Archive'}</div>
-    <h3>Financial Statements – <span>${y}</span></h3>
-    <p>Annual report${total>1?'s':''}${total>1?', interim and quarterly disclosures.':''}</p>
-    <div class="fin-meta">
-      <span>${total} file${total>1?'s':''} available</span>
-      <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
-    </div>
-  ;
-
-  el.addEventListener('pointermove',(e)=>{
-    const r = el.getBoundingClientRect();
-    el.style.setProperty('--mx', ((e.clientX - r.left)/r.width)*100 + '%');
-    el.style.setProperty('--my', ((e.clientY - r.top)/r.height)*100 + '%');
-  });
-
-  el.addEventListener('click',()=>openSheet(y));
-
-  yearsWrap.appendChild(el);
-});
-
-/* ========== SHEET / DRAWER LOGIC ========== */
-
-const sheet = document.getElementById('sheet');
-const sheetTitle = document.getElementById('sheetTitle');
-const sheetSub = document.getElementById('sheetSub');
-const sheetList = document.getElementById('sheetList');
-const sheetClose = document.getElementById('sheetClose');
-const sheetSearch = document.getElementById('sheetSearch');
-
-function openSheet(year){
-  const list = REPORTS[year] || [];
-  sheetTitle.textContent = Reports – ${year};
-  sheetSub.textContent = Annual, Half-Yearly & Quarterly statements for ${year}.;
-
-  renderList(list);
-
-  sheet.classList.add('is-open');
-  sheet.setAttribute('aria-hidden','false');
-
-  sheetSearch.value='';
-
-  sheetSearch.oninput = (e)=> {
-    const q = e.target.value.toLowerCase().trim();
-    const filtered = list.filter(r => (r.title + ' ' + (r.kind || '')).toLowerCase().includes(q));
-    renderList(filtered);
-  };
-}
-
-function closeSheet(){
-  sheet.classList.remove('is-open');
-  sheet.setAttribute('aria-hidden','true');
-}
-
-sheetClose.addEventListener('click', closeSheet);
-
-sheet.addEventListener('click', (e)=>{
-  if(e.target === sheet) closeSheet();
-});
-
-document.addEventListener('keydown', (e)=>{
-  if(e.key === 'Escape') closeSheet();
-});
-
-function renderList(items){
-  sheetList.innerHTML = '';
-
-  items.forEach(r=>{
-    const a = document.createElement('a');
-    a.href = r.url;
-    a.target = '_blank';
-    a.rel = 'noopener';
-    a.className='item';
-
-    a.innerHTML =
-      <svg viewBox="0 0 24 24">
-        <path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path>
-        <path d="M14 2v6h6"></path>
-      </svg>
-      <div>
-        <h4><span class="badge">${r.kind || 'PDF'}</span>${r.title}</h4>
-        <p class="small">${r.size || 'PDF'} • opens in new tab</p>
-      </div>
-    ;
-
-    sheetList.appendChild(a);
-  });
-}
-
-/* ========== REVEAL ON SCROLL ========== */
-
-const io = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add('is-in');
-      io.unobserve(e.target);
-    }
-  });
-},{threshold:.2});
-
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-</script>
+</div>
 
 </body>
 </html>
-
