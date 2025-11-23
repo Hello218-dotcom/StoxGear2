@@ -36,60 +36,187 @@
     .container{max-width:1200px;margin:0 auto;padding:0 20px;}
 
     /* ========== NAVBAR ========== */
-    .nx-navbar{
-      position:sticky;top:0;z-index:999;
-      background:#fff;
-      border-bottom:1px solid var(--line);
-      box-shadow:0 4px 12px rgba(0,0,0,.05);
-    }
-    .nx-nav-inner{
-      max-width:1200px;margin:0 auto;
-      padding:14px 24px;
-      display:flex;align-items:center;gap:18px;
-    }
-    .nx-brand{display:flex;align-items:center;gap:12px;color:var(--ink);}
-    .nx-logo{height:34px;width:auto;display:block;}
-    .nx-logo2{height:30px;width:auto;display:block;object-fit:contain;margin-left:4px;}
+ /* ================== NAVBAR (White & Gold) ================== */
 
-    .nx-grow{flex:1;}
-    .nx-menu{display:flex;align-items:center;gap:26px;}
-    .nx-item{position:relative;}
-    .nx-link{
-      color:var(--muted);font-weight:600;font-size:15px;
-      position:relative;
-    }
-    .nx-link:after{
-      content:"";position:absolute;left:0;right:0;bottom:-6px;
-      height:2px;background:var(--accent);
-      transform:scaleX(0);transition:transform .25s;
-    }
-    .nx-link:hover{color:var(--accent);}
-    .nx-link:hover:after{transform:scaleX(1);}
-    .nx-drop{
-      position:absolute;top:calc(100% + 10px);left:0;min-width:240px;
-      background:#fff;border:1px solid var(--line);
-      border-radius:14px;padding:10px;
-      box-shadow:0 12px 28px rgba(0,0,0,.08);
-      display:none;
-    }
-    .nx-drop a{
-      display:block;padding:8px 12px;border-radius:10px;
-      color:var(--ink);
-    }
-    .nx-drop a:hover{background:#f6f6f6;color:var(--accent);}
-    .nx-cta{
-      border:none;background:var(--accent);color:#fff;
-      padding:10px 18px;border-radius:999px;
-      font-weight:700;cursor:pointer;
-      box-shadow:0 0 14px rgba(201,166,70,.22);
-    }
-    .nx-cta:hover{background:#b38b2e;}
+:root{
+  --text:#0f1220;
+  --text-dim:#5e6676;
+  --accent:#c9a646;
+  --accent-2:#b38b2e;
+  --line:#e7e9ee;
+  --radius:14px;
+}
 
-    /* desktop hover */
-    @media (min-width:1025px){
-      .nx-item:hover>.nx-drop{display:block;}
-      .nx-toggle{display:none;}
-    }
+/* NAVBAR BASE */
+.nx-navbar{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:#fff;
+  border-bottom:1px solid var(--line);
+  box-shadow:0 6px 18px rgba(0,0,0,.06);
+}
+.nx-navbar.scrolled{
+  box-shadow:0 10px 28px rgba(0,0,0,.12);
+}
+
+/* NAVBAR INNER */
+.nx-nav-inner{
+  max-width:1200px;
+  margin:0 auto;
+  padding:14px 24px;
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.nx-brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:var(--text);
+}
+.nx-logo{
+  height:38px;
+  width:auto;
+}
+.nx-logo2{
+  height:38px;
+  width:auto;
+  margin-left:10px;
+}
+
+.nx-grow{flex:1}
+
+/* CTA BUTTON */
+.nx-cta{
+  background:var(--accent);
+  color:#000;
+  font-weight:700;
+  border:none;
+  padding:10px 22px;
+  border-radius:999px;
+  cursor:pointer;
+  transition:.25s;
+}
+.nx-cta:hover{
+  filter:brightness(1.1);
+}
+
+/* HAMBURGER */
+.nx-toggle{
+  display:none;
+  background:#fff;
+  border:1px solid var(--line);
+  padding:6px 12px;
+  border-radius:10px;
+  font-size:20px;
+  cursor:pointer;
+}
+
+/* NAV MENU */
+.nx-menu{
+  display:flex;
+  align-items:center;
+  gap:26px;
+}
+.nx-item{
+  position:relative;
+}
+.nx-link{
+  color:var(--text-dim);
+  font-weight:600;
+  position:relative;
+}
+.nx-link:hover{
+  color:var(--accent);
+}
+.nx-link:after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:0;
+  height:2px;
+  background:var(--accent);
+  transition:.25s;
+}
+.nx-link:hover:after{
+  width:100%;
+}
+
+/* DROPDOWN */
+.nx-drop{
+  position:absolute;
+  top:calc(100% + 10px);
+  left:0;
+  min-width:230px;
+  background:#fff;
+  border:1px solid var(--line);
+  padding:10px;
+  border-radius:var(--radius);
+  display:none;
+  box-shadow:0 12px 28px rgba(0,0,0,.12);
+}
+.nx-drop a{
+  display:block;
+  padding:8px 10px;
+  color:var(--text);
+  border-radius:10px;
+}
+.nx-drop a:hover{
+  background:#f6f6f6;
+  color:var(--accent);
+}
+
+/* DESKTOP HOVER LOGIC */
+@media (min-width:1025px){
+  .nx-item:hover>.nx-drop{
+    display:block;
+  }
+}
+
+/* MOBILE LOGIC */
+@media (max-width:1024px){
+
+  .nx-toggle{
+    display:block;
+  }
+
+  .nx-menu{
+    display:none;
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    background:#fff;
+    border-top:1px solid var(--line);
+    flex-direction:column;
+    box-shadow:0 12px 26px rgba(0,0,0,.08);
+    padding:10px 12px;
+  }
+
+  .nx-navbar.is-open .nx-menu{
+    display:flex;
+  }
+
+  .nx-item{ width:100%; }
+  .nx-link{ display:block; padding:12px 6px; }
+
+  .nx-drop{
+    position:static;
+    border:none;
+    box-shadow:none;
+    background:none;
+    padding:0;
+    display:none;
+  }
+
+  .nx-item.open>.nx-drop{
+    display:block;
+  }
+}
+
     /* mobile */
     .nx-toggle{
       display:none;margin-left:10px;
@@ -214,35 +341,87 @@
     }
 
     /* ========== FOOTER ========== */
-    .nx-footer{
-      margin-top:40px;
-      background:#f7f7f7;
-      border-top:1px solid var(--line);
-      color:var(--muted);
-    }
-    .nx-foot-wrap{max-width:1200px;margin:0 auto;padding:48px 20px 28px;}
-    .nx-foot-top{
-      display:flex;align-items:center;justify-content:space-between;
-      gap:18px;padding-bottom:22px;border-bottom:1px solid var(--line);
-    }
-    .nx-foot-grid{
-      display:grid;
-      grid-template-columns:repeat(4,minmax(0,1fr));
-      gap:26px;padding:26px 0 6px;
-    }
-    @media(max-width:900px){.nx-foot-grid{grid-template-columns:repeat(2,1fr);}}
-    @media(max-width:540px){.nx-foot-grid{grid-template-columns:1fr;}}
-    .nx-foot-col h4{margin:0 0 12px;color:var(--accent);font-size:15px;}
-    .nx-foot-col a{
-      display:block;color:var(--ink);opacity:.9;
-      padding:7px 0;font-size:14px;
-    }
-    .nx-foot-col a:hover{opacity:1;color:var(--accent);}
-    .nx-foot-bottom{
-      display:flex;align-items:center;justify-content:space-between;
-      gap:12px;padding-top:16px;border-top:1px solid var(--line);
-      color:var(--muted);font-size:13px;
-    }
+   /* ======================== FOOTER ======================== */
+
+.nx-footer{
+  margin-top:40px;
+  background:#fafafa;
+  border-top:1px solid var(--line);
+  color:var(--text-dim);
+}
+
+.nx-foot-wrap{
+  max-width:1200px;
+  margin:0 auto;
+  padding:48px 20px 30px;
+}
+
+/* TOP ROW */
+.nx-foot-top{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding-bottom:20px;
+  border-bottom:1px solid var(--line);
+}
+
+.nx-foot-brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color:var(--text);
+}
+
+.nx-foot-logo{
+  height:38px;
+  width:auto;
+}
+
+/* GRID */
+.nx-foot-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:26px;
+  padding:26px 0 10px;
+}
+
+@media(max-width:900px){
+  .nx-foot-grid{ grid-template-columns:repeat(2,1fr); }
+}
+@media(max-width:540px){
+  .nx-foot-grid{ grid-template-columns:1fr; }
+}
+
+.nx-foot-col h4{
+  font-size:15px;
+  color:var(--accent);
+  margin-bottom:10px;
+}
+
+.nx-foot-col a{
+  color:var(--text);
+  padding:6px 0;
+  font-size:14px;
+  display:block;
+  opacity:.9;
+  transition:.2s ease;
+}
+.nx-foot-col a:hover{
+  opacity:1;
+  transform:translateX(2px);
+}
+
+/* BOTTOM ROW */
+.nx-foot-bottom{
+  padding-top:16px;
+  border-top:1px solid var(--line);
+  font-size:13px;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  color:var(--text-dim);
+}
+
   </style>
 </head>
 
@@ -250,21 +429,7 @@
 
   <!-- ========== NAVBAR ========== -->
 <!-- ========== NAVBAR ========== -->
-<header class="nx-navbar" id="nxHeader">
-  <div class="nx-nav-inner">
-
-    <!-- BRAND / LOGO -->
-    <a class="nx-brand" href="index.html">
-      <img class="nx-logo" src="stoxgear-logo.jpg" alt="Stoxgear">
-      <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner">
-    </a>
-
-    <div class="nx-grow"></div>
-
-    <nav class="nx-menu" id="nxMenu">
-
-      <!-- WHY US -->
-      <!-- ========== NAVBAR ========== -->
+<!-- ========== NAVBAR ========== -->
 <header class="nx-navbar" id="nxHeader">
   <div class="nx-nav-inner">
 
@@ -360,6 +525,7 @@
 
 
 
+
   <!-- ========== MAIN CONTENT ========== -->
   <main class="container">
     <div class="edu-header">
@@ -398,6 +564,7 @@
   </main>
 
   <!-- ========== FOOTER ========== -->
+<!-- ========== FOOTER ========== -->
 <!-- ========== FOOTER ========== -->
 <!-- ========== FOOTER ========== -->
 <footer class="nx-footer">
@@ -493,6 +660,7 @@
 
 </body>
 </html>
+
 
 
 
