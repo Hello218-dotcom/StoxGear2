@@ -10,6 +10,29 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
+   /* Remove all default link underlines from navbar */
+.nx-navbar a {
+  text-decoration: none !important;
+}
+
+/* Prevent underline on hover or focus */
+.nx-navbar a:hover,
+.nx-navbar a:focus,
+.nx-navbar a:active {
+  text-decoration: none !important;
+}
+/* Remove native underline from footer links */
+.nx-footer a {
+  text-decoration: none !important;
+}
+
+/* Prevent underline on hover/focus/active */
+.nx-footer a:hover,
+.nx-footer a:focus,
+.nx-footer a:active {
+  text-decoration: none !important;
+}
+
 /* ===========================================================
    GLOBAL WHITE–GOLD THEME
 =========================================================== */
@@ -630,4 +653,5 @@ cards.forEach(c=>io.observe(c));
 
 </body>
 </html>
+
 
