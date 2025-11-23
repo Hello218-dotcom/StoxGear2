@@ -33,7 +33,6 @@ html,body{
 }
 
 /* ===================== NAVBAR ===================== */
-/* ================== NAVBAR (White & Gold) ================== */
 
 :root{
   --text:#0f1220;
@@ -53,9 +52,6 @@ html,body{
   border-bottom:1px solid var(--line);
   box-shadow:0 6px 18px rgba(0,0,0,.06);
 }
-.nx-navbar.scrolled{
-  box-shadow:0 10px 28px rgba(0,0,0,.12);
-}
 
 /* NAVBAR INNER */
 .nx-nav-inner{
@@ -67,25 +63,11 @@ html,body{
   gap:16px;
 }
 
-.nx-brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  color:var(--text);
-}
-.nx-logo{
-  height:38px;
-  width:auto;
-}
-.nx-logo2{
-  height:38px;
-  width:auto;
-  margin-left:10px;
-}
-
+.nx-brand{display:flex;align-items:center;gap:10px;color:var(--text);}
+.nx-logo{height:38px;width:auto;}
+.nx-logo2{height:38px;width:auto;margin-left:10px;}
 .nx-grow{flex:1}
 
-/* CTA BUTTON */
 .nx-cta{
   background:var(--accent);
   color:#000;
@@ -94,141 +76,56 @@ html,body{
   padding:10px 22px;
   border-radius:999px;
   cursor:pointer;
-  transition:.25s;
-}
-.nx-cta:hover{
-  filter:brightness(1.1);
 }
 
-/* HAMBURGER */
-.nx-toggle{
-  display:none;
-  background:#fff;
-  border:1px solid var(--line);
-  padding:6px 12px;
-  border-radius:10px;
-  font-size:20px;
-  cursor:pointer;
-}
-
-/* NAV MENU */
-.nx-menu{
-  display:flex;
-  align-items:center;
-  gap:26px;
-}
-.nx-item{
-  position:relative;
-}
+/* MENU */
+.nx-menu{display:flex;align-items:center;gap:26px;}
+.nx-item{position:relative;}
 .nx-link{
   color:var(--text-dim);
   font-weight:600;
   position:relative;
+  text-decoration:none !important;
 }
-.nx-link:hover{
-  color:var(--accent);
-}
+.nx-link:hover{color:var(--accent);}
 .nx-link:after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:-6px;
-  width:0;
-  height:2px;
-  background:var(--accent);
-  transition:.25s;
+  content:"";position:absolute;left:0;bottom:-6px;height:2px;width:0;
+  background:var(--accent);transition:.25s;
 }
-.nx-link:hover:after{
-  width:100%;
-}
+.nx-link:hover:after{width:100%;}
 
-/* DROPDOWN */
 .nx-drop{
-  position:absolute;
-  top:calc(100% + 10px);
-  left:0;
-  min-width:230px;
-  background:#fff;
-  border:1px solid var(--line);
-  padding:10px;
-  border-radius:var(--radius);
-  display:none;
+  position:absolute;top:calc(100% + 10px);left:0;
+  min-width:230px;background:#fff;border:1px solid var(--line);
+  padding:10px;border-radius:14px;display:none;
   box-shadow:0 12px 28px rgba(0,0,0,.12);
 }
 .nx-drop a{
-  display:block;
-  padding:8px 10px;
-  color:var(--text);
-  border-radius:10px;
+  display:block;padding:8px 10px;color:var(--text);
+  border-radius:10px;text-decoration:none !important;
 }
-.nx-drop a:hover{
-  background:#f6f6f6;
-  color:var(--accent);
-}
+.nx-drop a:hover{background:#f6f6f6;color:var(--accent)}
 
-/* DESKTOP HOVER LOGIC */
+/* DESKTOP */
 @media (min-width:1025px){
-  .nx-item:hover>.nx-drop{
-    display:block;
-  }
+  .nx-item:hover>.nx-drop{display:block;}
 }
 
-/* MOBILE LOGIC */
-@media (max-width:1024px){
-
-  .nx-toggle{
-    display:block;
-  }
-
-  .nx-menu{
-    display:none;
-    position:absolute;
-    top:100%;
-    left:0;
-    right:0;
-    background:#fff;
-    border-top:1px solid var(--line);
-    flex-direction:column;
-    box-shadow:0 12px 26px rgba(0,0,0,.08);
-    padding:10px 12px;
-  }
-
-  .nx-navbar.is-open .nx-menu{
-    display:flex;
-  }
-
-  .nx-item{ width:100%; }
-  .nx-link{ display:block; padding:12px 6px; }
-
-  .nx-drop{
-    position:static;
-    border:none;
-    box-shadow:none;
-    background:none;
-    padding:0;
-    display:none;
-  }
-
-  .nx-item.open>.nx-drop{
-    display:block;
-  }
+/* MOBILE */
+.nx-toggle{
+  display:none;background:#fff;border:1px solid var(--line);
+  padding:6px 12px;border-radius:10px;font-size:20px;cursor:pointer;
 }
-
-
 @media (max-width:1024px){
-  .nx-toggle{display:block}
+  .nx-toggle{display:block;}
   .nx-menu{
-    display:none;flex-direction:column;
-    position:absolute;top:100%;left:0;right:0;
-    background:#fff;
-    border-top:1px solid var(--line);
+    display:none;flex-direction:column;position:absolute;top:100%;
+    left:0;right:0;background:#fff;border-top:1px solid var(--line);
     padding:10px 12px;
   }
-  .nx-item{width:100%}
-  .nx-item.open .nx-drop{
-    display:block;opacity:1;transform:none;
-    position:static;background:none;border:none;box-shadow:none;padding:0;
-  }
+  .nx-navbar.is-open .nx-menu{display:flex;}
+  .nx-drop{position:static;border:none;box-shadow:none;display:none;}
+  .nx-item.open>.nx-drop{display:block;}
 }
 
 /* ===================== PAGE TITLE ===================== */
@@ -240,48 +137,38 @@ h1{
   font-weight:800;
 }
 
-/* SEARCH BAR */
-.search-bar{
-  text-align:center;margin-bottom:28px;
-}
+/* SEARCH */
+.search-bar{text-align:center;margin-bottom:28px;}
 .search-bar input{
-  width:80%;max-width:520px;
-  padding:14px 16px;
-  border-radius:14px;
-  border:1px solid var(--line);
-  outline:none;
+  width:80%;max-width:520px;padding:14px 16px;
+  border-radius:14px;border:1px solid var(--line);
 }
 
 /* GRID */
 .grid{
-  max-width:1200px;
-  margin:auto;
-  padding:20px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  max-width:1200px;margin:auto;padding:20px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
   gap:22px;
 }
 .card{
-  background:#fff;
-  border:1px solid var(--line);
-  padding:20px;
-  border-radius:var(--radius);
+  background:#fff;border:1px solid var(--line);
+  padding:20px;border-radius:var(--radius);
   box-shadow:var(--shadow);
-  transition:.3s;
 }
-.card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 16px 40px rgba(0,0,0,.12);
-}
+.card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,.12);}
 .term{color:var(--brand);font-weight:700;margin-bottom:8px;}
 .meaning{color:var(--ink);opacity:.8;}
 
 /* ===================== FOOTER ===================== */
+
 .nx-footer{
-  background:#f7f7f7;
-  border-top:1px solid var(--line);
   margin-top:70px;
+  background:#fafafa;
+  border-top:1px solid var(--line);
+  color:var(--text-dim);
 }
+.nx-footer a{text-decoration:none !important;}
+
 .nx-foot-wrap{
   max-width:1200px;margin:auto;
   padding:40px 20px;
@@ -289,55 +176,37 @@ h1{
 .nx-foot-top{
   display:flex;align-items:center;gap:12px;margin-bottom:26px;
 }
+.nx-foot-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:26px;padding:26px 0;
+}
+.nx-foot-col h4{color:var(--accent);margin-bottom:10px;}
+.nx-foot-col a{display:block;padding:6px 0;color:var(--text);}
+.nx-foot-col a:hover{transform:translateX(2px);}
+
+@media(max-width:900px){.nx-foot-grid{grid-template-columns:repeat(2,1fr);} }
+@media(max-width:540px){.nx-foot-grid{grid-template-columns:1fr;} }
+
 .nx-foot-bottom{
   text-align:center;color:var(--muted);padding-top:20px;
 }
-/* Remove all default link underlines from navbar */
-.nx-navbar a {
-  text-decoration: none !important;
-}
-
-/* Prevent underline on hover or focus */
-.nx-navbar a:hover,
-.nx-navbar a:focus,
-.nx-navbar a:active {
-  text-decoration: none !important;
-}
-/* Remove native underline from footer links */
-.nx-footer a {
-  text-decoration: none !important;
-}
-
-/* Prevent underline on hover/focus/active */
-.nx-footer a:hover,
-.nx-footer a:focus,
-.nx-footer a:active {
-  text-decoration: none !important;
-}
-
 </style>
 </head>
-
-
 
 <body>
 
 <!-- ================= NAVBAR ================= -->
-<!-- ========== NAVBAR ========== -->
 <header class="nx-navbar" id="nxHeader">
   <div class="nx-nav-inner">
 
-    <!-- BRAND / LOGO -->
     <a class="nx-brand" href="index.html">
-      <img class="nx-logo" src="stoxgear-logo.jpg" alt="Stoxgear">
-      <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner">
+      <img class="nx-logo" src="stoxgear-logo.jpg">
+      <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg">
     </a>
 
     <div class="nx-grow"></div>
 
     <nav class="nx-menu" id="nxMenu">
 
-      <!-- WHY US -->
       <div class="nx-item">
         <a class="nx-link" href="#">Why Us</a>
         <div class="nx-drop">
@@ -351,7 +220,6 @@ h1{
         </div>
       </div>
 
-      <!-- EDUCATION -->
       <div class="nx-item">
         <a class="nx-link" href="#">Education</a>
         <div class="nx-drop">
@@ -359,52 +227,48 @@ h1{
           <a href="Investorguid.html">Investor Guide</a>
           <a href="Glossary.html">Glossary</a>
           <a href="psx-rule-book.html">PSX Rule Book</a>
-          <a href="common-terms-share-market.html">Common Terms of Share Market</a>
-          <a href="online-order-execution-flow.html">Order Execution Flow</a>
-          <a href="order-settlement-flow.html">Order Settlement Flow</a>
-          <a href="arbitration-procedure.html">Arbitration Procedure</a>
-          <a href="risk-disclosure-document.html">Risk Disclosure Document</a>
-          <a href="procedure-cancel-pending-orders.html">Cancel Pending Orders</a>
+          <a href="common-terms-share-market.html">Common Terms</a>
+          <a href="online-order-execution-flow.html">Order Flow</a>
+          <a href="order-settlement-flow.html">Settlement Flow</a>
+          <a href="arbitration-procedure.html">Arbitration</a>
+          <a href="risk-disclosure-document.html">Risk Disclosure</a>
+          <a href="procedure-cancel-pending-orders.html">Cancel Orders</a>
           <a href="faqs.html">FAQs</a>
         </div>
       </div>
 
-      <!-- OPEN ACCOUNT -->
       <div class="nx-item">
         <a class="nx-link" href="#">Open Account</a>
         <div class="nx-drop">
-          <a href="Rda.html">Roshan Digital Account</a>
+          <a href="Rda.html">Roshan Digital</a>
           <a href="Acoocint opening.html">Open Digital Account</a>
           <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
         </div>
       </div>
 
-      <!-- DOWNLOADS -->
       <div class="nx-item">
         <a class="nx-link" href="#">Downloads</a>
         <div class="nx-drop">
           <a href="Forms.html">Forms</a>
           <a href="software.html">Software</a>
           <a href="Annaual half yearly.html">Financial Statements</a>
-          <a href="KYC poslicy.html">CDD / KYC Policy</a>
+          <a href="KYC poslicy.html">KYC Policy</a>
         </div>
       </div>
 
-      <!-- SUPPORT -->
       <div class="nx-item">
         <a class="nx-link" href="#">Support</a>
         <div class="nx-drop">
-          <a href="investor complaint.html">Investor Complaint</a>        
+          <a href="investor complaint.html">Investor Complaint</a>
           <a href="Pending investor complaun.html">Pending Complaints</a>
           <a href="Penal action.html">Penal Action</a>
           <a href="Secp complaint.html">SECP Complaint</a>
           <a href="psx complaint.html">PSX Complaint</a>
           <a href="UIs of NICCPL.html">UIS Services</a>
-          <a href="Eservices By CDC.html">EServices by CDC</a>
+          <a href="Eservices By CDC.html">CDC E-Services</a>
         </div>
       </div>
 
-      <!-- CONTACT (NO DROPDOWN) -->
       <div class="nx-item">
         <a class="nx-link" href="Contact.html">Contact</a>
       </div>
@@ -427,28 +291,52 @@ h1{
 <!-- ================= GLOSSARY GRID ================= -->
 <div class="grid" id="glossaryGrid">
 
-  <div class="card"><div class="term">Ask Price</div><div class="meaning">Lowest price a seller agrees to accept.</div></div>
-  <div class="card"><div class="term">Bond</div><div class="meaning">Loan to company/government with interest.</div></div>
-  <div class="card"><div class="term">Capital Gain</div><div class="meaning">Profit from selling an asset higher.</div></div>
-  <div class="card"><div class="term">Dividend</div><div class="meaning">Portion of company profit paid.</div></div>
-  <div class="card"><div class="term">IPO</div><div class="meaning">Company sells shares first time.</div></div>
+<!-- Your 50 Simple Glossary Terms -->
+<div class="card"><div class="term">Ask Price</div><div class="meaning">Lowest price a seller accepts.</div></div>
+<div class="card"><div class="term">Bond</div><div class="meaning">Loan to a company or government.</div></div>
+<div class="card"><div class="term">Capital Gain</div><div class="meaning">Profit when selling higher than buying.</div></div>
+<div class="card"><div class="term">Dividend</div><div class="meaning">Share of company profit paid to investors.</div></div>
+<div class="card"><div class="term">IPO</div><div class="meaning">Company sells shares to public first time.</div></div>
+<div class="card"><div class="term">Asset</div><div class="meaning">Anything valuable you own.</div></div>
+<div class="card"><div class="term">Bear Market</div><div class="meaning">Market with falling prices.</div></div>
+<div class="card"><div class="term">Bull Market</div><div class="meaning">Market with rising prices.</div></div>
+<div class="card"><div class="term">Broker</div><div class="meaning">Company that executes trades.</div></div>
+<div class="card"><div class="term">Buy Order</div><div class="meaning">Instruction to purchase shares.</div></div>
+<div class="card"><div class="term">Sell Order</div><div class="meaning">Instruction to sell shares.</div></div>
+<div class="card"><div class="term">Market Order</div><div class="meaning">Buy or sell immediately.</div></div>
+<div class="card"><div class="term">Limit Order</div><div class="meaning">Buy/sell at a set price.</div></div>
+<div class="card"><div class="term">Stop Loss</div><div class="meaning">Sell to prevent large losses.</div></div>
+<div class="card"><div class="term">Portfolio</div><div class="meaning">Collection of investments.</div></div>
+<div class="card"><div class="term">Diversification</div><div class="meaning">Investing in many assets.</div></div>
+<div class="card"><div class="term">Equity</div><div class="meaning">Ownership in a company.</div></div>
+<div class="card"><div class="term">Debt</div><div class="meaning">Borrowed money to be repaid.</div></div>
+<div class="card"><div class="term">ETF</div><div class="meaning">Tradable basket of assets.</div></div>
+<div class="card"><div class="term">Index</div><div class="meaning">Group of stocks tracked together.</div></div>
+<div class="card"><div class="term">Liquidity</div><div class="meaning">How quickly something can sell.</div></div>
+<div class="card"><div class="term">Volatility</div><div class="meaning">Speed of price changes.</div></div>
+<div class="card"><div class="term">Leverage</div><div class="meaning">Using borrowed money to invest.</div></div>
+<div class="card"><div class="term">Yield</div><div class="meaning">Return earned on investment.</div></div>
+<div class="card"><div class="term">Margin</div><div class="meaning">Borrowed funds for trading.</div></div>
+<div class="card"><div class="term">Risk</div><div class="meaning">Chance of losing money.</div></div>
+<div class="card"><div class="term">Return</div><div class="meaning">Money made from investment.</div></div>
+<div class="card"><div class="term">Short Selling</div><div class="meaning">Profit from falling prices.</div></div>
+<div class="card"><div class="term">Blue Chip</div><div class="meaning">Large stable company stock.</div></div>
+<div class="card"><div class="term">Volume</div><div class="meaning">Number of shares traded.</div></div>
+<div class="card"><div class="term">NAV</div><div class="meaning">Value per unit of fund.</div></div>
 
 </div>
 
 <!-- ================= FOOTER ================= -->
-<!-- ========== FOOTER ========== -->
 <footer class="nx-footer">
   <div class="nx-foot-wrap">
 
-    <!-- TOP BRAND -->
     <div class="nx-foot-top">
       <a class="nx-foot-brand" href="index.html">
-        <img class="nx-foot-logo" src="stoxgear-logo.jpg" alt="">
-        <img class="nx-foot-logo" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="">
+        <img class="nx-foot-logo" src="stoxgear-logo.jpg">
+        <img class="nx-foot-logo" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg">
       </a>
     </div>
 
-    <!-- GRID -->
     <div class="nx-foot-grid">
 
       <div class="nx-foot-col">
@@ -481,26 +369,19 @@ h1{
 
     </div>
 
-    <!-- BOTTOM -->
     <div class="nx-foot-bottom">
-      <span>© <script>document.write(new Date().getFullYear())</script> Stoxgear Securities (Private) Limited</span>
-      <span>
-        <a href="privacy.html">Privacy</a> ·
-        <a href="terms.html">Terms</a>
-      </span>
+      © <script>document.write(new Date().getFullYear())</script> Stoxgear Securities (Private) Limited
     </div>
 
   </div>
 </footer>
 
 <script>
-/* MOBILE MENU */
 document.getElementById("nxToggle").addEventListener("click",()=>{
-  const m = document.getElementById("nxMenu");
-  m.style.display = (m.style.display==="block") ? "none" : "block";
+  document.getElementById("nxHeader").classList.toggle("is-open");
 });
 
-/* SEARCH */
+/* SEARCH FILTER */
 document.getElementById("searchInput").addEventListener("keyup",()=>{
   let t = searchInput.value.toLowerCase();
   document.querySelectorAll(".card").forEach(c=>{
@@ -511,6 +392,3 @@ document.getElementById("searchInput").addEventListener("keyup",()=>{
 
 </body>
 </html>
-
-
-
