@@ -24,6 +24,18 @@
 body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--ink)}
 
 /* ---------- NAVBAR ---------- */
+    /* Remove native underline from footer links */
+.nx-footer a {
+  text-decoration: none !important;
+}
+
+/* Prevent underline on hover/focus/active */
+.nx-footer a:hover,
+.nx-footer a:focus,
+.nx-footer a:active {
+  text-decoration: none !important;
+}
+
     /* Remove all default link underlines from navbar */
 .nx-navbar a {
   text-decoration: none !important;
@@ -571,6 +583,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 </body>
 </html>
+
 
 
 
