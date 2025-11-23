@@ -1,249 +1,873 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Financial Statements – StoxGear</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Annual / Half Yearly / Quarterly Financials – StoxGear</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-<style>
-:root{
-  --bg:#ffffff;
-  --text:#0f1220;
-  --text-dim:#5e6676;
-  --accent:#c9a646;
-  --accent-dark:#b38b2e;
-  --line:#e7e9ee;
-  --radius:16px;
-  --shadow:0 10px 28px rgba(0,0,0,.10);
-}
+  <style>
+    :root{
+      /* ===== White + Gold theme ===== */
+      --bg:#ffffff;
+      --card:#ffffff;
+      --ink:#141414;
+      --muted:#5f6573;
 
-/* PAGE RESET */
-body{
-  margin:0;
-  background:var(--bg);
-  font-family:Inter, sans-serif;
-  color:var(--text);
-}
+      --text:#0f1220;
+      --text-dim:#5e6676;
+      --accent:#c9a646;      /* gold */
+      --accent-2:#b38b2e;
+      --accent-soft:#e6c463;
 
-/* TITLE */
-.page-title{
-  font-size:42px;
-  margin:110px auto 10px;
-  font-weight:800;
-  text-align:left;
-  max-width:1200px;
-  padding:0 20px;
-  color:var(--accent);
-}
+      --radius:18px;
+      --ring: rgba(201,166,70,.28);
+      --maxw:1200px;
+      --line:#e8e8e8;
+      --shadow:0 10px 28px rgba(0,0,0,.08);
+    }
 
-.separator{
-  height:1px;
-  background:var(--line);
-  width:1200px;
-  max-width:95%;
-  margin:10px auto 40px;
-}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    html,body{height:100%;}
+    body{
+      font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(1200px 360px at 12% -10%, rgba(201,166,70,.08), transparent 60%),
+        radial-gradient(900px 320px at 90% 110%, rgba(201,166,70,.06), transparent 60%),
+        var(--bg);
+      color:var(--ink);
+    }
 
-/* SEARCH BAR */
-.search-box{
-  max-width:1200px;
-  margin:0 auto 30px;
-  padding:0 20px;
-}
-.search-box input{
-  width:100%;
-  padding:14px 18px;
-  font-size:16px;
-  border:1px solid var(--line);
-  border-radius:12px;
-  outline:none;
-  transition:.25s;
-}
-.search-box input:focus{
-  border-color:var(--accent);
-  box-shadow:0 0 0 3px rgba(201,166,70,.25);
-}
+    /* ============ REMOVE UNDERLINES IN NAV + FOOTER ============ */
+    .nx-navbar a,
+    .nx-footer a {
+      text-decoration: none !important;
+    }
+    .nx-navbar a:hover,
+    .nx-navbar a:focus,
+    .nx-navbar a:active,
+    .nx-footer a:hover,
+    .nx-footer a:focus,
+    .nx-footer a:active{
+      text-decoration:none !important;
+    }
 
-/* CARDS GRID */
-.card-grid{
-  max-width:1200px;
-  margin:0 auto 80px;
-  padding:0 20px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
-  gap:28px;
-}
+    /* ================== NAVBAR (White & Gold) ================== */
 
-/* FINANCIAL CARD */
-.fin-card{
-  background:#fff;
-  border-radius:var(--radius);
-  padding:24px 28px;
-  border:1px solid var(--line);
-  box-shadow:var(--shadow);
-  transition:.3s ease;
-  position:relative;
-  cursor:pointer;
-}
+    .nx-navbar{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:#fff;
+      border-bottom:1px solid var(--line);
+      box-shadow:0 6px 18px rgba(0,0,0,.06);
+    }
+    .nx-navbar.scrolled{
+      box-shadow:0 10px 28px rgba(0,0,0,.12);
+    }
 
-.fin-card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 18px 40px rgba(0,0,0,.18);
-  border-color:var(--accent);
-}
+    .nx-nav-inner{
+      max-width:1200px;
+      margin:0 auto;
+      padding:14px 24px;
+      display:flex;
+      align-items:center;
+      gap:16px;
+    }
 
-.fin-card::before{
-  content:"";
-  position:absolute;
-  inset:-2px;
-  border-radius:20px;
-  padding:2px;
-  background:linear-gradient(130deg,var(--accent),transparent 40%,var(--accent-dark));
-  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor;
-  pointer-events:none;
-  opacity:0;
-  transition:.4s ease;
-}
+    .nx-brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:var(--text);
+    }
+    .nx-logo{
+      height:38px;
+      width:auto;
+    }
+    .nx-logo2{
+      height:38px;
+      width:auto;
+      margin-left:10px;
+    }
 
-.fin-card:hover::before{
-  opacity:1;
-}
+    .nx-grow{flex:1;}
 
-.fin-card h3{
-  font-size:22px;
-  margin-bottom:6px;
-  font-weight:700;
-}
+    .nx-cta{
+      background:var(--accent);
+      color:#000;
+      font-weight:700;
+      border:none;
+      padding:10px 22px;
+      border-radius:999px;
+      cursor:pointer;
+      transition:.25s;
+    }
+    .nx-cta:hover{
+      filter:brightness(1.1);
+    }
 
-.fin-card a{
-  text-decoration:none;
-  color:var(--accent-dark);
-  font-weight:700;
-  font-size:16px;
-}
-.fin-card a:hover{
-  color:var(--accent);
-}
+    .nx-toggle{
+      display:none;
+      background:#fff;
+      border:1px solid var(--line);
+      padding:6px 12px;
+      border-radius:10px;
+      font-size:20px;
+      cursor:pointer;
+    }
 
-/* NAVBAR + FOOTER ARE SAME FROM YOUR CODE (paste below) */
-</style>
+    .nx-menu{
+      display:flex;
+      align-items:center;
+      gap:26px;
+    }
+    .nx-item{
+      position:relative;
+    }
+    .nx-link{
+      color:var(--text-dim);
+      font-weight:600;
+      position:relative;
+    }
+    .nx-link:hover{
+      color:var(--accent);
+    }
+    .nx-link:after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-6px;
+      width:0;
+      height:2px;
+      background:var(--accent);
+      transition:.25s;
+    }
+    .nx-link:hover:after{
+      width:100%;
+    }
+
+    .nx-drop{
+      position:absolute;
+      top:calc(100% + 10px);
+      left:0;
+      min-width:230px;
+      background:#fff;
+      border:1px solid var(--line);
+      padding:10px;
+      border-radius:var(--radius);
+      display:none;
+      box-shadow:0 12px 28px rgba(0,0,0,.12);
+      max-height:380px;
+      overflow-y:auto;
+    }
+    .nx-drop a{
+      display:block;
+      padding:8px 10px;
+      color:var(--text);
+      border-radius:10px;
+    }
+    .nx-drop a:hover{
+      background:#f6f6f6;
+      color:var(--accent);
+    }
+
+    /* Desktop hover */
+    @media (min-width:1025px){
+      .nx-item:hover>.nx-drop{
+        display:block;
+      }
+    }
+
+    /* Mobile menu */
+    @media (max-width:1024px){
+      .nx-toggle{
+        display:block;
+      }
+      .nx-menu{
+        display:none;
+        position:absolute;
+        top:100%;
+        left:0;
+        right:0;
+        background:#fff;
+        border-top:1px solid var(--line);
+        flex-direction:column;
+        box-shadow:0 12px 26px rgba(0,0,0,.08);
+        padding:10px 12px;
+      }
+      .nx-navbar.is-open .nx-menu{
+        display:flex;
+      }
+      .nx-item{ width:100%; }
+      .nx-link{ display:block; padding:12px 6px; }
+      .nx-drop{
+        position:static;
+        border:none;
+        box-shadow:none;
+        background:none;
+        padding:0;
+        display:none;
+      }
+      .nx-item.open>.nx-drop{
+        display:block;
+      }
+    }
+
+    /* ================== PAGE HEADER + SEARCH ================== */
+    .wrap{
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:40px 20px 80px;
+    }
+
+    .page-title{
+      font-size:clamp(28px,4vw,40px);
+      margin:20px 0 6px;
+      font-weight:800;
+      letter-spacing:.2px;
+      color:var(--accent);
+      text-align:left;
+    }
+    .page-sub{
+      margin:0 0 24px;
+      color:var(--muted);
+    }
+
+    .divider{
+      height:1px;
+      width:100%;
+      background:var(--line);
+      margin:12px 0 24px;
+    }
+
+    .fin-search{
+      margin-bottom:28px;
+    }
+    .fin-search input{
+      width:100%;
+      padding:13px 16px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      font-size:15px;
+      outline:none;
+      transition:.2s ease;
+      background:rgba(255,255,255,.9);
+    }
+    .fin-search input:focus{
+      border-color:var(--accent);
+      box-shadow:0 0 0 3px var(--ring);
+    }
+
+    /* ================== YEAR CARDS ================== */
+    .year-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+      gap:24px;
+    }
+
+    .year-card{
+      background:var(--card);
+      border-radius:var(--radius);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      padding:20px 22px 18px;
+      position:relative;
+      overflow:hidden;
+      transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+      cursor:pointer;
+    }
+
+    .year-card::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      border-radius:22px;
+      padding:2px;
+      background:linear-gradient(135deg,var(--accent),transparent 45%,var(--accent-2));
+      -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor;
+      mask-composite:exclude;
+      opacity:0;
+      pointer-events:none;
+      transition:.4s ease;
+    }
+
+    .year-card:hover{
+      transform:translateY(-5px);
+      box-shadow:0 18px 40px rgba(0,0,0,.16);
+      border-color:var(--accent);
+    }
+    .year-card:hover::before{
+      opacity:1;
+    }
+
+    .year-label{
+      font-size:13px;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      color:var(--muted);
+      margin-bottom:4px;
+    }
+
+    .year-card h2{
+      font-size:24px;
+      margin:0 0 10px;
+      color:var(--accent);
+    }
+
+    .file-list{
+      list-style:none;
+      margin:8px 0 0;
+      padding:0;
+    }
+    .file-list li{
+      margin:4px 0;
+    }
+    .file-list a{
+      font-size:14px;
+      color:var(--ink);
+      position:relative;
+      padding-bottom:2px;
+      border-bottom:1px solid transparent;
+      transition:.2s ease;
+    }
+    .file-list a::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-1px;
+      width:0;
+      height:1px;
+      background:var(--accent);
+      transition:.25s ease;
+    }
+    .file-list a:hover{
+      color:var(--accent);
+    }
+    .file-list a:hover::after{
+      width:100%;
+    }
+
+    .file-tag{
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      color:var(--muted);
+      margin-bottom:4px;
+      display:block;
+    }
+
+    /* scroll reveal */
+    .reveal{
+      opacity:0;
+      transform:translateY(22px) scale(.985);
+      transition:opacity .7s ease, transform .7s ease;
+    }
+    .reveal.show{
+      opacity:1;
+      transform:none;
+    }
+
+    /* ======================== FOOTER ======================== */
+
+    .nx-footer{
+      margin-top:20px;
+      background:#fafafa;
+      border-top:1px solid var(--line);
+      color:var(--text-dim);
+    }
+
+    .nx-foot-wrap{
+      max-width:1200px;
+      margin:0 auto;
+      padding:48px 20px 30px;
+    }
+
+    .nx-foot-top{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      padding-bottom:20px;
+      border-bottom:1px solid var(--line);
+    }
+
+    .nx-foot-brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      color:var(--text);
+    }
+
+    .nx-foot-logo{
+      height:38px;
+      width:auto;
+    }
+
+    .nx-foot-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:26px;
+      padding:26px 0 10px;
+    }
+
+    @media(max-width:900px){
+      .nx-foot-grid{ grid-template-columns:repeat(2,1fr); }
+    }
+    @media(max-width:540px){
+      .nx-foot-grid{ grid-template-columns:1fr; }
+    }
+
+    .nx-foot-col h4{
+      font-size:15px;
+      color:var(--accent);
+      margin-bottom:10px;
+    }
+
+    .nx-foot-col a{
+      color:var(--text);
+      padding:6px 0;
+      font-size:14px;
+      display:block;
+      opacity:.9;
+      transition:.2s ease;
+    }
+    .nx-foot-col a:hover{
+      opacity:1;
+      transform:translateX(2px);
+    }
+
+    .nx-foot-bottom{
+      padding-top:16px;
+      border-top:1px solid var(--line);
+      font-size:13px;
+      display:flex;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      color:var(--text-dim);
+    }
+  </style>
 </head>
-
 <body>
 
-<!-- ========== NAVBAR (Your existing navbar pasted here automatically) ========== -->
-<header class="nx-navbar" id="nxHeader">
-  <div class="nx-nav-inner">
+  <!-- ========== NAVBAR ========== -->
+  <header class="nx-navbar" id="nxHeader">
+    <div class="nx-nav-inner">
 
-    <a class="nx-brand" href="index.html">
-      <img class="nx-logo" src="stoxgear-logo.jpg" alt="">
-      <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg">
-    </a>
-
-    <div class="nx-grow"></div>
-
-    <nav class="nx-menu" id="nxMenu">
-      <div class="nx-item"><a class="nx-link" href="about.html">About Us</a></div>
-      <div class="nx-item"><a class="nx-link" href="BOARD of directors.html">Board</a></div>
-      <div class="nx-item"><a class="nx-link" href="Annaual half yearly.html">Financials</a></div>
-      <div class="nx-item"><a class="nx-link" href="Contact.html">Contact</a></div>
-    </nav>
-
-    <button class="nx-cta">OPEN AN ACCOUNT</button>
-    <button class="nx-toggle" id="nxToggle">☰</button>
-
-  </div>
-</header>
-
-
-<!-- ========== PAGE CONTENT ========== -->
-
-<h1 class="page-title">Annual / Half Yearly / Quarterly Financials</h1>
-<div class="separator"></div>
-
-<!-- SEARCH BAR -->
-<div class="search-box">
-  <input type="text" id="searchInput" placeholder="Search financial statements (e.g., 2023, 2024, 2025)...">
-</div>
-
-<!-- CARDS -->
-<div class="card-grid" id="finList">
-
-  <div class="fin-card" data-year="2023">
-    <h3>Accounts for the year 2023</h3>
-    <a href="#">Download Statement →</a>
-  </div>
-
-  <div class="fin-card" data-year="2024">
-    <h3>Accounts for the year 2024</h3>
-    <a href="#">Download Statement →</a>
-  </div>
-
-  <div class="fin-card" data-year="2025">
-    <h3>Accounts for the year 2025</h3>
-    <a href="#">Download Statement →</a>
-  </div>
-
-</div>
-
-<!-- ========== FOOTER ========== -->
-<footer class="nx-footer">
-  <div class="nx-foot-wrap">
-    <div class="nx-foot-top">
-      <a class="nx-foot-brand" href="index.html">
-        <img class="nx-foot-logo" src="stoxgear-logo.jpg" alt="">
-        <img class="nx-foot-logo" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="">
+      <!-- BRAND / LOGO -->
+      <a class="nx-brand" href="index.html">
+        <img class="nx-logo" src="stoxgear-logo.jpg" alt="Stoxgear">
+        <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner">
       </a>
+
+      <div class="nx-grow"></div>
+
+      <nav class="nx-menu" id="nxMenu">
+
+        <!-- WHY US -->
+        <div class="nx-item">
+          <a class="nx-link" href="#">Why Us</a>
+          <div class="nx-drop">
+            <a href="about.html">About Us</a>
+            <a href="BOARD of directors.html">Board / Management</a>
+            <a href="Mission.html">Mission & Vision</a>
+            <a href="associated companies.html">Associated Companies</a>
+            <a href="Ncb auditor details .html">Auditors / Legal Advisors</a>
+            <a href="services.html">Services</a>
+            <a href="Registered agents..html">Registered Agents</a>
+          </div>
+        </div>
+
+        <!-- EDUCATION -->
+        <div class="nx-item">
+          <a class="nx-link" href="#">Education</a>
+          <div class="nx-drop">
+            <a href="New to trading.html">New to Trading</a>
+            <a href="Investorguid.html">Investor Guide</a>
+            <a href="Glossary.html">Glossary</a>
+            <a href="psx-rule-book.html">PSX Rule Book</a>
+            <a href="common-terms-share-market.html">Common Terms of Share Market</a>
+            <a href="online-order-execution-flow.html">Order Execution Flow</a>
+            <a href="order-settlement-flow.html">Order Settlement Flow</a>
+            <a href="arbitration-procedure.html">Arbitration Procedure</a>
+            <a href="risk-disclosure-document.html">Risk Disclosure Document</a>
+            <a href="procedure-cancel-pending-orders.html">Cancel Pending Orders</a>
+            <a href="faqs.html">FAQs</a>
+          </div>
+        </div>
+
+        <!-- OPEN ACCOUNT -->
+        <div class="nx-item">
+          <a class="nx-link" href="#">Open Account</a>
+          <div class="nx-drop">
+            <a href="Rda.html">Roshan Digital Account</a>
+            <a href="Acoocint opening.html">Open Digital Account</a>
+            <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
+          </div>
+        </div>
+
+        <!-- DOWNLOADS -->
+        <div class="nx-item">
+          <a class="nx-link" href="#">Downloads</a>
+          <div class="nx-drop">
+            <a href="Forms.html">Forms</a>
+            <a href="software.html">Software</a>
+            <a href="Annaual half yearly.html">Financial Statements</a>
+            <a href="KYC poslicy.html">CDD / KYC Policy</a>
+          </div>
+        </div>
+
+        <!-- SUPPORT -->
+        <div class="nx-item">
+          <a class="nx-link" href="#">Support</a>
+          <div class="nx-drop">
+            <a href="investor complaint.html">Investor Complaint</a>        
+            <a href="Pending investor complaun.html">Pending Complaints</a>
+            <a href="Penal action.html">Penal Action</a>
+            <a href="Secp complaint.html">SECP Complaint</a>
+            <a href="psx complaint.html">PSX Complaint</a>
+            <a href="UIs of NICCPL.html">UIS Services</a>
+            <a href="Eservices By CDC.html">EServices by CDC</a>
+          </div>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="nx-item">
+          <a class="nx-link" href="Contact.html">Contact</a>
+        </div>
+
+      </nav>
+
+      <button class="nx-cta">OPEN AN ACCOUNT</button>
+      <button class="nx-toggle" id="nxToggle">☰</button>
+
+    </div>
+  </header>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="wrap">
+    <h1 class="page-title">Annual / Half Yearly / Quarterly Financials</h1>
+    <p class="page-sub">View audited annual, half-yearly and quarterly financial statements from 2020 onwards.</p>
+    <div class="divider"></div>
+
+    <!-- Search -->
+    <div class="fin-search">
+      <input
+        type="text"
+        id="finSearch"
+        placeholder="Search by year or report type (e.g. 2023, annual, Q1, half)...">
     </div>
 
-    <div class="nx-foot-grid">
-      <div class="nx-foot-col">
-        <h4>WHY US</h4>
-        <a href="about.html">About Us</a>
-        <a href="Mission.html">Mission & Vision</a>
+    <!-- Year cards -->
+    <section class="year-grid" id="yearGrid">
+
+      <!-- 2025 -->
+      <article class="year-card reveal" data-year="2025">
+        <div class="year-label">Financial Year</div>
+        <h2>2025</h2>
+        <ul class="file-list">
+          <li><span class="file-tag">Annual</span>
+            <a href="financials/2025/annual-2025.pdf" target="_blank">Annual Financial Statements 2025</a>
+          </li>
+          <li><span class="file-tag">Half-Yearly</span>
+            <a href="financials/2025/half-yearly-2025.pdf" target="_blank">Half-Yearly Accounts 2025</a>
+          </li>
+          <li><span class="file-tag">Q1</span>
+            <a href="financials/2025/q1-2025.pdf" target="_blank">First Quarter Accounts 2025</a>
+          </li>
+          <li><span class="file-tag">Q2</span>
+            <a href="financials/2025/q2-2025.pdf" target="_blank">Second Quarter Accounts 2025</a>
+          </li>
+          <li><span class="file-tag">Q3</span>
+            <a href="financials/2025/q3-2025.pdf" target="_blank">Third Quarter Accounts 2025</a>
+          </li>
+          <li><span class="file-tag">Q4</span>
+            <a href="financials/2025/q4-2025.pdf" target="_blank">Fourth Quarter Accounts 2025</a>
+          </li>
+        </ul>
+      </article>
+
+      <!-- 2024 -->
+      <article class="year-card reveal" data-year="2024">
+        <div class="year-label">Financial Year</div>
+        <h2>2024</h2>
+        <ul class="file-list">
+          <li><span class="file-tag">Annual</span>
+            <a href="financials/2024/annual-2024.pdf" target="_blank">Annual Financial Statements 2024</a>
+          </li>
+          <li><span class="file-tag">Half-Yearly</span>
+            <a href="financials/2024/half-yearly-2024.pdf" target="_blank">Half-Yearly Accounts 2024</a>
+          </li>
+          <li><span class="file-tag">Q1</span>
+            <a href="financials/2024/q1-2024.pdf" target="_blank">First Quarter Accounts 2024</a>
+          </li>
+          <li><span class="file-tag">Q2</span>
+            <a href="financials/2024/q2-2024.pdf" target="_blank">Second Quarter Accounts 2024</a>
+          </li>
+          <li><span class="file-tag">Q3</span>
+            <a href="financials/2024/q3-2024.pdf" target="_blank">Third Quarter Accounts 2024</a>
+          </li>
+          <li><span class="file-tag">Q4</span>
+            <a href="financials/2024/q4-2024.pdf" target="_blank">Fourth Quarter Accounts 2024</a>
+          </li>
+        </ul>
+      </article>
+
+      <!-- 2023 -->
+      <article class="year-card reveal" data-year="2023">
+        <div class="year-label">Financial Year</div>
+        <h2>2023</h2>
+        <ul class="file-list">
+          <li><span class="file-tag">Annual</span>
+            <a href="financials/2023/annual-2023.pdf" target="_blank">Annual Financial Statements 2023</a>
+          </li>
+          <li><span class="file-tag">Half-Yearly</span>
+            <a href="financials/2023/half-yearly-2023.pdf" target="_blank">Half-Yearly Accounts 2023</a>
+          </li>
+          <li><span class="file-tag">Q1</span>
+            <a href="financials/2023/q1-2023.pdf" target="_blank">First Quarter Accounts 2023</a>
+          </li>
+          <li><span class="file-tag">Q2</span>
+            <a href="financials/2023/q2-2023.pdf" target="_blank">Second Quarter Accounts 2023</a>
+          </li>
+          <li><span class="file-tag">Q3</span>
+            <a href="financials/2023/q3-2023.pdf" target="_blank">Third Quarter Accounts 2023</a>
+          </li>
+          <li><span class="file-tag">Q4</span>
+            <a href="financials/2023/q4-2023.pdf" target="_blank">Fourth Quarter Accounts 2023</a>
+          </li>
+        </ul>
+      </article>
+
+      <!-- 2022 -->
+      <article class="year-card reveal" data-year="2022">
+        <div class="year-label">Financial Year</div>
+        <h2>2022</h2>
+        <ul class="file-list">
+          <li><span class="file-tag">Annual</span>
+            <a href="financials/2022/annual-2022.pdf" target="_blank">Annual Financial Statements 2022</a>
+          </li>
+          <li><span class="file-tag">Half-Yearly</span>
+            <a href="financials/2022/half-yearly-2022.pdf" target="_blank">Half-Yearly Accounts 2022</a>
+          </li>
+          <li><span class="file-tag">Q1</span>
+            <a href="financials/2022/q1-2022.pdf" target="_blank">First Quarter Accounts 2022</a>
+          </li>
+          <li><span class="file-tag">Q2</span>
+            <a href="financials/2022/q2-2022.pdf" target="_blank">Second Quarter Accounts 2022</a>
+          </li>
+          <li><span class="file-tag">Q3</span>
+            <a href="financials/2022/q3-2022.pdf" target="_blank">Third Quarter Accounts 2022</a>
+          </li>
+          <li><span class="file-tag">Q4</span>
+            <a href="financials/2022/q4-2022.pdf" target="_blank">Fourth Quarter Accounts 2022</a>
+          </li>
+        </ul>
+      </article>
+
+      <!-- 2021 -->
+      <article class="year-card reveal" data-year="2021">
+        <div class="year-label">Financial Year</div>
+        <h2>2021</h2>
+        <ul class="file-list">
+          <li><span class="file-tag">Annual</span>
+            <a href="financials/2021/annual-2021.pdf" target="_blank">Annual Financial Statements 2021</a>
+          </li>
+          <li><span class="file-tag">Half-Yearly</span>
+            <a href="financials/2021/half-yearly-2021.pdf" target="_blank">Half-Yearly Accounts 2021</a>
+          </li>
+          <li><span class="file-tag">Q1</span>
+            <a href="financials/2021/q1-2021.pdf" target="_blank">First Quarter Accounts 2021</a>
+          </li>
+          <li><span class="file-tag">Q2</span>
+            <a href="financials/2021/q2-2021.pdf" target="_blank">Second Quarter Accounts 2021</a>
+          </li>
+          <li><span class="file-tag">Q3</span>
+            <a href="financials/2021/q3-2021.pdf" target="_blank">Third Quarter Accounts 2021</a>
+          </li>
+          <li><span class="file-tag">Q4</span>
+            <a href="financials/2021/q4-2021.pdf" target="_blank">Fourth Quarter Accounts 2021</a>
+          </li>
+        </ul>
+      </article>
+
+      <!-- 2020 -->
+      <article class="year-card reveal" data-year="2020">
+        <div class="year-label">Financial Year</div>
+        <h2>2020</h2>
+        <ul class="file-list">
+          <li><span class="file-tag">Annual</span>
+            <a href="financials/2020/annual-2020.pdf" target="_blank">Annual Financial Statements 2020</a>
+          </li>
+          <li><span class="file-tag">Half-Yearly</span>
+            <a href="financials/2020/half-yearly-2020.pdf" target="_blank">Half-Yearly Accounts 2020</a>
+          </li>
+          <li><span class="file-tag">Q1</span>
+            <a href="financials/2020/q1-2020.pdf" target="_blank">First Quarter Accounts 2020</a>
+          </li>
+          <li><span class="file-tag">Q2</span>
+            <a href="financials/2020/q2-2020.pdf" target="_blank">Second Quarter Accounts 2020</a>
+          </li>
+          <li><span class="file-tag">Q3</span>
+            <a href="financials/2020/q3-2020.pdf" target="_blank">Third Quarter Accounts 2020</a>
+          </li>
+          <li><span class="file-tag">Q4</span>
+            <a href="financials/2020/q4-2020.pdf" target="_blank">Fourth Quarter Accounts 2020</a>
+          </li>
+        </ul>
+      </article>
+
+    </section>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="nx-footer">
+    <div class="nx-foot-wrap">
+
+      <!-- TOP BRAND -->
+      <div class="nx-foot-top">
+        <a class="nx-foot-brand" href="index.html">
+          <img class="nx-foot-logo" src="stoxgear-logo.jpg" alt="">
+          <img class="nx-foot-logo" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="">
+        </a>
       </div>
 
-      <div class="nx-foot-col">
-        <h4>EDUCATION</h4>
-        <a href="Glossary.html">Glossary</a>
-        <a href="faqs.html">FAQs</a>
+      <!-- GRID -->
+      <div class="nx-foot-grid">
+
+        <div class="nx-foot-col">
+          <h4>WHY US</h4>
+          <a href="about.html">About Us</a>
+          <a href="BOARD of directors.html">Board / Management</a>
+          <a href="Mission.html">Mission & Vision</a>
+        </div>
+
+        <div class="nx-foot-col">
+          <h4>EDUCATION</h4>
+          <a href="New to trading.html">New to Trading</a>
+          <a href="Investorguid.html">Investor Guide</a>
+          <a href="Glossary.html">Glossary</a>
+        </div>
+
+        <div class="nx-foot-col">
+          <h4>ACCOUNT</h4>
+          <a href="Rda.html">Roshan Digital Account</a>
+          <a href="Acoocint opening.html">Open Digital Account</a>
+          <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
+        </div>
+
+        <div class="nx-foot-col">
+          <h4>CONTACT</h4>
+          <a href="mailto:info@stoxgear.com.pk">info@stoxgear.com.pk</a>
+          <a href="tel:0913168395">091-3168395</a>
+          <a href="#">Karachi, Pakistan</a>
+        </div>
+
       </div>
 
-      <div class="nx-foot-col">
-        <h4>ACCOUNT</h4>
-        <a href="Acoocint opening.html">Open Digital Account</a>
+      <!-- BOTTOM -->
+      <div class="nx-foot-bottom">
+        <span>© <script>document.write(new Date().getFullYear())</script> Stoxgear Securities (Private) Limited</span>
+        <span>
+          <a href="privacy.html">Privacy</a> ·
+          <a href="terms.html">Terms</a>
+        </span>
       </div>
 
-      <div class="nx-foot-col">
-        <h4>CONTACT</h4>
-        <a href="mailto:info@stoxgear.com.pk">info@stoxgear.com.pk</a>
-      </div>
     </div>
+  </footer>
 
-    <div class="nx-foot-bottom">
-      <span>© 2025 Stoxgear Securities (Private) Limited</span>
-      <span><a href="#">Privacy</a> · <a href="#">Terms</a></span>
-    </div>
+  <!-- ========== SCRIPTS ========== -->
+  <script>
+    // Navbar: mobile toggle + dropdown tap
+    (function(){
+      const header = document.getElementById('nxHeader');
+      const menu   = document.getElementById('nxMenu');
+      const toggle = document.getElementById('nxToggle');
 
-  </div>
-</footer>
+      if (toggle && header && menu){
+        toggle.addEventListener('click', () => {
+          const open = !header.class.contains && !header.classList.contains('is-open') ? false : header.classList.contains('is-open');
+          header.classList.toggle('is-open', !open);
+          toggle.setAttribute('aria-expanded', String(!open));
+        });
 
-<script>
-/* SEARCH FILTER FUNCTION */
-document.getElementById("searchInput").addEventListener("keyup", function(){
-  const value = this.value.toLowerCase();
-  document.querySelectorAll(".fin-card").forEach(card=>{
-    const year = card.dataset.year;
-    card.style.display = year.includes(value) ? "block" : "none";
-  });
-});
-</script>
+        // simpler: always flip state
+        toggle.addEventListener('click', () => {
+          const openNow = header.classList.toggle('is-open');
+          toggle.setAttribute('aria-expanded', String(openNow));
+        });
+      }
+
+      document.querySelectorAll('.nx-item > .nx-link').forEach(link=>{
+        link.addEventListener('click',(e)=>{
+          const isMobile = window.matchMedia('(max-width:1024px)').matches;
+          const drop = link.nextElementSibling;
+          if(isMobile && drop && drop.classList.contains('nx-drop')){
+            e.preventDefault();
+            link.parentElement.classList.toggle('open');
+          }
+        });
+      });
+
+      document.addEventListener('click',(e)=>{
+        const isMobile = window.matchMedia('(max-width:1024px)').matches;
+        if(isMobile && header && !header.contains(e.target)){
+          header.classList.remove('is-open');
+          if (toggle) toggle.setAttribute('aria-expanded','false');
+          document.querySelectorAll('.nx-item.open').forEach(i=>i.classList.remove('open'));
+        }
+      });
+
+      // add scrolled class
+      window.addEventListener('scroll',()=>{
+        if(window.scrollY>10) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+      });
+    })();
+  </script>
+
+  <script>
+    // Scroll reveal for cards
+    (function(){
+      const io = new IntersectionObserver((entries)=>{
+        for(const e of entries){
+          if(e.isIntersecting){
+            e.target.classList.add('show');
+            io.unobserve(e.target);
+          }
+        }
+      }, {threshold:.15});
+
+      document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    })();
+  </script>
+
+  <script>
+    // Search filter by year / text
+    (function(){
+      const input = document.getElementById('finSearch');
+      const cards = document.querySelectorAll('.year-card');
+
+      if(!input) return;
+
+      input.addEventListener('input',()=>{
+        const q = input.value.toLowerCase().trim();
+        cards.forEach(card=>{
+          const year = card.getAttribute('data-year') || "";
+          const text = card.innerText.toLowerCase();
+          if(!q || year.includes(q) || text.includes(q)){
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    })();
+  </script>
 
 </body>
 </html>
