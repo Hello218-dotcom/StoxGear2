@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,103 +8,242 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
   --bg:#ffffff;
-  --ink:#0f1220;
-  --muted:#5e6676;
-  --accent:#c9a646;  /* Gold */
+  --text:#0f1220;
+  --text-dim:#5e6676;
+  --accent:#c9a646;
   --accent-dark:#b38b2e;
   --line:#e7e9ee;
-  --radius:14px;
+  --radius:16px;
+  --shadow:0 10px 28px rgba(0,0,0,.10);
 }
 
+/* PAGE RESET */
 body{
   margin:0;
-  padding:0;
   background:var(--bg);
   font-family:Inter, sans-serif;
-  color:var(--ink);
-}
-
-.container{
-  max-width:900px;
-  margin:60px auto;
-  padding:20px;
+  color:var(--text);
 }
 
 /* TITLE */
-h1{
-  font-size:38px;
+.page-title{
+  font-size:42px;
+  margin:110px auto 10px;
   font-weight:800;
-  letter-spacing:.2px;
+  text-align:left;
+  max-width:1200px;
+  padding:0 20px;
   color:var(--accent);
-  margin-bottom:20px;
 }
 
-/* LIST BLOCK */
-.fin-list{
-  margin-top:30px;
-  display:flex;
-  flex-direction:column;
-  gap:20px;
-}
-
-.fin-item{
-  font-size:20px;
-  font-weight:600;
-  position:relative;
-  width:max-content;
-}
-
-.fin-item a{
-  color:var(--ink);
-  text-decoration:none;
-  padding-bottom:4px;
-  border-bottom:2px solid transparent;
-  transition:.3s;
-}
-
-.fin-item a:hover{
-  color:var(--accent);
-  border-bottom:2px solid var(--accent);
-}
-
-/* SEPARATOR LINE */
 .separator{
   height:1px;
-  width:100%;
   background:var(--line);
-  margin:20px 0 30px;
+  width:1200px;
+  max-width:95%;
+  margin:10px auto 40px;
 }
+
+/* SEARCH BAR */
+.search-box{
+  max-width:1200px;
+  margin:0 auto 30px;
+  padding:0 20px;
+}
+.search-box input{
+  width:100%;
+  padding:14px 18px;
+  font-size:16px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  outline:none;
+  transition:.25s;
+}
+.search-box input:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(201,166,70,.25);
+}
+
+/* CARDS GRID */
+.card-grid{
+  max-width:1200px;
+  margin:0 auto 80px;
+  padding:0 20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+  gap:28px;
+}
+
+/* FINANCIAL CARD */
+.fin-card{
+  background:#fff;
+  border-radius:var(--radius);
+  padding:24px 28px;
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+  transition:.3s ease;
+  position:relative;
+  cursor:pointer;
+}
+
+.fin-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 18px 40px rgba(0,0,0,.18);
+  border-color:var(--accent);
+}
+
+.fin-card::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius:20px;
+  padding:2px;
+  background:linear-gradient(130deg,var(--accent),transparent 40%,var(--accent-dark));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  pointer-events:none;
+  opacity:0;
+  transition:.4s ease;
+}
+
+.fin-card:hover::before{
+  opacity:1;
+}
+
+.fin-card h3{
+  font-size:22px;
+  margin-bottom:6px;
+  font-weight:700;
+}
+
+.fin-card a{
+  text-decoration:none;
+  color:var(--accent-dark);
+  font-weight:700;
+  font-size:16px;
+}
+.fin-card a:hover{
+  color:var(--accent);
+}
+
+/* NAVBAR + FOOTER ARE SAME FROM YOUR CODE (paste below) */
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<!-- ========== NAVBAR (Your existing navbar pasted here automatically) ========== -->
+<header class="nx-navbar" id="nxHeader">
+  <div class="nx-nav-inner">
 
-  <h1>Annual / Half Yearly / Quarterly Financials</h1>
+    <a class="nx-brand" href="index.html">
+      <img class="nx-logo" src="stoxgear-logo.jpg" alt="">
+      <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg">
+    </a>
 
-  <div class="separator"></div>
+    <div class="nx-grow"></div>
 
-  <div class="fin-list">
-    <div class="fin-item">
-      <a href="#">Accounts for the year 2023</a>
-    </div>
+    <nav class="nx-menu" id="nxMenu">
+      <div class="nx-item"><a class="nx-link" href="about.html">About Us</a></div>
+      <div class="nx-item"><a class="nx-link" href="BOARD of directors.html">Board</a></div>
+      <div class="nx-item"><a class="nx-link" href="Annaual half yearly.html">Financials</a></div>
+      <div class="nx-item"><a class="nx-link" href="Contact.html">Contact</a></div>
+    </nav>
 
-    <div class="fin-item">
-      <a href="#">Accounts for the year 2024</a>
-    </div>
+    <button class="nx-cta">OPEN AN ACCOUNT</button>
+    <button class="nx-toggle" id="nxToggle">☰</button>
 
-    <div class="fin-item">
-      <a href="#">Accounts for the year 2025</a>
-    </div>
+  </div>
+</header>
+
+
+<!-- ========== PAGE CONTENT ========== -->
+
+<h1 class="page-title">Annual / Half Yearly / Quarterly Financials</h1>
+<div class="separator"></div>
+
+<!-- SEARCH BAR -->
+<div class="search-box">
+  <input type="text" id="searchInput" placeholder="Search financial statements (e.g., 2023, 2024, 2025)...">
+</div>
+
+<!-- CARDS -->
+<div class="card-grid" id="finList">
+
+  <div class="fin-card" data-year="2023">
+    <h3>Accounts for the year 2023</h3>
+    <a href="#">Download Statement →</a>
+  </div>
+
+  <div class="fin-card" data-year="2024">
+    <h3>Accounts for the year 2024</h3>
+    <a href="#">Download Statement →</a>
+  </div>
+
+  <div class="fin-card" data-year="2025">
+    <h3>Accounts for the year 2025</h3>
+    <a href="#">Download Statement →</a>
   </div>
 
 </div>
+
+<!-- ========== FOOTER ========== -->
+<footer class="nx-footer">
+  <div class="nx-foot-wrap">
+    <div class="nx-foot-top">
+      <a class="nx-foot-brand" href="index.html">
+        <img class="nx-foot-logo" src="stoxgear-logo.jpg" alt="">
+        <img class="nx-foot-logo" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="">
+      </a>
+    </div>
+
+    <div class="nx-foot-grid">
+      <div class="nx-foot-col">
+        <h4>WHY US</h4>
+        <a href="about.html">About Us</a>
+        <a href="Mission.html">Mission & Vision</a>
+      </div>
+
+      <div class="nx-foot-col">
+        <h4>EDUCATION</h4>
+        <a href="Glossary.html">Glossary</a>
+        <a href="faqs.html">FAQs</a>
+      </div>
+
+      <div class="nx-foot-col">
+        <h4>ACCOUNT</h4>
+        <a href="Acoocint opening.html">Open Digital Account</a>
+      </div>
+
+      <div class="nx-foot-col">
+        <h4>CONTACT</h4>
+        <a href="mailto:info@stoxgear.com.pk">info@stoxgear.com.pk</a>
+      </div>
+    </div>
+
+    <div class="nx-foot-bottom">
+      <span>© 2025 Stoxgear Securities (Private) Limited</span>
+      <span><a href="#">Privacy</a> · <a href="#">Terms</a></span>
+    </div>
+
+  </div>
+</footer>
+
+<script>
+/* SEARCH FILTER FUNCTION */
+document.getElementById("searchInput").addEventListener("keyup", function(){
+  const value = this.value.toLowerCase();
+  document.querySelectorAll(".fin-card").forEach(card=>{
+    const year = card.dataset.year;
+    card.style.display = year.includes(value) ? "block" : "none";
+  });
+});
+</script>
 
 </body>
 </html>
