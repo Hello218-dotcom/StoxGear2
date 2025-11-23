@@ -9,6 +9,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
     /* ---------- NAVBAR (light) ---------- */
+/* Remove all default link underlines from navbar */
+.nx-navbar a {
+  text-decoration: none !important;
+}
+
+/* Prevent underline on hover or focus */
+.nx-navbar a:hover,
+.nx-navbar a:focus,
+.nx-navbar a:active {
+  text-decoration: none !important;
+}
 
 /* ================== NAVBAR (White & Gold) ================== */
 
@@ -337,6 +348,18 @@
       .frame{max-width:520px;margin:auto}
     }
     /* ======================== FOOTER ======================== */
+    /* Remove native underline from footer links */
+.nx-footer a {
+  text-decoration: none !important;
+}
+
+/* Prevent underline on hover/focus/active */
+.nx-footer a:hover,
+.nx-footer a:focus,
+.nx-footer a:active {
+  text-decoration: none !important;
+}
+
 
 .nx-footer{
   margin-top:40px;
@@ -790,6 +813,7 @@
 
 </body>
 </html>
+
 
 
 
