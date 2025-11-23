@@ -11,12 +11,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-  /* Fix long dropdown cutting — enable full visibility */
-.nx-drop{
-  max-height: 380px;    /* adjust if needed */
-  overflow-y: auto;     /* makes dropdown scroll */
-}
-
 :root{
   --bg:#ffffff;
   --surface:#fafafa;
@@ -28,6 +22,7 @@
   --radius:16px;
   --shadow:0 8px 20px rgba(0,0,0,.1);
 }
+
 html,body{
   background:var(--bg);
   color:var(--text);
@@ -35,8 +30,10 @@ html,body{
   margin:0;
   scroll-behavior:smooth;
 }
+
 a{color:var(--accent-3);text-decoration:none;transition:.2s}
 a:hover{color:var(--accent-2);text-decoration:underline}
+
 .btn,.btn-cta{
   background:var(--accent);
   color:#fff;font-weight:700;
@@ -53,44 +50,97 @@ header.nx-navbar{
   background:rgba(255,255,255,.95);
   border-bottom:1px solid rgba(0,0,0,.08);
   box-shadow:0 3px 10px rgba(0,0,0,.05);
+  transition:box-shadow .25s ease, transform .25s ease, background .25s ease;
 }
+header.nx-navbar.scrolled{
+  box-shadow:0 8px 26px rgba(0,0,0,.12);
+  transform:translateY(-1px);
+}
+
 .nx-nav-inner{
   max-width:1200px;margin:0 auto;
   padding:14px 24px;display:flex;align-items:center;gap:18px;
 }
+
 .nx-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text)}
 .nx-logo{height:36px;width:auto;display:block;object-fit:contain}
 .nx-logo2{height:36px;width:auto;display:block;object-fit:contain;margin-left:10px}
 .nx-tag{font-size:12px;color:var(--text-2)}
 .nx-grow{flex:1}
+
 .nx-menu{display:flex;align-items:center;gap:26px;}
-.nx-link{position:relative;color:var(--text-2);font-weight:600;text-decoration:none;font-size:15px;}
+.nx-link{
+  position:relative;
+  color:var(--text-2);
+  font-weight:600;
+  text-decoration:none;
+  font-size:15px;
+}
 .nx-link:hover{color:var(--accent)}
-.nx-link:after{content:"";position:absolute;bottom:-6px;left:0;height:2px;width:0;background:var(--accent);transition:.25s ease;}
+.nx-link:after{
+  content:"";
+  position:absolute;
+  bottom:-6px;left:0;
+  height:2px;width:0;
+  background:var(--accent);
+  transition:.25s ease;
+}
 .nx-link:hover:after{width:100%}
 .nx-item{position:relative}
 
 /* dropdown controlled by .open (desktop + mobile) */
 .nx-drop{
-  position:absolute;top:calc(100% + 10px);left:0;min-width:240px;
-  background:#fff;border:1px solid rgba(0,0,0,.08);
-  border-radius:14px;padding:10px;box-shadow:0 10px 25px rgba(0,0,0,.12);
+  position:absolute;
+  top:calc(100% + 10px);
+  left:0;
+  min-width:240px;
+  background:#fff;
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:14px;
+  padding:10px;
+  box-shadow:0 10px 25px rgba(0,0,0,.12);
   display:none;
   z-index:1000;
+  transform:translateY(8px);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .28s ease, transform .28s ease;
 }
 .nx-item.open > .nx-drop{
   display:block;
+  opacity:1;
+  transform:translateY(0);
+  pointer-events:auto;
 }
-.nx-drop a{display:block;color:var(--text);padding:8px 12px;border-radius:10px;}
-.nx-drop a:hover{background:var(--surface);color:var(--accent);}
+.nx-drop a{
+  display:block;
+  color:var(--text);
+  padding:8px 12px;
+  border-radius:10px;
+  white-space:normal; /* allow wrapping so no internal scroll */
+}
+.nx-drop a:hover{
+  background:var(--surface);
+  color:var(--accent);
+}
+
 .nx-cta{
-  margin-left:auto;background:var(--accent);
-  color:#fff;font-weight:700;border:none;border-radius:30px;
-  padding:10px 20px;cursor:pointer;
+  margin-left:auto;
+  background:var(--accent);
+  color:#fff;
+  font-weight:700;
+  border:none;
+  border-radius:30px;
+  padding:10px 20px;
+  cursor:pointer;
   box-shadow:0 0 20px rgba(201,166,70,.25);
   transition:.2s;
 }
-.nx-cta:hover{transform:translateY(-2px);background:var(--accent-2)}
+.nx-cta:hover{
+  transform:translateY(-2px);
+  background:var(--accent-2);
+}
+
 .nx-toggle{
   display:none;
   margin-left:8px;
@@ -100,6 +150,11 @@ header.nx-navbar{
   font-size:20px;
   background:#fff;
   cursor:pointer;
+  transition:background .2s ease, transform .2s ease;
+}
+.nx-toggle:hover{
+  background:rgba(0,0,0,.03);
+  transform:translateY(-1px);
 }
 
 /* ===== PAGE WRAP & HEADING ===== */
@@ -134,8 +189,12 @@ header.nx-navbar{
   padding:20px 20px 22px;
   position:relative;
   overflow:hidden;
-  transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease,
-             opacity .45s ease, transform .45s ease;
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease,
+    border-color .3s ease,
+    opacity .45s ease,
+    transform .45s ease;
   opacity:0;
   transform:translateY(18px);
 }
@@ -207,20 +266,73 @@ header.nx-navbar{
   border-top:1px solid rgba(0,0,0,.08);
   color:var(--text-2);
 }
-.nx-foot-wrap{max-width:1200px;margin:0 auto;padding:48px 20px 28px}
-.nx-foot-top{display:flex;align-items:center;justify-content:space-between;gap:18px;
-  padding-bottom:22px;border-bottom:1px solid rgba(0,0,0,.08)}
-.nx-foot-brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--text)}
-.nx-foot-logo{height:36px;width:auto;filter:none}
+.nx-foot-wrap{
+  max-width:1200px;
+  margin:0 auto;
+  padding:48px 20px 28px
+}
+.nx-foot-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  padding-bottom:22px;
+  border-bottom:1px solid rgba(0,0,0,.08)
+}
+.nx-foot-brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  text-decoration:none;
+  color:var(--text)
+}
+.nx-foot-logo{
+  height:36px;
+  width:auto;
+  filter:none
+}
 .nx-foot-tag{font-size:13px;color:var(--text-2)}
-.nx-foot-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px;padding:26px 0 6px}
-@media(max-width:900px){.nx-foot-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:540px){.nx-foot-grid{grid-template-columns:1fr}}
-.nx-foot-col h4{margin:0 0 12px;color:var(--accent);font-size:15px}
-.nx-foot-col a{display:block;color:var(--text);text-decoration:none;opacity:.9;padding:7px 0;font-size:14px}
-.nx-foot-col a:hover{opacity:1;transform:translateX(2px);color:#000}
-.nx-foot-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;
-  padding-top:16px;border-top:1px solid rgba(0,0,0,.08);color:var(--text-2);font-size:13px}
+.nx-foot-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:26px;
+  padding:26px 0 6px
+}
+@media(max-width:900px){
+  .nx-foot-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:540px){
+  .nx-foot-grid{grid-template-columns:1fr}
+}
+.nx-foot-col h4{
+  margin:0 0 12px;
+  color:var(--accent);
+  font-size:15px
+}
+.nx-foot-col a{
+  display:block;
+  color:var(--text);
+  text-decoration:none;
+  opacity:.9;
+  padding:7px 0;
+  font-size:14px;
+  transition:opacity .2s ease, transform .2s ease, color .2s ease;
+}
+.nx-foot-col a:hover{
+  opacity:1;
+  transform:translateX(2px);
+  color:#000
+}
+.nx-foot-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding-top:16px;
+  border-top:1px solid rgba(0,0,0,.08);
+  color:var(--text-2);
+  font-size:13px
+}
 
 /* RESPONSIVE NAVBAR */
 @media (max-width:1024px){
@@ -240,11 +352,14 @@ header.nx-navbar{
   .nx-link{display:block;padding:12px 6px}
   .nx-drop{
     position:static;
-    display:none;
     border:none;
     box-shadow:none;
     background:transparent;
     padding:0;
+    transform:none;
+    opacity:1;
+    pointer-events:auto;
+    display:none;
   }
   .nx-item.open>.nx-drop{display:block !important}
   .nx-toggle{
@@ -340,7 +455,9 @@ header.nx-navbar{
       </div>
     </nav>
 
-    <button class="nx-cta">OPEN AN ACCOUNT</button>
+    <!-- CTA now linked to Open Account page -->
+    <a class="nx-cta" href="Acoocint opening.html">OPEN AN ACCOUNT</a>
+
     <button class="nx-toggle" id="nxToggle" aria-label="Toggle menu" aria-controls="nxMenu" aria-expanded="false">☰</button>
   </div>
 </header>
@@ -434,17 +551,35 @@ header.nx-navbar{
 </footer>
 
 <script>
-// navbar behaviour: mobile toggle + hover delay for dropdowns
+// navbar behaviour: mobile toggle + hover delay for dropdowns + scroll effect
 (function(){
   const header = document.getElementById('nxHeader');
   const menu   = document.getElementById('nxMenu');
   const toggle = document.getElementById('nxToggle');
+
+  function isMobileView(){
+    const mq = window.matchMedia('(max-width:1024px)').matches;
+    const touch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+    return mq || touch;
+  }
+
+  // scroll shadow effect
+  window.addEventListener('scroll', ()=>{
+    if(window.scrollY > 10){
+      header.classList.add('scrolled');
+    }else{
+      header.classList.remove('scrolled');
+    }
+  });
 
   if (toggle && header){
     toggle.addEventListener('click', ()=>{
       const open = !header.classList.contains('is-open');
       header.classList.toggle('is-open', open);
       toggle.setAttribute('aria-expanded', String(open));
+      if(!open){
+        document.querySelectorAll('.nx-item.open').forEach(i=>i.classList.remove('open'));
+      }
     });
   }
 
@@ -452,10 +587,17 @@ header.nx-navbar{
   document.querySelectorAll('.nx-item > .nx-link').forEach(link=>{
     link.addEventListener('click', (e)=>{
       const drop = link.nextElementSibling;
-      const isMobile = window.matchMedia('(max-width:1024px)').matches;
-      if (isMobile && drop && drop.classList.contains('nx-drop')){
+      if (isMobileView() && drop && drop.classList.contains('nx-drop')){
         e.preventDefault();
-        link.parentElement.classList.toggle('open');
+        const parent = link.parentElement;
+        const already = parent.classList.contains('open');
+
+        // close others
+        document.querySelectorAll('.nx-item.open').forEach(i=>i.classList.remove('open'));
+
+        if(!already){
+          parent.classList.add('open');
+        }
       }
     });
   });
@@ -465,28 +607,25 @@ header.nx-navbar{
     let enterTimer, leaveTimer;
 
     item.addEventListener('mouseenter', ()=>{
-      const isDesktop = window.matchMedia('(min-width:1025px)').matches;
-      if(!isDesktop) return;
+      if(!document.body || isMobileView()) return;
       clearTimeout(leaveTimer);
       enterTimer = setTimeout(()=>{
         item.classList.add('open');
-      }, 130); // delay before showing
+      }, 220); // slower open
     });
 
     item.addEventListener('mouseleave', ()=>{
-      const isDesktop = window.matchMedia('(min-width:1025px)').matches;
-      if(!isDesktop) return;
+      if(!document.body || isMobileView()) return;
       clearTimeout(enterTimer);
       leaveTimer = setTimeout(()=>{
         item.classList.remove('open');
-      }, 180); // delay before hiding
+      }, 260); // slower close
     });
   });
 
   // click outside to close on mobile
   document.addEventListener('click', (e)=>{
-    const isMobile = window.matchMedia('(max-width:1024px)').matches;
-    if (isMobile && header && !header.contains(e.target)){
+    if (isMobileView() && header && !header.contains(e.target)){
       header.classList.remove('is-open');
       if (toggle) toggle.setAttribute('aria-expanded','false');
       document.querySelectorAll('.nx-item.open').forEach(i=>i.classList.remove('open'));
