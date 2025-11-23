@@ -8,6 +8,92 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
+    /* ---------- NAVBAR (light) ---------- */
+
+.nx-navbar{
+  position:sticky;top:0;z-index:1000;
+  background:#fff;
+  border-bottom:1px solid #e7e9ee;
+  box-shadow:0 6px 18px rgba(0,0,0,.06);
+}
+.nx-nav-inner{
+  max-width:1200px;margin:0 auto;
+  padding:12px 20px;
+  display:flex;align-items:center;gap:16px;
+}
+.nx-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#0f1220}
+.nx-logo{height:38px;width:auto;display:block}
+.nx-logo2{
+  height:48px;
+  width:auto;
+  max-width:220px;
+  object-fit:contain;
+  margin-left:10px;
+}
+.nx-grow{flex:1}
+
+.nx-cta{
+  background:#c9a646;
+  color:#000;font-weight:700;
+  border:none;border-radius:999px;
+  padding:10px 22px;cursor:pointer;
+  transition:.22s ease;
+}
+.nx-cta:hover{filter:brightness(1.07)}
+
+.nx-toggle{
+  background:none;border:1px solid #e7e9ee;border-radius:10px;padding:4px 10px;
+  color:#c9a646;font-size:20px;cursor:pointer;display:none;
+}
+
+.nx-menu{display:flex;align-items:center;gap:22px}
+.nx-item{position:relative}
+.nx-link{
+  text-decoration:none;color:#5e6676;font-weight:600;position:relative;
+}
+.nx-link:after{
+  content:"";position:absolute;left:0;right:0;bottom:-6px;
+  height:2px;background:#c9a646;transform:scaleX(0);
+  transition:.25s;
+}
+.nx-link:hover{color:#c9a646}
+.nx-link:hover:after{transform:scaleX(1)}
+
+.nx-drop{
+  position:absolute;top:calc(100% + 10px);left:0;
+  background:#fff;border:1px solid #e7e9ee;
+  border-radius:10px;padding:8px;
+  display:none;min-width:240px;z-index:9999;
+  box-shadow:0 12px 26px rgba(0,0,0,.08);
+  max-height:380px;overflow-y:auto;
+}
+.nx-drop a{
+  display:block;color:#0f1220;
+  text-decoration:none;padding:8px 12px;border-radius:8px;
+}
+.nx-drop a:hover{background:#f6f6f6;color:#c9a646}
+
+@media (min-width:1025px){
+  .nx-item:hover>.nx-drop{display:block}
+}
+
+@media (max-width:1024px){
+  .nx-toggle{display:block}
+  .nx-menu{
+    display:none;flex-direction:column;
+    position:absolute;top:100%;left:0;right:0;
+    background:#fff;
+    border-top:1px solid #e7e9ee;
+    box-shadow:0 12px 26px rgba(0,0,0,.08);
+    padding:10px 12px;
+  }
+  .nx-item{width:100%}
+  .nx-link{display:block;padding:10px 0}
+  .nx-item.open>.nx-drop{
+    display:block;position:static;background:none;border:none;box-shadow:none;padding:0
+  }
+}
+
     /* Fix long dropdown cutting — enable full visibility */
     .nx-drop{
       max-height: 380px;    /* adjust if needed */
@@ -266,23 +352,22 @@
 </head>
 <body>
   <!-- ========== NAVBAR ========== -->
-<header class="nx-navbar" id="nxHeader">
+<header class="nx-navbar">
   <div class="nx-nav-inner">
+
     <a class="nx-brand" href="index.html">
-      <!-- main logo -->
       <img class="nx-logo" src="stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
-      <!-- second/partner logo -->
       <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner Logo">
     </a>
 
     <div class="nx-grow"></div>
 
     <nav class="nx-menu" id="nxMenu">
-      <!-- WHY US -->
+
       <div class="nx-item">
         <a class="nx-link" href="#">Why Us</a>
         <div class="nx-drop">
-          <a href="about.html">About US</a>
+          <a href="about.html">About Us</a>
           <a href="BOARD of directors.html">Board of Directors / Management</a>
           <a href="Mission.html">Mission / Vision</a>
           <a href="associated companies.html">Associated Companies</a>
@@ -292,7 +377,6 @@
         </div>
       </div>
 
-      <!-- EDUCATION -->
       <div class="nx-item">
         <a class="nx-link" href="#">Education</a>
         <div class="nx-drop">
@@ -305,22 +389,20 @@
           <a href="order-settlement-flow.html">Order Settlement Flow</a>
           <a href="arbitration-procedure.html">Arbitration Procedure</a>
           <a href="risk-disclosure-document.html">Risk Disclosure Document</a>
-          <a href="procedure-cancel-pending-orders.html">Procedure To Cancel Pending Orders</a>
+          <a href="procedure-cancel-pending-orders.html">Cancel Pending Orders</a>
           <a href="faqs.html">FAQs</a>
         </div>
       </div>
 
-      <!-- OPEN ACCOUNT -->
       <div class="nx-item">
         <a class="nx-link" href="#">Open Account</a>
         <div class="nx-drop">
-          <a href="Rda.html">Roshan Digital Account (RDA)</a>
+          <a href="Rda.html">Roshan Digital Account</a>
           <a href="Acoocint opening.html">Open Digital Account</a>
           <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
         </div>
       </div>
 
-      <!-- DOWNLOADS -->
       <div class="nx-item">
         <a class="nx-link" href="#">Downloads</a>
         <div class="nx-drop">
@@ -329,42 +411,32 @@
         </div>
       </div>
 
-      <!-- SUPPORT -->
       <div class="nx-item">
         <a class="nx-link" href="#">Support</a>
         <div class="nx-drop">
           <a href="investor complaint.html">Investor Complaint</a>
-          <a href="Annaual half yearly.html">Annual / Half yearly / Quarterly Financial Statements</a>
+          <a href="Annaual half yearly.html">Annual / Half yearly / Quarterly</a>
           <a href="Auditor.html">Statutory Auditor Details</a>
           <a href="Ncb auditor details .html">NCB Auditor Details</a>
           <a href="KYC poslicy.html">CDD / KYC Policy</a>
           <a href="Pending investor complaun.html">Pending Investor Complaints</a>
-          <a href="Penal action.html">Details of Penal Action</a>
+          <a href="Penal action.html">Penal Action</a>
           <a href="Secp complaint.html">SECP Complaint</a>
           <a href="psx complaint.html">PSX Complaint</a>
-          <a href="UIs of NICCPL.html">UIS Services of NCCPL</a>
+          <a href="UIs of NICCPL.html">UIS Services</a>
           <a href="Eservices By CDC.html">EServices by CDC</a>
-
-          <!-- Previously dead (#) links – now mapped to real pages -->
-          <a href="psx-rule-book.html">PSX Rule Book</a>
-          <a href="common-terms-share-market.html">Common Terms of Share Market</a>
-          <a href="online-order-execution-flow.html">Online Order Execution Flow</a>
-          <a href="order-settlement-flow.html">Order Settlement Flow</a>
-          <a href="arbitration-procedure.html">Arbitration Procedure</a>
-          <a href="risk-disclosure-document.html">Risk Disclosure Document</a>
-          <a href="procedure-cancel-pending-orders.html">Procedure To Cancel Pending Orders</a>
-          <a href="Glossary.html">Glossary</a>
-          <a href="faqs.html">FAQs</a>
-
           <a href="Contact.html">Contact</a>
         </div>
       </div>
+
     </nav>
 
     <button class="nx-cta">OPEN AN ACCOUNT</button>
-    <button class="nx-toggle" id="nxToggle" aria-label="Toggle menu" aria-controls="nxMenu" aria-expanded="false">☰</button>
+    <button class="nx-toggle" id="nxToggle" aria-expanded="false">☰</button>
+
   </div>
 </header>
+
 
   <main class="wrap">
     <h1 class="title">Leadership</h1>
@@ -622,3 +694,4 @@
 
 </body>
 </html>
+
