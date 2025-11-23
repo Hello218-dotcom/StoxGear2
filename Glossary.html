@@ -15,100 +15,70 @@
   --panel:#ffffff;
   --ink:#1f2937;
   --muted:#6b7280;
-  --line:#e5e5e5;
+  --line:#e7e9ee;
 
-  --brand:#c9a227;
-  --brand-2:#b8901f;
+  --accent:#c9a646;
+  --accent-2:#b38b2e;
 
-  --radius:18px;
-  --shadow:0 10px 26px rgba(0,0,0,.10);
+  --radius:16px;
+  --shadow:0 8px 20px rgba(0,0,0,.08);
 }
 
-/* RESET */
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{
+body{
   background:var(--bg);
   font-family:Poppins,system-ui,-apple-system;
   color:var(--ink);
 }
 
-/* ===================== NAVBAR ===================== */
-
-:root{
-  --text:#0f1220;
-  --text-dim:#5e6676;
-  --accent:#c9a646;
-  --accent-2:#b38b2e;
-  --line:#e7e9ee;
-  --radius:14px;
-}
-
-/* NAVBAR BASE */
+/* ================= NAVBAR ================= */
 .nx-navbar{
-  position:sticky;
-  top:0;
-  z-index:1000;
+  position:sticky;top:0;z-index:1000;
   background:#fff;
   border-bottom:1px solid var(--line);
   box-shadow:0 6px 18px rgba(0,0,0,.06);
 }
-
-/* NAVBAR INNER */
 .nx-nav-inner{
-  max-width:1200px;
-  margin:0 auto;
+  max-width:1200px;margin:0 auto;
   padding:14px 24px;
-  display:flex;
-  align-items:center;
-  gap:16px;
+  display:flex;align-items:center;gap:16px;
 }
+.nx-brand{display:flex;align-items:center;gap:12px;color:var(--ink)}
+.nx-logo{height:50px;width:auto;object-fit:contain}
+.nx-logo2{height:40px;width:auto;margin-left:10px}
 
-.nx-brand{display:flex;align-items:center;gap:10px;color:var(--text);}
-.nx-logo{height:38px;width:auto;}
-.nx-logo2{height:38px;width:auto;margin-left:10px;}
 .nx-grow{flex:1}
 
-.nx-cta{
-  background:var(--accent);
-  color:#000;
-  font-weight:700;
-  border:none;
-  padding:10px 22px;
-  border-radius:999px;
-  cursor:pointer;
-}
-
-/* MENU */
-.nx-menu{display:flex;align-items:center;gap:26px;}
-.nx-item{position:relative;}
+.nx-menu{display:flex;align-items:center;gap:26px}
+.nx-item{position:relative}
 .nx-link{
-  color:var(--text-dim);
-  font-weight:600;
-  position:relative;
+  color:var(--muted);font-weight:600;position:relative;
   text-decoration:none !important;
 }
-.nx-link:hover{color:var(--accent);}
+.nx-link:hover{color:var(--accent)}
 .nx-link:after{
-  content:"";position:absolute;left:0;bottom:-6px;height:2px;width:0;
-  background:var(--accent);transition:.25s;
+  content:"";position:absolute;bottom:-6px;left:0;
+  width:0;height:2px;background:var(--accent);
+  transition:.25s;
 }
-.nx-link:hover:after{width:100%;}
+.nx-link:hover:after{width:100%}
 
+/* DROPDOWN */
 .nx-drop{
   position:absolute;top:calc(100% + 10px);left:0;
-  min-width:230px;background:#fff;border:1px solid var(--line);
-  padding:10px;border-radius:14px;display:none;
-  box-shadow:0 12px 28px rgba(0,0,0,.12);
+  min-width:230px;background:#fff;
+  border:1px solid var(--line);padding:10px;
+  border-radius:var(--radius);
+  display:none;box-shadow:0 12px 28px rgba(0,0,0,.12);
 }
 .nx-drop a{
-  display:block;padding:8px 10px;color:var(--text);
-  border-radius:10px;text-decoration:none !important;
+  display:block;padding:8px 10px;color:var(--ink);
+  text-decoration:none !important;border-radius:10px;
 }
 .nx-drop a:hover{background:#f6f6f6;color:var(--accent)}
 
-/* DESKTOP */
 @media (min-width:1025px){
-  .nx-item:hover>.nx-drop{display:block;}
+  .nx-item:hover>.nx-drop{display:block}
 }
 
 /* MOBILE */
@@ -117,77 +87,98 @@ html,body{
   padding:6px 12px;border-radius:10px;font-size:20px;cursor:pointer;
 }
 @media (max-width:1024px){
-  .nx-toggle{display:block;}
+  .nx-toggle{display:block}
   .nx-menu{
-    display:none;flex-direction:column;position:absolute;top:100%;
-    left:0;right:0;background:#fff;border-top:1px solid var(--line);
-    padding:10px 12px;
+    display:none;flex-direction:column;
+    position:absolute;top:100%;left:0;right:0;
+    background:#fff;border-top:1px solid var(--line);
+    padding:10px 12px;box-shadow:0 12px 26px rgba(0,0,0,.08);
   }
-  .nx-navbar.is-open .nx-menu{display:flex;}
-  .nx-drop{position:static;border:none;box-shadow:none;display:none;}
-  .nx-item.open>.nx-drop{display:block;}
+  .nx-navbar.is-open .nx-menu{display:flex}
+  .nx-item{width:100%}
+  .nx-drop{
+    position:static;border:none;box-shadow:none;background:none;padding:0;display:none;
+  }
+  .nx-item.open>.nx-drop{display:block}
 }
 
-/* ===================== PAGE TITLE ===================== */
+/* PAGE TITLE */
 h1{
-  text-align:center;
-  margin:90px 0 10px;
-  color:var(--brand);
+  text-align:center;margin:90px 0 10px;
+  color:var(--accent);
   font-size:clamp(30px,4vw,46px);
   font-weight:800;
 }
 
-/* SEARCH */
-.search-bar{text-align:center;margin-bottom:28px;}
+/* SEARCH BAR */
+.search-bar{text-align:center;margin-bottom:28px}
 .search-bar input{
-  width:80%;max-width:520px;padding:14px 16px;
-  border-radius:14px;border:1px solid var(--line);
+  width:80%;max-width:520px;
+  padding:14px 16px;border-radius:14px;
+  border:1px solid var(--line);outline:none;
 }
 
 /* GRID */
 .grid{
-  max-width:1200px;margin:auto;padding:20px;
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  max-width:1200px;margin:auto;
+  padding:20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
   gap:22px;
 }
 .card{
   background:#fff;border:1px solid var(--line);
   padding:20px;border-radius:var(--radius);
   box-shadow:var(--shadow);
+  transition:.3s;
 }
-.card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,.12);}
-.term{color:var(--brand);font-weight:700;margin-bottom:8px;}
-.meaning{color:var(--ink);opacity:.8;}
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 16px 40px rgba(0,0,0,.12);
+}
+.term{color:var(--accent);font-weight:700;margin-bottom:8px}
+.meaning{opacity:.85}
 
-/* ===================== FOOTER ===================== */
-
+/* ================= FOOTER ================= */
 .nx-footer{
-  margin-top:70px;
+  margin-top:60px;
   background:#fafafa;
   border-top:1px solid var(--line);
-  color:var(--text-dim);
+  color:var(--muted);
 }
-.nx-footer a{text-decoration:none !important;}
-
 .nx-foot-wrap{
   max-width:1200px;margin:auto;
-  padding:40px 20px;
+  padding:48px 20px;
 }
 .nx-foot-top{
-  display:flex;align-items:center;gap:12px;margin-bottom:26px;
+  display:flex;align-items:center;gap:14px;
+  padding-bottom:20px;border-bottom:1px solid var(--line);
 }
-.nx-foot-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:26px;padding:26px 0;
-}
-.nx-foot-col h4{color:var(--accent);margin-bottom:10px;}
-.nx-foot-col a{display:block;padding:6px 0;color:var(--text);}
-.nx-foot-col a:hover{transform:translateX(2px);}
+.nx-foot-brand{display:flex;align-items:center;gap:12px}
+.nx-foot-logo{height:50px;width:auto}
 
-@media(max-width:900px){.nx-foot-grid{grid-template-columns:repeat(2,1fr);} }
-@media(max-width:540px){.nx-foot-grid{grid-template-columns:1fr;} }
+.nx-foot-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:26px;padding:26px 0 10px;
+}
+@media(max-width:900px){.nx-foot-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.nx-foot-grid{grid-template-columns:1fr}}
+
+.nx-foot-col h4{
+  font-size:15px;color:var(--accent);margin-bottom:10px;
+}
+.nx-foot-col a{
+  color:var(--ink);padding:6px 0;font-size:14px;
+  display:block;text-decoration:none !important;
+  opacity:.9;transition:.2s ease;
+}
+.nx-foot-col a:hover{
+  opacity:1;transform:translateX(2px);
+}
 
 .nx-foot-bottom{
-  text-align:center;color:var(--muted);padding-top:20px;
+  padding-top:16px;border-top:1px solid var(--line);
+  font-size:13px;text-align:center;color:var(--muted);
 }
 </style>
 </head>
@@ -199,8 +190,7 @@ h1{
   <div class="nx-nav-inner">
 
     <a class="nx-brand" href="index.html">
-      <img class="nx-logo" src="stoxgear-logo.jpg">
-      <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg">
+      <img class="nx-logo" src="/mnt/data/ee15c60d-3d69-41af-924d-790d77fa611a.png" alt="STOXGEAR LOGO">
     </a>
 
     <div class="nx-grow"></div>
@@ -214,9 +204,6 @@ h1{
           <a href="BOARD of directors.html">Board / Management</a>
           <a href="Mission.html">Mission & Vision</a>
           <a href="associated companies.html">Associated Companies</a>
-          <a href="Ncb auditor details .html">Auditors / Legal Advisors</a>
-          <a href="services.html">Services</a>
-          <a href="Registered agents..html">Registered Agents</a>
         </div>
       </div>
 
@@ -226,23 +213,14 @@ h1{
           <a href="New to trading.html">New to Trading</a>
           <a href="Investorguid.html">Investor Guide</a>
           <a href="Glossary.html">Glossary</a>
-          <a href="psx-rule-book.html">PSX Rule Book</a>
-          <a href="common-terms-share-market.html">Common Terms</a>
-          <a href="online-order-execution-flow.html">Order Flow</a>
-          <a href="order-settlement-flow.html">Settlement Flow</a>
-          <a href="arbitration-procedure.html">Arbitration</a>
-          <a href="risk-disclosure-document.html">Risk Disclosure</a>
-          <a href="procedure-cancel-pending-orders.html">Cancel Orders</a>
-          <a href="faqs.html">FAQs</a>
         </div>
       </div>
 
       <div class="nx-item">
         <a class="nx-link" href="#">Open Account</a>
         <div class="nx-drop">
-          <a href="Rda.html">Roshan Digital</a>
+          <a href="Rda.html">Roshan Digital Account</a>
           <a href="Acoocint opening.html">Open Digital Account</a>
-          <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
         </div>
       </div>
 
@@ -251,8 +229,6 @@ h1{
         <div class="nx-drop">
           <a href="Forms.html">Forms</a>
           <a href="software.html">Software</a>
-          <a href="Annaual half yearly.html">Financial Statements</a>
-          <a href="KYC poslicy.html">KYC Policy</a>
         </div>
       </div>
 
@@ -262,10 +238,6 @@ h1{
           <a href="investor complaint.html">Investor Complaint</a>
           <a href="Pending investor complaun.html">Pending Complaints</a>
           <a href="Penal action.html">Penal Action</a>
-          <a href="Secp complaint.html">SECP Complaint</a>
-          <a href="psx complaint.html">PSX Complaint</a>
-          <a href="UIs of NICCPL.html">UIS Services</a>
-          <a href="Eservices By CDC.html">CDC E-Services</a>
         </div>
       </div>
 
@@ -275,11 +247,11 @@ h1{
 
     </nav>
 
-    <button class="nx-cta">OPEN AN ACCOUNT</button>
     <button class="nx-toggle" id="nxToggle">☰</button>
 
   </div>
 </header>
+
 
 <!-- ================= TITLE ================= -->
 <h1>Investment Glossary</h1>
@@ -288,41 +260,56 @@ h1{
   <input id="searchInput" placeholder="Search a term...">
 </div>
 
-<!-- ================= GLOSSARY GRID ================= -->
+<!-- ================= GRID ================= -->
 <div class="grid" id="glossaryGrid">
 
-<!-- Your 50 Simple Glossary Terms -->
-<div class="card"><div class="term">Ask Price</div><div class="meaning">Lowest price a seller accepts.</div></div>
-<div class="card"><div class="term">Bond</div><div class="meaning">Loan to a company or government.</div></div>
-<div class="card"><div class="term">Capital Gain</div><div class="meaning">Profit when selling higher than buying.</div></div>
-<div class="card"><div class="term">Dividend</div><div class="meaning">Share of company profit paid to investors.</div></div>
-<div class="card"><div class="term">IPO</div><div class="meaning">Company sells shares to public first time.</div></div>
-<div class="card"><div class="term">Asset</div><div class="meaning">Anything valuable you own.</div></div>
-<div class="card"><div class="term">Bear Market</div><div class="meaning">Market with falling prices.</div></div>
-<div class="card"><div class="term">Bull Market</div><div class="meaning">Market with rising prices.</div></div>
-<div class="card"><div class="term">Broker</div><div class="meaning">Company that executes trades.</div></div>
-<div class="card"><div class="term">Buy Order</div><div class="meaning">Instruction to purchase shares.</div></div>
-<div class="card"><div class="term">Sell Order</div><div class="meaning">Instruction to sell shares.</div></div>
-<div class="card"><div class="term">Market Order</div><div class="meaning">Buy or sell immediately.</div></div>
-<div class="card"><div class="term">Limit Order</div><div class="meaning">Buy/sell at a set price.</div></div>
-<div class="card"><div class="term">Stop Loss</div><div class="meaning">Sell to prevent large losses.</div></div>
-<div class="card"><div class="term">Portfolio</div><div class="meaning">Collection of investments.</div></div>
-<div class="card"><div class="term">Diversification</div><div class="meaning">Investing in many assets.</div></div>
-<div class="card"><div class="term">Equity</div><div class="meaning">Ownership in a company.</div></div>
-<div class="card"><div class="term">Debt</div><div class="meaning">Borrowed money to be repaid.</div></div>
-<div class="card"><div class="term">ETF</div><div class="meaning">Tradable basket of assets.</div></div>
-<div class="card"><div class="term">Index</div><div class="meaning">Group of stocks tracked together.</div></div>
-<div class="card"><div class="term">Liquidity</div><div class="meaning">How quickly something can sell.</div></div>
-<div class="card"><div class="term">Volatility</div><div class="meaning">Speed of price changes.</div></div>
-<div class="card"><div class="term">Leverage</div><div class="meaning">Using borrowed money to invest.</div></div>
-<div class="card"><div class="term">Yield</div><div class="meaning">Return earned on investment.</div></div>
-<div class="card"><div class="term">Margin</div><div class="meaning">Borrowed funds for trading.</div></div>
-<div class="card"><div class="term">Risk</div><div class="meaning">Chance of losing money.</div></div>
-<div class="card"><div class="term">Return</div><div class="meaning">Money made from investment.</div></div>
-<div class="card"><div class="term">Short Selling</div><div class="meaning">Profit from falling prices.</div></div>
-<div class="card"><div class="term">Blue Chip</div><div class="meaning">Large stable company stock.</div></div>
-<div class="card"><div class="term">Volume</div><div class="meaning">Number of shares traded.</div></div>
-<div class="card"><div class="term">NAV</div><div class="meaning">Value per unit of fund.</div></div>
+  <!-- Original words -->
+  <div class="card"><div class="term">Ask Price</div><div class="meaning">Lowest price a seller agrees to accept.</div></div>
+  <div class="card"><div class="term">Bond</div><div class="meaning">Loan to a company or government with interest.</div></div>
+  <div class="card"><div class="term">Capital Gain</div><div class="meaning">Profit made by selling something at a higher price.</div></div>
+  <div class="card"><div class="term">Dividend</div><div class="meaning">Portion of company profit paid to shareholders.</div></div>
+  <div class="card"><div class="term">IPO</div><div class="meaning">When a company sells shares to the public for the first time.</div></div>
+
+  <!-- 50 Added Words -->
+  <div class="card"><div class="term">Asset</div><div class="meaning">Anything valuable owned.</div></div>
+  <div class="card"><div class="term">Bear Market</div><div class="meaning">Market where prices fall.</div></div>
+  <div class="card"><div class="term">Bull Market</div><div class="meaning">Market where prices rise.</div></div>
+  <div class="card"><div class="term">Broker</div><div class="meaning">Company that trades shares for you.</div></div>
+  <div class="card"><div class="term">Buy Order</div><div class="meaning">Instruction to purchase shares.</div></div>
+  <div class="card"><div class="term">Sell Order</div><div class="meaning">Instruction to sell shares.</div></div>
+  <div class="card"><div class="term">Market Order</div><div class="meaning">Buy or sell at current price.</div></div>
+  <div class="card"><div class="term">Limit Order</div><div class="meaning">Buy/sell at a chosen price.</div></div>
+  <div class="card"><div class="term">Stop Loss</div><div class="meaning">Auto-sell to prevent loss.</div></div>
+  <div class="card"><div class="term">Volatility</div><div class="meaning">Price movement speed.</div></div>
+  <div class="card"><div class="term">Liquidity</div><div class="meaning">How fast you can sell.</div></div>
+  <div class="card"><div class="term">Portfolio</div><div class="meaning">Your collection of investments.</div></div>
+  <div class="card"><div class="term">Equity</div><div class="meaning">Shares of a company.</div></div>
+  <div class="card"><div class="term">Debt</div><div class="meaning">Borrowed money.</div></div>
+  <div class="card"><div class="term">ETF</div><div class="meaning">Basket of stocks traded like one share.</div></div>
+  <div class="card"><div class="term">Index</div><div class="meaning">Group of stocks measured together.</div></div>
+  <div class="card"><div class="term">Margin</div><div class="meaning">Borrowed money to trade.</div></div>
+  <div class="card"><div class="term">Risk</div><div class="meaning">Chance of losing money.</div></div>
+  <div class="card"><div class="term">Return</div><div class="meaning">Money gained from investment.</div></div>
+  <div class="card"><div class="term">Blue Chip</div><div class="meaning">Large, stable company.</div></div>
+  <div class="card"><div class="term">Yield</div><div class="meaning">Income earned on investment.</div></div>
+  <div class="card"><div class="term">Short Selling</div><div class="meaning">Betting that price will fall.</div></div>
+  <div class="card"><div class="term">Exchange</div><div class="meaning">Market where stocks trade.</div></div>
+  <div class="card"><div class="term">Bid Price</div><div class="meaning">Highest price a buyer offers.</div></div>
+  <div class="card"><div class="term">Book Value</div><div class="meaning">Company value on paper.</div></div>
+  <div class="card"><div class="term">EPS</div><div class="meaning">Earnings per share.</div></div>
+  <div class="card"><div class="term">PE Ratio</div><div class="meaning">Price divided by earnings.</div></div>
+  <div class="card"><div class="term">Spread</div><div class="meaning">Difference between buy and sell price.</div></div>
+  <div class="card"><div class="term">Volume</div><div class="meaning">Number of shares traded.</div></div>
+  <div class="card"><div class="term">Voluntary Corporate Action</div><div class="meaning">Action shareholders may choose.</div></div>
+  <div class="card"><div class="term">Mandatory Corporate Action</div><div class="meaning">Action applied to all shareholders.</div></div>
+  <div class="card"><div class="term">Bonus Shares</div><div class="meaning">Free shares issued to shareholders.</div></div>
+  <div class="card"><div class="term">Rights Issue</div><div class="meaning">Offer to buy more shares at discount.</div></div>
+  <div class="card"><div class="term">NAV</div><div class="meaning">Value per share of a fund.</div></div>
+  <div class="card"><div class="term">Mutual Fund</div><div class="meaning">Pool of money invested together.</div></div>
+  <div class="card"><div class="term">Derivative</div><div class="meaning">Contract based on asset price.</div></div>
+  <div class="card"><div class="term">Hedge</div><div class="meaning">Protection against risk.</div></div>
+  <div class="card"><div class="term">Inflation</div><div class="meaning">Increase in prices over time.</div></div>
+  <div class="card"><div class="term">Deflation</div><div class="meaning">Decrease in prices over time.</div></div>
 
 </div>
 
@@ -332,8 +319,7 @@ h1{
 
     <div class="nx-foot-top">
       <a class="nx-foot-brand" href="index.html">
-        <img class="nx-foot-logo" src="stoxgear-logo.jpg">
-        <img class="nx-foot-logo" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg">
+        <img class="nx-foot-logo" src="/mnt/data/ee15c60d-3d69-41af-924d-790d77fa611a.png" alt="">
       </a>
     </div>
 
@@ -376,16 +362,17 @@ h1{
   </div>
 </footer>
 
+
 <script>
 document.getElementById("nxToggle").addEventListener("click",()=>{
   document.getElementById("nxHeader").classList.toggle("is-open");
 });
 
-/* SEARCH FILTER */
+/* SEARCH */
 document.getElementById("searchInput").addEventListener("keyup",()=>{
   let t = searchInput.value.toLowerCase();
   document.querySelectorAll(".card").forEach(c=>{
-    c.style.display = c.innerText.toLowerCase().includes(t)?"block":"none";
+    c.style.display = c.innerText.toLowerCase().includes(t) ? "block" : "none";
   });
 });
 </script>
