@@ -3,102 +3,194 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Team & Sponsors – White + Gold</title>
+  <title>Board Of Directors</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
     /* ---------- NAVBAR (light) ---------- */
 
+/* ================== NAVBAR (White & Gold) ================== */
+
+:root{
+  --text:#0f1220;
+  --text-dim:#5e6676;
+  --accent:#c9a646;
+  --accent-2:#b38b2e;
+  --line:#e7e9ee;
+  --radius:14px;
+}
+
+/* NAVBAR BASE */
 .nx-navbar{
-  position:sticky;top:0;z-index:1000;
+  position:sticky;
+  top:0;
+  z-index:1000;
   background:#fff;
-  border-bottom:1px solid #e7e9ee;
+  border-bottom:1px solid var(--line);
   box-shadow:0 6px 18px rgba(0,0,0,.06);
 }
-.nx-nav-inner{
-  max-width:1200px;margin:0 auto;
-  padding:12px 20px;
-  display:flex;align-items:center;gap:16px;
+.nx-navbar.scrolled{
+  box-shadow:0 10px 28px rgba(0,0,0,.12);
 }
-.nx-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#0f1220}
-.nx-logo{height:38px;width:auto;display:block}
-.nx-logo2{
-  height:48px;
+
+/* NAVBAR INNER */
+.nx-nav-inner{
+  max-width:1200px;
+  margin:0 auto;
+  padding:14px 24px;
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.nx-brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:var(--text);
+}
+.nx-logo{
+  height:38px;
   width:auto;
-  max-width:220px;
-  object-fit:contain;
+}
+.nx-logo2{
+  height:38px;
+  width:auto;
   margin-left:10px;
 }
+
 .nx-grow{flex:1}
 
+/* CTA BUTTON */
 .nx-cta{
-  background:#c9a646;
-  color:#000;font-weight:700;
-  border:none;border-radius:999px;
-  padding:10px 22px;cursor:pointer;
-  transition:.22s ease;
-}
-.nx-cta:hover{filter:brightness(1.07)}
-
-.nx-toggle{
-  background:none;border:1px solid #e7e9ee;border-radius:10px;padding:4px 10px;
-  color:#c9a646;font-size:20px;cursor:pointer;display:none;
-}
-
-.nx-menu{display:flex;align-items:center;gap:22px}
-.nx-item{position:relative}
-.nx-link{
-  text-decoration:none;color:#5e6676;font-weight:600;position:relative;
-}
-.nx-link:after{
-  content:"";position:absolute;left:0;right:0;bottom:-6px;
-  height:2px;background:#c9a646;transform:scaleX(0);
+  background:var(--accent);
+  color:#000;
+  font-weight:700;
+  border:none;
+  padding:10px 22px;
+  border-radius:999px;
+  cursor:pointer;
   transition:.25s;
 }
-.nx-link:hover{color:#c9a646}
-.nx-link:hover:after{transform:scaleX(1)}
+.nx-cta:hover{
+  filter:brightness(1.1);
+}
 
+/* HAMBURGER */
+.nx-toggle{
+  display:none;
+  background:#fff;
+  border:1px solid var(--line);
+  padding:6px 12px;
+  border-radius:10px;
+  font-size:20px;
+  cursor:pointer;
+}
+
+/* NAV MENU */
+.nx-menu{
+  display:flex;
+  align-items:center;
+  gap:26px;
+}
+.nx-item{
+  position:relative;
+}
+.nx-link{
+  color:var(--text-dim);
+  font-weight:600;
+  position:relative;
+}
+.nx-link:hover{
+  color:var(--accent);
+}
+.nx-link:after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:0;
+  height:2px;
+  background:var(--accent);
+  transition:.25s;
+}
+.nx-link:hover:after{
+  width:100%;
+}
+
+/* DROPDOWN */
 .nx-drop{
-  position:absolute;top:calc(100% + 10px);left:0;
-  background:#fff;border:1px solid #e7e9ee;
-  border-radius:10px;padding:8px;
-  display:none;min-width:240px;z-index:9999;
-  box-shadow:0 12px 26px rgba(0,0,0,.08);
-  max-height:380px;overflow-y:auto;
+  position:absolute;
+  top:calc(100% + 10px);
+  left:0;
+  min-width:230px;
+  background:#fff;
+  border:1px solid var(--line);
+  padding:10px;
+  border-radius:var(--radius);
+  display:none;
+  box-shadow:0 12px 28px rgba(0,0,0,.12);
 }
 .nx-drop a{
-  display:block;color:#0f1220;
-  text-decoration:none;padding:8px 12px;border-radius:8px;
+  display:block;
+  padding:8px 10px;
+  color:var(--text);
+  border-radius:10px;
 }
-.nx-drop a:hover{background:#f6f6f6;color:#c9a646}
+.nx-drop a:hover{
+  background:#f6f6f6;
+  color:var(--accent);
+}
 
+/* DESKTOP HOVER LOGIC */
 @media (min-width:1025px){
-  .nx-item:hover>.nx-drop{display:block}
+  .nx-item:hover>.nx-drop{
+    display:block;
+  }
 }
 
+/* MOBILE LOGIC */
 @media (max-width:1024px){
-  .nx-toggle{display:block}
+
+  .nx-toggle{
+    display:block;
+  }
+
   .nx-menu{
-    display:none;flex-direction:column;
-    position:absolute;top:100%;left:0;right:0;
+    display:none;
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
     background:#fff;
-    border-top:1px solid #e7e9ee;
+    border-top:1px solid var(--line);
+    flex-direction:column;
     box-shadow:0 12px 26px rgba(0,0,0,.08);
     padding:10px 12px;
   }
-  .nx-item{width:100%}
-  .nx-link{display:block;padding:10px 0}
+
+  .nx-navbar.is-open .nx-menu{
+    display:flex;
+  }
+
+  .nx-item{ width:100%; }
+  .nx-link{ display:block; padding:12px 6px; }
+
+  .nx-drop{
+    position:static;
+    border:none;
+    box-shadow:none;
+    background:none;
+    padding:0;
+    display:none;
+  }
+
   .nx-item.open>.nx-drop{
-    display:block;position:static;background:none;border:none;box-shadow:none;padding:0
+    display:block;
   }
 }
 
-    /* Fix long dropdown cutting — enable full visibility */
-    .nx-drop{
-      max-height: 380px;    /* adjust if needed */
-      overflow-y: auto;     /* makes dropdown scroll */
-    }
 
     /* ——— Committees & Contact cards ——— */
     .info-grid{
@@ -244,29 +336,113 @@
       .member, .member.reverse{grid-template-columns:1fr;}
       .frame{max-width:520px;margin:auto}
     }
+    /* ======================== FOOTER ======================== */
+
+.nx-footer{
+  margin-top:40px;
+  background:#fafafa;
+  border-top:1px solid var(--line);
+  color:var(--text-dim);
+}
+
+.nx-foot-wrap{
+  max-width:1200px;
+  margin:0 auto;
+  padding:48px 20px 30px;
+}
+
+/* TOP ROW */
+.nx-foot-top{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding-bottom:20px;
+  border-bottom:1px solid var(--line);
+}
+
+.nx-foot-brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color:var(--text);
+}
+
+.nx-foot-logo{
+  height:38px;
+  width:auto;
+}
+
+/* GRID */
+.nx-foot-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:26px;
+  padding:26px 0 10px;
+}
+
+@media(max-width:900px){
+  .nx-foot-grid{ grid-template-columns:repeat(2,1fr); }
+}
+@media(max-width:540px){
+  .nx-foot-grid{ grid-template-columns:1fr; }
+}
+
+.nx-foot-col h4{
+  font-size:15px;
+  color:var(--accent);
+  margin-bottom:10px;
+}
+
+.nx-foot-col a{
+  color:var(--text);
+  padding:6px 0;
+  font-size:14px;
+  display:block;
+  opacity:.9;
+  transition:.2s ease;
+}
+.nx-foot-col a:hover{
+  opacity:1;
+  transform:translateX(2px);
+}
+
+/* BOTTOM ROW */
+.nx-foot-bottom{
+  padding-top:16px;
+  border-top:1px solid var(--line);
+  font-size:13px;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  color:var(--text-dim);
+}
+
 
     /</style>
 </head>
 <body>
   <!-- ========== NAVBAR ========== -->
-<header class="nx-navbar">
+<!-- ========== NAVBAR ========== -->
+<header class="nx-navbar" id="nxHeader">
   <div class="nx-nav-inner">
 
+    <!-- BRAND / LOGO -->
     <a class="nx-brand" href="index.html">
-      <img class="nx-logo" src="stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
-      <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner Logo">
+      <img class="nx-logo" src="stoxgear-logo.jpg" alt="Stoxgear">
+      <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner">
     </a>
 
     <div class="nx-grow"></div>
 
     <nav class="nx-menu" id="nxMenu">
 
+      <!-- WHY US -->
       <div class="nx-item">
         <a class="nx-link" href="#">Why Us</a>
         <div class="nx-drop">
           <a href="about.html">About Us</a>
-          <a href="BOARD of directors.html">Board of Directors / Management</a>
-          <a href="Mission.html">Mission / Vision</a>
+          <a href="BOARD of directors.html">Board / Management</a>
+          <a href="Mission.html">Mission & Vision</a>
           <a href="associated companies.html">Associated Companies</a>
           <a href="Ncb auditor details .html">Auditors / Legal Advisors</a>
           <a href="services.html">Services</a>
@@ -274,6 +450,7 @@
         </div>
       </div>
 
+      <!-- EDUCATION -->
       <div class="nx-item">
         <a class="nx-link" href="#">Education</a>
         <div class="nx-drop">
@@ -282,7 +459,7 @@
           <a href="Glossary.html">Glossary</a>
           <a href="psx-rule-book.html">PSX Rule Book</a>
           <a href="common-terms-share-market.html">Common Terms of Share Market</a>
-          <a href="online-order-execution-flow.html">Online Order Execution Flow</a>
+          <a href="online-order-execution-flow.html">Order Execution Flow</a>
           <a href="order-settlement-flow.html">Order Settlement Flow</a>
           <a href="arbitration-procedure.html">Arbitration Procedure</a>
           <a href="risk-disclosure-document.html">Risk Disclosure Document</a>
@@ -291,6 +468,7 @@
         </div>
       </div>
 
+      <!-- OPEN ACCOUNT -->
       <div class="nx-item">
         <a class="nx-link" href="#">Open Account</a>
         <div class="nx-drop">
@@ -300,39 +478,44 @@
         </div>
       </div>
 
+      <!-- DOWNLOADS -->
       <div class="nx-item">
         <a class="nx-link" href="#">Downloads</a>
         <div class="nx-drop">
           <a href="Forms.html">Forms</a>
           <a href="software.html">Software</a>
+          <a href="Annaual half yearly.html">Financial Statements</a>
+          <a href="KYC poslicy.html">CDD / KYC Policy</a>
         </div>
       </div>
 
+      <!-- SUPPORT -->
       <div class="nx-item">
         <a class="nx-link" href="#">Support</a>
         <div class="nx-drop">
-          <a href="investor complaint.html">Investor Complaint</a>
-          <a href="Annaual half yearly.html">Annual / Half yearly / Quarterly</a>
-          <a href="Auditor.html">Statutory Auditor Details</a>
-          <a href="Ncb auditor details .html">NCB Auditor Details</a>
-          <a href="KYC poslicy.html">CDD / KYC Policy</a>
-          <a href="Pending investor complaun.html">Pending Investor Complaints</a>
+          <a href="investor complaint.html">Investor Complaint</a>        
+          <a href="Pending investor complaun.html">Pending Complaints</a>
           <a href="Penal action.html">Penal Action</a>
           <a href="Secp complaint.html">SECP Complaint</a>
           <a href="psx complaint.html">PSX Complaint</a>
           <a href="UIs of NICCPL.html">UIS Services</a>
           <a href="Eservices By CDC.html">EServices by CDC</a>
-          <a href="Contact.html">Contact</a>
         </div>
+      </div>
+
+      <!-- CONTACT (NO DROPDOWN) -->
+      <div class="nx-item">
+        <a class="nx-link" href="Contact.html">Contact</a>
       </div>
 
     </nav>
 
     <button class="nx-cta">OPEN AN ACCOUNT</button>
-    <button class="nx-toggle" id="nxToggle" aria-expanded="false">☰</button>
+    <button class="nx-toggle" id="nxToggle">☰</button>
 
   </div>
 </header>
+
 
 
   <main class="wrap">
@@ -458,42 +641,58 @@
   </main>
 
 <!-- ========== FOOTER ========== -->
+<!-- ========== FOOTER ========== -->
 <footer class="nx-footer">
   <div class="nx-foot-wrap">
+
+    <!-- TOP BRAND -->
     <div class="nx-foot-top">
       <a class="nx-foot-brand" href="index.html">
-       <!-- main logo -->
-      <img class="nx-foot-logo" src="stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
-      <!-- second/partner logo -->
-      <img class="nx-foot-logo" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner Logo">
+        <img class="nx-foot-logo" src="stoxgear-logo.jpg" alt="">
+        <img class="nx-foot-logo" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="">
       </a>
     </div>
 
+    <!-- GRID -->
     <div class="nx-foot-grid">
+
       <div class="nx-foot-col">
         <h4>WHY US</h4>
         <a href="about.html">About Us</a>
         <a href="BOARD of directors.html">Board / Management</a>
         <a href="Mission.html">Mission & Vision</a>
       </div>
+
       <div class="nx-foot-col">
         <h4>EDUCATION</h4>
         <a href="New to trading.html">New to Trading</a>
         <a href="Investorguid.html">Investor Guide</a>
         <a href="Glossary.html">Glossary</a>
       </div>
+
       <div class="nx-foot-col">
         <h4>ACCOUNT</h4>
         <a href="Rda.html">Roshan Digital Account</a>
         <a href="Acoocint opening.html">Open Digital Account</a>
         <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
       </div>
+
       <div class="nx-foot-col">
         <h4>CONTACT</h4>
         <a href="mailto:info@stoxgear.com.pk">info@stoxgear.com.pk</a>
-        <a href="tel:0913168395">0913168395</a>
+        <a href="tel:0913168395">091-3168395</a>
         <a href="#">Karachi, Pakistan</a>
       </div>
+
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="nx-foot-bottom">
+      <span>© <script>document.write(new Date().getFullYear())</script> Stoxgear Securities (Private) Limited</span>
+      <span>
+        <a href="privacy.html">Privacy</a> ·
+        <a href="terms.html">Terms</a>
+      </span>
     </div>
 
   </div>
@@ -591,5 +790,6 @@
 
 </body>
 </html>
+
 
 
