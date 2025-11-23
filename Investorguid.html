@@ -5,461 +5,213 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>StoxGear — Investor Guide</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
 <style>
-   /* Remove all default link underlines from navbar */
-.nx-navbar a {
-  text-decoration: none !important;
-}
+  <style>
+  <style>
+  :root{
+    /* — White, Gold & Subtle Grey — */
+    --bg:#f8f9fa;        /* light grey background */
+    --card:#ffffff;      /* pure white cards */
+    --text:#1f2937;      /* dark slate text */
+    --text-2:#6b7280;    /* soft grey secondary text */
+    --accent:#caa03d;    /* gold accent */
+    --accent-2:#e7c86c;  /* lighter gold accent */
+    --gold-t:rgba(202,160,61,.12);
+    --line:rgba(0,0,0,.08);
+    --radius:18px;
+    --shadow:0 8px 24px rgba(0,0,0,.08);
+  }
 
-/* Prevent underline on hover or focus */
-.nx-navbar a:hover,
-.nx-navbar a:focus,
-.nx-navbar a:active {
-  text-decoration: none !important;
-}
-/* Remove native underline from footer links */
-.nx-footer a {
-  text-decoration: none !important;
-}
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font:16px/1.6 "Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    color:var(--text);
+    background:
+      radial-gradient(1100px 420px at 8% -10%, rgba(202,160,61,.05), transparent 60%),
+      radial-gradient(900px 360px at 92% 110%, rgba(202,160,61,.04), transparent 60%),
+      var(--bg);
+  }
 
-/* Prevent underline on hover/focus/active */
-.nx-footer a:hover,
-.nx-footer a:focus,
-.nx-footer a:active {
-  text-decoration: none !important;
-}
+  /* ================= NAVBAR ================= */
+  .nx-navbar{
+    position:sticky;top:0;z-index:999;
+    backdrop-filter:saturate(140%) blur(10px);
+    background:rgba(255,255,255,.96);
+    border-bottom:1px solid var(--line);
+  }
+  .nx-nav-inner{max-width:1200px;margin:auto;padding:14px 20px;display:flex;align-items:center;gap:18px;}
+  .nx-brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--text)}
+  .nx-logo{height:36px;width:auto}
+  .nx-tag{font-size:13px;color:var(--text-2)}
+  .nx-grow{flex:1}
+  .nx-menu{display:flex;align-items:center;gap:28px}
+  .nx-item{position:relative}
+  .nx-link{color:var(--text-2);text-decoration:none;font-weight:600;transition:.2s}
+  .nx-link:hover{color:var(--accent)}
+  .nx-link::after{
+    content:"";position:absolute;left:0;bottom:-6px;width:100%;height:2px;
+    background:linear-gradient(90deg,var(--accent),transparent);
+    transform:scaleX(0);transform-origin:left;transition:transform .25s;
+  }
+  .nx-link:hover::after{transform:scaleX(1)}
+  .nx-drop{
+    position:absolute;top:calc(100% + 10px);left:0;min-width:240px;
+    background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px;
+    box-shadow:var(--shadow);opacity:0;pointer-events:none;transform:translateY(6px);transition:.25s;
+  }
+  .nx-item:hover .nx-drop{opacity:1;pointer-events:auto;transform:none}
+  .nx-drop a{display:block;padding:8px 12px;color:var(--text);text-decoration:none;border-radius:10px}
+  .nx-drop a:hover{background:var(--gold-t);color:var(--accent)}
+  .nx-cta{
+    border:none;padding:10px 18px;border-radius:999px;font-weight:700;cursor:pointer;
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#111;transition:.2s;
+    box-shadow:0 8px 18px rgba(202,160,61,.25);
+  }
+  .nx-cta:hover{transform:translateY(-1px);box-shadow:0 12px 26px rgba(202,160,61,.35)}
+  .nx-toggle{display:none;width:42px;height:42px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--text)}
+  @media(max-width:980px){
+    .nx-toggle{display:inline-grid;place-items:center}
+    .nx-menu{
+      position:fixed;inset:70px 16px auto 16px;flex-direction:column;gap:12px;padding:14px;
+      background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);
+      transform:translateY(-10px);opacity:0;pointer-events:none;transition:.25s;
+    }
+    .nx-menu.is-open{opacity:1;pointer-events:auto;transform:none}
+    .nx-drop{position:static;opacity:1;pointer-events:auto;box-shadow:none;border:none;padding:4px;transform:none}
+  }
 
-/* ===========================================================
-   GLOBAL WHITE–GOLD THEME
-=========================================================== */
+  /* ================= FOOTER ================= */
+  .nx-footer{
+    margin-top:60px;background:#fdfdfd;
+    border-top:1px solid var(--line);color:var(--text);
+  }
+  .nx-foot-wrap{max-width:1200px;margin:auto;padding:48px 20px}
+  .nx-foot-top{display:flex;align-items:center;justify-content:space-between;padding-bottom:22px;border-bottom:1px solid var(--line)}
+  .nx-foot-brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--text)}
+  .nx-foot-logo{height:36px}
+  .nx-foot-tag{font-size:13px;color:var(--text-2)}
+  .nx-foot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:26px;padding:26px 0 6px}
+  .nx-foot-col h4{margin:0 0 12px;color:var(--accent);font-size:15px}
+  .nx-foot-col a{display:block;color:#111;text-decoration:none;padding:7px 0;font-size:14px}
+  .nx-foot-col a:hover{color:var(--accent)}
+  .nx-foot-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;padding-top:16px;border-top:1px solid var(--line);color:var(--text-2);font-size:13px}
+
+  /* ================= CONTENT ================= */
+  .section{max-width:1200px;margin:60px auto;padding:0 20px;}
+  .section h2{margin-bottom:12px;font-size:clamp(26px,3vw,36px);color:var(--accent)}
+  .lead{color:var(--text-2)}
+  .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .card{
+    border:1px solid var(--line);border-radius:var(--radius);
+    background:var(--card);box-shadow:var(--shadow);
+    padding:18px;transition:.3s;
+  }
+  .card:hover{
+    transform:translateY(-4px);
+    border-color:rgba(202,160,61,.4);
+    background:#fefdfb;
+  }
+  .pill{
+    display:inline-block;
+    background:var(--gold-t);
+    color:var(--accent);
+    border-radius:999px;
+    padding:4px 10px;
+    font-size:12px;
+    font-weight:700;
+  }
+  .bullet{margin-top:8px;padding-left:18px}
+  .bullet li{color:#374151}
+  /* ===== Card visibility improvements ===== */
 :root{
-  --bg:#ffffff;
-  --panel:#ffffff;
-  --ink:#1f2937;
-  --muted:#6b7280;
-  --brand:#c9a227;
-  --brand-2:#b8901f;
-  --line:#e5e7eb;
-  --radius:18px;
-  --shadow:0 12px 26px rgba(0,0,0,.10);
+  /* slightly darker separator line for more contrast */
+  --line: rgba(0,0,0,.10);
 }
 
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-  background:var(--bg);
-  color:var(--ink);
-  font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  line-height:1.6;
-}
-
-/* ===========================================================
-   MASTER NAVBAR — SAME ON ALL PAGES
-=========================================================== */
-./* ================== NAVBAR (White & Gold) ================== */
-
-:root{
-  --text:#0f1220;
-  --text-dim:#5e6676;
-  --accent:#c9a646;
-  --accent-2:#b38b2e;
-  --line:#e7e9ee;
-  --radius:14px;
-}
-
-/* NAVBAR BASE */
-
-/* ================== NAVBAR (White & Gold) ================== */
-
-:root{
-  --text:#0f1220;
-  --text-dim:#5e6676;
-  --accent:#c9a646;
-  --accent-2:#b38b2e;
-  --line:#e7e9ee;
-  --radius:14px;
-}
-
-/* NAVBAR BASE */
-.nx-navbar{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:#fff;
-  border-bottom:1px solid var(--line);
-  box-shadow:0 6px 18px rgba(0,0,0,.06);
-}
-.nx-navbar.scrolled{
-  box-shadow:0 10px 28px rgba(0,0,0,.12);
-}
-
-/* NAVBAR INNER */
-.nx-nav-inner{
+.section{
   max-width:1200px;
-  margin:0 auto;
-  padding:14px 24px;
-  display:flex;
-  align-items:center;
-  gap:16px;
+  margin:60px auto;
+  padding:0 20px;
 }
 
-.nx-brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  color:var(--text);
+.grid{
+  gap:24px;                 /* a bit more air between cards */
 }
-.nx-logo{
-  height:38px;
-  width:auto;
+
+.card{
+  background:#ffffff;       /* pure white cards */
+  border:1px solid #e5e7eb; /* clear light-grey edge */
+  box-shadow: 0 8px 20px rgba(17,24,39,.06);  /* soft elevation */
+  transition: transform .25s ease, box-shadow .25s ease, Aborder-color .25s ease, background .25s ease;
 }
+
+.card:hover{
+  transform: translateY(-4px);
+  border-color: rgba(202,160,61,.40);   /* gold ring on hover */
+  box-shadow: 0 14px 30px rgba(17,24,39,.10);
+  background: #fffdf7;                  /* whisper of warm tint */
+}
+
+/* Make headings & labels read cleaner on light background */
+.pill{
+  background: rgba(202,160,61,.12);
+  color: #caa03d;
+}
+.bullet li{
+  color:#374151; /* darker grey for readability */
+}
+/* size the partner logo in header */
 .nx-logo2{
-  height:38px;
-  width:auto;
+  height:48px !important;
+  width:auto !important;
+  max-width:220px !important;
+  object-fit:contain;
   margin-left:10px;
 }
 
-.nx-grow{flex:1}
-
-/* CTA BUTTON */
-.nx-cta{
-  background:var(--accent);
-  color:#000;
-  font-weight:700;
-  border:none;
-  padding:10px 22px;
-  border-radius:999px;
-  cursor:pointer;
-  transition:.25s;
-}
-.nx-cta:hover{
-  filter:brightness(1.1);
+/* ensure footer logos are constrained even if they use .nx-logo/.nx-logo2 */
+.nx-footer .nx-logo,
+.nx-footer .nx-logo2{
+  height:50px !important;
+  width:auto !important;
+  max-width:240px !important;
+  object-fit:contain;
+  vertical-align:middle;
 }
 
-/* HAMBURGER */
-.nx-toggle{
-  display:none;
-  background:#fff;
-  border:1px solid var(--line);
-  padding:6px 12px;
-  border-radius:10px;
-  font-size:20px;
-  cursor:pointer;
-}
-
-/* NAV MENU */
-.nx-menu{
-  display:flex;
-  align-items:center;
-  gap:26px;
-}
-.nx-item{
-  position:relative;
-}
-.nx-link{
-  color:var(--text-dim);
-  font-weight:600;
-  position:relative;
-}
-.nx-link:hover{
-  color:var(--accent);
-}
-.nx-link:after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:-6px;
-  width:0;
-  height:2px;
-  background:var(--accent);
-  transition:.25s;
-}
-.nx-link:hover:after{
-  width:100%;
-}
-
-/* DROPDOWN */
-.nx-drop{
-  position:absolute;
-  top:calc(100% + 10px);
-  left:0;
-  min-width:230px;
-  background:#fff;
-  border:1px solid var(--line);
-  padding:10px;
-  border-radius:var(--radius);
-  display:none;
-  box-shadow:0 12px 28px rgba(0,0,0,.12);
-}
-.nx-drop a{
-  display:block;
-  padding:8px 10px;
-  color:var(--text);
-  border-radius:10px;
-}
-.nx-drop a:hover{
-  background:#f6f6f6;
-  color:var(--accent);
-}
-
-/* DESKTOP HOVER LOGIC */
-@media (min-width:1025px){
-  .nx-item:hover>.nx-drop{
-    display:block;
-  }
-}
-
-/* MOBILE LOGIC */
-@media (max-width:1024px){
-
-  .nx-toggle{
-    display:block;
-  }
-
-  .nx-menu{
-    display:none;
-    position:absolute;
-    top:100%;
-    left:0;
-    right:0;
-    background:#fff;
-    border-top:1px solid var(--line);
-    flex-direction:column;
-    box-shadow:0 12px 26px rgba(0,0,0,.08);
-    padding:10px 12px;
-  }
-
-  .nx-navbar.is-open .nx-menu{
-    display:flex;
-  }
-
-  .nx-item{ width:100%; }
-  .nx-link{ display:block; padding:12px 6px; }
-
-  .nx-drop{
-    position:static;
-    border:none;
-    box-shadow:none;
-    background:none;
-    padding:0;
-    display:none;
-  }
-
-  .nx-item.open>.nx-drop{
-    display:block;
+@media (max-width:768px){
+  .nx-logo2,
+  .nx-footer .nx-logo,
+  .nx-footer .nx-logo2{
+    height:40px !important;
+    max-width:180px !important;
   }
 }
 
 
-
-/* MOBILE MENU */
-@media(max-width:1024px){
-  .nx-toggle{display:block}
-  .nx-menu{
-    display:none;
-    flex-direction:column;
-    gap:12px;
-    position:absolute;
-    top:100%;left:0;right:0;
-    background:#fff;
-    padding:16px;
-    border-top:1px solid var(--line);
-    box-shadow:var(--shadow);
-  }
-  .nx-item{width:100%}
-  .nx-drop{
-    position:static;
-    opacity:1;
-    pointer-events:auto;
-    transform:none;
-    border:none;
-    box-shadow:none;
-    padding:4px 0;
-    display:none;
-  }
-  .nx-item.open>.nx-drop{display:block}
-}
-
-/* ===========================================================
-   PAGE CONTENT
-=========================================================== */
-.section{
-  max-width:1200px;margin:50px auto;padding:0 20px;
-}
-.section h2{
-  margin-bottom:12px;
-  font-size:clamp(26px,4vw,38px);
-  color:var(--brand);
-}
-.lead{
-  color:var(--muted);
-  margin-bottom:24px;
-}
-
-/* Cards */
-.grid{
-  display:grid;
-  gap:20px;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-}
-.card{
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  padding:18px;
-  box-shadow:var(--shadow);
-  transition:.3s ease;
-  opacity:0;
-  transform:translateY(20px);
-}
-.card.in-view{
-  opacity:1;
-  transform:translateY(0);
-}
-.card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 18px 40px rgba(0,0,0,.12);
-}
-.pill{
-  display:inline-block;
-  padding:6px 12px;
-  border-radius:999px;
-  background:rgba(201,162,39,.12);
-  font-weight:700;
-  font-size:12px;
-  margin-bottom:6px;
-  color:var(--brand);
-}
-.media img{
-  width:100%;
-  border-radius:var(--radius);
-  margin-bottom:12px;
-}
-
-/* ===========================================================
-   FOOTER MASTER TEMPLATE
-=========================================================== */
-/* ======================== FOOTER ======================== */
-
-/* ======================== FOOTER ======================== */
-
-.nx-footer{
-  margin-top:40px;
-  background:#fafafa;
-  border-top:1px solid var(--line);
-  color:var(--text-dim);
-}
-
-.nx-foot-wrap{
-  max-width:1200px;
-  margin:0 auto;
-  padding:48px 20px 30px;
-}
-
-/* TOP ROW */
-.nx-foot-top{
-  display:flex;
-  align-items:center;
-  gap:16px;
-  padding-bottom:20px;
-  border-bottom:1px solid var(--line);
-}
-
-.nx-foot-brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  color:var(--text);
-}
-
-.nx-foot-logo{
-  height:38px;
-  width:auto;
-}
-
-/* GRID */
-.nx-foot-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:26px;
-  padding:26px 0 10px;
-}
-
-@media(max-width:900px){
-  .nx-foot-grid{ grid-template-columns:repeat(2,1fr); }
-}
-@media(max-width:540px){
-  .nx-foot-grid{ grid-template-columns:1fr; }
-}
-
-.nx-foot-col h4{
-  font-size:15px;
-  color:var(--accent);
-  margin-bottom:10px;
-}
-
-.nx-foot-col a{
-  color:var(--text);
-  padding:6px 0;
-  font-size:14px;
-  display:block;
-  opacity:.9;
-  transition:.2s ease;
-}
-.nx-foot-col a:hover{
-  opacity:1;
-  transform:translateX(2px);
-}
-
-/* BOTTOM ROW */
-.nx-foot-bottom{
-  padding-top:16px;
-  border-top:1px solid var(--line);
-  font-size:13px;
-  display:flex;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  color:var(--text-dim);
-}
-
-
-/* RESPONSIVE */
-@media(max-width:600px){
-  .nx-foot-bottom{flex-direction:column;gap:10px;text-align:center}
-}
 </style>
 </head>
-
 <body>
-
-<!-- ===========================================================
-     NAVBAR
-=========================================================== -->
-<!-- ========== NAVBAR ========== -->
-<!-- ========== NAVBAR ========== -->
 <header class="nx-navbar" id="nxHeader">
   <div class="nx-nav-inner">
-
-    <!-- BRAND / LOGO -->
     <a class="nx-brand" href="index.html">
-      <img class="nx-logo" src="stoxgear-logo.jpg" alt="Stoxgear">
+      <!-- main logo -->
+      <img class="nx-logo" src="stoxgear-logo.jpg" alt="StoxGear">
+      <!-- partner/secondary logo (optional) -->
       <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner">
     </a>
 
     <div class="nx-grow"></div>
 
     <nav class="nx-menu" id="nxMenu">
-
-      <!-- WHY US -->
       <div class="nx-item">
         <a class="nx-link" href="#">Why Us</a>
         <div class="nx-drop">
-          <a href="about.html">About Us</a>
-          <a href="BOARD of directors.html">Board / Management</a>
-          <a href="Mission.html">Mission & Vision</a>
+          <a href="about.html">About US</a>
+          <a href="BOARD of directors.html">Board of Directors / Management</a>
+          <a href="Mission.html">Mission / Vision</a>
           <a href="associated companies.html">Associated Companies</a>
           <a href="Ncb auditor details .html">Auditors / Legal Advisors</a>
           <a href="services.html">Services</a>
@@ -467,206 +219,162 @@ body{
         </div>
       </div>
 
-      <!-- EDUCATION -->
       <div class="nx-item">
         <a class="nx-link" href="#">Education</a>
         <div class="nx-drop">
           <a href="New to trading.html">New to Trading</a>
           <a href="Investorguid.html">Investor Guide</a>
           <a href="Glossary.html">Glossary</a>
-          <a href="psx-rule-book.html">PSX Rule Book</a>
-          <a href="common-terms-share-market.html">Common Terms of Share Market</a>
-          <a href="online-order-execution-flow.html">Order Execution Flow</a>
-          <a href="order-settlement-flow.html">Order Settlement Flow</a>
-          <a href="arbitration-procedure.html">Arbitration Procedure</a>
-          <a href="risk-disclosure-document.html">Risk Disclosure Document</a>
-          <a href="procedure-cancel-pending-orders.html">Cancel Pending Orders</a>
-          <a href="faqs.html">FAQs</a>
+          <!-- put these inside your existing <div class="nx-drop"> ... </div> -->
+<a href="psx-rule-book.html">PSX Rule Book</a>
+<a href="common-terms-share-market.html">Common Terms of Share Market</a>
+<a href="online-order-execution-flow.html">Online Order Execution Flow</a>
+<a href="order-settlement-flow.html">Order Settlement Flow</a>
+<a href="arbitration-procedure.html">Arbitration Procedure</a>
+<a href="risk-disclosure-document.html">Risk Disclosure Document</a>
+<a href="procedure-cancel-pending-orders.html">Procedure To Cancel Pending Orders</a>
+<a href="faqs.html">FAQs</a>
+
         </div>
       </div>
 
-      <!-- OPEN ACCOUNT -->
       <div class="nx-item">
         <a class="nx-link" href="#">Open Account</a>
         <div class="nx-drop">
-          <a href="Rda.html">Roshan Digital Account</a>
+          <a href="Rda.html">Roshan Digital Account (RDA)</a>
           <a href="Acoocint opening.html">Open Digital Account</a>
           <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
         </div>
       </div>
 
-      <!-- DOWNLOADS -->
       <div class="nx-item">
         <a class="nx-link" href="#">Downloads</a>
         <div class="nx-drop">
           <a href="Forms.html">Forms</a>
           <a href="software.html">Software</a>
-          <a href="Annaual half yearly.html">Financial Statements</a>
-          <a href="KYC poslicy.html">CDD / KYC Policy</a>
         </div>
       </div>
 
-      <!-- SUPPORT -->
       <div class="nx-item">
         <a class="nx-link" href="#">Support</a>
         <div class="nx-drop">
-          <a href="investor complaint.html">Investor Complaint</a>        
-          <a href="Pending investor complaun.html">Pending Complaints</a>
-          <a href="Penal action.html">Penal Action</a>
+          <a href="investor complaint.html">Investor Complaint</a>
+          <a href="Annaual half yearly.html">Annual / Half yearly / Quarterly Financial Statements</a>
+          <a href="Auditor.html">Statutory Auditor Details</a>
+          <a href="Ncb auditor details .html">NCB Auditor Details</a>
+          <a href="KYC poslicy.html">CDD / KYC Policy</a>
+          <a href="Pending investor complaun.html">Pending Investor Complaints</a>
+          <a href="Penal action.html">Details of Penal Action</a>
           <a href="Secp complaint.html">SECP Complaint</a>
           <a href="psx complaint.html">PSX Complaint</a>
-          <a href="UIs of NICCPL.html">UIS Services</a>
+          <a href="UIs of NICCPL.html">UIS Services of NCCPL</a>
           <a href="Eservices By CDC.html">EServices by CDC</a>
         </div>
       </div>
-
-      <!-- CONTACT (NO DROPDOWN) -->
-      <div class="nx-item">
-        <a class="nx-link" href="Contact.html">Contact</a>
-      </div>
-
     </nav>
 
     <button class="nx-cta">OPEN AN ACCOUNT</button>
-    <button class="nx-toggle" id="nxToggle">☰</button>
-
+    <button class="nx-toggle" id="nxToggle" aria-label="Toggle menu" aria-controls="nxMenu" aria-expanded="false">☰</button>
   </div>
 </header>
 
 
-<!-- ===========================================================
-     CONTENT STARTS
-=========================================================== -->
-<main>
-
-<section class="section">
-  <h2>Unlock Your Financial Potential</h2>
-  <p class="lead">Start with the essentials—clear, simple, and actionable.</p>
-
-  <div class="grid">
-    <div class="card">
-      <div class="media"><img src="assets/bright-01.png"></div>
-      <span class="pill">Investor Guide</span>
-      <h3>Smart Investing</h3>
-      <ul>
-        <li>Avoid greed; avoid repeating mistakes.</li>
-        <li>Diversify across sectors.</li>
-        <li>Control emotions; rely on research.</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <div class="media"><img src="assets/bright-02.png"></div>
-      <span class="pill">Trading</span>
-      <h3>Before Buying Stock</h3>
-      <ul>
-        <li>Know the business.</li>
-        <li>Check earnings history.</li>
-        <li>Study competition and management.</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <div class="media"><img src="assets/bright-03.png"></div>
-      <span class="pill">Ownership</span>
-      <h3>Why Equities Matter</h3>
-      <p>Equities give long-term growth + dividend income.</p>
-    </div>
+    <button class="nx-cta" onclick="location.href='Acoocint opening.html'">OPEN AN ACCOUNT</button>
+    <button class="nx-toggle" id="nxToggle" aria-label="Toggle menu" aria-controls="nxMenu" aria-expanded="false">☰</button>
   </div>
-</section>
+</header>
 
+<!-- ====== MAIN CONTENT ====== -->
+<main>
+  <section class="section">
+    <h2>Investor Guide</h2>
+    <p class="lead">Start your investment journey with simple, practical insights.</p>
+
+    <div class="grid">
+      <div class="card">
+        <span class="pill">Tips</span>
+        <h3>Make smarter investment decisions</h3>
+        <ul class="bullet">
+          <li>Diversify across sectors</li>
+          <li>Focus on fundamentals</li>
+          <li>Invest for long-term goals</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="pill">Trading</span>
+        <h3>Before buying any stock</h3>
+        <ul class="bullet">
+          <li>Review company performance</li>
+          <li>Understand industry outlook</li>
+          <li>Compare valuations</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="pill">CDC</span>
+        <h3>Why use Central Depository System</h3>
+        <p>Securely hold and transfer shares electronically, eliminating paperwork and delays.</p>
+      </div>
+    </div>
+  </section>
 </main>
 
-<!-- ===========================================================
-     FOOTER (MASTER TEMPLATE)
-=========================================================== -->
-<!-- ========== FOOTER ========== -->
 <!-- ========== FOOTER ========== -->
 <footer class="nx-footer">
   <div class="nx-foot-wrap">
-
-    <!-- TOP BRAND -->
     <div class="nx-foot-top">
       <a class="nx-foot-brand" href="index.html">
-        <img class="nx-foot-logo" src="stoxgear-logo.jpg" alt="">
-        <img class="nx-foot-logo" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="">
+       <img class="nx-logo" src="stoxgear-logo.jpg" alt="Stoxgear Securities (Private) Limited">
+  <!-- second/partner logo -->
+  <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 
+
+
+10.34.53_ed0e28f6.jpg" alt="Partner Logo">
+
+
       </a>
     </div>
 
-    <!-- GRID -->
     <div class="nx-foot-grid">
-
       <div class="nx-foot-col">
         <h4>WHY US</h4>
         <a href="about.html">About Us</a>
         <a href="BOARD of directors.html">Board / Management</a>
         <a href="Mission.html">Mission & Vision</a>
       </div>
-
       <div class="nx-foot-col">
         <h4>EDUCATION</h4>
         <a href="New to trading.html">New to Trading</a>
         <a href="Investorguid.html">Investor Guide</a>
         <a href="Glossary.html">Glossary</a>
       </div>
-
       <div class="nx-foot-col">
         <h4>ACCOUNT</h4>
         <a href="Rda.html">Roshan Digital Account</a>
         <a href="Acoocint opening.html">Open Digital Account</a>
         <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
       </div>
-
       <div class="nx-foot-col">
         <h4>CONTACT</h4>
-        <a href="mailto:info@stoxgear.com.pk">info@stoxgear.com.pk</a>
-        <a href="tel:0913168395">091-3168395</a>
+        <a href="mailto:info@StoxGear.com">info@StoxGear.com</a>
+        <a href="tel:+923162288686">+92 316 2288686</a>
         <a href="#">Karachi, Pakistan</a>
       </div>
-
     </div>
 
-    <!-- BOTTOM -->
     <div class="nx-foot-bottom">
-      <span>© <script>document.write(new Date().getFullYear())</script> Stoxgear Securities (Private) Limited</span>
-      <span>
-        <a href="privacy.html">Privacy</a> ·
-        <a href="terms.html">Terms</a>
-      </span>
+      <span>© <script>document.write(new Date().getFullYear())</script> StocX Invest</span>
+      <span><a href="#" style="color:var(--text-2);text-decoration:none">Privacy</a> · <a href="#" style="color:var(--text-2);text-decoration:none">Terms</a></span>
     </div>
-
   </div>
 </footer>
 
-
 <script>
-/* MOBILE MENU */
-document.getElementById('nxToggle').addEventListener('click',()=>{
-  const menu=document.getElementById('nxMenu');
-  menu.style.display = menu.style.display==='block' ? 'none' : 'block';
+const toggle=document.getElementById('nxToggle');
+const menu=document.getElementById('nxMenu');
+toggle.addEventListener('click',()=>{
+  menu.classList.toggle('is-open');
+  toggle.setAttribute('aria-expanded',menu.classList.contains('is-open'));
 });
-
-/* MOBILE DROPDOWN */
-document.querySelectorAll('.nx-item > .nx-link').forEach(link=>{
-  link.addEventListener('click',e=>{
-    if(window.innerWidth<=1024){
-      e.preventDefault();
-      link.parentElement.classList.toggle('open');
-    }
-  });
-});
-
-/* SCROLL ANIMATION FOR CARDS */
-const cards=document.querySelectorAll('.card');
-const io=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add('in-view');
-      io.unobserve(e.target);
-    }
-  });
-});
-cards.forEach(c=>io.observe(c));
 </script>
 
 </body>
