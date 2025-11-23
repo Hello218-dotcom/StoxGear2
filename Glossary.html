@@ -292,90 +292,32 @@ h1{
 .nx-foot-bottom{
   text-align:center;color:var(--muted);padding-top:20px;
 }
+/* Remove all default link underlines from navbar */
+.nx-navbar a {
+  text-decoration: none !important;
+}
+
+/* Prevent underline on hover or focus */
+.nx-navbar a:hover,
+.nx-navbar a:focus,
+.nx-navbar a:active {
+  text-decoration: none !important;
+}
+/* Remove native underline from footer links */
+.nx-footer a {
+  text-decoration: none !important;
+}
+
+/* Prevent underline on hover/focus/active */
+.nx-footer a:hover,
+.nx-footer a:focus,
+.nx-footer a:active {
+  text-decoration: none !important;
+}
 
 </style>
 </head>
-/* ======================== FOOTER ======================== */
-/* ======================== FOOTER ======================== */
 
-.nx-footer{
-  margin-top:40px;
-  background:#fafafa;
-  border-top:1px solid var(--line);
-  color:var(--text-dim);
-}
-
-.nx-foot-wrap{
-  max-width:1200px;
-  margin:0 auto;
-  padding:48px 20px 30px;
-}
-
-/* TOP ROW */
-.nx-foot-top{
-  display:flex;
-  align-items:center;
-  gap:16px;
-  padding-bottom:20px;
-  border-bottom:1px solid var(--line);
-}
-
-.nx-foot-brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  color:var(--text);
-}
-
-.nx-foot-logo{
-  height:38px;
-  width:auto;
-}
-
-/* GRID */
-.nx-foot-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:26px;
-  padding:26px 0 10px;
-}
-
-@media(max-width:900px){
-  .nx-foot-grid{ grid-template-columns:repeat(2,1fr); }
-}
-@media(max-width:540px){
-  .nx-foot-grid{ grid-template-columns:1fr; }
-}
-
-.nx-foot-col h4{
-  font-size:15px;
-  color:var(--accent);
-  margin-bottom:10px;
-}
-
-.nx-foot-col a{
-  color:var(--text);
-  padding:6px 0;
-  font-size:14px;
-  display:block;
-  opacity:.9;
-  transition:.2s ease;
-}
-.nx-foot-col a:hover{
-  opacity:1;
-  transform:translateX(2px);
-}
-
-/* BOTTOM ROW */
-.nx-foot-bottom{
-  padding-top:16px;
-  border-top:1px solid var(--line);
-  font-size:13px;
-  display:flex;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  color:var(--text-dim);
-}
 
 
 <body>
@@ -569,5 +511,6 @@ document.getElementById("searchInput").addEventListener("keyup",()=>{
 
 </body>
 </html>
+
 
 
