@@ -9,281 +9,417 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 
   <style>
-
-    /* ============================================================
-       YOUR NEW NAVBAR (White & Gold)
-    ============================================================ */
+    /* ================= WHITE + GOLD (default) ================ */
     :root{
-      --text:#0f1220;
-      --text-dim:#5e6676;
-      --accent:#c9a646;
-      --accent-2:#b38b2e;
-      --line:#e7e9ee;
-      --radius:14px;
+      --bg:#ffffff;               /* page background */
+      --surface:#ffffff;          /* cards/panels */
+      --ink:#141414;              /* main text */
+      --muted:#666666;            /* secondary text */
+      --accent:#c9a646;           /* gold */
+      --accent-ink:#ffffff;       /* text on gold */
+      --ring:rgba(201,166,70,.28);
+      --line:#e5e5e5;
+      --radius:16px;
+      --shadow:0 10px 26px rgba(0,0,0,.10);
+    }
+    :root.dark{
+      --bg:#0b0b0b; --surface:#111; --ink:#eaeaea; --muted:#bdbdbd;
+      --accent:#a6ff00; --accent-ink:#0b0b0b; --ring:rgba(166,255,0,.3);
+      --line:rgba(255,255,255,.08);
+      --shadow:0 10px 28px rgba(0,0,0,.35);
     }
 
-    /* NAVBAR BASE */
-    .nx-navbar{
-      position:sticky;
-      top:0;
-      z-index:1000;
-      background:#fff;
-      border-bottom:1px solid var(--line);
-      box-shadow:0 6px 18px rgba(0,0,0,.06);
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--ink);
+      font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
     }
-    .nx-navbar.scrolled{
-      box-shadow:0 10px 28px rgba(0,0,0,.12);
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1200px;margin:auto;padding:0 20px}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;
+      background:var(--accent);color:var(--accent-ink);
+      padding:12px 18px;border-radius:999px;
+      font-weight:800;border:1px solid #0000;
+      box-shadow:var(--shadow);
+      transition:transform .2s,filter .2s;
+    }
+    .btn:hover{transform:translateY(-1px);filter:brightness(1.05)}
+
+    /* ===== NAVBAR ===== */
+   /* ================== NAVBAR (White & Gold) ================== */
+
+:root{
+  --text:#0f1220;
+  --text-dim:#5e6676;
+  --accent:#c9a646;
+  --accent-2:#b38b2e;
+  --line:#e7e9ee;
+  --radius:14px;
+}
+
+/* NAVBAR BASE */
+.nx-navbar{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:#fff;
+  border-bottom:1px solid var(--line);
+  box-shadow:0 6px 18px rgba(0,0,0,.06);
+}
+.nx-navbar.scrolled{
+  box-shadow:0 10px 28px rgba(0,0,0,.12);
+}
+
+/* NAVBAR INNER */
+.nx-nav-inner{
+  max-width:1200px;
+  margin:0 auto;
+  padding:14px 24px;
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.nx-brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:var(--text);
+}
+.nx-logo{
+  height:38px;
+  width:auto;
+}
+.nx-logo2{
+  height:38px;
+  width:auto;
+  margin-left:10px;
+}
+
+.nx-grow{flex:1}
+
+/* CTA BUTTON */
+.nx-cta{
+  background:var(--accent);
+  color:#000;
+  font-weight:700;
+  border:none;
+  padding:10px 22px;
+  border-radius:999px;
+  cursor:pointer;
+  transition:.25s;
+}
+.nx-cta:hover{
+  filter:brightness(1.1);
+}
+
+/* HAMBURGER */
+.nx-toggle{
+  display:none;
+  background:#fff;
+  border:1px solid var(--line);
+  padding:6px 12px;
+  border-radius:10px;
+  font-size:20px;
+  cursor:pointer;
+}
+
+/* NAV MENU */
+.nx-menu{
+  display:flex;
+  align-items:center;
+  gap:26px;
+}
+.nx-item{
+  position:relative;
+}
+.nx-link{
+  color:var(--text-dim);
+  font-weight:600;
+  position:relative;
+}
+.nx-link:hover{
+  color:var(--accent);
+}
+.nx-link:after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:0;
+  height:2px;
+  background:var(--accent);
+  transition:.25s;
+}
+.nx-link:hover:after{
+  width:100%;
+}
+
+/* DROPDOWN */
+.nx-drop{
+  position:absolute;
+  top:calc(100% + 10px);
+  left:0;
+  min-width:230px;
+  background:#fff;
+  border:1px solid var(--line);
+  padding:10px;
+  border-radius:var(--radius);
+  display:none;
+  box-shadow:0 12px 28px rgba(0,0,0,.12);
+}
+.nx-drop a{
+  display:block;
+  padding:8px 10px;
+  color:var(--text);
+  border-radius:10px;
+}
+.nx-drop a:hover{
+  background:#f6f6f6;
+  color:var(--accent);
+}
+
+/* DESKTOP HOVER LOGIC */
+@media (min-width:1025px){
+  .nx-item:hover>.nx-drop{
+    display:block;
+  }
+}
+
+/* MOBILE LOGIC */
+@media (max-width:1024px){
+
+  .nx-toggle{
+    display:block;
+  }
+
+  .nx-menu{
+    display:none;
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    background:#fff;
+    border-top:1px solid var(--line);
+    flex-direction:column;
+    box-shadow:0 12px 26px rgba(0,0,0,.08);
+    padding:10px 12px;
+  }
+
+  .nx-navbar.is-open .nx-menu{
+    display:flex;
+  }
+
+  .nx-item{ width:100%; }
+  .nx-link{ display:block; padding:12px 6px; }
+
+  .nx-drop{
+    position:static;
+    border:none;
+    box-shadow:none;
+    background:none;
+    padding:0;
+    display:none;
+  }
+
+  .nx-item.open>.nx-drop{
+    display:block;
+  }
+}
+
+    /* ===== FLOATING CONTACT RIBBON + WHATSAPP ===== */
+    .ribbon{
+      position:fixed;right:0;top:40%;
+      transform:translateY(-50%);
+      background:var(--accent);color:#fff;
+      padding:14px 10px;border-radius:10px 0 0 10px;
+      writing-mode:vertical-rl;text-orientation:mixed;
+      font-weight:800;letter-spacing:.08em;
+      box-shadow:var(--shadow);z-index:60
+    }
+    .fab{
+      position:fixed;right:22px;bottom:22px;
+      width:58px;height:58px;border-radius:50%;
+      background:var(--accent);box-shadow:var(--shadow);
+      display:grid;place-items:center;font-weight:900;color:#fff;z-index:60
     }
 
-    /* NAVBAR INNER */
-    .nx-nav-inner{
-      max-width:1200px;
-      margin:0 auto;
-      padding:14px 24px;
-      display:flex;
-      align-items:center;
-      gap:16px;
+    /* ===== PAGE CONTENT (ARBITRATION CARD) ===== */
+    .page-wrap{
+      max-width:900px;
+      margin:40px auto 80px;
+      padding:0 20px;
+    }
+    .page-title{
+      font-size:clamp(26px,4vw,34px);
+      margin:6px 0;
+    }
+    .page-sub{
+      margin-top:4px;
+      color:var(--muted);
+      max-width:720px;
     }
 
-    .nx-brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      color:var(--text);
-    }
-    .nx-logo{
-      height:38px;
-      width:auto;
-    }
-    .nx-logo2{
-      height:38px;
-      width:auto;
-      margin-left:10px;
-    }
-
-    .nx-grow{flex:1}
-
-    /* CTA BUTTON */
-    .nx-cta{
-      background:var(--accent);
-      color:#000;
-      font-weight:700;
-      border:none;
-      padding:10px 22px;
-      border-radius:999px;
-      cursor:pointer;
-      transition:.25s;
-    }
-    .nx-cta:hover{
-      filter:brightness(1.1);
-    }
-
-    /* HAMBURGER */
-    .nx-toggle{
-      display:none;
-      background:#fff;
+    .arb-wrap{max-width:720px;margin:32px 0 0}
+    .arb-card{
+      position:relative;
+      display:block;
+      background:var(--surface);
+      border-radius:20px;
       border:1px solid var(--line);
-      padding:6px 12px;
-      border-radius:10px;
-      font-size:20px;
-      cursor:pointer;
+      padding:24px 22px;
+      box-shadow:var(--shadow);
+      text-decoration:none;
+      color:inherit;
+      overflow:hidden;
+      transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
     }
-
-    /* NAV MENU */
-    .nx-menu{
-      display:flex;
-      align-items:center;
-      gap:26px;
-    }
-    .nx-item{
-      position:relative;
-    }
-    .nx-link{
-      color:var(--text-dim);
-      font-weight:600;
-      position:relative;
-    }
-    .nx-link:hover{
-      color:var(--accent);
-    }
-    .nx-link:after{
+    .arb-card::before{
       content:"";
       position:absolute;
-      left:0;
-      bottom:-6px;
-      width:0;
-      height:2px;
-      background:var(--accent);
-      transition:.25s;
+      inset:-40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(201,166,70,.35), transparent 55%);
+      opacity:0;
+      transform:translate3d(-40px,-40px,0);
+      transition:opacity .4s ease, transform .4s ease;
+      pointer-events:none;
     }
-    .nx-link:hover:after{
-      width:100%;
+    .arb-card:hover{
+      transform:translateY(-4px) scale(1.01);
+      border-color:var(--accent);
+      box-shadow:0 20px 40px rgba(0,0,0,.18);
     }
-
-    /* DROPDOWN */
-    .nx-drop{
-      position:absolute;
-      top:calc(100% + 10px);
-      left:0;
-      min-width:230px;
-      background:#fff;
-      border:1px solid var(--line);
-      padding:10px;
-      border-radius:var(--radius);
-      display:none;
-      box-shadow:0 12px 28px rgba(0,0,0,.12);
-    }
-    .nx-drop a{
-      display:block;
-      padding:8px 10px;
-      color:var(--text);
-      border-radius:10px;
-    }
-    .nx-drop a:hover{
-      background:#f6f6f6;
-      color:var(--accent);
-    }
-
-    /* DESKTOP HOVER LOGIC */
-    @media (min-width:1025px){
-      .nx-item:hover>.nx-drop{
-        display:block;
-      }
-    }
-
-    /* MOBILE LOGIC */
-    @media (max-width:1024px){
-
-      .nx-toggle{
-        display:block;
-      }
-
-      .nx-menu{
-        display:none;
-        position:absolute;
-        top:100%;
-        left:0;
-        right:0;
-        background:#fff;
-        border-top:1px solid var(--line);
-        flex-direction:column;
-        box-shadow:0 12px 26px rgba(0,0,0,.08);
-        padding:10px 12px;
-      }
-
-      .nx-navbar.is-open .nx-menu{
-        display:flex;
-      }
-
-      .nx-item{ width:100%; }
-      .nx-link{ display:block; padding:12px 6px; }
-
-      .nx-drop{
-        position:static;
-        border:none;
-        box-shadow:none;
-        background:none;
-        padding:0;
-        display:none;
-      }
-
-      .nx-item.open>.nx-drop{
-        display:block;
-      }
-    }
-
-
-    /* ============================================================
-       YOUR NEW FOOTER
-    ============================================================ */
-    .nx-footer{
-      margin-top:40px;
-      background:#fafafa;
-      border-top:1px solid var(--line);
-      color:var(--text-dim);
-    }
-
-    .nx-foot-wrap{
-      max-width:1200px;
-      margin:0 auto;
-      padding:48px 20px 30px;
-    }
-
-    .nx-foot-top{
-      display:flex;
-      align-items:center;
-      gap:16px;
-      padding-bottom:20px;
-      border-bottom:1px solid var(--line);
-    }
-
-    .nx-foot-brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      color:var(--text);
-    }
-
-    .nx-foot-logo{
-      height:38px;
-      width:auto;
-    }
-
-    .nx-foot-grid{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:26px;
-      padding:26px 0 10px;
-    }
-
-    @media(max-width:900px){
-      .nx-foot-grid{ grid-template-columns:repeat(2,1fr); }
-    }
-    @media(max-width:540px){
-      .nx-foot-grid{ grid-template-columns:1fr; }
-    }
-
-    .nx-foot-col h4{
-      font-size:15px;
-      color:var(--accent);
-      margin-bottom:10px;
-    }
-
-    .nx-foot-col a{
-      color:var(--text);
-      padding:6px 0;
-      font-size:14px;
-      display:block;
-      opacity:.9;
-      transition:.2s ease;
-    }
-    .nx-foot-col a:hover{
+    .arb-card:hover::before{
       opacity:1;
-      transform:translateX(2px);
+      transform:translate3d(0,0,0);
+    }
+    .arb-badge{
+      display:inline-flex;align-items:center;gap:6px;
+      font-size:11px;font-weight:600;
+      letter-spacing:.08em;text-transform:uppercase;
+      padding:4px 10px;border-radius:999px;
+      background:rgba(201,166,70,.08);color:var(--accent);
+    }
+    .arb-card h2{margin:14px 0 8px;font-size:20px}
+    .arb-card p{margin:0;color:var(--muted);font-size:14px}
+    .arb-link{
+      display:inline-flex;align-items:center;gap:6px;
+      margin-top:14px;
+      font-weight:600;
+      color:var(--accent);
+    }
+    .arb-link::after{
+      content:"↗";
+      font-size:13px;
+      transition:transform .25s;
+    }
+    .arb-card:hover .arb-link::after{
+      transform:translateX(3px);
     }
 
-    .nx-foot-bottom{
-      padding-top:16px;
-      border-top:1px solid var(--line);
-      font-size:13px;
-      display:flex;
-      justify-content:space-between;
-      flex-wrap:wrap;
-      color:var(--text-dim);
-    }
+    /* safety: hide stray duplicates */
+    body > .nx-brand, body > .nx-foot-brand { display:none !important; }
+
+    /* ===== FOOTER ===== */
+   /* ======================== FOOTER ======================== */
+
+.nx-footer{
+  margin-top:40px;
+  background:#fafafa;
+  border-top:1px solid var(--line);
+  color:var(--text-dim);
+}
+
+.nx-foot-wrap{
+  max-width:1200px;
+  margin:0 auto;
+  padding:48px 20px 30px;
+}
+
+/* TOP ROW */
+.nx-foot-top{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding-bottom:20px;
+  border-bottom:1px solid var(--line);
+}
+
+.nx-foot-brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color:var(--text);
+}
+
+.nx-foot-logo{
+  height:38px;
+  width:auto;
+}
+
+/* GRID */
+.nx-foot-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:26px;
+  padding:26px 0 10px;
+}
+
+@media(max-width:900px){
+  .nx-foot-grid{ grid-template-columns:repeat(2,1fr); }
+}
+@media(max-width:540px){
+  .nx-foot-grid{ grid-template-columns:1fr; }
+}
+
+.nx-foot-col h4{
+  font-size:15px;
+  color:var(--accent);
+  margin-bottom:10px;
+}
+
+.nx-foot-col a{
+  color:var(--text);
+  padding:6px 0;
+  font-size:14px;
+  display:block;
+  opacity:.9;
+  transition:.2s ease;
+}
+.nx-foot-col a:hover{
+  opacity:1;
+  transform:translateX(2px);
+}
+
+/* BOTTOM ROW */
+.nx-foot-bottom{
+  padding-top:16px;
+  border-top:1px solid var(--line);
+  font-size:13px;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  color:var(--text-dim);
+}
 
   </style>
-
 </head>
 <body>
 
-
-<!-- ============================================================
-     INSERTED: NEW NAVBAR
-============================================================ -->
+  <!-- ========== NAVBAR ========== -->
+<!-- ========== NAVBAR ========== -->
 <header class="nx-navbar" id="nxHeader">
   <div class="nx-nav-inner">
 
+    <!-- BRAND / LOGO -->
     <a class="nx-brand" href="index.html">
       <img class="nx-logo" src="stoxgear-logo.jpg" alt="Stoxgear">
       <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner">
@@ -360,7 +496,7 @@
         </div>
       </div>
 
-      <!-- CONTACT -->
+      <!-- CONTACT (NO DROPDOWN) -->
       <div class="nx-item">
         <a class="nx-link" href="Contact.html">Contact</a>
       </div>
@@ -373,36 +509,44 @@
   </div>
 </header>
 
-<!-- Floating contact elements -->
-<a class="ribbon" href="#contact">CONTACT US NOW</a>
-<a class="fab" href="https://wa.me/" aria-label="WhatsApp">WA</a>
 
+  <!-- Floating contact elements -->
+  <a class="ribbon" href="#contact">CONTACT US NOW</a>
+  <a class="fab" href="https://wa.me/" aria-label="WhatsApp">WA</a>
 
-<!-- ========== PAGE CONTENT (unchanged) ========== -->
-<main class="page-wrap">
-  <h1 class="page-title">Arbitration Procedure</h1>
-  <p class="page-sub">Learn how investor–broker disputes are handled through the Pakistan Stock Exchange arbitration framework.</p>
+  <!-- ========== PAGE CONTENT ========== -->
+  <main class="page-wrap">
+    <h1 class="page-title">Arbitration Procedure</h1>
+    <p class="page-sub">
+      Learn how investor–broker disputes are handled through the Pakistan Stock Exchange
+      arbitration framework.
+    </p>
 
-  <div class="arb-wrap">
-    <a class="arb-card"
-      href="https://www.psx.com.pk/psx/themes/psx/uploads/invst_lodge_complaints.pdf"
-      target="_blank"
-      rel="noopener">
-      <span class="arb-badge">PSX – PDF Document</span>
-      <h2>Arbitration Procedure</h2>
-      <p>Detailed steps for filing a claim, required documents, timelines and the process followed by PSX for Arbitration between investors and brokers.</p>
-      <span class="arb-link">Open Arbitration Procedure</span>
-    </a>
-  </div>
-</main>
+    <div class="arb-wrap">
+      <!-- FULLY CLICKABLE CARD WITH REAL LINK -->
+      <a
+        class="arb-card"
+        href="https://www.psx.com.pk/psx/themes/psx/uploads/invst_lodge_complaints.pdf"
+        target="_blank"
+        rel="noopener"
+      >
+        <span class="arb-badge">PSX – PDF Document</span>
+        <h2>Arbitration Procedure</h2>
+        <p>
+          Detailed steps for filing a claim, required documents, timelines and the process
+          followed by PSX for Arbitration between investors and brokers.
+        </p>
+        <span class="arb-link">Open Arbitration Procedure</span>
+      </a>
+    </div>
+  </main>
 
-
-<!-- ============================================================
-     INSERTED: NEW FOOTER
-============================================================ -->
+  <!-- ========== FOOTER (site nav) ========== -->
+<!-- ========== FOOTER ========== -->
 <footer class="nx-footer">
   <div class="nx-foot-wrap">
 
+    <!-- TOP BRAND -->
     <div class="nx-foot-top">
       <a class="nx-foot-brand" href="index.html">
         <img class="nx-foot-logo" src="stoxgear-logo.jpg" alt="">
@@ -410,6 +554,7 @@
       </a>
     </div>
 
+    <!-- GRID -->
     <div class="nx-foot-grid">
 
       <div class="nx-foot-col">
@@ -435,18 +580,19 @@
 
       <div class="nx-foot-col">
         <h4>CONTACT</h4>
-        <a href="mailto:info@StoxGear.com">info@StoxGear.com</a>
-        <a href="tel:+923162288686">+92 316 2288686</a>
+        <a href="mailto:info@stoxgear.com.pk">info@stoxgear.com.pk</a>
+        <a href="tel:0913168395">091-3168395</a>
         <a href="#">Karachi, Pakistan</a>
       </div>
 
     </div>
 
+    <!-- BOTTOM -->
     <div class="nx-foot-bottom">
-      <span>© <script>document.write(new Date().getFullYear())</script> StoxGear Securities</span>
+      <span>© <script>document.write(new Date().getFullYear())</script> Stoxgear Securities (Private) Limited</span>
       <span>
-        <a href="#" style="color:var(--text-dim);text-decoration:none;">Privacy</a> ·
-        <a href="#" style="color:var(--text-dim);text-decoration:none;">Terms</a>
+        <a href="privacy.html">Privacy</a> ·
+        <a href="terms.html">Terms</a>
       </span>
     </div>
 
@@ -454,42 +600,40 @@
 </footer>
 
 
-<script>
-(function(){
-  const header = document.getElementById('nxHeader');
-  const menu   = document.getElementById('nxMenu');
-  const toggle = document.getElementById('nxToggle');
-
-  if (toggle && header){
-    toggle.addEventListener('click', ()=>{
-      const open = !header.classList.contains('is-open');
-      header.classList.toggle('is-open', open);
-      toggle.setAttribute('aria-expanded', String(open));
-    });
-  }
-
-  document.querySelectorAll('.nx-item > .nx-link').forEach(link=>{
-    link.addEventListener('click', (e)=>{
-      const drop = link.nextElementSibling;
-      const isMobile = window.matchMedia('(max-width:1024px)').matches;
-
-      if (isMobile && drop && drop.classList.contains('nx-drop')){
-        e.preventDefault();
-        link.parentElement.classList.toggle('open');
+  <script>
+    (function(){
+      const header = document.getElementById('nxHeader');
+      const menu   = document.getElementById('nxMenu');
+      const toggle = document.getElementById('nxToggle');
+      if (toggle && header){
+        toggle.addEventListener('click', ()=>{
+          const open = !header.classList.contains('is-open');
+          header.classList.toggle('is-open', open);
+          toggle.setAttribute('aria-expanded', String(open));
+        });
       }
-    });
-  });
-
-  document.addEventListener('click', (e)=>{
-    const isMobile = window.matchMedia('(max-width:1024px)').matches;
-    if (isMobile && header && !header.contains(e.target)){
-      header.classList.remove('is-open');
-      toggle && toggle.setAttribute('aria-expanded','false');
-    }
-  });
-
-})();
-</script>
+      document.querySelectorAll('.nx-item > .nx-link').forEach(link=>{
+        link.addEventListener('click', (e)=>{
+          const drop = link.nextElementSibling;
+          const isMobile = window.matchMedia('(max-width:1024px)').matches;
+          if (isMobile && drop && drop.classList.contains('nx-drop')){
+            e.preventDefault();
+            link.parentElement.classList.toggle('open');
+          }
+        });
+      });
+      document.addEventListener('click', (e)=>{
+        const isMobile = window.matchMedia('(max-width:1024px)').matches;
+        if (isMobile && header && !header.contains(e.target)){
+          header.classList.remove('is-open');
+          toggle && toggle.setAttribute('aria-expanded','false');
+        }
+      });
+    })();
+  </script>
 
 </body>
 </html>
+
+
+
