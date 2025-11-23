@@ -245,110 +245,7 @@
       .frame{max-width:520px;margin:auto}
     }
 
-    /* ===== NAVBAR (light) ===== */
-    .nx-navbar{
-      position: sticky; top: 0; z-index: 9999;
-      background:#fff;
-      border-bottom:1px solid var(--line);
-      box-shadow:0 6px 18px rgba(0,0,0,.06);
-    }
-    .nx-nav-inner{max-width: 1200px;margin: 0 auto;padding: 14px 20px;display: flex;align-items: center;gap: 18px;}
-    .nx-brand{ display:flex; align-items:center; gap:10px; color:var(--ink); text-decoration:none; }
-    .nx-logo{ height:36px; width:auto; display:block; }
-    .nx-logo2{
-      height:30px; width:auto; display:block; object-fit:contain; margin-left:10px;
-    }
-    .nx-tag{ font-size:12px; color:var(--muted); }
-    .nx-grow{ flex:1; }
-
-    .nx-menu{ display:flex; align-items:center; gap:26px; }
-    .nx-item{ position:relative; }
-    .nx-link{
-      font-weight:600; color: var(--muted); text-decoration: none; position:relative;
-    }
-    .nx-link:after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--accent);transform:scaleX(0);transition:.25s}
-    .nx-link:hover{ color: var(--accent); }
-    .nx-link:hover:after{transform:scaleX(1);}
-
-    .nx-drop{
-      position: absolute; top: calc(100% + 10px); left: 0; min-width: 240px;
-      background: #fff; border: 1px solid var(--line);
-      border-radius: 12px; padding: 8px;
-      box-shadow: 0 12px 26px rgba(0,0,0,.08);
-      display: none;
-      z-index: 1000;
-    }
-    /* shown when .open is applied via JS */
-    .nx-item.open > .nx-drop{
-      display:block;
-    }
-
-    .nx-drop a{ display:block; color: var(--ink); text-decoration:none; padding: 8px 10px; border-radius: 8px; }
-    .nx-drop a:hover{ background: #f6f6f6; color: var(--accent); }
-
-    .nx-cta{
-      background:var(--accent); color:#1b1b1b; border:none; padding:10px 14px;
-      border-radius:12px; font-weight:700; cursor:pointer;
-    }
-
-    .nx-toggle{
-      display:none;
-      margin-left:8px;
-      padding:6px 10px;
-      border-radius:10px;
-      border:1px solid rgba(0,0,0,.12);
-      font-size:20px;
-      background:#fff;
-      cursor:pointer;
-    }
-
-    @media (max-width:1024px){
-      .nx-menu{
-        display:none;
-        position:absolute;
-        top:100%;
-        left:0;right:0;
-        background:#fff;
-        border-top:1px solid var(--line);
-        padding:10px 12px;
-        z-index:9999;
-        flex-direction:column;
-        gap:0;
-      }
-      .nx-item{width:100%}
-      .nx-link{display:block;padding:12px 6px}
-      .nx-drop{
-        position:static;
-        display:none;
-        border:none;
-        box-shadow:none;
-        background:transparent;
-        padding:0;
-      }
-      .nx-item.open>.nx-drop{display:block!important}
-      .nx-toggle{display:inline-block;}
-      .nx-navbar.is-open .nx-menu{display:flex}
-    }
-
-    @media (min-width:1025px){
-      .nx-menu{display:flex}
-    }
-
-    /* ===== Footer (site nav) ===== */
-    .nx-footer{margin-top:60px;background:#f7f7f7;border-top:1px solid var(--line);color:var(--muted)}
-    .nx-foot-wrap{max-width:1200px;margin:0 auto;padding:48px 20px 28px}
-    .nx-foot-top{display:flex;align-items:center;justify-content:space-between;gap:18px;padding-bottom:22px;border-bottom:1px solid var(--line)}
-    .nx-foot-brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink)}
-    .nx-foot-logo{height:36px;width:auto}
-    .nx-foot-tag{font-size:13px;color:var(--muted)}
-    .nx-foot-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px;padding:26px 0 6px}
-    @media(max-width:900px){.nx-foot-grid{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:540px){.nx-foot-grid{grid-template-columns:1fr}}
-    .nx-foot-col h4{margin:0 0 12px;color:var(--accent);font-size:15px}
-    .nx-foot-col a{display:block;color:var(--ink);text-decoration:none;opacity:.9;padding:7px 0;font-size:14px}
-    .nx-foot-col a:hover{opacity:1;color:var(--accent)}
-    .nx-foot-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
-  </style>
+    /</style>
 </head>
 <body>
   <!-- ========== NAVBAR ========== -->
@@ -694,4 +591,5 @@
 
 </body>
 </html>
+
 
