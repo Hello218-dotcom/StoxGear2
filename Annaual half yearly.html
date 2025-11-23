@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Account Opening – Document Requirements</title>
+<title>Financial Statements – StoxGear</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,11 +12,12 @@
 <style>
 :root{
   --bg:#ffffff;
-  --text:#0f1220;
-  --text-dim:#5e6676;
-  --accent:#c9a646; /* GOLD */
-  --accent-2:#b38b2e;
-  --radius:16px;
+  --ink:#0f1220;
+  --muted:#5e6676;
+  --accent:#c9a646;  /* Gold */
+  --accent-dark:#b38b2e;
+  --line:#e7e9ee;
+  --radius:14px;
 }
 
 body{
@@ -24,106 +25,83 @@ body{
   padding:0;
   background:var(--bg);
   font-family:Inter, sans-serif;
-  color:var(--text);
+  color:var(--ink);
 }
 
-.page{
+.container{
   max-width:900px;
   margin:60px auto;
   padding:20px;
-  text-align:center;
 }
 
 /* TITLE */
-.page h1{
-  font-size:40px;
-  color:var(--accent);
+h1{
+  font-size:38px;
   font-weight:800;
-  margin-bottom:4px;
-}
-.page h2{
-  font-size:22px;
-  margin-bottom:40px;
-  color:var(--text-dim);
-  font-weight:600;
-  letter-spacing:.5px;
+  letter-spacing:.2px;
+  color:var(--accent);
+  margin-bottom:20px;
 }
 
-/* GRID LIST */
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:28px 60px;
-  text-align:left;
-  margin-bottom:40px;
-  font-size:18px;
+/* LIST BLOCK */
+.fin-list{
+  margin-top:30px;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
 }
 
-@media(max-width:700px){
-  .grid{
-    grid-template-columns:1fr;
-    text-align:center;
-  }
-}
-
-/* FOOTNOTE */
-.note{
-  font-size:14px;
-  margin-top:20px;
-  color:var(--text-dim);
-}
-
-/* BUTTON */
-.btn{
-  margin-top:40px;
-  display:inline-block;
-  background:var(--accent);
-  padding:16px 32px;
-  border-radius:999px;
-  font-weight:700;
-  color:#000;
+.fin-item{
   font-size:20px;
-  text-decoration:none;
-  transition:.25s;
+  font-weight:600;
+  position:relative;
+  width:max-content;
 }
-.btn:hover{
-  background:var(--accent-2);
+
+.fin-item a{
+  color:var(--ink);
+  text-decoration:none;
+  padding-bottom:4px;
+  border-bottom:2px solid transparent;
+  transition:.3s;
+}
+
+.fin-item a:hover{
+  color:var(--accent);
+  border-bottom:2px solid var(--accent);
+}
+
+/* SEPARATOR LINE */
+.separator{
+  height:1px;
+  width:100%;
+  background:var(--line);
+  margin:20px 0 30px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="page">
+<div class="container">
 
-  <h1>ACCOUNT OPENING</h1>
-  <h2>DOCUMENT REQUIREMENTS</h2>
+  <h1>Annual / Half Yearly / Quarterly Financials</h1>
 
-  <div class="grid">
+  <div class="separator"></div>
 
-    <div>
-      <p>• CNIC</p>
-      <p>• Nominee CNIC</p>
-      <p>• Registered Mobile Number</p>
-      <p>• IBAN Number Bank Account (cheque picture)</p>
-      <p>• Mother Maiden Name</p>
+  <div class="fin-list">
+    <div class="fin-item">
+      <a href="#">Accounts for the year 2023</a>
     </div>
 
-    <div>
-      <p>• Email</p>
-      <p>• Source of Income / Salary Slip / Business Proof</p>
-      <p>• Picture of Signature</p>
-      <p>• Zakat Declaration</p>
-      <p>• Summary Page of Tax Return</p>
+    <div class="fin-item">
+      <a href="#">Accounts for the year 2024</a>
     </div>
 
+    <div class="fin-item">
+      <a href="#">Accounts for the year 2025</a>
+    </div>
   </div>
-
-  <p class="note">
-    * Files must be below 400kb. Upload in JPEG or PNG only.
-  </p>
-
-  <a href="#" class="btn">Proceed to Open Digital Account</a>
 
 </div>
 
