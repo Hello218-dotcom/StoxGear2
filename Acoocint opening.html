@@ -1,448 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Annual / Half Yearly / Quarterly Financials – StoxGear</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Account Opening – Document Requirements</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
   --bg:#ffffff;
-  --panel:#ffffff;
-  --ink:#141414;
-  --muted:#666666;
-  --accent:#c9a646;
+  --text:#0f1220;
+  --text-dim:#5e6676;
+  --accent:#c9a646; /* GOLD */
   --accent-2:#b38b2e;
-  --line:#e5e5e5;
   --radius:16px;
-  --shadow:0 10px 26px rgba(0,0,0,.10);
 }
-
-*{box-sizing:border-box;margin:0;padding:0;}
 
 body{
   margin:0;
+  padding:0;
   background:var(--bg);
-  color:var(--ink);
-  font-family:Poppins,system-ui,Segoe UI,sans-serif;
+  font-family:Inter, sans-serif;
+  color:var(--text);
 }
 
-a{color:var(--accent);text-decoration:none;transition:.2s;}
-a:hover{color:var(--accent-2);}
+.page{
+  max-width:900px;
+  margin:60px auto;
+  padding:20px;
+  text-align:center;
+}
 
-/* NAVBAR */
-.nx-navbar{
-  position:sticky;
-  top:0;
-  z-index:999;
-  background:#fff;
-  backdrop-filter:saturate(120%) blur(8px);
-  border-bottom:1px solid var(--line);
-  box-shadow:0 4px 12px rgba(0,0,0,.05);
+/* TITLE */
+.page h1{
+  font-size:40px;
+  color:var(--accent);
+  font-weight:800;
+  margin-bottom:4px;
 }
-.nx-nav-inner{
-  max-width:1200px;
-  margin:0 auto;
-  padding:14px 20px;
-  display:flex;
-  align-items:center;
-  gap:20px;
-}
-.nx-brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-.nx-logo{height:30px;object-fit:contain;}
-.nx-logo2{height:30px;object-fit:contain;margin-left:10px;}
-.nx-grow{flex:1;}
-.nx-menu{
-  display:flex;
-  gap:26px;
-  align-items:center;
-}
-.nx-item{position:relative;}
-.nx-link{
-  color:var(--muted);
+.page h2{
+  font-size:22px;
+  margin-bottom:40px;
+  color:var(--text-dim);
   font-weight:600;
-  font-size:14px;
-  padding:4px 0;
-  position:relative;
+  letter-spacing:.5px;
 }
-.nx-link:after{
-  content:"";
-  position:absolute;
-  left:0;right:0;bottom:-6px;
-  height:2px;
-  background:var(--accent);
-  transform:scaleX(0);
-  transform-origin:left;
-  transition:.25s;
-}
-.nx-link:hover{color:var(--accent);}
-.nx-link:hover:after{transform:scaleX(1);}
 
-/* CTA */
-.nx-cta{
+/* GRID LIST */
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:28px 60px;
+  text-align:left;
+  margin-bottom:40px;
+  font-size:18px;
+}
+
+@media(max-width:700px){
+  .grid{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+}
+
+/* FOOTNOTE */
+.note{
+  font-size:14px;
+  margin-top:20px;
+  color:var(--text-dim);
+}
+
+/* BUTTON */
+.btn{
+  margin-top:40px;
+  display:inline-block;
   background:var(--accent);
-  color:#fff;
-  padding:10px 20px;
+  padding:16px 32px;
   border-radius:999px;
   font-weight:700;
-  font-size:14px;
-  box-shadow:0 0 16px rgba(201,166,70,.30);
-  transition:.2s;
-}
-.nx-cta:hover{
-  background:var(--accent-2);
-  transform:translateY(-1px);
-}
-
-/* Dropdown */
-.nx-drop{
-  position:absolute;
-  top:calc(100% + 10px);
-  left:0;
-  min-width:240px;
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:14px;
-  box-shadow:0 12px 26px rgba(0,0,0,.15);
-  padding:10px;
-  opacity:0;
-  transform:translateY(10px) scale(.97);
-  pointer-events:none;
-  transition:opacity .22s, transform .22s;
-}
-.nx-item.open > .nx-drop{
-  opacity:1;
-  transform:translateY(0) scale(1);
-  pointer-events:auto;
-}
-.nx-drop a{
-  display:block;
-  padding:8px 12px;
-  border-radius:8px;
-  font-size:13px;
-  color:var(--ink);
-}
-.nx-drop a:hover{
-  background:rgba(201,166,70,.08);
-  color:var(--accent);
-}
-
-/* Mobile nav */
-.nx-toggle{
-  display:none;
-  background:none;
-  border:1px solid var(--line);
-  border-radius:10px;
-  padding:6px 10px;
+  color:#000;
   font-size:20px;
-  cursor:pointer;
-  color:var(--accent);
-}
-
-@media (max-width:1024px){
-  .nx-menu{
-    display:none;
-    flex-direction:column;
-    background:#fff;
-    top:100%;
-    left:0;right:0;
-    position:absolute;
-    padding:10px 12px;
-    box-shadow:0 16px 30px rgba(0,0,0,.16);
-  }
-  .nx-navbar.is-open .nx-menu{
-    display:flex;
-  }
-  .nx-toggle{display:block;}
-}
-
-/* HERO */
-.fin-hero{
-  background:radial-gradient(circle at top left,rgba(201,166,70,.16),transparent 60%), #fafafa;
-  border-bottom:1px solid var(--line);
-}
-.fin-wrap{
-  max-width:1200px;
-  margin:0 auto;
-  padding:34px 20px 30px;
-  display:grid;
-  grid-template-columns:1.4fr 1fr;
-  gap:28px;
-}
-.fin-hero-graphic{justify-self:end;position:relative;}
-.fin-card-hero{
-  background:#fff;
-  border:1px solid rgba(201,166,70,.40);
-  padding:18px 16px;
-  border-radius:22px;
-  box-shadow:0 14px 34px rgba(0,0,0,.18);
-  max-width:320px;
-}
-.fin-tag{background:rgba(201,166,70,.08);color:var(--accent-2);}
-
-/* GRID */
-.fin-grid{
-  max-width:1200px;
-  margin:0 auto;
-  padding:30px 20px;
-  display:grid;
-  gap:20px;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-}
-.fin-card-year{
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  padding:22px;
-  cursor:pointer;
+  text-decoration:none;
   transition:.25s;
-  box-shadow:var(--shadow);
 }
-.fin-card-year:hover{
-  border-color:var(--accent);
-  transform:translateY(-4px);
+.btn:hover{
+  background:var(--accent-2);
 }
-
-/* Drawer */
-.sheet{
-  position:fixed;
-  left:0;right:0;
-  bottom:-100%;
-  background:#fff;
-  border-top:1px solid var(--line);
-  border-radius:20px 20px 0 0;
-  box-shadow:0 -24px 60px rgba(0,0,0,.4);
-  transition:.35s;
-}
-.sheet.is-open{bottom:0;}
-
-.item{border:1px solid var(--line);padding:10px;border-radius:12px;display:flex;gap:10px;}
-.item:hover{border-color:var(--accent);}
-
-/* Reveal */
-.reveal{opacity:0;transform:translateY(16px);transition:.6s;}
-.reveal.is-in{opacity:1;transform:none;}
 </style>
 </head>
 
 <body>
-<!------------------ JAVASCRIPT ------------------->
 
-<script>
-/* NAVBAR BEHAVIOUR */
-(function(){
-  const header = document.getElementById('nxHeader');
-  const menu = document.getElementById('nxMenu');
-  const toggle = document.getElementById('nxToggle');
+<div class="page">
 
-  if (toggle){
-    toggle.addEventListener('click', ()=>{
-      const open = !header.classList.contains('is-open');
-      header.classList.toggle('is-open', open);
-      toggle.setAttribute('aria-expanded', String(open));
-    });
-  }
+  <h1>ACCOUNT OPENING</h1>
+  <h2>DOCUMENT REQUIREMENTS</h2>
 
-  // MOBILE tap to open dropdown
-  document.querySelectorAll('.nx-item > .nx-link').forEach(link=>{
-    link.addEventListener('click', (e)=>{
-      const isMobile = window.matchMedia('(max-width:1024px)').matches;
-      const parent = link.parentElement;
-      const drop = link.nextElementSibling;
+  <div class="grid">
 
-      if(isMobile && drop && drop.classList.contains('nx-drop')){
-        e.preventDefault();
-        const alreadyOpen = parent.classList.contains('open');
-        document.querySelectorAll('.nx-item.open').forEach(i=>i.classList.remove('open'));
-        if(!alreadyOpen) parent.classList.add('open');
-      }
-    });
-  });
-
-  // DESKTOP hover
-  document.querySelectorAll('.nx-item').forEach(item=>{
-    let enterTimer, leaveTimer;
-
-    item.addEventListener('mouseenter', ()=>{
-      if(!window.matchMedia('(min-width:1025px)').matches) return;
-      clearTimeout(leaveTimer);
-      enterTimer = setTimeout(()=> item.classList.add('open'), 150);
-    });
-
-    item.addEventListener('mouseleave', ()=>{
-      if(!window.matchMedia('(min-width:1025px)').matches) return;
-      clearTimeout(enterTimer);
-      leaveTimer = setTimeout(()=> item.classList.remove('open'), 200);
-    });
-  });
-
-  // Click outside mobile
-  document.addEventListener('click', (e)=>{
-    const isMobile = window.matchMedia('(max-width:1024px)').matches;
-    if(isMobile && header && !header.contains(e.target)){
-      header.classList.remove('is-open');
-      toggle.setAttribute('aria-expanded','false');
-      document.querySelectorAll('.nx-item.open').forEach(i=>i.classList.remove('open'));
-    }
-  });
-})();
-</script>
-
-<!------------------ REPORTS DATA ------------------->
-
-<script>
-const REPORTS = {
-  2024: [
-    {
-      title: "Annual Report 2024",
-      kind: "Annual",
-      url: "https://dps.psx.com.pk/download/attachment/249143-1.pdf",
-      size: "PDF • PSX"
-    },
-    {
-      title: "Half-Yearly Report – Dec 31, 2024",
-      kind: "Half-Yearly",
-      url: "https://www.psx.com.pk/psx/themes/psx/uploads/PSX-Half-Yearly-Report-December-31-2024.pdf",
-      size: "PDF • PSX"
-    },
-    {
-      title: "Quarterly Report – Sep 2024",
-      kind: "Quarterly",
-      url: "https://www.psx.com.pk/psx/themes/psx/uploads/Quarter-Ended-September-2024.pdf",
-      size: "PDF • PSX"
-    }
-  ],
-  2023: [
-    {
-      title: "Annual Report 2023",
-      kind: "Annual",
-      url: "https://www.psx.com.pk/psx/themes/psx/uploads/Annual-Report-2023.pdf",
-      size: "PDF • PSX"
-    }
-  ],
-  2022: [
-    {
-      title: "Annual Report 2022",
-      kind: "Annual",
-      url: "https://www.psx.com.pk/psx/file-attachment/199407.pdf",
-      size: "PDF • PSX"
-    }
-  ]
-};
-</script>
-
-<!------------------ RENDER YEARS GRID ------------------->
-
-<script>
-const yearsWrap = document.getElementById('years');
-const years = Object.keys(REPORTS).sort((a,b)=>b-a);
-
-years.forEach((year, index)=>{
-  const total = REPORTS[year].length;
-
-  const card = document.createElement('article');
-  card.className = 'fin-card-year reveal';
-  card.dataset.year = year;
-
-  card.innerHTML = `
-    <div class="fin-chip"><span></span>${index === 0 ? 'Latest Year' : 'Archive'}</div>
-    <h3>Financial Statements – ${year}</h3>
-    <p>${total} disclosure${total>1?'s':''} available</p>
-    <div class="fin-meta">
-      <span>${total} file${total>1?'s':''}</span>
-      <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+    <div>
+      <p>• CNIC</p>
+      <p>• Nominee CNIC</p>
+      <p>• Registered Mobile Number</p>
+      <p>• IBAN Number Bank Account (cheque picture)</p>
+      <p>• Mother Maiden Name</p>
     </div>
-  `;
 
-  card.addEventListener('click', ()=> openSheet(year));
+    <div>
+      <p>• Email</p>
+      <p>• Source of Income / Salary Slip / Business Proof</p>
+      <p>• Picture of Signature</p>
+      <p>• Zakat Declaration</p>
+      <p>• Summary Page of Tax Return</p>
+    </div>
 
-  yearsWrap.appendChild(card);
-});
-</script>
+  </div>
 
-<!------------------ SHEET / DRAWER ------------------->
+  <p class="note">
+    * Files must be below 400kb. Upload in JPEG or PNG only.
+  </p>
 
-<script>
-const sheet = document.getElementById('sheet');
-const sheetTitle = document.getElementById('sheetTitle');
-const sheetSub = document.getElementById('sheetSub');
-const sheetList = document.getElementById('sheetList');
-const sheetClose = document.getElementById('sheetClose');
-const sheetSearch = document.getElementById('sheetSearch');
+  <a href="#" class="btn">Proceed to Open Digital Account</a>
 
-function openSheet(year){
-  const list = REPORTS[year];
-  sheetTitle.textContent = `Reports – ${year}`;
-  sheetSub.textContent = `Annual, Half-Yearly & Quarterly statements for ${year}.`;
-
-  renderList(list);
-  sheet.classList.add('is-open');
-  sheetSearch.value = '';
-
-  sheetSearch.oninput = () => {
-    const q = sheetSearch.value.toLowerCase();
-    const filtered = list.filter(r => r.title.toLowerCase().includes(q));
-    renderList(filtered);
-  };
-}
-
-function closeSheet(){
-  sheet.classList.remove('is-open');
-}
-
-sheetClose.addEventListener('click', closeSheet);
-sheet.addEventListener('click', e =>{
-  if(e.target === sheet) closeSheet();
-});
-document.addEventListener('keydown', e=>{
-  if(e.key === 'Escape') closeSheet();
-});
-
-function renderList(items){
-  sheetList.innerHTML = '';
-  items.forEach(r=>{
-    const el = document.createElement('a');
-    el.className = "item";
-    el.href = r.url;
-    el.target = "_blank";
-
-    el.innerHTML = `
-      <svg viewBox="0 0 24 24">
-        <path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path>
-        <path d="M14 2v6h6"></path>
-      </svg>
-      <div>
-        <h4><span class="badge">${r.kind}</span> ${r.title}</h4>
-        <p class="small">${r.size}</p>
-      </div>
-    `;
-    sheetList.appendChild(el);
-  });
-}
-</script>
-
-<!------------------ SCROLL REVEAL ------------------->
-
-<script>
-const io = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add('is-in');
-      io.unobserve(e.target);
-    }
-  });
-},{threshold:.2});
-
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-</script>
+</div>
 
 </body>
 </html>
