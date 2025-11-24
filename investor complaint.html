@@ -13,91 +13,158 @@
   --bg:#ffffff;
   --text:#0f1220;
   --text-dim:#5e6676;
-  --accent:#c9a646;      /* Gold */
+  --accent:#c9a646;      
   --accent-2:#b38b2e;
-  --accent-soft:#e8cf7f;
   --line:#e7e9ee;
-  --radius:20px;
+  --radius:18px;
   --shadow:0 10px 28px rgba(0,0,0,.08);
 }
 
-/* ================== GLOBAL ================== */
+/* GLOBAL */
 body{
   margin:0;
-  font-family:Inter, sans-serif;
-  background:#ffffff;
+  background:#fff;
+  font-family:Inter,sans-serif;
   color:var(--text);
 }
+a{ text-decoration:none!important; }
 
-/* ================== NAVBAR (copied exactly) ================== */
-
-.nx-navbar a{text-decoration:none!important;}
-.nx-navbar a:hover,.nx-navbar a:focus,.nx-navbar a:active{text-decoration:none!important;}
-
+/* ================= NAVBAR (FULL) ================= */
 .nx-navbar{
-  position:sticky;top:0;z-index:1000;
-  background:#fff;border-bottom:1px solid var(--line);
+  position:sticky; top:0; z-index:1000;
+  background:#fff;
+  border-bottom:1px solid var(--line);
   box-shadow:0 6px 18px rgba(0,0,0,.06);
 }
 .nx-nav-inner{
-  max-width:1200px;margin:0 auto;padding:14px 24px;
-  display:flex;align-items:center;gap:16px;
+  max-width:1200px; margin:0 auto;
+  padding:14px 24px;
+  display:flex; align-items:center; gap:16px;
 }
-.nx-brand{display:flex;align-items:center;gap:10px;color:var(--text);}
-.nx-logo,.nx-logo2{height:38px;width:auto;}
-.nx-logo2{margin-left:10px;}
-.nx-grow{flex:1;}
+
+.nx-brand{
+  display:flex; align-items:center; gap:10px;
+}
+.nx-logo, .nx-logo2{
+  height:38px; width:auto;
+}
+.nx-logo2{ margin-left:10px; }
+
+.nx-grow{ flex:1; }
+
 .nx-cta{
-  background:var(--accent);color:#000;font-weight:700;border:none;
-  padding:10px 22px;border-radius:999px;cursor:pointer;transition:.25s;
+  background:var(--accent);
+  color:#000;
+  font-weight:700;
+  border:none;
+  padding:10px 22px;
+  border-radius:999px;
+  cursor:pointer;
 }
-.nx-cta:hover{filter:brightness(1.1);}
 
+/* HAMBURGER */
 .nx-toggle{
-  display:none;background:#fff;border:1px solid var(--line);
-  padding:6px 12px;border-radius:10px;font-size:20px;cursor:pointer;
+  display:none;
+  background:#fff;
+  border:1px solid var(--line);
+  padding:6px 12px;
+  border-radius:10px;
+  font-size:20px;
+  cursor:pointer;
 }
 
-.nx-menu{display:flex;align-items:center;gap:26px;}
-.nx-item{position:relative;}
+/* MENU */
+.nx-menu{
+  display:flex;
+  align-items:center;
+  gap:26px;
+}
+.nx-item{ position:relative; }
+
 .nx-link{
-  color:var(--text-dim);font-weight:600;position:relative;
+  color:var(--text-dim);
+  font-weight:600;
+  position:relative;
 }
-.nx-link:hover{color:var(--accent);}
-.nx-link:after{
-  content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;
-  background:var(--accent);transition:.25s;
-}
-.nx-link:hover:after{width:100%;}
+.nx-link:hover{ color:var(--accent); }
 
+/* underline hover */
+.nx-link:after{
+  content:"";
+  position:absolute; left:0; bottom:-6px;
+  width:0; height:2px;
+  background:var(--accent);
+  transition:.25s;
+}
+.nx-link:hover:after{ width:100%; }
+
+/* DROPDOWN */
 .nx-drop{
-  position:absolute;top:calc(100% + 10px);left:0;min-width:230px;
-  background:#fff;border:1px solid var(--line);padding:10px;
-  border-radius:var(--radius);display:none;
+  position:absolute;
+  top:calc(100% + 10px);
+  left:0;
+  min-width:230px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
   box-shadow:0 12px 28px rgba(0,0,0,.12);
+  padding:10px;
+  display:none;
 }
 .nx-drop a{
-  display:block;padding:8px 10px;color:var(--text);border-radius:10px;
+  display:block;
+  padding:8px 10px;
+  color:var(--text);
+  border-radius:10px;
 }
-.nx-drop a:hover{background:#f6f6f6;color:var(--accent);}
-@media (min-width:1025px){
-  .nx-item:hover>.nx-drop{display:block;}
-}
-@media (max-width:1024px){
-  .nx-toggle{display:block;}
-  .nx-menu{
-    display:none;position:absolute;top:100%;left:0;right:0;background:#fff;
-    border-top:1px solid var(--line);flex-direction:column;
-    box-shadow:0 12px 26px rgba(0,0,0,.08);padding:10px 12px;
-  }
-  .nx-navbar.is-open .nx-menu{display:flex;}
-  .nx-item{width:100%;}
-  .nx-link{display:block;padding:12px 6px;}
-  .nx-drop{position:static;border:none;box-shadow:none;background:none;padding:0;display:none;}
-  .nx-item.open>.nx-drop{display:block;}
+.nx-drop a:hover{
+  background:#f6f6f6;
+  color:var(--accent);
 }
 
-/* ================= FORM ================== */
+/* SHOW DROPDOWN ON DESKTOP */
+@media (min-width:1025px){
+  .nx-item:hover>.nx-drop{
+    display:block;
+  }
+}
+
+/* MOBILE MENU */
+@media(max-width:1024px){
+
+  .nx-toggle{ display:block; }
+
+  .nx-menu{
+    display:none;
+    position:absolute;
+    top:100%; left:0; right:0;
+    background:#fff;
+    border-top:1px solid var(--line);
+    flex-direction:column;
+    padding:10px 12px;
+    box-shadow:0 12px 28px rgba(0,0,0,.12);
+  }
+
+  .nx-navbar.is-open .nx-menu{
+    display:flex;
+  }
+
+  .nx-item{ width:100%; }
+  .nx-link{ padding:12px 6px; }
+
+  .nx-drop{
+    position:static;
+    background:none;
+    border:none;
+    box-shadow:none;
+    padding:0;
+    display:none;
+  }
+
+  .nx-item.open>.nx-drop{
+    display:block;
+  }
+}
 
 .form-title{
   text-align:center;
@@ -109,7 +176,6 @@ body{
   transform:translateY(20px);
   transition:1s;
 }
-
 .form-wrap{
   max-width:900px;
   margin:40px auto 0;
@@ -118,74 +184,97 @@ body{
   transform:translateY(30px);
   transition:1s;
 }
-
 .form-field{
-  width:100%;padding:18px 22px;font-size:17px;
+  width:100%;
+  padding:18px 22px;
+  margin-bottom:22px;
+  font-size:17px;
   border-radius:var(--radius);
   border:2px solid var(--line);
-  background:#fff;margin-bottom:22px;
-  transition:.3s;outline:none;
 }
 .form-field:focus{
   border-color:var(--accent);
-  box-shadow:0 0 12px rgba(201,166,70,.45);
 }
-textarea.form-field{height:150px;resize:none;}
+textarea.form-field{ height:150px; }
 
-/* Submit */
+/* Submit Button */
 .btn-submit{
-  display:block;width:260px;margin:20px auto 0;
-  padding:16px 10px;background:var(--accent);color:#000;font-weight:700;
-  border:none;border-radius:var(--radius);cursor:pointer;
-  font-size:20px;transition:.3s;box-shadow:var(--shadow);
+  display:block;
+  width:260px;
+  margin:20px auto 0;
+  padding:16px 10px;
+  background:var(--accent);
+  border:none;
+  border-radius:var(--radius);
+  font-size:20px;
+  cursor:pointer;
 }
-.btn-submit:hover{
-  background:var(--accent-soft);
-  transform:translateY(-2px);
-}
 
-/* ================= FOOTER ================== */
-
-.nx-footer a{text-decoration:none!important;}
-.nx-footer a:hover{text-decoration:none!important;}
-
+/* ================= FOOTER ================= */
 .nx-footer{
-  margin-top:40px;background:#fafafa;border-top:1px solid var(--line);
+  margin-top:40px;
+  background:#fafafa;
+  border-top:1px solid var(--line);
   color:var(--text-dim);
 }
 .nx-foot-wrap{
-  max-width:1200px;margin:0 auto;padding:48px 20px 30px;
+  max-width:1200px; margin:auto;
+  padding:48px 20px 30px;
 }
+
 .nx-foot-top{
-  display:flex;align-items:center;gap:16px;padding-bottom:20px;
+  display:flex; align-items:center;
+  gap:16px;
+  padding-bottom:20px;
   border-bottom:1px solid var(--line);
 }
-.nx-foot-brand{display:flex;align-items:center;gap:12px;}
-.nx-foot-logo{height:38px;width:auto;}
-
-.nx-foot-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:26px;padding:26px 0 10px;
+.nx-foot-brand{
+  display:flex; align-items:center; gap:12px;
 }
-@media(max-width:900px){ .nx-foot-grid{grid-template-columns:repeat(2,1fr);} }
-@media(max-width:540px){ .nx-foot-grid{grid-template-columns:1fr;} }
+.nx-foot-logo{
+  height:38px; width:auto;
+}
+
+/* FOOTER GRID */
+.nx-foot-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:26px;
+  padding:26px 0 10px;
+}
+@media(max-width:900px){
+  .nx-foot-grid{ grid-template-columns:repeat(2,1fr); }
+}
+@media(max-width:540px){
+  .nx-foot-grid{ grid-template-columns:1fr; }
+}
 
 .nx-foot-col h4{
-  font-size:15px;color:var(--accent);margin-bottom:10px;
+  color:var(--accent);
+  margin-bottom:10px;
 }
 .nx-foot-col a{
-  color:var(--text);padding:6px 0;font-size:14px;display:block;
-  opacity:.9;transition:.2s;
+  color:var(--text);
+  padding:6px 0;
+  display:block;
+  opacity:.9;
 }
-.nx-foot-col a:hover{opacity:1;transform:translateX(2px);}
+.nx-foot-col a:hover{
+  opacity:1;
+  transform:translateX(2px);
+}
 
+/* FOOTER BOTTOM */
 .nx-foot-bottom{
-  padding-top:16px;border-top:1px solid var(--line);
-  font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;
-  color:var(--text-dim);
+  padding-top:16px;
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  font-size:13px;
 }
 
-/* ================= ANIMATIONS ================= */
-.show{opacity:1!important;transform:none!important;}
+/* reveal animation */
+.show{opacity:1!important; transform:none!important;}
 </style>
 </head>
 <body>
@@ -194,15 +283,20 @@ textarea.form-field{height:150px;resize:none;}
 <header class="nx-navbar" id="nxHeader">
   <div class="nx-nav-inner">
 
+    <!-- LOGOS -->
     <a class="nx-brand" href="index.html">
-      <img class="nx-logo" src="stoxgear-logo.jpg">
-      <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg">
+      <img class="nx-logo" src="stoxgear-logo.jpg" alt="StoxGear">
+      <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner">
     </a>
 
     <div class="nx-grow"></div>
 
+    <!-- MENU -->
     <nav class="nx-menu" id="nxMenu">
-      <div class="nx-item"><a class="nx-link" href="#">Why Us</a>
+
+      <!-- WHY US -->
+      <div class="nx-item">
+        <a class="nx-link" href="#">Why Us</a>
         <div class="nx-drop">
           <a href="about.html">About Us</a>
           <a href="BOARD of directors.html">Board / Management</a>
@@ -210,31 +304,77 @@ textarea.form-field{height:150px;resize:none;}
           <a href="associated companies.html">Associated Companies</a>
           <a href="Ncb auditor details .html">Auditors / Legal Advisors</a>
           <a href="services.html">Services</a>
+          <a href="Registered agents..html">Registered Agents</a>
         </div>
       </div>
 
-      <div class="nx-item"><a class="nx-link" href="#">Education</a>
+      <!-- EDUCATION -->
+      <div class="nx-item">
+        <a class="nx-link" href="#">Education</a>
         <div class="nx-drop">
           <a href="New to trading.html">New to Trading</a>
           <a href="Investorguid.html">Investor Guide</a>
+          <a href="Glossary.html">Glossary</a>
+          <a href="psx-rule-book.html">PSX Rule Book</a>
+          <a href="common-terms-share-market.html">Common Terms</a>
+          <a href="online-order-execution-flow.html">Order Execution Flow</a>
+          <a href="order-settlement-flow.html">Order Settlement Flow</a>
+          <a href="arbitration-procedure.html">Arbitration Procedure</a>
+          <a href="risk-disclosure-document.html">Risk Disclosure</a>
+          <a href="procedure-cancel-pending-orders.html">Cancel Pending Orders</a>
+          <a href="faqs.html">FAQs</a>
         </div>
       </div>
 
-      <div class="nx-item"><a class="nx-link" href="#">Open Account</a>
+      <!-- OPEN ACCOUNT -->
+      <div class="nx-item">
+        <a class="nx-link" href="#">Open Account</a>
         <div class="nx-drop">
           <a href="Rda.html">Roshan Digital Account</a>
           <a href="Acoocint opening.html">Open Digital Account</a>
+          <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
         </div>
       </div>
 
-      <div class="nx-item"><a class="nx-link" href="Contact.html">Contact</a></div>
+      <!-- DOWNLOADS -->
+      <div class="nx-item">
+        <a class="nx-link" href="#">Downloads</a>
+        <div class="nx-drop">
+          <a href="Forms.html">Forms</a>
+          <a href="software.html">Software</a>
+          <a href="Annaual half yearly.html">Financial Statements</a>
+          <a href="KYC poslicy.html">CDD / KYC Policy</a>
+        </div>
+      </div>
+
+      <!-- SUPPORT -->
+      <div class="nx-item">
+        <a class="nx-link" href="#">Support</a>
+        <div class="nx-drop">
+          <a href="investor complaint.html">Investor Complaint</a>
+          <a href="Pending investor complaun.html">Pending Complaints</a>
+          <a href="Penal action.html">Penal Action</a>
+          <a href="Secp complaint.html">SECP Complaint</a>
+          <a href="psx complaint.html">PSX Complaint</a>
+          <a href="UIs of NICCPL.html">UIS Services</a>
+          <a href="Eservices By CDC.html">EServices by CDC</a>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="nx-item">
+        <a class="nx-link" href="Contact.html">Contact</a>
+      </div>
+
     </nav>
 
+    <!-- CTA -->
     <button class="nx-cta">OPEN AN ACCOUNT</button>
     <button class="nx-toggle" id="nxToggle">☰</button>
 
   </div>
 </header>
+
 
 <!-- ========== FORM CONTENT ========== -->
 <h1 class="form-title reveal">Investor Complaint</h1>
@@ -249,14 +389,15 @@ textarea.form-field{height:150px;resize:none;}
   <button class="btn-submit">Submit</button>
 </div>
 
+
 <!-- ========== FOOTER ========== -->
 <footer class="nx-footer">
   <div class="nx-foot-wrap">
 
     <div class="nx-foot-top">
       <a class="nx-foot-brand" href="index.html">
-        <img class="nx-foot-logo" src="stoxgear-logo.jpg">
-        <img class="nx-foot-logo" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg">
+        <img class="nx-foot-logo" src="stoxgear-logo.jpg" alt="">
+        <img class="nx-foot-logo" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="">
       </a>
     </div>
 
@@ -272,12 +413,14 @@ textarea.form-field{height:150px;resize:none;}
         <h4>EDUCATION</h4>
         <a href="New to trading.html">New to Trading</a>
         <a href="Investorguid.html">Investor Guide</a>
+        <a href="Glossary.html">Glossary</a>
       </div>
 
       <div class="nx-foot-col">
         <h4>ACCOUNT</h4>
         <a href="Rda.html">Roshan Digital Account</a>
         <a href="Acoocint opening.html">Open Digital Account</a>
+        <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
       </div>
 
       <div class="nx-foot-col">
@@ -286,31 +429,47 @@ textarea.form-field{height:150px;resize:none;}
         <a href="tel:0913168395">091-3168395</a>
         <a>Karachi, Pakistan</a>
       </div>
-
     </div>
 
     <div class="nx-foot-bottom">
       <span>© <script>document.write(new Date().getFullYear())</script> Stoxgear Securities (Private) Limited</span>
       <span>
-        <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a> · 
+        <a href="terms.html">Terms</a>
       </span>
     </div>
 
   </div>
 </footer>
 
+
 <!-- ========== SCRIPTS ========== -->
 <script>
-// Scroll reveal
+// reveal animations
 const obs = new IntersectionObserver((e)=>{
-  e.forEach((b)=>{ if(b.isIntersecting){ b.target.classList.add("show"); }});
+  e.forEach(b=>{ if(b.isIntersecting){ b.target.classList.add("show"); }});
 },{threshold:.2});
 document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
 
-// Mobile menu
-const header=document.getElementById("nxHeader");
-const toggle=document.getElementById("nxToggle");
-toggle.addEventListener("click",()=>header.classList.toggle("is-open"));
+// mobile menu toggle
+const headerEl = document.getElementById("nxHeader");
+const toggleBtn = document.getElementById("nxToggle");
+
+toggleBtn.addEventListener("click",()=>{
+  headerEl.classList.toggle("is-open");
+});
+
+// mobile submenu open
+document.querySelectorAll(".nx-item > .nx-link").forEach(link=>{
+  link.addEventListener("click",function(e){
+    const isMobile = window.matchMedia("(max-width:1024px)").matches;
+    const drop = link.nextElementSibling;
+    if(isMobile && drop && drop.classList.contains("nx-drop")){
+      e.preventDefault();
+      link.parentElement.classList.toggle("open");
+    }
+  });
+});
 </script>
 
 </body>
