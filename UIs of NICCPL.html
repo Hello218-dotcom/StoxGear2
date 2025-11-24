@@ -10,6 +10,24 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
+  /* REMOVE UNDERLINE FROM ALL NAVBAR + FOOTER LINKS */
+.nx-link,
+.nx-drop a,
+.nx-footer a,
+.nx-foot-col a,
+.nx-foot-brand,
+.nx-foot-bottom a {
+    text-decoration: none !important;
+}
+
+/* Some browsers add underline on hover – disable that too */
+.nx-link:hover,
+.nx-drop a:hover,
+.nx-foot-col a:hover,
+.nx-foot-bottom a:hover {
+    text-decoration: none !important;
+}
+
   :root{
     /* === WHITE + GOLD THEME === */
     --bg:#ffffff; --panel:#fafafa; --ink:#141414; --muted:#666666;
@@ -537,6 +555,7 @@
 </script>
 </body>
 </html>
+
 
 
 
