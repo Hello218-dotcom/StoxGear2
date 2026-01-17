@@ -10,7 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 
   <style>
-    /* ================= WHITE + GOLD (default) ================= */
     :root{
       --bg:#ffffff;
       --surface:#ffffff;
@@ -48,7 +47,6 @@
 
     .container{max-width:var(--maxw);margin:auto;padding:0 20px}
 
-    /* ================= BUTTON ================= */
     .btn{
       display:inline-flex;align-items:center;gap:10px;
       background:var(--accent);color:var(--accent-ink);
@@ -61,7 +59,7 @@
     .btn:hover{transform:translateY(-1px);filter:brightness(1.05);box-shadow:var(--shadow-2)}
     .btn:active{transform:translateY(0) scale(.99)}
 
-    /* ================= NAVBAR (single clean version) ================= */
+    /* ================= NAVBAR ================= */
     .nx-navbar a{ text-decoration:none!important; }
     .nx-navbar a:hover,.nx-navbar a:focus,.nx-navbar a:active{ text-decoration:none!important; }
 
@@ -243,7 +241,6 @@
     }
     .hero .mt-3{animation:fadeUp .7s ease .16s both;}
 
-    /* ✅ HERO FRAME UPDATED (theme image sizing + badge) */
     .hero__art .frame{
       position:relative;
       border-radius:16px;
@@ -262,7 +259,8 @@
       width:100%;
       height:auto;
       object-fit:cover;
-      aspect-ratio: 16 / 10;
+      aspect-ratio:16/10;
+      filter:saturate(1.02) contrast(1.02);
     }
     .hero-badge{
       position:absolute;
@@ -354,7 +352,6 @@
       pointer-events:none;
     }
 
-    /* ✅ THEME MEDIA WRAP (consistent size + border) */
     .card .media{
       border-radius:14px;
       overflow:hidden;
@@ -369,7 +366,7 @@
       width:100%;
       height:auto;
       object-fit:cover;
-      aspect-ratio: 16 / 10;
+      aspect-ratio:16/10;
       filter:saturate(1.02) contrast(1.02);
     }
 
@@ -431,6 +428,19 @@
     }
     .triple a.card{ text-align:center; }
     .triple a.card strong{ display:block; padding-top:2px; }
+
+    /* Badge visuals (inline SVG container) */
+    .badge{
+      border-radius:14px;
+      border:1px solid rgba(201,166,70,.22);
+      overflow:hidden;
+      background:
+        radial-gradient(420px 220px at 25% 20%, rgba(201,166,70,.18), transparent 70%),
+        linear-gradient(180deg, rgba(201,166,70,.10), transparent 55%),
+        #fff;
+      margin-bottom:10px;
+    }
+    .badge svg{ width:100%; height:auto; display:block; aspect-ratio:16/10; }
 
     @media (max-width:980px){
       .triple{grid-template-columns:1fr; gap:14px;}
@@ -533,7 +543,6 @@
       <div class="nx-grow"></div>
 
       <nav class="nx-menu" id="nxMenu" aria-label="Primary navigation">
-
         <div class="nx-item">
           <a class="nx-link" href="#" data-dd="dd-why">Why Us</a>
           <div class="nx-drop" id="dd-why">
@@ -599,7 +608,6 @@
         <div class="nx-item">
           <a class="nx-link" href="Contact.html">Contact</a>
         </div>
-
       </nav>
 
       <button class="nx-cta" type="button">OPEN AN ACCOUNT</button>
@@ -625,8 +633,12 @@
 
       <div class="hero__art">
         <div class="frame">
-          <!-- ✅ REPLACED HERO IMAGE (theme-based) -->
-          <img src="assets/hero-trading-white-gold.jpg" alt="StoxGear trading experience on desktop and mobile" />
+          <!-- ✅ REAL HERO IMAGE (Unsplash, production-ready) -->
+          <img
+            src="https://source.unsplash.com/vKNRKjSNbTo/1400x900"
+            alt="Trading charts on professional screens"
+            loading="lazy"
+          />
           <div class="hero-badge"><span></span> Secure. Fast. Reliable.</div>
         </div>
       </div>
@@ -665,9 +677,13 @@
   <section class="container" id="why">
     <div class="features">
       <article class="card to-reveal" style="--delay:0">
-        <!-- ✅ Added theme-fit image wrapper -->
         <div class="media">
-          <img src="assets/card-portfolio-support.jpg" alt="Professional portfolio support and advisory" />
+          <!-- ✅ REAL IMAGE -->
+          <img
+            src="https://source.unsplash.com/FVwy7PBiSUo/1200x800"
+            alt="Financial planning desk with charts and calculator"
+            loading="lazy"
+          />
         </div>
         <h3>Experienced Portfolio Support</h3>
         <p>Work with market professionals focused on disciplined execution, risk control, and investor outcomes.</p>
@@ -675,7 +691,12 @@
 
       <article class="card to-reveal" style="--delay:1">
         <div class="media">
-          <img src="assets/card-trading-platform.jpg" alt="Professional trading platform on desktop and mobile" />
+          <!-- ✅ REAL IMAGE -->
+          <img
+            src="https://source.unsplash.com/sqok1QIK1mw/1200x800"
+            alt="Mobile trading view showing market data"
+            loading="lazy"
+          />
         </div>
         <h3>Professional Trading Platform</h3>
         <p>Desktop and mobile apps with fast order entry, live quotes, and customizable watchlists for better control.</p>
@@ -683,7 +704,12 @@
 
       <article class="card to-reveal" style="--delay:2">
         <div class="media">
-          <img src="assets/card-research-intelligence.jpg" alt="Research and market intelligence" />
+          <!-- ✅ REAL IMAGE -->
+          <img
+            src="https://source.unsplash.com/jW7C-KidYi0/1200x800"
+            alt="Laptop displaying a market chart for analysis"
+            loading="lazy"
+          />
         </div>
         <h3>Research & Market Intelligence</h3>
         <p>Actionable research, screeners, and market data designed to help you identify opportunities and make informed decisions.</p>
@@ -715,28 +741,105 @@
       </div>
     </div>
 
+    <!-- ===== 3 BADGES (no external files; always works) ===== -->
     <div class="triple" id="downloads">
-      <!-- ✅ Added theme-fit badges -->
+
       <a href="#" class="card to-reveal" style="--delay:3">
-        <div class="media">
-          <img src="assets/badge-secp-sdms.jpg" alt="SECP SDMS" />
+        <div class="badge" aria-hidden="true">
+          <svg viewBox="0 0 1600 1000" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1">
+                <stop offset="0" stop-color="#c9a646" stop-opacity=".18"/>
+                <stop offset="1" stop-color="#c9a646" stop-opacity=".05"/>
+              </linearGradient>
+              <linearGradient id="gold" x1="0" x2="1">
+                <stop offset="0" stop-color="#c9a646"/>
+                <stop offset="1" stop-color="#e6c463"/>
+              </linearGradient>
+            </defs>
+            <rect width="1600" height="1000" fill="#ffffff"/>
+            <rect x="0" y="0" width="1600" height="1000" fill="url(#g1)"/>
+            <circle cx="1250" cy="220" r="240" fill="#c9a646" opacity=".10"/>
+            <circle cx="260" cy="770" r="320" fill="#c9a646" opacity=".08"/>
+            <g transform="translate(260,260)">
+              <rect x="0" y="0" width="1080" height="480" rx="28" fill="#fff" stroke="#e5e5e5" stroke-width="6"/>
+              <path d="M120 360 L320 240 L520 300 L760 150 L960 210" fill="none" stroke="url(#gold)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="120" cy="360" r="16" fill="#c9a646"/>
+              <circle cx="320" cy="240" r="16" fill="#c9a646"/>
+              <circle cx="520" cy="300" r="16" fill="#c9a646"/>
+              <circle cx="760" cy="150" r="16" fill="#c9a646"/>
+              <circle cx="960" cy="210" r="16" fill="#c9a646"/>
+              <text x="70" y="85" font-family="Inter, Arial" font-size="54" font-weight="900" fill="#141414">SECP</text>
+              <text x="70" y="145" font-family="Inter, Arial" font-size="40" font-weight="800" fill="#666">SDMS Access</text>
+            </g>
+          </svg>
         </div>
         <strong>SECP SDMS</strong>
       </a>
 
       <a href="#" class="card to-reveal" style="--delay:4">
-        <div class="media">
-          <img src="assets/badge-jamapunji.jpg" alt="JamaPunji IFMP" />
+        <div class="badge" aria-hidden="true">
+          <svg viewBox="0 0 1600 1000" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="g2" x1="0" x2="1">
+                <stop offset="0" stop-color="#c9a646" stop-opacity=".18"/>
+                <stop offset="1" stop-color="#c9a646" stop-opacity=".05"/>
+              </linearGradient>
+              <linearGradient id="gold2" x1="0" x2="1">
+                <stop offset="0" stop-color="#c9a646"/>
+                <stop offset="1" stop-color="#e6c463"/>
+              </linearGradient>
+            </defs>
+            <rect width="1600" height="1000" fill="#ffffff"/>
+            <rect width="1600" height="1000" fill="url(#g2)"/>
+            <circle cx="320" cy="240" r="240" fill="#c9a646" opacity=".10"/>
+            <circle cx="1320" cy="780" r="320" fill="#c9a646" opacity=".08"/>
+            <g transform="translate(260,250)">
+              <rect x="0" y="0" width="1080" height="500" rx="28" fill="#fff" stroke="#e5e5e5" stroke-width="6"/>
+              <path d="M180 360 C260 250, 360 250, 440 360 C520 470, 660 470, 740 360 C820 250, 920 250, 1000 360"
+                    fill="none" stroke="url(#gold2)" stroke-width="20" stroke-linecap="round"/>
+              <text x="70" y="95" font-family="Inter, Arial" font-size="54" font-weight="900" fill="#141414">JamaPunji</text>
+              <text x="70" y="155" font-family="Inter, Arial" font-size="40" font-weight="800" fill="#666">Investor Education</text>
+            </g>
+          </svg>
         </div>
         <strong>JamaPunji – IFMP</strong>
       </a>
 
       <a href="#" class="card to-reveal" style="--delay:5">
-        <div class="media">
-          <img src="assets/badge-gateway.jpg" alt="Centralized Gateway" />
+        <div class="badge" aria-hidden="true">
+          <svg viewBox="0 0 1600 1000" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="g3" x1="0" x2="1">
+                <stop offset="0" stop-color="#c9a646" stop-opacity=".18"/>
+                <stop offset="1" stop-color="#c9a646" stop-opacity=".05"/>
+              </linearGradient>
+              <linearGradient id="gold3" x1="0" x2="1">
+                <stop offset="0" stop-color="#c9a646"/>
+                <stop offset="1" stop-color="#e6c463"/>
+              </linearGradient>
+            </defs>
+            <rect width="1600" height="1000" fill="#ffffff"/>
+            <rect width="1600" height="1000" fill="url(#g3)"/>
+            <circle cx="1280" cy="260" r="260" fill="#c9a646" opacity=".10"/>
+            <circle cx="280" cy="760" r="320" fill="#c9a646" opacity=".08"/>
+            <g transform="translate(260,260)">
+              <rect x="0" y="0" width="1080" height="480" rx="28" fill="#fff" stroke="#e5e5e5" stroke-width="6"/>
+              <g transform="translate(140,120)" stroke="url(#gold3)" stroke-width="18" fill="none" stroke-linecap="round">
+                <rect x="0" y="0" width="360" height="260" rx="22"/>
+                <path d="M450 80 h420"/>
+                <path d="M450 160 h420"/>
+                <path d="M450 240 h320"/>
+                <circle cx="880" cy="240" r="18" fill="#c9a646" stroke="none"/>
+              </g>
+              <text x="70" y="85" font-family="Inter, Arial" font-size="54" font-weight="900" fill="#141414">Gateway</text>
+              <text x="70" y="145" font-family="Inter, Arial" font-size="40" font-weight="800" fill="#666">Centralized Services</text>
+            </g>
+          </svg>
         </div>
         <strong>Centralized Gateway</strong>
       </a>
+
     </div>
   </section>
 
