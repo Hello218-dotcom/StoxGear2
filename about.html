@@ -10,54 +10,32 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-/* ================= THEME (deduped + consistent tokens) ================= */
+/* ================= THEME ================= */
 :root{
   --bg:#ffffff;
   --panel:#ffffff;
   --ink:#111827;
   --muted:#6b7280;
-
-  /* Brand */
   --brand:#caa03d;
   --brand-2:#e7c86c;
-
-  /* Navbar legacy tokens (mapped to brand) */
-  --text:#0f1220;
-  --text-dim:#5e6676;
-  --accent:var(--brand);
-  --accent-2:var(--brand-2);
-
-  --radius:18px;
+  --radius:20px;
   --shadow:0 14px 34px rgba(0,0,0,.08);
-  --shadow2:0 20px 54px rgba(0,0,0,.14);
-  --glow:0 0 18px rgba(202,160,61,.25), 0 0 38px rgba(202,160,61,.15);
+  --glow:0 0 24px rgba(202,160,61,.25);
+  --line:rgba(17,24,39,.12);
   --maxw:1200px;
-  --line:rgba(17,24,39,.10);
-  --line-strong:rgba(17,24,39,.14);
 }
 
 *{box-sizing:border-box}
 html,body{
   margin:0;
+  font-family:Poppins,system-ui,Segoe UI,Roboto,Arial,sans-serif;
   background:var(--bg);
   color:var(--ink);
-  font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   scroll-behavior:smooth;
-  height:100%;
 }
-a{color:var(--ink);text-decoration:none}
+a{text-decoration:none;color:inherit}
 
-/* ================= DEVICE AWARE (PC vs Mobile) ================= */
-html.is-mobile body{ font-size:16px; }
-html.is-desktop body{ font-size:16px; }
-
-/* Reduce motion support */
-@media (prefers-reduced-motion: reduce){
-  *{ animation-duration:0.001ms!important; animation-iteration-count:1!important; transition-duration:0.001ms!important; scroll-behavior:auto!important; }
-}
-
-/* ================= NAVBAR (FULL) ================= */
-.nx-navbar a { text-decoration:none!important; }
+/* ================= NAVBAR ================= */
 .nx-navbar{
   position:sticky;
   top:0;
@@ -65,675 +43,274 @@ html.is-desktop body{ font-size:16px; }
   background:#fff;
   border-bottom:1px solid var(--line);
   box-shadow:0 6px 18px rgba(0,0,0,.06);
-  transition:box-shadow .25s ease, backdrop-filter .25s ease;
 }
-.nx-navbar.scrolled{ box-shadow:0 10px 28px rgba(0,0,0,.12); }
-
 .nx-nav-inner{
   max-width:var(--maxw);
-  margin:0 auto;
+  margin:auto;
   padding:14px 24px;
   display:flex;
   align-items:center;
   gap:16px;
 }
-
-.nx-brand{display:flex;align-items:center;gap:10px;color:var(--text);}
-.nx-logo,.nx-logo2{height:38px;width:auto;}
-.nx-logo2{margin-left:10px;}
-
+.nx-brand img{height:38px}
 .nx-grow{flex:1}
-
-/* CTA BUTTON */
+.nx-menu{display:flex;gap:26px}
+.nx-link{font-weight:600;color:#5e6676}
+.nx-link:hover{color:var(--brand)}
 .nx-cta{
-  background:var(--accent);
-  color:#000;
-  font-weight:800;
+  background:var(--brand);
   border:none;
   padding:10px 22px;
   border-radius:999px;
-  cursor:pointer;
-  transition:transform .22s ease, filter .22s ease, box-shadow .22s ease;
-  box-shadow:0 10px 22px rgba(202,160,61,.22);
-}
-.nx-cta:hover{ filter:brightness(1.06); transform:translateY(-1px); box-shadow:0 16px 34px rgba(202,160,61,.26); }
-.nx-cta:active{ transform:translateY(0) scale(.99); }
-
-/* HAMBURGER */
-.nx-toggle{
-  display:none;
-  background:#fff;
-  border:1px solid var(--line);
-  padding:6px 12px;
-  border-radius:10px;
-  font-size:20px;
+  font-weight:700;
   cursor:pointer;
 }
+.nx-toggle{display:none}
 
-/* MENU */
-.nx-menu{display:flex;align-items:center;gap:26px;}
-.nx-item{position:relative;}
-.nx-link{color:var(--text-dim);font-weight:700;position:relative;}
-.nx-link:hover{color:var(--accent);}
-.nx-link:after{
-  content:"";
-  position:absolute;
-  left:0; bottom:-6px;
-  width:0; height:2px;
-  background:var(--accent);
-  transition:.25s;
-}
-.nx-link:hover:after{width:100%;}
-
-/* DROPDOWN */
-.nx-drop{
-  position:absolute;
-  top:calc(100% + 10px);
-  left:0;
-  min-width:240px;
-  background:#fff;
-  border:1px solid var(--line);
-  padding:10px;
-  border-radius:14px;
-  display:none;
-  box-shadow:0 12px 28px rgba(0,0,0,.12);
-  transform-origin:top left;
-  animation:dropIn .18s ease-out;
-}
-@keyframes dropIn{
-  from{opacity:0; transform:translateY(6px) scale(.98);}
-  to{opacity:1; transform:translateY(0) scale(1);}
-}
-.nx-drop a{
-  display:block;
-  padding:9px 10px;
-  color:var(--text);
-  border-radius:10px;
-}
-.nx-drop a:hover{ background:#f6f6f6; color:var(--accent); }
-
-/* DESKTOP: hover opens dropdown */
-@media (min-width:1025px){
-  .nx-item:hover>.nx-drop{ display:block; }
-}
-
-/* MOBILE STYLING */
-@media (max-width:1024px){
-  .nx-nav-inner{ padding:12px 14px; }
-  .nx-logo,.nx-logo2{ height:34px; }
-  .nx-toggle{ display:block; }
-
-  .nx-menu{
-    display:none;
-    position:absolute;
-    top:100%;
-    left:0; right:0;
-    background:#fff;
-    border-top:1px solid var(--line);
-    flex-direction:column;
-    box-shadow:0 12px 26px rgba(0,0,0,.08);
-    padding:10px 12px;
-    gap:8px;
-  }
-  .nx-navbar.is-open .nx-menu{ display:flex; }
-
-  .nx-item{ width:100%; }
-  .nx-link{ display:block; padding:12px 10px; border-radius:12px; }
-  .nx-link:hover{ background:#fbfbfb; }
-  .nx-link:after{ display:none; }
-
-  .nx-drop{
-    position:static;
-    border:0;
-    box-shadow:none;
-    background:none;
-    padding:6px 0 0;
-    display:none;
-    animation:none;
-  }
-  .nx-item.open>.nx-drop{ display:block; }
-  .nx-drop a{ padding:10px 12px; border:1px solid var(--line); margin:6px 0 0; background:#fff; }
-}
-
-/* ================= PAGE ================= */
-
-/* Hero */
+/* ================= HERO ================= */
 .hero{
-  position:relative;
-  overflow:hidden;
   text-align:center;
-  padding:84px 18px 56px;
-  border-bottom:1px solid var(--line);
+  padding:70px 16px 48px;
   background:
     radial-gradient(1200px 420px at 15% -10%, rgba(202,160,61,.10), transparent),
-    radial-gradient(1000px 320px at 90% 0%, rgba(231,200,108,.10), transparent);
+    radial-gradient(1000px 320px at 90% 0%, rgba(231,200,108,.12), transparent);
+  border-bottom:1px solid var(--line);
 }
 .hero h1{
-  margin:0 0 10px;
+  font-size:clamp(30px,4.6vw,58px);
   color:var(--brand);
-  font-weight:800;
-  font-size:clamp(30px,4.6vw,60px);
-  text-shadow:0 0 20px rgba(202,160,61,.25);
-  animation:pulse 2.5s infinite ease-in-out;
+  margin-bottom:10px;
 }
 .hero p{
-  max-width:980px;
-  margin:0 auto;
+  max-width:880px;
+  margin:auto;
   color:var(--muted);
-  font-size:1.06rem;
-  line-height:1.7;
+  line-height:1.65;
 }
 
-@keyframes pulse{
-  0%,100%{filter:drop-shadow(0 0 0 rgba(202,160,61,.3))}
-  50%{filter:drop-shadow(0 0 14px rgba(202,160,61,.45))}
-}
+/* ================= LAYOUT ================= */
+section{padding:60px 16px}
+.wrap{max-width:var(--maxw);margin:auto}
 
-/* Layout */
-section{ padding:56px 18px; }
-.wrap{ max-width:var(--maxw); margin:0 auto; }
 .split{
   display:grid;
-  grid-template-columns:1.1fr .9fr;
-  gap:34px;
+  grid-template-columns:1.3fr .7fr;
+  gap:36px;
   align-items:center;
 }
 
-.intro h2{
-  font-size:clamp(24px,3vw,36px);
-  margin:0 0 10px;
-  font-weight:800
-}
-.intro h2 span{color:var(--brand);text-shadow:0 0 16px rgba(202,160,61,.25)}
-.intro p{color:var(--ink);line-height:1.8}
-
-/* Illustration */
+/* ================= ILLUSTRATION ================= */
 .illus{
-  aspect-ratio:16/9;
+  min-height:380px;
   border-radius:22px;
   overflow:hidden;
-  background:linear-gradient(180deg,#ffffff,#f7f7f7);
   border:1px solid var(--line);
   box-shadow:var(--shadow);
-  opacity:0;
-  transform:translateY(10px);
-  transition:opacity .45s ease, transform .45s ease;
-}
-.illus.revealed{opacity:1;transform:none;}
-.illus .figure{
-  height:100%;
-  background:url('assets/about-illustration.png') center/contain no-repeat;
-  animation:floaty 6s ease-in-out infinite;
-}
-@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-
-/* Cards */
-.grid{
-  margin-top:22px;
-  display:grid;
-  gap:18px;
-  grid-template-columns:repeat(12,1fr);
-}
-
-.card{
-  grid-column:span 4;
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  padding:26px;                 /* bigger */
-  min-height:190px;             /* bigger */
   opacity:0;
   transform:translateY(14px);
-  transition:transform .35s ease, box-shadow .25s ease, opacity .35s ease, border-color .25s ease;
-  position:relative;
-  overflow:hidden;
+  transition:.45s ease;
 }
-.card.revealed{ transform:none; opacity:1; }
-.card:hover{ box-shadow:var(--shadow2),var(--glow); border-color:rgba(202,160,61,.35); }
-.card:before{
-  content:"";
-  position:absolute;
-  top:-40%;
-  left:-60%;
-  width:60%;
-  height:180%;
-  background:linear-gradient(90deg, transparent, rgba(202,160,61,.18), transparent);
-  transform:rotate(12deg);
-  opacity:.0;
-  transition:opacity .25s ease;
-  pointer-events:none;
+.illus.revealed{opacity:1;transform:none}
+.illus .figure{
+  width:100%;
+  height:100%;
+  background:
+    radial-gradient(520px 240px at 18% 20%, rgba(202,160,61,.22), transparent 70%),
+    radial-gradient(520px 240px at 82% 25%, rgba(231,200,108,.18), transparent 70%),
+    linear-gradient(180deg, rgba(202,160,61,.08), transparent 55%),
+    url("assets/about-illustration.png");
+  background-size:cover;
+  background-position:center;
+  animation:floaty 6s ease-in-out infinite;
 }
-.card:hover:before{ opacity:.7; }
+@keyframes floaty{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+}
 
+/* ================= CARDS ================= */
+.grid{
+  margin-top:28px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+.card{
+  background:var(--panel);
+  padding:26px;
+  border-radius:var(--radius);
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+  opacity:0;
+  transform:translateY(14px);
+  transition:.4s ease;
+}
+.card.revealed{opacity:1;transform:none}
+.card:hover{box-shadow:var(--shadow),var(--glow)}
+.card h3{margin:8px 0}
+.card p{color:var(--muted);line-height:1.6}
 .ic{
-  width:54px;height:54px;border-radius:14px; /* bigger */
+  width:50px;height:50px;
   display:grid;place-items:center;
-  margin-bottom:10px;
+  border-radius:14px;
   background:#fff;
   border:1px solid var(--line);
-  box-shadow:inset 0 0 18px rgba(202,160,61,.12);
-  font-size:24px;
-  color:#7a5b13;
+  font-size:22px;
 }
-.card h3{margin:0 0 8px;font-size:18px}
-.card p{margin:0;color:var(--muted);line-height:1.65}
 
-/* Stats */
+/* ================= STATS ================= */
 .stats{
-  margin-top:22px;
+  margin-top:32px;
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:14px;
+  gap:16px;
 }
 .stat{
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:20px;
   text-align:center;
-
+  padding:22px;
+  border-radius:18px;
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
   opacity:0;
   transform:translateY(12px);
-  transition:transform .35s ease, opacity .35s ease, border-color .25s ease, box-shadow .25s ease;
+  transition:.4s ease;
 }
-.stat.revealed{ transform:none; opacity:1; }
-.stat:hover{ border-color:rgba(202,160,61,.28); box-shadow:var(--shadow); }
+.stat.revealed{opacity:1;transform:none}
+.num{font-size:32px;font-weight:800;color:var(--brand)}
+.cap{color:var(--muted);font-size:.95rem}
 
-.num{font-weight:800;font-size:clamp(22px,3vw,34px);color:var(--brand)}
-.cap{color:var(--muted);font-size:.95rem;line-height:1.45}
+/* ================= FULL DIVIDER ================= */
+.full-divider{
+  height:1px;
+  width:100vw;
+  margin:42px 0 16px;
+  background:linear-gradient(90deg,
+    transparent,
+    rgba(17,24,39,.25),
+    rgba(202,160,61,.45),
+    rgba(17,24,39,.25),
+    transparent
+  );
+  position:relative;
+  left:50%;
+  transform:translateX(-50%);
+  opacity:0;
+}
+.full-divider.revealed{opacity:1}
 
-/* Responsive */
-@media (max-width:1100px){
-  .split{ grid-template-columns:1fr; }
-  .illus{ order:2; }
-  .card{ grid-column:span 6; }
+/* ================= RESPONSIVE ================= */
+@media(max-width:1024px){
+  .split{grid-template-columns:1fr}
 }
-@media (max-width:800px){
-  .stats{ grid-template-columns:repeat(2,1fr); }
+@media(max-width:900px){
+  .grid{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:1fr 1fr}
 }
-@media (max-width:640px){
-  section{ padding:38px 14px; }
-  .hero{ padding:52px 14px 34px; }
-  .card{ grid-column:span 12; padding:22px; min-height:auto; }
-  .hero p{ font-size:1rem; }
-  .nx-cta{ display:none; } /* clean mobile */
+@media(max-width:600px){
+  .grid,.stats{grid-template-columns:1fr}
+  section{padding:44px 14px}
 }
 
 /* ================= FOOTER ================= */
 .nx-footer{
-  margin-top:40px;
   background:#fafafa;
   border-top:1px solid var(--line);
-  color:var(--text-dim);
 }
 .nx-foot-wrap{
   max-width:var(--maxw);
-  margin:0 auto;
-  padding:48px 20px 30px;
+  margin:auto;
+  padding:46px 20px 26px;
 }
-.nx-foot-top{
-  display:flex;
-  align-items:center;
-  gap:16px;
-  padding-bottom:20px;
-  border-bottom:1px solid var(--line);
-}
-.nx-foot-brand{display:flex;align-items:center;gap:12px;color:var(--text);}
-.nx-foot-logo{height:38px;width:auto;}
-
-.nx-foot-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:26px;
-  padding:26px 0 10px;
-}
-@media(max-width:900px){ .nx-foot-grid{ grid-template-columns:repeat(2,1fr);} }
-@media(max-width:540px){
-  .nx-foot-wrap{ padding:34px 14px 22px; }
-  .nx-foot-grid{ grid-template-columns:1fr; }
-}
-.nx-foot-col h4{font-size:15px;color:var(--accent);margin-bottom:10px;}
-.nx-foot-col a{
-  color:var(--text);
-  padding:6px 0;
-  font-size:14px;
-  display:block;
-  opacity:.9;
-  transition:opacity .2s ease, transform .2s ease;
-}
-.nx-foot-col a:hover{opacity:1;transform:translateX(2px);}
-
 .nx-foot-bottom{
-  padding-top:16px;
-  border-top:1px solid var(--line);
+  margin-top:20px;
   font-size:13px;
+  color:var(--muted);
   display:flex;
   justify-content:space-between;
   flex-wrap:wrap;
   gap:10px;
-  color:var(--text-dim);
 }
 </style>
 </head>
 
 <body>
 
-<!-- ====== NAVBAR ====== -->
-<header class="nx-navbar" id="nxHeader">
+<!-- NAV -->
+<header class="nx-navbar">
   <div class="nx-nav-inner">
-
     <a class="nx-brand" href="index.html">
-      <img class="nx-logo" src="stoxgear-logo.jpg" alt="">
-      <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="">
+      <img src="stoxgear-logo.jpg" alt="">
     </a>
-
     <div class="nx-grow"></div>
-
-    <nav class="nx-menu" id="nxMenu">
-      <div class="nx-item">
-        <a class="nx-link" href="#" data-dd="dd-why">Why Us</a>
-        <div class="nx-drop" id="dd-why">
-          <a href="about.html">About Us</a>
-          <a href="BOARD of directors.html">Board / Management</a>
-          <a href="Mission.html">Mission & Vision</a>
-          <a href="associated companies.html">Associated Companies</a>
-          <a href="Ncb auditor details .html">Auditors / Legal Advisors</a>
-          <a href="services.html">Services</a>
-          <a href="Registered agents..html">Registered Agents</a>
-        </div>
-      </div>
-
-      <div class="nx-item">
-        <a class="nx-link" href="#" data-dd="dd-edu">Education</a>
-        <div class="nx-drop" id="dd-edu">
-          <a href="New to trading.html">New to Trading</a>
-          <a href="Investorguid.html">Investor Guide</a>
-          <a href="Glossary.html">Glossary</a>
-          <a href="psx-rule-book.html">PSX Rule Book</a>
-          <a href="common-terms-share-market.html">Common Terms of Share Market</a>
-          <a href="online-order-execution-flow.html">Order Execution Flow</a>
-          <a href="order-settlement-flow.html">Order Settlement Flow</a>
-          <a href="arbitration-procedure.html">Arbitration Procedure</a>
-          <a href="risk-disclosure-document.html">Risk Disclosure Document</a>
-          <a href="procedure-cancel-pending-orders.html">Cancel Pending Orders</a>
-          <a href="faqs.html">FAQs</a>
-        </div>
-      </div>
-
-      <div class="nx-item">
-        <a class="nx-link" href="#" data-dd="dd-open">Open Account</a>
-        <div class="nx-drop" id="dd-open">
-          <a href="Rda.html">Roshan Digital Account</a>
-          <a href="Acoocint opening.html">Open Digital Account</a>
-          <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
-        </div>
-      </div>
-
-      <div class="nx-item">
-        <a class="nx-link" href="#" data-dd="dd-dl">Downloads</a>
-        <div class="nx-drop" id="dd-dl">
-          <a href="Forms.html">Forms</a>
-          <a href="software.html">Software</a>
-          <a href="Annaual half yearly.html">Financial Statements</a>
-          <a href="KYC poslicy.html">CDD / KYC Policy</a>
-        </div>
-      </div>
-
-      <div class="nx-item">
-        <a class="nx-link" href="#" data-dd="dd-sup">Support</a>
-        <div class="nx-drop" id="dd-sup">
-          <a href="investor complaint.html">Investor Complaint</a>
-          <a href="Pending investor complaun.html">Pending Complaints</a>
-          <a href="Penal action.html">Penal Action</a>
-          <a href="Secp complaint.html">SECP Complaint</a>
-          <a href="psx complaint.html">PSX Complaint</a>
-          <a href="UIs of NICCPL.html">UIS Services</a>
-          <a href="Eservices By CDC.html">EServices by CDC</a>
-        </div>
-      </div>
-
-      <div class="nx-item">
-        <a class="nx-link" href="Contact.html">Contact</a>
-      </div>
+    <nav class="nx-menu">
+      <a class="nx-link" href="about.html">About</a>
+      <a class="nx-link" href="services.html">Services</a>
+      <a class="nx-link" href="contact.html">Contact</a>
     </nav>
-
     <button class="nx-cta">OPEN AN ACCOUNT</button>
-    <button class="nx-toggle" id="nxToggle" aria-label="Open menu" aria-expanded="false">☰</button>
-
   </div>
 </header>
 
-<!-- Hero -->
+<!-- HERO -->
 <header class="hero">
-  <h1>About <span style="letter-spacing:.5px">Us</span></h1>
-  <p>We’re a team of market practitioners, analysts, and technologists building Pakistan’s most investor-friendly brokerage experience.</p>
+  <h1>About STOXGEAR</h1>
+  <p>We’re building Pakistan’s most investor-friendly brokerage with speed, clarity and trust.</p>
 </header>
 
-<!-- Intro split -->
+<!-- CONTENT -->
 <section>
   <div class="wrap split">
-    <div class="intro">
-      <h2>Welcome to <span>STOXGEAR</span></h2>
+    <div>
+      <h2>Welcome to <span style="color:var(--brand)">STOXGEAR</span></h2>
       <p>
-        We provide real-time market data, actionable research, and a modern trading platform. Our goal is to empower you with the knowledge and tools to make informed investment decisions—whether you’re getting started or optimizing a professional workflow.
+        We provide real-time market data, actionable research, and a modern trading platform designed
+        for both new and professional investors.
       </p>
 
-      <!-- Value cards -->
       <div class="grid">
-        <div class="card to-reveal" style="--delay:0"><div class="ic">⚡</div><h3>Speed & Reliability</h3><p>Low-latency quotes, stable platforms, and fast support turnaround.</p></div>
-        <div class="card to-reveal" style="--delay:1"><div class="ic">🔒</div><h3>Compliance First</h3><p>SECP & PSX-aligned processes with strong KYC/CDD and AML controls.</p></div>
-        <div class="card to-reveal" style="--delay:2"><div class="ic">📊</div><h3>Insights that Matter</h3><p>Clean dashboards, screeners, and commentary focused on better decisions.</p></div>
+        <div class="card to-reveal"><div class="ic">⚡</div><h3>Speed & Reliability</h3><p>Low latency systems with stable execution.</p></div>
+        <div class="card to-reveal"><div class="ic">🔒</div><h3>Compliance First</h3><p>SECP & PSX aligned operations.</p></div>
+        <div class="card to-reveal"><div class="ic">📊</div><h3>Clear Insights</h3><p>Research that supports better decisions.</p></div>
       </div>
 
-      <!-- Stats -->
       <div class="stats">
-        <div class="stat to-reveal" style="--delay:3"><div class="num" data-count="12">0</div><div class="cap">Years of Combined Team Experience</div></div>
-        <div class="stat to-reveal" style="--delay:4"><div class="num" data-count="50">0</div><div class="cap">Research Notes Published</div></div>
-        <div class="stat to-reveal" style="--delay:5"><div class="num" data-count="99">0</div><div class="cap">Platform Uptime (Rolling)</div></div>
-        <div class="stat to-reveal" style="--delay:6"><div class="num" data-count="24">0</div><div class="cap">Support Window</div></div>
+        <div class="stat to-reveal"><div class="num">12</div><div class="cap">Years Experience</div></div>
+        <div class="stat to-reveal"><div class="num">50+</div><div class="cap">Research Notes</div></div>
+        <div class="stat to-reveal"><div class="num">99%</div><div class="cap">Uptime</div></div>
+        <div class="stat to-reveal"><div class="num">24/7</div><div class="cap">Support</div></div>
       </div>
+
     </div>
 
-    <!-- Illustration -->
-    <div class="illus to-reveal" style="--delay:1">
-      <div class="figure" title="Markets illustration"></div>
-    </div>
-  </div>
-</section>
-
-<!-- What we do -->
-<section>
-  <div class="wrap">
-    <h2 style="margin:0 0 14px;font-size:clamp(22px,3vw,34px);font-weight:800;text-shadow:0 0 16px rgba(202,160,61,.25)">What We Do</h2>
-    <div class="grid">
-      <div class="card to-reveal" style="--delay:0"><div class="ic">🧭</div><h3>Advisory</h3><p>Goal-based guidance, screening, and execution support for investors.</p></div>
-      <div class="card to-reveal" style="--delay:1"><div class="ic">🧩</div><h3>Products</h3><p>Digital onboarding, PSX market access, CDC e-services, and research tools.</p></div>
-      <div class="card to-reveal" style="--delay:2"><div class="ic">🛡️</div><h3>Safeguards</h3><p>Investor protection through disclosures, complaint handling, and audits.</p></div>
+    <div class="illus to-reveal">
+      <div class="figure"></div>
     </div>
   </div>
+
+  <div class="full-divider to-reveal"></div>
 </section>
 
-<!-- Footer -->
+<!-- FOOTER -->
 <footer class="nx-footer">
   <div class="nx-foot-wrap">
-
-    <div class="nx-foot-top">
-      <a class="nx-foot-brand" href="index.html">
-        <img class="nx-foot-logo" src="stoxgear-logo.jpg" alt="">
-        <img class="nx-foot-logo" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="">
-      </a>
-    </div>
-
-    <div class="nx-foot-grid">
-      <div class="nx-foot-col">
-        <h4>WHY US</h4>
-        <a href="about.html">About Us</a>
-        <a href="BOARD of directors.html">Board / Management</a>
-        <a href="Mission.html">Mission & Vision</a>
-      </div>
-
-      <div class="nx-foot-col">
-        <h4>EDUCATION</h4>
-        <a href="New to trading.html">New to Trading</a>
-        <a href="Investorguid.html">Investor Guide</a>
-        <a href="Glossary.html">Glossary</a>
-      </div>
-
-      <div class="nx-foot-col">
-        <h4>ACCOUNT</h4>
-        <a href="Rda.html">Roshan Digital Account</a>
-        <a href="Acoocint opening.html">Open Digital Account</a>
-        <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
-      </div>
-
-      <div class="nx-foot-col">
-        <h4>CONTACT</h4>
-        <a href="mailto:info@stoxgear.com.pk">info@stoxgear.com.pk</a>
-        <a href="tel:0913168395">091-3168395</a>
-        <a href="#">Karachi, Pakistan</a>
-      </div>
-    </div>
-
     <div class="nx-foot-bottom">
-      <span>© <script>document.write(new Date().getFullYear())</script> Stoxgear Securities (Private) Limited</span>
-      <span>
-        <a href="privacy.html">Privacy</a> ·
-        <a href="terms.html">Terms</a>
-      </span>
+      <span>© <script>document.write(new Date().getFullYear())</script> Stoxgear Securities</span>
+      <span><a href="#">Privacy</a> · <a href="#">Terms</a></span>
     </div>
-
   </div>
 </footer>
 
 <script>
-/* ================= DEVICE DETECTION (PC vs Mobile) ================= */
-(function(){
-  const root = document.documentElement;
-
-  function detect(){
-    const coarse = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
-    const small  = window.matchMedia && window.matchMedia("(max-width: 768px)").matches;
-    const uaMob  = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    const isMobile = coarse || small || uaMob;
-
-    root.classList.toggle("is-mobile", isMobile);
-    root.classList.toggle("is-desktop", !isMobile);
-  }
-
-  detect();
-  window.addEventListener("resize", detect, {passive:true});
-})();
-
-/* ================= NAVBAR: scroll shadow ================= */
-(function(){
-  const header = document.getElementById("nxHeader");
-  if(!header) return;
-
-  const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 8);
-  onScroll();
-  window.addEventListener("scroll", onScroll, {passive:true});
-})();
-
-/* ================= NAVBAR: mobile toggle + dropdown tap ================= */
-(function(){
-  const header = document.getElementById("nxHeader");
-  const toggle = document.getElementById("nxToggle");
-  const menu   = document.getElementById("nxMenu");
-
-  if(!header || !toggle || !menu) return;
-
-  toggle.addEventListener("click", () => {
-    const open = header.classList.toggle("is-open");
-    toggle.setAttribute("aria-expanded", open ? "true" : "false");
-  });
-
-  menu.addEventListener("click", (e) => {
-    const link = e.target.closest(".nx-link");
-    if(!link) return;
-
-    const ddId = link.getAttribute("data-dd");
-    const isMobile = document.documentElement.classList.contains("is-mobile")
-      || window.matchMedia("(max-width:1024px)").matches;
-
-    if(ddId && isMobile){
-      e.preventDefault();
-      const item = link.closest(".nx-item");
-      menu.querySelectorAll(".nx-item.open").forEach(i => { if(i!==item) i.classList.remove("open"); });
-      item.classList.toggle("open");
+/* Reveal animation */
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add("revealed");
+      io.unobserve(e.target);
     }
-  });
-
-  document.addEventListener("click", (e) => {
-    const isMobile = document.documentElement.classList.contains("is-mobile")
-      || window.matchMedia("(max-width:1024px)").matches;
-    if(!isMobile) return;
-
-    if(!header.contains(e.target) && header.classList.contains("is-open")){
-      header.classList.remove("is-open");
-      toggle.setAttribute("aria-expanded","false");
-      menu.querySelectorAll(".nx-item.open").forEach(i => i.classList.remove("open"));
-    }
-  });
-
-  menu.addEventListener("click", (e) => {
-    const a = e.target.closest(".nx-drop a");
-    if(!a) return;
-    const isMobile = document.documentElement.classList.contains("is-mobile")
-      || window.matchMedia("(max-width:1024px)").matches;
-    if(!isMobile) return;
-
-    header.classList.remove("is-open");
-    toggle.setAttribute("aria-expanded","false");
-    menu.querySelectorAll(".nx-item.open").forEach(i => i.classList.remove("open"));
-  });
-})();
-
-/* ================= REVEAL ANIMATIONS (staggered) ================= */
-(function(){
-  const els = document.querySelectorAll('.to-reveal');
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(ent=>{
-      if(ent.isIntersecting){
-        const d = Number(ent.target.style.getPropertyValue('--delay') || 0);
-        ent.target.style.transitionDelay = (d * 90) + "ms";
-        ent.target.classList.add('revealed');
-        io.unobserve(ent.target);
-      }
-    });
-  }, {threshold:.15});
-  els.forEach(el=>io.observe(el));
-})();
-
-/* ================= COUNT UP NUMBERS ================= */
-(function(){
-  function countUp(el){
-    const end = Number(el.dataset.count || 0);
-    let start = null;
-
-    const step = (ts)=>{
-      if(!start) start = ts;
-      const p = Math.min(1,(ts-start)/1200);
-      const v = Math.floor(p * end);
-      el.textContent = v + (el.dataset.suffix || '');
-      if(p < 1) requestAnimationFrame(step);
-      else el.textContent = end + (el.dataset.suffix || '');
-    };
-    requestAnimationFrame(step);
-  }
-
-  const nums = document.querySelectorAll('.num');
-  const io2 = new IntersectionObserver((ents)=>{
-    ents.forEach(ent=>{
-      if(ent.isIntersecting){
-        countUp(ent.target);
-        io2.unobserve(ent.target);
-      }
-    });
-  }, {threshold:.6});
-
-  nums.forEach(n=>io2.observe(n));
-})();
+  })
+},{threshold:.15});
+document.querySelectorAll(".to-reveal").forEach(el=>io.observe(el));
 </script>
 
 </body>
