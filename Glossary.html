@@ -180,6 +180,58 @@ h1{
   padding-top:16px;border-top:1px solid var(--line);
   font-size:13px;text-align:center;color:var(--muted);
 }
+  <!-- 1) Add this CSS (paste at the END of your <style>) -->
+<style>
+/* ===== OPEN AN ACCOUNT button like your image ===== */
+.nx-cta{
+  background: linear-gradient(180deg, #d1b155, #c09a2f) !important; /* gold */
+  color:#000 !important;
+  font-weight:900 !important;
+  letter-spacing:.06em !important;
+  text-transform:uppercase !important;
+  padding:14px 34px !important;
+  border-radius:999px !important;
+  border:none !important;
+  box-shadow:0 12px 26px rgba(0,0,0,.10) !important;
+}
+
+.nx-cta:hover{
+  filter:brightness(1.05) !important;
+  transform:translateY(-1px) !important;
+}
+.nx-cta:active{
+  transform:translateY(0) scale(.99) !important;
+}
+</style>
+/* ================= MOBILE LAYOUT (AUTO-DETECTED) ================= */
+html.is-mobile .container{
+  grid-template-columns: 1fr !important;   /* single column */
+  padding: 32px 14px 60px !important;
+  gap: 16px !important;
+}
+
+html.is-mobile .card{
+  border-radius: 16px !important;
+}
+
+html.is-mobile .card img{
+  height: 180px !important;
+  padding: 16px !important;
+}
+
+html.is-mobile .card-content{
+  padding: 18px !important;
+}
+
+html.is-mobile .nx-cta{
+  display:none !important; /* optional */
+}
+
+/* Desktop safety */
+html.is-desktop .container{
+  grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+}
+
 </style>
 </head>
 
@@ -335,6 +387,60 @@ h1{
   <div class="card"><div class="term">Hedge</div><div class="meaning">Protection against risk.</div></div>
   <div class="card"><div class="term">Inflation</div><div class="meaning">Increase in prices over time.</div></div>
   <div class="card"><div class="term">Deflation</div><div class="meaning">Decrease in prices over time.</div></div>
+<div class="card"><div class="term">Ask Price</div><div class="meaning">Lowest price at which a seller is willing to sell a share.</div></div>
+<div class="card"><div class="term">Bid Price</div><div class="meaning">Highest price a buyer is willing to pay for a share.</div></div>
+<div class="card"><div class="term">Spread</div><div class="meaning">Difference between the bid price and ask price.</div></div>
+<div class="card"><div class="term">Market Order</div><div class="meaning">Instruction to buy or sell immediately at market price.</div></div>
+<div class="card"><div class="term">Limit Order</div><div class="meaning">Instruction to buy or sell at a specific price.</div></div>
+<div class="card"><div class="term">Stop Loss</div><div class="meaning">Automatic order placed to limit potential losses.</div></div>
+<div class="card"><div class="term">Take Profit</div><div class="meaning">Automatic order used to secure profits at a target price.</div></div>
+<div class="card"><div class="term">Volume</div><div class="meaning">Total number of shares traded during a period.</div></div>
+<div class="card"><div class="term">Liquidity</div><div class="meaning">Ease of buying or selling without affecting market price.</div></div>
+<div class="card"><div class="term">Volatility</div><div class="meaning">Degree of price fluctuation in a security.</div></div>
+
+<div class="card"><div class="term">Bull Market</div><div class="meaning">Market condition where prices are generally rising.</div></div>
+<div class="card"><div class="term">Bear Market</div><div class="meaning">Market condition where prices are generally falling.</div></div>
+<div class="card"><div class="term">Index</div><div class="meaning">Group of stocks used to measure market performance.</div></div>
+<div class="card"><div class="term">KSE-100 Index</div><div class="meaning">Benchmark index of Pakistan Stock Exchange.</div></div>
+<div class="card"><div class="term">Equity</div><div class="meaning">Ownership interest in a company through shares.</div></div>
+<div class="card"><div class="term">Share</div><div class="meaning">Small unit representing ownership in a company.</div></div>
+<div class="card"><div class="term">Dividend</div><div class="meaning">Portion of company profit paid to shareholders.</div></div>
+<div class="card"><div class="term">Dividend Yield</div><div class="meaning">Dividend income expressed as a percentage of price.</div></div>
+<div class="card"><div class="term">Capital Gain</div><div class="meaning">Profit earned by selling an asset at a higher price.</div></div>
+<div class="card"><div class="term">Capital Loss</div><div class="meaning">Loss incurred by selling an asset at a lower price.</div></div>
+
+<div class="card"><div class="term">Market Capitalization</div><div class="meaning">Total market value of a company’s outstanding shares.</div></div>
+<div class="card"><div class="term">Blue Chip Stock</div><div class="meaning">Shares of large, stable, and reputable companies.</div></div>
+<div class="card"><div class="term">Price-Earnings Ratio (P/E)</div><div class="meaning">Share price divided by earnings per share.</div></div>
+<div class="card"><div class="term">Earnings Per Share (EPS)</div><div class="meaning">Company profit allocated per outstanding share.</div></div>
+<div class="card"><div class="term">Book Value</div><div class="meaning">Net asset value of a company as per records.</div></div>
+<div class="card"><div class="term">IPO</div><div class="meaning">Initial Public Offering of shares to the public.</div></div>
+<div class="card"><div class="term">Rights Issue</div><div class="meaning">Offer to existing shareholders to buy new shares.</div></div>
+<div class="card"><div class="term">Bonus Shares</div><div class="meaning">Free additional shares issued to shareholders.</div></div>
+<div class="card"><div class="term">Face Value</div><div class="meaning">Nominal value printed on a share certificate.</div></div>
+<div class="card"><div class="term">Free Float</div><div class="meaning">Shares available for public trading.</div></div>
+
+<div class="card"><div class="term">Broker</div><div class="meaning">Licensed intermediary executing trades for investors.</div></div>
+<div class="card"><div class="term">CDC</div><div class="meaning">Central Depository Company holding electronic shares.</div></div>
+<div class="card"><div class="term">NCCPL</div><div class="meaning">Entity responsible for clearing and settlement.</div></div>
+<div class="card"><div class="term">Settlement</div><div class="meaning">Completion of cash and share exchange.</div></div>
+<div class="card"><div class="term">T+2 Settlement</div><div class="meaning">Trade settles two business days after execution.</div></div>
+<div class="card"><div class="term">Margin Trading</div><div class="meaning">Trading using borrowed funds.</div></div>
+<div class="card"><div class="term">Collateral</div><div class="meaning">Asset pledged to secure borrowing.</div></div>
+<div class="card"><div class="term">Leverage</div><div class="meaning">Use of borrowed money to increase exposure.</div></div>
+<div class="card"><div class="term">Short Selling</div><div class="meaning">Selling borrowed shares expecting price decline.</div></div>
+<div class="card"><div class="term">Hedging</div><div class="meaning">Strategy used to reduce investment risk.</div></div>
+
+<div class="card"><div class="term">Diversification</div><div class="meaning">Spreading investments to reduce overall risk.</div></div>
+<div class="card"><div class="term">Portfolio</div><div class="meaning">Collection of an investor’s financial assets.</div></div>
+<div class="card"><div class="term">Risk Tolerance</div><div class="meaning">Ability to handle investment losses.</div></div>
+<div class="card"><div class="term">Return</div><div class="meaning">Profit or loss from an investment.</div></div>
+<div class="card"><div class="term">Yield</div><div class="meaning">Income generated from an investment.</div></div>
+<div class="card"><div class="term">Bond</div><div class="meaning">Debt instrument issued by company or government.</div></div>
+<div class="card"><div class="term">Coupon</div><div class="meaning">Interest payment on a bond.</div></div>
+<div class="card"><div class="term">Maturity</div><div class="meaning">Date when bond principal is repaid.</div></div>
+<div class="card"><div class="term">Mutual Fund</div><div class="meaning">Professionally managed investment pool.</div></div>
+<div class="card"><div class="term">NAV</div><div class="meaning">Net Asset Value per unit of a fund.</div></div>
 
 </div>
 
@@ -407,8 +513,28 @@ document.getElementById("searchInput").addEventListener("keyup",()=>{
   });
 });
 </script>
+<script>
+(function () {
+  const root = document.documentElement;
+
+  function detectDevice() {
+    const isTouch = window.matchMedia("(pointer: coarse)").matches;
+    const isSmall = window.matchMedia("(max-width: 768px)").matches;
+    const uaMobile = /Android|iPhone|iPad|iPod|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+    const isMobile = isTouch || isSmall || uaMobile;
+
+    root.classList.toggle("is-mobile", isMobile);
+    root.classList.toggle("is-desktop", !isMobile);
+  }
+
+  detectDevice();
+  window.addEventListener("resize", detectDevice, { passive: true });
+})();
+</script>
 
 </body>
 </html>
+
 
 
