@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>STOXGEAR — About Us</title>
 
-<link rel="preconnect" href="https://fonts.googleapisfonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
@@ -29,6 +29,7 @@
 
   --radius:18px;
   --shadow:0 14px 34px rgba(0,0,0,.08);
+  --shadow2:0 20px 54px rgba(0,0,0,.14);
   --glow:0 0 18px rgba(202,160,61,.25), 0 0 38px rgba(202,160,61,.15);
   --maxw:1200px;
   --line:rgba(17,24,39,.10);
@@ -47,7 +48,6 @@ html,body{
 a{color:var(--ink);text-decoration:none}
 
 /* ================= DEVICE AWARE (PC vs Mobile) ================= */
-/* JS will toggle these on <html> */
 html.is-mobile body{ font-size:16px; }
 html.is-desktop body{ font-size:16px; }
 
@@ -57,6 +57,7 @@ html.is-desktop body{ font-size:16px; }
 }
 
 /* ================= NAVBAR (FULL) ================= */
+.nx-navbar a { text-decoration:none!important; }
 .nx-navbar{
   position:sticky;
   top:0;
@@ -194,14 +195,14 @@ html.is-desktop body{ font-size:16px; }
   .nx-drop a{ padding:10px 12px; border:1px solid var(--line); margin:6px 0 0; background:#fff; }
 }
 
-/* ================= PAGE (your content, improved responsive) ================= */
+/* ================= PAGE ================= */
 
 /* Hero */
 .hero{
   position:relative;
   overflow:hidden;
   text-align:center;
-  padding:74px 18px 48px;
+  padding:84px 18px 56px;
   border-bottom:1px solid var(--line);
   background:
     radial-gradient(1200px 420px at 15% -10%, rgba(202,160,61,.10), transparent),
@@ -211,11 +212,17 @@ html.is-desktop body{ font-size:16px; }
   margin:0 0 10px;
   color:var(--brand);
   font-weight:800;
-  font-size:clamp(30px,4.6vw,58px);
+  font-size:clamp(30px,4.6vw,60px);
   text-shadow:0 0 20px rgba(202,160,61,.25);
   animation:pulse 2.5s infinite ease-in-out;
 }
-.hero p{max-width:900px;margin:0 auto;color:var(--muted);font-size:1.05rem;line-height:1.65}
+.hero p{
+  max-width:980px;
+  margin:0 auto;
+  color:var(--muted);
+  font-size:1.06rem;
+  line-height:1.7;
+}
 
 @keyframes pulse{
   0%,100%{filter:drop-shadow(0 0 0 rgba(202,160,61,.3))}
@@ -223,28 +230,36 @@ html.is-desktop body{ font-size:16px; }
 }
 
 /* Layout */
-section{ padding:52px 18px; }
+section{ padding:56px 18px; }
 .wrap{ max-width:var(--maxw); margin:0 auto; }
 .split{
   display:grid;
   grid-template-columns:1.1fr .9fr;
-  gap:28px;
+  gap:34px;
   align-items:center;
 }
 
-.intro h2{font-size:clamp(24px,3vw,36px);margin:0 0 8px;font-weight:800}
+.intro h2{
+  font-size:clamp(24px,3vw,36px);
+  margin:0 0 10px;
+  font-weight:800
+}
 .intro h2 span{color:var(--brand);text-shadow:0 0 16px rgba(202,160,61,.25)}
-.intro p{color:var(--ink);line-height:1.75}
+.intro p{color:var(--ink);line-height:1.8}
 
 /* Illustration */
 .illus{
   aspect-ratio:16/9;
-  border-radius:20px;
+  border-radius:22px;
   overflow:hidden;
   background:linear-gradient(180deg,#ffffff,#f7f7f7);
   border:1px solid var(--line);
   box-shadow:var(--shadow);
+  opacity:0;
+  transform:translateY(10px);
+  transition:opacity .45s ease, transform .45s ease;
 }
+.illus.revealed{opacity:1;transform:none;}
 .illus .figure{
   height:100%;
   background:url('assets/about-illustration.png') center/contain no-repeat;
@@ -254,9 +269,9 @@ section{ padding:52px 18px; }
 
 /* Cards */
 .grid{
-  margin-top:26px;
+  margin-top:22px;
   display:grid;
-  gap:16px;
+  gap:18px;
   grid-template-columns:repeat(12,1fr);
 }
 
@@ -266,32 +281,47 @@ section{ padding:52px 18px; }
   border:1px solid var(--line);
   border-radius:var(--radius);
   box-shadow:var(--shadow);
-  padding:20px;
-  min-height:150px;
-
-  transform:translateY(8px);
+  padding:26px;                 /* bigger */
+  min-height:190px;             /* bigger */
   opacity:0;
+  transform:translateY(14px);
   transition:transform .35s ease, box-shadow .25s ease, opacity .35s ease, border-color .25s ease;
+  position:relative;
+  overflow:hidden;
 }
 .card.revealed{ transform:none; opacity:1; }
-.card:hover{ box-shadow:var(--shadow),var(--glow); border-color:rgba(202,160,61,.35); }
+.card:hover{ box-shadow:var(--shadow2),var(--glow); border-color:rgba(202,160,61,.35); }
+.card:before{
+  content:"";
+  position:absolute;
+  top:-40%;
+  left:-60%;
+  width:60%;
+  height:180%;
+  background:linear-gradient(90deg, transparent, rgba(202,160,61,.18), transparent);
+  transform:rotate(12deg);
+  opacity:.0;
+  transition:opacity .25s ease;
+  pointer-events:none;
+}
+.card:hover:before{ opacity:.7; }
 
 .ic{
-  width:46px;height:46px;border-radius:12px;
+  width:54px;height:54px;border-radius:14px; /* bigger */
   display:grid;place-items:center;
-  margin-bottom:8px;
+  margin-bottom:10px;
   background:#fff;
   border:1px solid var(--line);
   box-shadow:inset 0 0 18px rgba(202,160,61,.12);
-  font-size:22px;
+  font-size:24px;
   color:#7a5b13;
 }
-.card h3{margin:0 0 6px}
-.card p{margin:0;color:var(--muted);line-height:1.6}
+.card h3{margin:0 0 8px;font-size:18px}
+.card p{margin:0;color:var(--muted);line-height:1.65}
 
 /* Stats */
 .stats{
-  margin-top:28px;
+  margin-top:22px;
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:14px;
@@ -300,17 +330,17 @@ section{ padding:52px 18px; }
   background:#fff;
   border:1px solid var(--line);
   border-radius:16px;
-  padding:18px;
+  padding:20px;
   text-align:center;
 
-  transform:translateY(8px);
   opacity:0;
+  transform:translateY(12px);
   transition:transform .35s ease, opacity .35s ease, border-color .25s ease, box-shadow .25s ease;
 }
 .stat.revealed{ transform:none; opacity:1; }
 .stat:hover{ border-color:rgba(202,160,61,.28); box-shadow:var(--shadow); }
 
-.num{font-weight:800;font-size:clamp(20px,3vw,32px);color:var(--brand)}
+.num{font-weight:800;font-size:clamp(22px,3vw,34px);color:var(--brand)}
 .cap{color:var(--muted);font-size:.95rem;line-height:1.45}
 
 /* Responsive */
@@ -323,10 +353,11 @@ section{ padding:52px 18px; }
   .stats{ grid-template-columns:repeat(2,1fr); }
 }
 @media (max-width:640px){
-  section{ padding:36px 14px; }
-  .hero{ padding:46px 14px 30px; }
-  .card{ grid-column:span 12; }
+  section{ padding:38px 14px; }
+  .hero{ padding:52px 14px 34px; }
+  .card{ grid-column:span 12; padding:22px; min-height:auto; }
   .hero p{ font-size:1rem; }
+  .nx-cta{ display:none; } /* clean mobile */
 }
 
 /* ================= FOOTER ================= */
@@ -476,7 +507,7 @@ section{ padding:52px 18px; }
 <!-- Hero -->
 <header class="hero">
   <h1>About <span style="letter-spacing:.5px">Us</span></h1>
-  <p>We’re a team of market practitioners, analysts and technologists building Pakistan’s most investor-friendly brokerage experience.</p>
+  <p>We’re a team of market practitioners, analysts, and technologists building Pakistan’s most investor-friendly brokerage experience.</p>
 </header>
 
 <!-- Intro split -->
@@ -485,24 +516,22 @@ section{ padding:52px 18px; }
     <div class="intro">
       <h2>Welcome to <span>STOXGEAR</span></h2>
       <p>
-        We offer real-time market data, actionable research, and a modern trading stack. Our goal is to
-        empower you with the knowledge and tools to make informed investment decisions—whether you’re just
-        getting started or optimizing a professional workflow.
+        We provide real-time market data, actionable research, and a modern trading platform. Our goal is to empower you with the knowledge and tools to make informed investment decisions—whether you’re getting started or optimizing a professional workflow.
       </p>
 
       <!-- Value cards -->
       <div class="grid">
         <div class="card to-reveal" style="--delay:0"><div class="ic">⚡</div><h3>Speed & Reliability</h3><p>Low-latency quotes, stable platforms, and fast support turnaround.</p></div>
-        <div class="card to-reveal" style="--delay:1"><div class="ic">🔒</div><h3>Compliance First</h3><p>SECP & PSX aligned processes with strong KYC/CDD & AML controls.</p></div>
-        <div class="card to-reveal" style="--delay:2"><div class="ic">📊</div><h3>Insights that Matter</h3><p>Clean dashboards, screeners, and commentary focused on decisions.</p></div>
+        <div class="card to-reveal" style="--delay:1"><div class="ic">🔒</div><h3>Compliance First</h3><p>SECP & PSX-aligned processes with strong KYC/CDD and AML controls.</p></div>
+        <div class="card to-reveal" style="--delay:2"><div class="ic">📊</div><h3>Insights that Matter</h3><p>Clean dashboards, screeners, and commentary focused on better decisions.</p></div>
       </div>
 
       <!-- Stats -->
       <div class="stats">
-        <div class="stat to-reveal" style="--delay:3"><div class="num" data-count="12">0</div><div class="cap">Years Combined Team Experience</div></div>
-        <div class="stat to-reveal" style="--delay:4"><div class="num" data-count="50">0</div><div class="cap">+ Research Notes Published</div></div>
-        <div class="stat to-reveal" style="--delay:5"><div class="num" data-count="99">0</div><div class="cap">% Platform Uptime (rolling)</div></div>
-        <div class="stat to-reveal" style="--delay:6"><div class="num" data-count="24">0</div><div class="cap">/7 Support Window</div></div>
+        <div class="stat to-reveal" style="--delay:3"><div class="num" data-count="12">0</div><div class="cap">Years of Combined Team Experience</div></div>
+        <div class="stat to-reveal" style="--delay:4"><div class="num" data-count="50">0</div><div class="cap">Research Notes Published</div></div>
+        <div class="stat to-reveal" style="--delay:5"><div class="num" data-count="99">0</div><div class="cap">Platform Uptime (Rolling)</div></div>
+        <div class="stat to-reveal" style="--delay:6"><div class="num" data-count="24">0</div><div class="cap">Support Window</div></div>
       </div>
     </div>
 
@@ -518,9 +547,9 @@ section{ padding:52px 18px; }
   <div class="wrap">
     <h2 style="margin:0 0 14px;font-size:clamp(22px,3vw,34px);font-weight:800;text-shadow:0 0 16px rgba(202,160,61,.25)">What We Do</h2>
     <div class="grid">
-      <div class="card to-reveal" style="--delay:0"><div class="ic">🧭</div><h3>Advisory</h3><p>Goal-based guidance, screening and execution support for investors.</p></div>
-      <div class="card to-reveal" style="--delay:1"><div class="ic">🧩</div><h3>Products</h3><p>Clean onboarding, PSX market access, CDC e-services, and research.</p></div>
-      <div class="card to-reveal" style="--delay:2"><div class="ic">🛡️</div><h3>Safeguards</h3><p>Investor protection with disclosures, complaint handling and audits.</p></div>
+      <div class="card to-reveal" style="--delay:0"><div class="ic">🧭</div><h3>Advisory</h3><p>Goal-based guidance, screening, and execution support for investors.</p></div>
+      <div class="card to-reveal" style="--delay:1"><div class="ic">🧩</div><h3>Products</h3><p>Digital onboarding, PSX market access, CDC e-services, and research tools.</p></div>
+      <div class="card to-reveal" style="--delay:2"><div class="ic">🛡️</div><h3>Safeguards</h3><p>Investor protection through disclosures, complaint handling, and audits.</p></div>
     </div>
   </div>
 </section>
@@ -601,9 +630,7 @@ section{ padding:52px 18px; }
   const header = document.getElementById("nxHeader");
   if(!header) return;
 
-  const onScroll = () => {
-    header.classList.toggle("scrolled", window.scrollY > 8);
-  };
+  const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 8);
   onScroll();
   window.addEventListener("scroll", onScroll, {passive:true});
 })();
@@ -621,7 +648,6 @@ section{ padding:52px 18px; }
     toggle.setAttribute("aria-expanded", open ? "true" : "false");
   });
 
-  // Mobile: tap parent items (with data-dd) to expand their dropdown
   menu.addEventListener("click", (e) => {
     const link = e.target.closest(".nx-link");
     if(!link) return;
@@ -633,13 +659,11 @@ section{ padding:52px 18px; }
     if(ddId && isMobile){
       e.preventDefault();
       const item = link.closest(".nx-item");
-      // close other dropdowns
       menu.querySelectorAll(".nx-item.open").forEach(i => { if(i!==item) i.classList.remove("open"); });
       item.classList.toggle("open");
     }
   });
 
-  // Close menu when clicking outside (mobile)
   document.addEventListener("click", (e) => {
     const isMobile = document.documentElement.classList.contains("is-mobile")
       || window.matchMedia("(max-width:1024px)").matches;
@@ -652,7 +676,6 @@ section{ padding:52px 18px; }
     }
   });
 
-  // Optional: close menu when any dropdown link is clicked (mobile)
   menu.addEventListener("click", (e) => {
     const a = e.target.closest(".nx-drop a");
     if(!a) return;
@@ -666,9 +689,9 @@ section{ padding:52px 18px; }
   });
 })();
 
-/* ================= REVEAL ANIMATIONS ================= */
+/* ================= REVEAL ANIMATIONS (staggered) ================= */
 (function(){
-  const els = document.querySelectorAll('.to-reveal, .card.to-reveal, .stat.to-reveal, .illus.to-reveal');
+  const els = document.querySelectorAll('.to-reveal');
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(ent=>{
       if(ent.isIntersecting){
