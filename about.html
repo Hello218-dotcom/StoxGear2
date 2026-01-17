@@ -43,7 +43,6 @@ html,body{
 }
 a{color:var(--ink);text-decoration:none}
 
-/* Reduce motion support */
 @media (prefers-reduced-motion: reduce){
   *{ animation-duration:0.001ms!important; animation-iteration-count:1!important; transition-duration:0.001ms!important; scroll-behavior:auto!important; }
 }
@@ -67,11 +66,9 @@ a{color:var(--ink);text-decoration:none}
   align-items:center;
   gap:16px;
 }
-
 .nx-brand{display:flex;align-items:center;gap:10px;color:var(--text);}
 .nx-logo,.nx-logo2{height:38px;width:auto;}
 .nx-logo2{margin-left:10px;}
-
 .nx-grow{flex:1}
 
 .nx-cta{
@@ -197,6 +194,7 @@ a{color:var(--ink);text-decoration:none}
   animation:pulse 2.5s infinite ease-in-out;
 }
 .hero p{max-width:980px;margin:0 auto;color:var(--muted);font-size:1.05rem;line-height:1.65}
+
 @keyframes pulse{
   0%,100%{filter:drop-shadow(0 0 0 rgba(202,160,61,.3))}
   50%{filter:drop-shadow(0 0 14px rgba(202,160,61,.45))}
@@ -206,12 +204,29 @@ a{color:var(--ink);text-decoration:none}
 section{ padding:52px 18px; }
 .wrap{ max-width:var(--maxw); margin:0 auto; }
 
-/* Keep split, but remove placeholder area usage */
 .split{
   display:grid;
-  grid-template-columns:1fr;  /* ✅ now no placeholder column */
+  grid-template-columns:1fr;
   gap:28px;
   align-items:start;
+}
+
+/* Text */
+.intro{max-width:none}
+.intro h2{
+  font-size:clamp(30px,3.6vw,44px);   /* ✅ bigger STOXGEAR heading */
+  margin:0 0 10px;
+  font-weight:800;
+}
+.intro h2 span{
+  color:var(--brand);
+  text-shadow:0 0 16px rgba(202,160,61,.25)
+}
+.intro p{
+  color:var(--ink);
+  line-height:1.75;
+  font-size:1.06rem;
+  max-width:none;
 }
 
 /* ================= CARDS ================= */
@@ -251,11 +266,42 @@ section{ padding:52px 18px; }
 .card h3{margin:0 0 8px;font-size:18px}
 .card p{margin:0;color:var(--muted);line-height:1.65}
 
+/* ✅ LONG WHITE IMAGE BOX (FILLER) */
+.image-frame{
+  grid-column:span 8;                /* wide box */
+  min-height:190px;
+  background:#fff;
+  border:1.5px dashed rgba(202,160,61,.55);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  gap:10px;
+  opacity:0;
+  transform:translateY(14px);
+  transition:transform .35s ease, box-shadow .25s ease, opacity .35s ease, border-color .25s ease;
+}
+.image-frame.revealed{opacity:1;transform:none;}
+.image-frame:hover{box-shadow:var(--shadow2),var(--glow);border-color:rgba(202,160,61,.85);}
+.image-frame strong{color:var(--text);font-size:18px;}
+.image-frame span{color:var(--muted);font-size:13px;display:block;margin-top:6px;}
+
+.image-frame img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  border-radius:12px;
+  display:none;
+}
+
 /* Stats */
 .stats{
   margin-top:22px;
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(3,1fr); /* ✅ removed Support Window => 3 boxes */
   gap:14px;
 }
 .stat{
@@ -273,7 +319,7 @@ section{ padding:52px 18px; }
 .num{font-weight:800;font-size:clamp(22px,3vw,34px);color:var(--brand)}
 .cap{color:var(--muted);font-size:.95rem;line-height:1.45}
 
-/* Full divider */
+/* Divider */
 .full-divider{
   height:2px;
   width:100vw;
@@ -296,6 +342,7 @@ section{ padding:52px 18px; }
 /* Responsive */
 @media (max-width:1100px){
   .card{ grid-column:span 6; }
+  .image-frame{ grid-column:span 12; }
 }
 @media (max-width:800px){
   .stats{ grid-template-columns:repeat(2,1fr); }
@@ -305,6 +352,7 @@ section{ padding:52px 18px; }
   .hero{ padding:46px 14px 30px; }
   .card{ grid-column:span 12; padding:22px; min-height:auto; }
   .nx-cta{ display:none; }
+  .stats{ grid-template-columns:1fr; }
 }
 
 /* Footer */
@@ -457,33 +505,50 @@ section{ padding:52px 18px; }
   <div class="wrap split">
     <div class="intro">
       <h2>Welcome to <span>STOXGEAR</span></h2>
+
+      <!-- ✅ 2 lines added -->
       <p>
         We provide real-time market data, actionable research, and a modern trading platform designed for both new and professional investors.
+        Our focus is to simplify investing with transparent processes and reliable execution.
+        We combine technology, research, and client support to help you trade with confidence.
       </p>
 
-      <!-- ✅ VALUE CARDS (added TWO new cards = filler + one down) -->
       <div class="grid">
-        <div class="card to-reveal" style="--delay:0"><div class="ic">⚡</div><h3>Speed & Reliability</h3><p>Low-latency quotes, stable platforms, and fast support turnaround.</p></div>
-        <div class="card to-reveal" style="--delay:1"><div class="ic">🔒</div><h3>Compliance First</h3><p>SECP & PSX aligned processes with strong KYC/CDD & AML controls.</p></div>
-        <div class="card to-reveal" style="--delay:2"><div class="ic">📊</div><h3>Insights that Matter</h3><p>Clean dashboards, screeners, and commentary focused on decisions.</p></div>
 
-        <!-- NEW CARD (FILLER) -->
-        <div class="card to-reveal" style="--delay:3"><div class="ic">🤝</div><h3>Client Support</h3><p>Dedicated assistance with clear guidance, quick resolution, and timely updates.</p></div>
+        <!-- ✅ Removed "Insights that Matter" card -->
+        <div class="card to-reveal" style="--delay:0">
+          <div class="ic">⚡</div>
+          <h3>Speed & Reliability</h3>
+          <p>Low-latency quotes, stable platforms, and fast support turnaround.</p>
+        </div>
 
-        <!-- NEW CARD (DOWN) -->
-        <div class="card to-reveal" style="--delay:4"><div class="ic">🧾</div><h3>Transparent Processes</h3><p>Clear disclosures, documentation, and reporting designed to build trust.</p></div>
+        <div class="card to-reveal" style="--delay:1">
+          <div class="ic">🔒</div>
+          <h3>Compliance First</h3>
+          <p>SECP & PSX aligned processes with strong KYC/CDD & AML controls.</p>
+        </div>
+
+        <!-- ✅ Long white box filler with image frame -->
+        <div class="image-frame to-reveal" style="--delay:2">
+          <img src="assets/about-box.jpg" alt="Upload image" onerror="this.style.display='none'">
+          <div>
+            <strong>Image / Banner Area</strong>
+            <span>Upload your image as: <b>assets/about-box.jpg</b></span>
+          </div>
+        </div>
+
       </div>
 
+      <!-- ✅ Removed Support Window stat (now 3 stats only) -->
       <div class="stats">
-        <div class="stat to-reveal" style="--delay:5"><div class="num" data-count="12">0</div><div class="cap">Years Combined Team Experience</div></div>
-        <div class="stat to-reveal" style="--delay:6"><div class="num" data-count="50">0</div><div class="cap">Research Notes Published</div></div>
-        <div class="stat to-reveal" style="--delay:7"><div class="num" data-count="99">0</div><div class="cap">Platform Uptime (Rolling)</div></div>
-        <div class="stat to-reveal" style="--delay:8"><div class="num" data-count="24">0</div><div class="cap">Support Window</div></div>
+        <div class="stat to-reveal" style="--delay:3"><div class="num" data-count="12">0</div><div class="cap">Years Combined Team Experience</div></div>
+        <div class="stat to-reveal" style="--delay:4"><div class="num" data-count="50">0</div><div class="cap">Research Notes Published</div></div>
+        <div class="stat to-reveal" style="--delay:5"><div class="num" data-count="99">0</div><div class="cap">Platform Uptime (Rolling)</div></div>
       </div>
     </div>
   </div>
 
-  <div class="full-divider to-reveal" style="--delay:9"></div>
+  <div class="full-divider to-reveal" style="--delay:6"></div>
 </section>
 
 <section>
@@ -568,8 +633,10 @@ section{ padding:52px 18px; }
   menu.addEventListener("click", (e) => {
     const link = e.target.closest(".nx-link");
     if(!link) return;
+
     const ddId = link.getAttribute("data-dd");
     const isMobile = window.matchMedia("(max-width:1024px)").matches;
+
     if(ddId && isMobile){
       e.preventDefault();
       const item = link.closest(".nx-item");
