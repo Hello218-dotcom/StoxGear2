@@ -70,6 +70,56 @@
   width:auto;
   margin-left:10px;
 }
+.tablewrap{
+  width:100%;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+}
+
+.sponsor-table{
+  width:100%;
+  min-width:520px;
+  border-collapse:separate;
+  border-spacing:0;
+  background:#fff;
+  border:1px solid rgba(0,0,0,.12);
+  border-radius:14px;
+}
+
+.sponsor-table th,
+.sponsor-table td{
+  padding:14px 16px;
+  border-bottom:1px solid rgba(0,0,0,.08);
+  text-align:left;
+  white-space:nowrap;
+}
+
+.sponsor-table thead th{
+  background:#fafafa;
+  font-weight:800;
+}
+
+.sponsor-table td.num,
+.sponsor-table td.pct{
+  text-align:right;
+  font-variant-numeric:tabular-nums;
+}
+
+.sponsor-table tfoot th{
+  border-top:2px solid rgba(0,0,0,.14);
+  font-weight:800;
+}
+
+@media (max-width:768px){
+  .tablewrap::after{
+    content:"← Swipe to view full table →";
+    display:block;
+    font-size:12px;
+    color:#777;
+    margin-top:6px;
+    text-align:right;
+  }
+}
 
 .nx-grow{flex:1}
 
@@ -176,28 +226,28 @@
       <tbody id="sponsorBody">
         <tr data-shares="1699999">
           <td>Mr. Salman Hussain</td>
-          <td class="num">1,699,999</td>
-          <td class="pct">96.36%</td>
+          <td class="num">—</td>
+          <td class="pct">—</td>
         </tr>
 
         <tr data-shares="100000">
           <td>Mrs. Salman Hussain</td>
-          <td class="num">100,000</td>
-          <td class="pct">4.64%</td>
+          <td class="num">—</td>
+          <td class="pct">—</td>
         </tr>
 
         <tr data-shares="1">
           <td>Muhammad Usman Sajid</td>
-          <td class="num">1</td>
-          <td class="pct">0.00%</td>
+          <td class="num">—</td>
+          <td class="pct">—</td>
         </tr>
       </tbody>
 
       <tfoot>
         <tr>
-          <td><strong>Total</strong></td>
-          <td id="totalShares" class="num"><strong>—</strong></td>
-          <td id="totalPercent" class="pct"><strong>100.00%</strong></td>
+          <th>Total</th>
+          <th id="totalShares">—</th>
+          <th>100.00%</th>
         </tr>
       </tfoot>
     </table>
@@ -1014,6 +1064,7 @@ html.is-mobile  .tablewrap{ overflow:visible; } /* no scroll; we convert to card
 
 </body>
 </html>
+
 
 
 
