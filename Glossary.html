@@ -217,6 +217,89 @@ h1{
   padding-top:16px;border-top:1px solid var(--line);
   font-size:13px;text-align:center;color:var(--muted);
 }
+  /* ===================== MOBILE RESPONSIVE PATCH (PASTE ONLY) ===================== */
+
+/* 1) NAVBAR: stop menu items breaking into two lines (desktop like your 2nd pic) */
+.nx-menu{ 
+  flex-wrap: nowrap !important; 
+  white-space: nowrap !important; 
+}
+.nx-link{ 
+  white-space: nowrap !important; 
+}
+
+/* tighten spacing on medium screens so all items fit in one row */
+@media (max-width:1200px){
+  .nx-menu{ gap: 18px !important; }
+  .nx-link{ font-size: 14px !important; }
+  .nx-logo{ height: 44px !important; }
+  .nx-logo2{ height: 40px !important; max-width: 180px !important; }
+}
+
+/* 2) CTA button style (your gold rounded button) */
+.nx-cta{
+  background: linear-gradient(180deg, #d1b155, #c09a2f) !important;
+  color:#000 !important;
+  font-weight:900 !important;
+  letter-spacing:.06em !important;
+  text-transform:uppercase !important;
+  padding:14px 34px !important;
+  border-radius:999px !important;
+  border:none !important;
+  box-shadow:0 12px 26px rgba(0,0,0,.10) !important;
+}
+.nx-cta:hover{ filter:brightness(1.05) !important; transform:translateY(-1px) !important; }
+.nx-cta:active{ transform:translateY(0) scale(.99) !important; }
+
+/* 3) MOBILE NAV: make menu full width and easy to tap */
+@media (max-width:1024px){
+  .nx-cta{ display:none !important; } /* optional on mobile */
+  .nx-menu{
+    width: calc(100% - 24px) !important;
+    margin: 0 auto !important;
+    gap: 10px !important;
+  }
+  .nx-drop a{
+    font-weight:800 !important;
+    font-size:16px !important;
+    color:#111 !important;
+  }
+}
+
+/* 4) GLOSSARY GRID: responsive layout */
+.grid{
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+@media (max-width:980px){
+  .grid{ grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+
+@media (max-width:640px){
+  .grid{ grid-template-columns: 1fr !important; padding: 14px !important; gap: 14px !important; }
+  h1{ margin: 56px 0 10px !important; }
+  .search-bar input{ width: 92% !important; }
+}
+
+/* 5) CARDS: better spacing + subtle hover */
+.card{
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease !important;
+}
+.card:hover{
+  transform: translateY(-6px) !important;
+  box-shadow: 0 16px 40px rgba(0,0,0,.12) !important;
+  border-color: rgba(201,166,70,.35) !important;
+}
+
+/* 6) Optional: simple reveal animation (works without JS) */
+.card{
+  animation: fadeUp .45s ease both;
+}
+@keyframes fadeUp{
+  from{ opacity:0; transform: translateY(10px); }
+  to{ opacity:1; transform: translateY(0); }
+}
+
 </style>
 </head>
 
@@ -461,3 +544,4 @@ searchInput.addEventListener("keyup",()=>{
 
 </body>
 </html>
+
