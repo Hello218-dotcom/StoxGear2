@@ -119,7 +119,12 @@
       border-radius:12px;padding:8px;
       min-width:240px;z-index:9999;
       box-shadow:0 16px 34px rgba(0,0,0,.14);
-      max-height:380px;overflow-y:auto;
+/* No scrolling + no scrollbar */
+.nx-drop{
+  max-height: none;   /* or remove max-height line */
+  overflow: hidden;
+}
+
 
       /* animation */
       opacity:0;
@@ -706,4 +711,5 @@
 
 </body>
 </html>
+
 
