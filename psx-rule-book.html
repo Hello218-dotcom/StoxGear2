@@ -3,26 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PSX Rule Book – StoxGear</title>
+<title>PSX Rule Book – Stoxgear</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
   --bg:#ffffff;
-  --ink:#1f2937;
-  --muted:#6b7280;
+  --ink:#141414;
+  --muted:#666;
+  --accent:#c9a646;
   --line:#e7e9ee;
-  --gold:#c9a646;
-  --gold-dark:#b38b2e;
-  --radius:20px;
-  --shadow:0 14px 34px rgba(0,0,0,.12);
+  --radius:22px;
+  --shadow:0 16px 40px rgba(0,0,0,.14);
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
 body{
-  font-family:Poppins,system-ui;
-  background:var(--bg);
+  font-family:Inter,system-ui;
+  background:#fff;
   color:var(--ink);
 }
 
@@ -39,8 +38,7 @@ body{
   display:flex;align-items:center;gap:16px;
 }
 .nx-brand{display:flex;align-items:center;gap:10px}
-.nx-logo{height:40px}
-.nx-logo2{height:36px}
+.nx-logo,.nx-logo2{height:38px}
 .nx-grow{flex:1}
 
 .nx-menu{display:flex;gap:26px}
@@ -48,35 +46,10 @@ body{
 .nx-link{
   text-decoration:none;
   font-weight:600;
-  color:#555;
+  color:#5e6676;
 }
-.nx-link:hover{color:var(--gold)}
+.nx-link:hover{color:var(--accent)}
 
-.nx-drop{
-  display:none;
-  position:absolute;
-  top:100%;left:0;
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:8px;
-  min-width:220px;
-  box-shadow:0 12px 26px rgba(0,0,0,.12);
-}
-.nx-drop a{
-  display:block;
-  padding:8px 10px;
-  border-radius:10px;
-  color:#111;
-  text-decoration:none;
-}
-.nx-drop a:hover{background:#f6f6f6;color:var(--gold)}
-
-@media(min-width:1025px){
-  .nx-item:hover>.nx-drop{display:block}
-}
-
-/* MOBILE NAV */
 .nx-toggle{
   display:none;
   border:1px solid var(--line);
@@ -97,7 +70,6 @@ body{
     border-top:1px solid var(--line);
   }
   .nx-navbar.is-open .nx-menu{display:flex}
-  .nx-drop{position:static;border:none;box-shadow:none}
 }
 
 /* ================= MAIN ================= */
@@ -107,74 +79,62 @@ main{
   padding:70px 20px 90px;
 }
 h1{
+  font-size:clamp(28px,4vw,40px);
+  margin-bottom:40px;
   text-align:center;
-  color:var(--gold);
-  font-size:clamp(28px,4vw,44px);
-  font-weight:800;
-  margin-bottom:50px;
 }
 
 /* ================= CARDS ================= */
 .cards{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
   gap:32px;
 }
 
 .card{
-  position:relative;
-  padding:36px 34px;
-  border-radius:26px;
-  background:
-    radial-gradient(circle at top left,rgba(201,166,70,.18),transparent 60%),
-    #fff;
-  border:1px solid rgba(201,166,70,.5);
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:28px;
+  padding:34px;
   box-shadow:var(--shadow);
-  transition:.35s ease;
-  animation:fadeUp .9s ease both;
+  transition:.4s ease;
+  animation:fadeUp .7s ease both;
 }
-.card:nth-child(2){animation-delay:.15s}
-
 .card:hover{
-  transform:translateY(-10px) scale(1.02);
-  box-shadow:0 22px 44px rgba(0,0,0,.18);
+  transform:translateY(-10px);
+  box-shadow:0 26px 54px rgba(0,0,0,.22);
 }
 
 .badge{
   display:inline-block;
-  background:var(--gold);
+  background:var(--accent);
   color:#000;
   font-weight:800;
   font-size:12px;
-  letter-spacing:.08em;
-  padding:6px 12px;
+  padding:6px 14px;
   border-radius:999px;
-  margin-bottom:14px;
+  margin-bottom:16px;
+  letter-spacing:.05em;
 }
 
 .card h2{
   font-size:22px;
   margin-bottom:10px;
-  text-decoration:underline;
-  text-decoration-thickness:1px;
 }
 .card p{
   color:var(--muted);
-  line-height:1.6;
+  line-height:1.7;
 }
-
-.arrow{
+.card a{
+  display:inline-block;
   margin-top:18px;
-  font-weight:700;
-  color:var(--gold-dark);
-  display:inline-flex;
-  gap:6px;
-  align-items:center;
+  font-weight:800;
+  color:var(--accent);
+  font-size:15px;
 }
-.card:hover .arrow span{transform:translateX(6px)}
 
 @keyframes fadeUp{
-  from{opacity:0;transform:translateY(40px)}
+  from{opacity:0;transform:translateY(36px)}
   to{opacity:1;transform:none}
 }
 
@@ -182,9 +142,9 @@ h1{
 footer{
   border-top:1px solid var(--line);
   background:#fafafa;
-  padding:30px 20px;
+  padding:34px 20px;
   text-align:center;
-  color:var(--muted);
+  color:#666;
   font-size:14px;
 }
 </style>
@@ -192,68 +152,57 @@ footer{
 
 <body>
 
-<!-- NAVBAR -->
 <header class="nx-navbar" id="nxHeader">
   <div class="nx-nav-inner">
-    <a class="nx-brand" href="#">
+    <a class="nx-brand" href="index.html">
       <img class="nx-logo" src="stoxgear-logo.jpg">
-      <img class="nx-logo2" src="partner-logo.jpg">
+      <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg">
     </a>
     <div class="nx-grow"></div>
-
     <nav class="nx-menu">
-      <div class="nx-item">
-        <a class="nx-link" href="#">Education</a>
-        <div class="nx-drop">
-          <a href="#">Investor Guide</a>
-          <a href="#">Glossary</a>
-          <a href="#">PSX Rule Book</a>
-        </div>
-      </div>
-      <div class="nx-item">
-        <a class="nx-link" href="#">Support</a>
-      </div>
+      <a class="nx-link" href="Glossary.html">Glossary</a>
+      <a class="nx-link" href="psx-rule-book.html">PSX Rule Book</a>
+      <a class="nx-link" href="Contact.html">Contact</a>
     </nav>
-
     <button class="nx-toggle" id="nxToggle">☰</button>
   </div>
 </header>
 
-<!-- MAIN -->
 <main>
   <h1>PSX Rule Book</h1>
 
   <div class="cards">
 
-    <!-- ENGLISH (OFFICIAL) -->
-    <a class="card" target="_blank"
-       href="https://www.psx.com.pk/psx/resources-and-tools/regulatory-framework">
-      <span class="badge">OFFICIAL</span>
-      <h2>PSX Rule Book – English</h2>
+    <!-- ENGLISH -->
+    <div class="card">
+      <span class="badge">ENGLISH</span>
+      <h2>PSX Rule Book (English)</h2>
       <p>
-        Official Pakistan Stock Exchange Rule Book published by PSX.
-        This version is used for regulatory compliance, listings,
-        trading operations, and legal reference.
+        Official Pakistan Stock Exchange Rule Book in English, covering
+        regulations, trading rules, compliance requirements and market
+        procedures.
       </p>
-      <div class="arrow">Open English version <span>➜</span></div>
-    </a>
+      <a href="https://www.psx.com.pk/psx/resources-and-tools/legal-framework" target="_blank">
+        Open English version →
+      </a>
+    </div>
 
-    <!-- URDU (NON-OFFICIAL) -->
-    <a class="card" target="_blank"
-       href="https://www.spectrumonline.com.pk/downloads/PSX_RuleBook-Urdu.pdf">
-      <span class="badge">URDU (NON-OFFICIAL)</span>
-      <h2>PSX Rule Book – اردو</h2>
+    <!-- URDU -->
+    <div class="card">
+      <span class="badge">اردو</span>
+      <h2>PSX Rule Book (Urdu)</h2>
       <p>
-        Urdu translation of the PSX Rule Book hosted on a third-party
-        website for ease of understanding by local investors.
+        Urdu translation of the PSX Rule Book for better understanding of
+        exchange rules by local investors and market participants.
       </p>
-      <div class="arrow">اردو ورژن کھولیں <span>➜</span></div>
-    </a>
+      <a href="https://www.spectrumonline.com.pk/downloads/PSX_RuleBook-Urdu.pdf" target="_blank">
+        اردو ورژن کھولیں →
+      </a>
+    </div>
 
   </div>
 </main>
 
-<!-- FOOTER -->
 <footer>
   © <script>document.write(new Date().getFullYear())</script>
   Stoxgear Securities (Private) Limited
