@@ -174,6 +174,38 @@
     display:block;
   }
 }
+/* ================= SLOW DROPDOWN ANIMATION ================= */
+
+.nx-drop{
+  position:absolute;
+  top:calc(100% + 14px);
+  left:0;
+  min-width:230px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:10px;
+  box-shadow:0 12px 28px rgba(0,0,0,.12);
+
+  /* animation base */
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(14px);
+  transition:
+    opacity .4s ease,
+    transform .4s ease,
+    visibility .4s ease;
+
+  pointer-events:none;
+}
+
+/* SHOW DROPDOWN SLOWLY */
+.nx-item:hover > .nx-drop{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+  pointer-events:auto;
+}
 
 /* MOBILE LOGIC */
 @media (max-width:1024px){
@@ -407,7 +439,59 @@
   flex-wrap:wrap;
   color:var(--text-dim);
 }
+/* ================= MOBILE DROPDOWN ANIMATION ================= */
 
+@media (max-width:1024px){
+
+  .nx-drop{
+    opacity:0;
+    max-height:0;
+    overflow:hidden;
+    transform:translateY(-6px);
+    transition:
+      max-height .4s ease,
+      opacity .35s ease,
+      transform .35s ease;
+  }
+
+  .nx-item.open > .nx-drop{
+    opacity:1;
+    max-height:500px;
+    transform:translateY(0);
+  }
+}
+/* ================= CARD LOAD ANIMATION ================= */
+
+.doc-card{
+  opacity:0;
+  transform:translateY(18px) scale(.98);
+  animation:cardFade .6s ease forwards;
+}
+
+@keyframes cardFade{
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+/* CARD HOVER */
+.doc-card:hover{
+  transform:translateY(-6px) scale(1.02);
+  box-shadow:0 18px 38px rgba(0,0,0,.14);
+}
+@media (max-width:600px){
+  .doc-card{
+    animation:none;
+    opacity:1;
+    transform:none;
+  }
+
+  .doc-card:active{
+    transform:scale(.96);
+  }
+}
+              
   </style>
 </head>
 
@@ -615,9 +699,32 @@
       });
     })();
   </script>
+<script>
+/* ================= MOBILE AUTO DETECTION ================= */
+document.querySelectorAll('.nx-item > .nx-link').forEach(link=>{
+  link.addEventListener('click', function(e){
+    const isMobile = window.innerWidth <= 1024;
+    const dropdown = this.nextElementSibling;
+
+    if(isMobile && dropdown && dropdown.classList.contains('nx-drop')){
+      e.preventDefault();
+      this.parentElement.classList.toggle('open');
+    }
+  });
+});
+  <script>
+/* ================= NAVBAR SCROLL EFFECT ================= */
+window.addEventListener('scroll',()=>{
+  const header = document.getElementById('nxHeader');
+  header.classList.toggle('scrolled', window.scrollY > 10);
+});
+</script>
+
+</script>
 
 </body>
 </html>
+
 
 
 
