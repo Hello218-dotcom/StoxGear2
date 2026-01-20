@@ -678,6 +678,70 @@ tbody tr:hover { background: rgba(201,166,70,.10); }
         min-width: 100%;
     }
 }
+/* ===== SLOW DROPDOWN (4s) ===== */
+.nx-drop {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition:
+    opacity 4s cubic-bezier(.4,0,.2,1),
+    transform 4s cubic-bezier(.4,0,.2,1),
+    visibility 4s;
+  pointer-events: none;
+}
+
+/* Desktop hover */
+@media (min-width: 1025px) {
+  .nx-item:hover > .nx-drop {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
+
+/* Mobile click */
+@media (max-width: 1024px) {
+  .nx-drop {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition:
+      max-height 4s ease,
+      opacity 4s ease,
+      transform 4s ease;
+  }
+
+  .nx-item.open > .nx-drop {
+    max-height: 600px;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== CARD ANIMATION (ONLY IF EXISTS) ===== */
+.card, .doc-card {
+  opacity: 0;
+  transform: translateY(25px) scale(.97);
+  animation: cardFadeUp 0.7s ease forwards;
+}
+
+@keyframes cardFadeUp {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Mobile card fix */
+@media (max-width: 600px) {
+  .card, .doc-card {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
 
 </style>
 </head>
@@ -1030,9 +1094,30 @@ function isMobile() {
 }
 </script>
 
+/* ===== Mobile dropdown toggle ===== */
+document.querySelectorAll('.nx-item > .nx-link').forEach(link => {
+  link.addEventListener('click', e => {
+    const isMobile = window.matchMedia('(max-width:1024px)').matches;
+    const drop = link.nextElementSibling;
+    if (isMobile && drop && drop.classList.contains('nx-drop')) {
+      e.preventDefault();
+      link.parentElement.classList.toggle('open');
+    }
+  });
+});
+
+/* ===== Card Animation (staggered) ===== */
+function animateCards() {
+  const cards = document.querySelectorAll('.card');
+  cards.forEach((card, i) => {
+    setTimeout(() => card.classList.add('show'), i * 150);
+  });
+}
+document.addEventListener('DOMContentLoaded', animateCards);
 
 </body>
 </html>
+
 
 
 
