@@ -322,6 +322,79 @@ p{
   flex-wrap:wrap;
   color:var(--text-dim);
 }
+/* DROPDOWN STYLES */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.dropdown button {
+  padding: 10px 18px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  background: #4CAF50;
+  color: white;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background: white;
+  min-width: 160px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 1s ease, transform 1s ease; /* slide-down 1s */
+}
+
+.dropdown-content a {
+  padding: 12px 16px;
+  display: block;
+  text-decoration: none;
+  color: #333;
+  transition: background 0.3s;
+}
+
+.dropdown-content a:hover {
+  background: #f2f2f2;
+}
+
+.dropdown.show .dropdown-content {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* CARD STYLES */
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px 0;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .dropdown button { width: 100%; text-align: center; }
+  .dropdown-content { min-width: 100%; }
+  body { font-size: 16px; }
+}
 
 </style>
 </head>
@@ -515,8 +588,51 @@ document.addEventListener('click',e=>{
     }
   }
 });
+  // DROPDOWN TOGGLE FUNCTION
+function toggleDropdown(id) {
+  const dropdown = document.getElementById(id);
+  if (!dropdown) return;
+
+  // Open dropdown
+  dropdown.classList.add('show');
+
+  // Auto-close after 15 seconds
+  if (dropdown.closeTimeout) clearTimeout(dropdown.closeTimeout);
+  dropdown.closeTimeout = setTimeout(() => {
+    dropdown.classList.remove('show');
+  }, 15000); // 15 seconds
+}
+
+// CLOSE DROPDOWN WHEN CLICKING OUTSIDE (still works)
+document.addEventListener('click', function(e) {
+  document.querySelectorAll('.dropdown').forEach(drop => {
+    if (!drop.contains(e.target)) {
+      // only close if 15s timeout finished
+      if (!drop.closeTimeout) drop.classList.remove('show');
+    }
+  });
+});
+
+// ANIMATE CARDS IF PRESENT
+document.addEventListener('DOMContentLoaded', () => {
+  const cards = document.querySelectorAll('.card');
+  if (cards.length) {
+    cards.forEach((card, i) => {
+      setTimeout(() => card.classList.add('show'), 150 * i);
+    });
+  }
+});
+
+// MOBILE AUTO ADJUSTMENTS
+(function() {
+  if (/Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent)) {
+    document.body.style.fontSize = '16px';
+  }
+})();
+
 </script>
 
 </body>
 </html>
+
 
