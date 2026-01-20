@@ -19,7 +19,7 @@
   --radius:18px;
   --shadow:0 10px 28px rgba(0,0,0,.08);
 
-  /* ✅ ULTRA SLOW DROPDOWN (2–3 minutes) */
+  /* ✅ ULTRA SLOW DROPDOWN */
   --nxDropDuration:150s; /* 120s=2min | 150s=2.5min | 180s=3min */
 }
 
@@ -30,9 +30,9 @@ body{
   font-family:Inter,sans-serif;
   color:var(--text);
 }
-a{ text-decoration:none !important; }
+a{ text-decoration:none!important; }
 
-/* ✅ Remove underline everywhere (navbar + footer + hover) */
+/* ✅ remove underline everywhere */
 .nx-link,
 .nx-drop a,
 .nx-footer a,
@@ -50,29 +50,21 @@ a{ text-decoration:none !important; }
 
 /* ================= NAVBAR ================= */
 .nx-navbar{
-  position:sticky;
-  top:0;
-  z-index:1000;
+  position:sticky; top:0; z-index:1000;
   background:#fff;
   border-bottom:1px solid var(--line);
   box-shadow:0 6px 18px rgba(0,0,0,.06);
 }
 .nx-nav-inner{
-  max-width:1200px;
-  margin:0 auto;
+  max-width:1200px; margin:0 auto;
   padding:14px 24px;
-  display:flex;
-  align-items:center;
-  gap:16px;
+  display:flex; align-items:center; gap:16px;
 }
 .nx-brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
+  display:flex; align-items:center; gap:10px;
 }
-.nx-logo, .nx-logo2{
-  height:38px;
-  width:auto;
+.nx-logo,.nx-logo2{
+  height:38px; width:auto;
 }
 .nx-logo2{ margin-left:10px; }
 .nx-grow{ flex:1; }
@@ -89,7 +81,6 @@ a{ text-decoration:none !important; }
 }
 .nx-cta:hover{ background:var(--accent-2); }
 
-/* HAMBURGER */
 .nx-toggle{
   display:none;
   background:#fff;
@@ -107,7 +98,6 @@ a{ text-decoration:none !important; }
   gap:26px;
 }
 .nx-item{ position:relative; }
-
 .nx-link{
   color:var(--text-dim);
   font-weight:600;
@@ -125,8 +115,8 @@ a{ text-decoration:none !important; }
 }
 .nx-link:hover:after{ width:100%; }
 
-/* ================= DROPDOWN (ULTRA SLOW) ================= */
-/* Keep display:block; hide by opacity for long transition */
+/* ================= DROPDOWN (WORKING + ULTRA SLOW) ================= */
+/* IMPORTANT: must NOT be display:none if you want slow animation */
 .nx-drop{
   position:absolute;
   top:calc(100% + 10px);
@@ -138,7 +128,7 @@ a{ text-decoration:none !important; }
   box-shadow:0 12px 28px rgba(0,0,0,.12);
   padding:10px;
 
-  display:block;
+  display:block;              /* keeps it animatable */
   opacity:0;
   visibility:hidden;
   pointer-events:none;
@@ -160,7 +150,7 @@ a{ text-decoration:none !important; }
   color:var(--accent);
 }
 
-/* SHOW DROPDOWN ON DESKTOP */
+/* DESKTOP hover open */
 @media (min-width:1025px){
   .nx-item:hover>.nx-drop{
     opacity:1;
@@ -170,9 +160,8 @@ a{ text-decoration:none !important; }
   }
 }
 
-/* MOBILE MENU */
+/* MOBILE menu + dropdown */
 @media(max-width:1024px){
-
   .nx-toggle{ display:block; }
 
   .nx-menu{
@@ -186,10 +175,7 @@ a{ text-decoration:none !important; }
     box-shadow:0 12px 28px rgba(0,0,0,.12);
     gap:0;
   }
-
-  .nx-navbar.is-open .nx-menu{
-    display:flex;
-  }
+  .nx-navbar.is-open .nx-menu{ display:flex; }
 
   .nx-item{ width:100%; }
   .nx-link{ display:block; padding:12px 6px; }
@@ -235,7 +221,7 @@ a{ text-decoration:none !important; }
 }
 .form-wrap{
   max-width:900px;
-  margin:30px auto 0;
+  margin:40px auto 0;
   padding:20px;
   opacity:0;
   transform:translateY(30px);
@@ -253,7 +239,6 @@ a{ text-decoration:none !important; }
 .form-field:focus{ border-color:var(--accent); }
 textarea.form-field{ height:150px; }
 
-/* Submit Button */
 .btn-submit{
   display:block;
   width:260px;
@@ -267,24 +252,6 @@ textarea.form-field{ height:150px; }
   font-weight:800;
 }
 .btn-submit:hover{ background:var(--accent-2); }
-
-/* Optional image place (safe if missing) */
-.form-visual{
-  max-width:260px;
-  margin:24px auto 0;
-}
-.form-visual img{
-  width:100%;
-  height:auto;
-  border-radius:18px;
-  background:#fff;
-  padding:12px;
-  box-shadow:var(--shadow);
-  opacity:0;
-  transform:translateY(16px);
-  transition:opacity .7s ease, transform .7s ease;
-}
-.form-visual img.show{ opacity:1; transform:none; }
 
 /* ================= FOOTER ================= */
 .nx-footer{
@@ -309,7 +276,6 @@ textarea.form-field{ height:150px; }
 }
 .nx-foot-logo{ height:38px; width:auto; }
 
-/* FOOTER GRID */
 .nx-foot-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -322,10 +288,7 @@ textarea.form-field{ height:150px; }
 @media(max-width:540px){
   .nx-foot-grid{ grid-template-columns:1fr; }
 }
-.nx-foot-col h4{
-  color:var(--accent);
-  margin:0 0 10px;
-}
+.nx-foot-col h4{ color:var(--accent); margin:0 0 10px; }
 .nx-foot-col a{
   color:var(--text);
   padding:6px 0;
@@ -333,12 +296,8 @@ textarea.form-field{ height:150px; }
   opacity:.9;
   transition:.2s;
 }
-.nx-foot-col a:hover{
-  opacity:1;
-  transform:translateX(2px);
-}
+.nx-foot-col a:hover{ opacity:1; transform:translateX(2px); }
 
-/* FOOTER BOTTOM */
 .nx-foot-bottom{
   padding-top:16px;
   border-top:1px solid var(--line);
@@ -348,18 +307,16 @@ textarea.form-field{ height:150px; }
   font-size:13px;
 }
 
-/* reveal animation class */
+/* reveal animation */
 .show{opacity:1!important; transform:none!important;}
 </style>
 </head>
-
 <body>
 
 <!-- ========== NAVBAR ========== -->
 <header class="nx-navbar" id="nxHeader">
   <div class="nx-nav-inner">
 
-    <!-- LOGOS -->
     <a class="nx-brand" href="index.html">
       <img class="nx-logo" src="stoxgear-logo.jpg" alt="StoxGear">
       <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner">
@@ -367,10 +324,8 @@ textarea.form-field{ height:150px; }
 
     <div class="nx-grow"></div>
 
-    <!-- MENU -->
     <nav class="nx-menu" id="nxMenu">
 
-      <!-- WHY US -->
       <div class="nx-item">
         <a class="nx-link" href="#">Why Us</a>
         <div class="nx-drop">
@@ -384,7 +339,6 @@ textarea.form-field{ height:150px; }
         </div>
       </div>
 
-      <!-- EDUCATION -->
       <div class="nx-item">
         <a class="nx-link" href="#">Education</a>
         <div class="nx-drop">
@@ -402,7 +356,6 @@ textarea.form-field{ height:150px; }
         </div>
       </div>
 
-      <!-- OPEN ACCOUNT -->
       <div class="nx-item">
         <a class="nx-link" href="#">Open Account</a>
         <div class="nx-drop">
@@ -412,7 +365,6 @@ textarea.form-field{ height:150px; }
         </div>
       </div>
 
-      <!-- DOWNLOADS -->
       <div class="nx-item">
         <a class="nx-link" href="#">Downloads</a>
         <div class="nx-drop">
@@ -423,7 +375,6 @@ textarea.form-field{ height:150px; }
         </div>
       </div>
 
-      <!-- SUPPORT -->
       <div class="nx-item">
         <a class="nx-link" href="#">Support</a>
         <div class="nx-drop">
@@ -437,14 +388,12 @@ textarea.form-field{ height:150px; }
         </div>
       </div>
 
-      <!-- CONTACT -->
       <div class="nx-item">
         <a class="nx-link" href="Contact.html">Contact</a>
       </div>
 
     </nav>
 
-    <!-- CTA -->
     <button class="nx-cta">OPEN AN ACCOUNT</button>
     <button class="nx-toggle" id="nxToggle">☰</button>
 
@@ -452,14 +401,9 @@ textarea.form-field{ height:150px; }
 </header>
 
 <!-- ========== FORM CONTENT ========== -->
-<h1 class="form-title reveal" id="titleReveal">Investor Complaint</h1>
+<h1 class="form-title reveal">Investor Complaint</h1>
 
-<!-- Optional image placeholder (replace filename if you have it) -->
-<div class="form-visual">
-  <img src="investor-complaint-illustration.png" alt="Investor complaint illustration" id="complaintImg">
-</div>
-
-<div class="form-wrap reveal" id="formReveal">
+<div class="form-wrap reveal">
   <input type="text" class="form-field" placeholder="Code">
   <input type="text" class="form-field" placeholder="Name">
   <input type="email" class="form-field" placeholder="Email Address">
@@ -487,21 +431,18 @@ textarea.form-field{ height:150px; }
         <a href="BOARD of directors.html">Board / Management</a>
         <a href="Mission.html">Mission & Vision</a>
       </div>
-
       <div class="nx-foot-col">
         <h4>EDUCATION</h4>
         <a href="New to trading.html">New to Trading</a>
         <a href="Investorguid.html">Investor Guide</a>
         <a href="Glossary.html">Glossary</a>
       </div>
-
       <div class="nx-foot-col">
         <h4>ACCOUNT</h4>
         <a href="Rda.html">Roshan Digital Account</a>
         <a href="Acoocint opening.html">Open Digital Account</a>
         <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
       </div>
-
       <div class="nx-foot-col">
         <h4>CONTACT</h4>
         <a href="mailto:info@stoxgear.com.pk">info@stoxgear.com.pk</a>
@@ -512,33 +453,32 @@ textarea.form-field{ height:150px; }
 
     <div class="nx-foot-bottom">
       <span>© <script>document.write(new Date().getFullYear())</script> Stoxgear Securities (Private) Limited</span>
-      <span>
-        <a href="privacy.html">Privacy</a> ·
-        <a href="terms.html">Terms</a>
-      </span>
+      <span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></span>
     </div>
 
   </div>
 </footer>
 
-<!-- ========== SCRIPTS ========== -->
 <script>
-/* device class */
-(function(){
-  const isMobileUA = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-  document.body.classList.add(isMobileUA ? "mobile" : "desktop");
-})();
+/* ===== reveal animations ===== */
+const obs = new IntersectionObserver((entries)=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){
+      en.target.classList.add("show");
+      obs.unobserve(en.target);
+    }
+  });
+},{threshold:.2});
+document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
 
-/* mobile menu toggle */
+/* ===== mobile menu toggle ===== */
 const headerEl = document.getElementById("nxHeader");
 const toggleBtn = document.getElementById("nxToggle");
-toggleBtn?.addEventListener("click",()=>{
-  headerEl.classList.toggle("is-open");
-});
+toggleBtn?.addEventListener("click",()=> headerEl.classList.toggle("is-open"));
 
-/* mobile submenu open */
+/* ===== mobile submenu open ===== */
 document.querySelectorAll(".nx-item > .nx-link").forEach(link=>{
-  link.addEventListener("click",function(e){
+  link.addEventListener("click",(e)=>{
     const isMobile = window.matchMedia("(max-width:1024px)").matches;
     const drop = link.nextElementSibling;
     if(isMobile && drop && drop.classList.contains("nx-drop")){
@@ -553,32 +493,6 @@ document.addEventListener("click",(e)=>{
   if(!headerEl.contains(e.target)){
     document.querySelectorAll(".nx-item.open").forEach(x=>x.classList.remove("open"));
   }
-});
-
-/* reveal animations */
-const obs = new IntersectionObserver((entries)=>{
-  entries.forEach(en=>{
-    if(en.isIntersecting){
-      en.target.classList.add("show");
-    }
-  });
-},{threshold:.2});
-
-document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
-
-/* image reveal if exists */
-document.addEventListener("DOMContentLoaded",()=>{
-  const img = document.getElementById("complaintImg");
-  if(!img) return;
-  const io = new IntersectionObserver((ents)=>{
-    ents.forEach(x=>{
-      if(x.isIntersecting){
-        img.classList.add("show");
-        io.disconnect();
-      }
-    });
-  },{threshold:.25});
-  io.observe(img);
 });
 </script>
 
