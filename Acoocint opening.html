@@ -28,6 +28,7 @@ body{
   overflow-x:hidden;
 }
 
+/* PAGE */
 .page{
   max-width:900px;
   margin:60px auto;
@@ -35,8 +36,6 @@ body{
   text-align:center;
   animation:pageFade 1s ease forwards;
 }
-
-/* TITLE */
 .page h1{
   font-size:40px;
   color:var(--accent);
@@ -153,201 +152,61 @@ body.mobile .btn{
   font-size:18px;
   padding:14px 26px;
 }
-  /* ===== Dropdown ===== */
-.dropdown-content {
-    display: none;          /* Hidden by default */
-    position: absolute;
-    background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    overflow: hidden;
-    opacity: 0;             /* Start invisible */
-    transform: translateY(-10px); /* Start slightly above */
-    transition: opacity 0.89s ease, transform 0.89s ease; /* Smooth open 0.89s */
-    z-index: 1000;
-}
 
-.dropdown-content.show {
-    display: block;
-    opacity: 1;            /* Fade in */
-    transform: translateY(0); /* Slide down */
-}
-
-/* Optional: Hover effect for links */
-.dropdown-content a {
-    padding: 12px 16px;
-    display: block;
-    text-decoration: none;
-    color: #333;
-    transition: background 0.3s;
-}
-.dropdown-content a:hover {
-    background: #f0f0f0;
-}
-
-/* ===== Mobile Responsive ===== */
-@media (max-width: 768px) {
-    .dropdown button {
-        width: 100%;
-    }
-    .dropdown-content {
-        min-width: 100%;
-    }
-}
-/* ===== Dropdown ===== */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    overflow: hidden;
-    transition: all 0.89s ease;
-    opacity: 0;
-    transform: translateY(-10px);
-    z-index: 1000;
-}
-.dropdown-content.show {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* ===== Cards ===== */
-.card {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.8s ease;
-}
-.card.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* ===== Mobile Responsive ===== */
-@media (max-width: 768px) {
-    .dropdown button {
-        width: 100%;
-    }
-    .dropdown-content {
-        min-width: 100%;
-    }
-}
-/* ===== SLOW DROPDOWN (4s) ===== */
-.nx-drop {
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(20px);
-  transition:
-    opacity 4s cubic-bezier(.4,0,.2,1),
-    transform 4s cubic-bezier(.4,0,.2,1),
-    visibility 4s;
-  pointer-events: none;
-}
-
-/* Desktop hover */
-@media (min-width: 1025px) {
-  .nx-item:hover > .nx-drop {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-}
-
-/* Mobile click */
-@media (max-width: 1024px) {
-  .nx-drop {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transform: translateY(-6px);
-    transition:
-      max-height 4s ease,
-      opacity 4s ease,
-      transform 4s ease;
-  }
-
-  .nx-item.open > .nx-drop {
-    max-height: 600px;
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ===== CARD ANIMATION (ONLY IF EXISTS) ===== */
-.card, .doc-card {
-  opacity: 0;
-  transform: translateY(25px) scale(.97);
-  animation: cardFadeUp 0.7s ease forwards;
-}
-
-@keyframes cardFadeUp {
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-/* Mobile card fix */
-@media (max-width: 600px) {
-  .card, .doc-card {
-    animation: none;
-    opacity: 1;
-    transform: none;
-  }
-}
-/* ===== Dropdown (slow 4s) ===== */
-.nx-drop, .dropdown-content {
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(20px);
+/* ===== DROPDOWNS (Slow 4s) ===== */
+.dropdown-content, .nx-drop {
+  display: none;
+  position: absolute;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  overflow: hidden;
+  opacity:0;
+  transform:translateY(-10px);
   transition: opacity 4s ease, transform 4s ease, visibility 4s;
-  pointer-events: none;
+  z-index:1000;
+  pointer-events:none;
+}
+.dropdown-content.show, .nx-item.open > .nx-drop, .nx-item:hover > .nx-drop{
+  display:block;
+  opacity:1;
+  transform:translateY(0);
+  visibility:visible;
+  pointer-events:auto;
 }
 
-.nx-item:hover > .nx-drop,
-.dropdown-content.show {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-  pointer-events: auto;
+.dropdown-content a, .nx-drop a {
+  padding:12px 16px;
+  display:block;
+  text-decoration:none;
+  color:#333;
+  transition:background 0.3s;
+}
+.dropdown-content a:hover, .nx-drop a:hover{
+  background:#f0f0f0;
 }
 
-/* Dropdown links */
-.nx-drop a, .dropdown-content a {
-  display: block;
-  padding: 12px 16px;
-  text-decoration: none;
-  color: #333;
-}
-.nx-drop a:hover, .dropdown-content a:hover {
-  background: #f0f0f0;
-}
-
-/* Card animation */
+/* ===== CARDS ===== */
 .card, .doc-card {
-  opacity: 0;
-  transform: translateY(25px) scale(.97);
-  transition: all 0.8s ease;
+  opacity:0;
+  transform:translateY(25px) scale(.97);
+  transition:all 0.8s ease;
 }
-.card.show, .doc-card.show {
-  opacity: 1;
-  transform: translateY(0) scale(1);
+.card.show, .doc-card.show{
+  opacity:1;
+  transform:translateY(0) scale(1);
 }
 
-/* Mobile fixes */
+/* MOBILE RESPONSIVE */
 @media(max-width:768px){
-  .dropdown button, .nx-item > .nx-link {
-    width: 100%;
+  .dropdown button, .nx-item > .nx-link{
+    width:100%;
   }
-  .nx-drop, .dropdown-content {
-    min-width: 100%;
+  .dropdown-content, .nx-drop{
+    min-width:100%;
   }
 }
-
 </style>
 </head>
 
@@ -356,18 +215,12 @@ body.mobile .btn{
 <!-- ===== NAVBAR ===== -->
 <header class="nx-navbar" id="nxHeader">
   <div class="nx-nav-inner">
-
-    <!-- BRAND / LOGO -->
     <a class="nx-brand" href="index.html">
       <img class="nx-logo" src="stoxgear-logo.jpg" alt="Stoxgear">
       <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner">
     </a>
-
     <div class="nx-grow"></div>
-
     <nav class="nx-menu" id="nxMenu">
-
-      <!-- WHY US -->
       <div class="nx-item">
         <a class="nx-link" href="#">Why Us</a>
         <div class="nx-drop">
@@ -380,8 +233,6 @@ body.mobile .btn{
           <a href="Registered agents..html">Registered Agents</a>
         </div>
       </div>
-
-      <!-- EDUCATION -->
       <div class="nx-item">
         <a class="nx-link" href="#">Education</a>
         <div class="nx-drop">
@@ -398,8 +249,6 @@ body.mobile .btn{
           <a href="faqs.html">FAQs</a>
         </div>
       </div>
-
-      <!-- OPEN ACCOUNT -->
       <div class="nx-item">
         <a class="nx-link" href="#">Open Account</a>
         <div class="nx-drop">
@@ -408,8 +257,6 @@ body.mobile .btn{
           <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
         </div>
       </div>
-
-      <!-- DOWNLOADS -->
       <div class="nx-item">
         <a class="nx-link" href="#">Downloads</a>
         <div class="nx-drop">
@@ -419,8 +266,6 @@ body.mobile .btn{
           <a href="KYC poslicy.html">CDD / KYC Policy</a>
         </div>
       </div>
-
-      <!-- SUPPORT -->
       <div class="nx-item">
         <a class="nx-link" href="#">Support</a>
         <div class="nx-drop">
@@ -433,17 +278,12 @@ body.mobile .btn{
           <a href="Eservices By CDC.html">EServices by CDC</a>
         </div>
       </div>
-
-      <!-- CONTACT (NO DROPDOWN) -->
       <div class="nx-item">
         <a class="nx-link" href="Contact.html">Contact</a>
       </div>
-
     </nav>
-
     <button class="nx-cta">OPEN AN ACCOUNT</button>
     <button class="nx-toggle" id="nxToggle">☰</button>
-
   </div>
 </header>
 
@@ -457,12 +297,10 @@ body.mobile .btn{
 </header>
 
 <div class="page">
-
   <h1>ACCOUNT OPENING</h1>
   <h2>DOCUMENT REQUIREMENTS</h2>
 
   <div class="grid">
-
     <div>
       <p>• CNIC</p>
       <p>• Nominee CNIC</p>
@@ -470,7 +308,6 @@ body.mobile .btn{
       <p>• IBAN Number Bank Account (cheque picture)</p>
       <p>• Mother Maiden Name</p>
     </div>
-
     <div>
       <p>• Email</p>
       <p>• Source of Income / Salary Slip / Business Proof</p>
@@ -478,54 +315,50 @@ body.mobile .btn{
       <p>• Zakat Declaration</p>
       <p>• Summary Page of Tax Return</p>
     </div>
-
   </div>
+
+  <p class="note">
+    * Files must be below 400kb. Upload in JPEG or PNG only.
+  </p>
+
+  <a href="#" class="btn">Proceed to Open Digital Account</a>
+</div>
+
 <!-- ===== FOOTER ===== -->
 <footer class="nx-footer">
   <div class="nx-foot-wrap">
-
-    <!-- TOP BRAND -->
     <div class="nx-foot-top">
       <a class="nx-foot-brand" href="index.html">
         <img class="nx-foot-logo" src="stoxgear-logo.jpg" alt="">
         <img class="nx-foot-logo" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="">
       </a>
     </div>
-
-    <!-- GRID -->
     <div class="nx-foot-grid">
-
       <div class="nx-foot-col">
         <h4>WHY US</h4>
         <a href="about.html">About Us</a>
         <a href="BOARD of directors.html">Board / Management</a>
         <a href="Mission.html">Mission & Vision</a>
       </div>
-
       <div class="nx-foot-col">
         <h4>EDUCATION</h4>
         <a href="New to trading.html">New to Trading</a>
         <a href="Investorguid.html">Investor Guide</a>
         <a href="Glossary.html">Glossary</a>
       </div>
-
       <div class="nx-foot-col">
         <h4>ACCOUNT</h4>
         <a href="Rda.html">Roshan Digital Account</a>
         <a href="Acoocint opening.html">Open Digital Account</a>
         <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
       </div>
-
       <div class="nx-foot-col">
         <h4>CONTACT</h4>
         <a href="mailto:info@stoxgear.com.pk">info@stoxgear.com.pk</a>
         <a href="tel:0913168395">091-3168395</a>
         <a href="#">Karachi, Pakistan</a>
       </div>
-
     </div>
-
-    <!-- BOTTOM -->
     <div class="nx-foot-bottom">
       <span>© <script>document.write(new Date().getFullYear())</script> Stoxgear Securities (Private) Limited</span>
       <span>
@@ -533,11 +366,17 @@ body.mobile .btn{
         <a href="terms.html">Terms</a>
       </span>
     </div>
-
   </div>
 </footer>
 
 <script>
+/* ===== Mobile detection ===== */
+if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+  document.body.classList.add("mobile");
+} else {
+  document.body.classList.add("desktop");
+}
+
 /* ===== Mobile navbar toggle ===== */
 (function(){
   const toggle = document.getElementById('nxToggle');
@@ -584,207 +423,33 @@ body.mobile .btn{
   });
 })();
 
-/* ===== Copy-to-clipboard for cells with [data-copy] ===== */
-(function(){
-  const cells = document.querySelectorAll('[data-copy]');
-  if(!cells.length) return;
-
-  async function copyText(txt){
-    try {
-      await navigator.clipboard.writeText(txt);
-      return true;
-    } catch {
-      const ta = document.createElement('textarea');
-      ta.value = txt;
-      ta.style.position = 'fixed';
-      ta.style.opacity = '0';
-      document.body.appendChild(ta);
-      ta.focus(); ta.select();
-      let ok = false;
-      try { ok = document.execCommand('copy'); } catch {}
-      document.body.removeChild(ta);
-      return ok;
-    }
-  }
-
-  function setCopied(el){
-    el.classList.add('copied');
-    setTimeout(()=>el.classList.remove('copied'), 1200);
-  }
-
-  cells.forEach(td=>{
-    td.setAttribute('tabindex','0');
-    td.setAttribute('aria-label','Copy to clipboard');
-
-    const handle = async ()=>{
-      const txt = td.textContent.trim();
-      const ok = await copyText(txt);
-      if(ok) setCopied(td);
-    };
-
-    td.addEventListener('click', handle);
-    td.addEventListener('keydown', (e)=>{
-      if(e.key === 'Enter' || e.key === ' '){
-        e.preventDefault();
-        handle();
-      }
-    });
-  });
-})();
-// ===== Dropdown =====
-document.querySelectorAll('.dropdown button').forEach(btn => {
-    const content = btn.nextElementSibling;
-    btn.addEventListener('click', () => {
-        if(content) content.classList.toggle('show');
-    });
-});
-
-// Close dropdown if clicked outside
-window.addEventListener('click', e => {
-    document.querySelectorAll('.dropdown-content').forEach(drop => {
-        if(!drop.contains(e.target) && !drop.previousElementSibling.contains(e.target)){
-            drop.classList.remove('show');
-        }
-    });
-});
-
-// ===== Card Animation =====
-function animateCards() {
-    const cards = document.querySelectorAll('.card');
-    cards.forEach((card, i) => {
-        setTimeout(() => card.classList.add('show'), i*150);
-    });
-}
-document.addEventListener('DOMContentLoaded', animateCards);
-
-// ===== Mobile Detection =====
-function isMobile() {
-    return /Mobi|Android|iPhone/i.test(navigator.userAgent);
-}
-</script>
-  <p class="note">
-    * Files must be below 400kb. Upload in JPEG or PNG only.
-  </p>
-
-  <a href="#" class="btn">Proceed to Open Digital Account</a>
-
-</div>
-
-<script>
-/* DEVICE CHECK */
-if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-  document.body.classList.add("mobile");
-} else {
-  document.body.classList.add("desktop");
-}
-  // ===== Dropdown =====
-document.querySelectorAll('.dropdown button').forEach(btn => {
-    const content = btn.nextElementSibling;
-    btn.addEventListener('click', () => {
-        if(content) content.classList.toggle('show');
-    });
-});
-
-// Close dropdown if clicked outside
-window.addEventListener('click', e => {
-    document.querySelectorAll('.dropdown-content').forEach(drop => {
-        if(!drop.contains(e.target) && !drop.previousElementSibling.contains(e.target)){
-            drop.classList.remove('show');
-        }
-    });
-});
-
-// ===== Card Animation =====
-function animateCards() {
-    const cards = document.querySelectorAll('.card');
-    cards.forEach((card, i) => {
-        setTimeout(() => card.classList.add('show'), i*150);
-    });
-}
-document.addEventListener('DOMContentLoaded', animateCards);
-
-// ===== Mobile Detection =====
-function isMobile() {
-    return /Mobi|Android|iPhone/i.test(navigator.userAgent);
-}
-// ===== Dropdown Toggle =====
-document.querySelectorAll('.dropdown button').forEach(btn => {
-    const content = btn.nextElementSibling;
-    btn.addEventListener('click', () => {
-        if(content) content.classList.toggle('show');
-    });
-});
-
-// Close dropdown if clicked outside
-window.addEventListener('click', e => {
-    document.querySelectorAll('.dropdown-content').forEach(drop => {
-        if(!drop.contains(e.target) && !drop.previousElementSibling.contains(e.target)){
-            drop.classList.remove('show');
-        }
-    });
-});
-/* ===== Mobile dropdown toggle ===== */
-document.querySelectorAll('.nx-item > .nx-link').forEach(link => {
-  link.addEventListener('click', e => {
-    const isMobile = window.matchMedia('(max-width:1024px)').matches;
-    const drop = link.nextElementSibling;
-    if (isMobile && drop && drop.classList.contains('nx-drop')) {
-      e.preventDefault();
-      link.parentElement.classList.toggle('open');
-    }
-  });
-});
-
-/* ===== Card Animation (staggered) ===== */
-function animateCards() {
-  const cards = document.querySelectorAll('.card');
-  cards.forEach((card, i) => {
-    setTimeout(() => card.classList.add('show'), i * 150);
-  });
-}
-document.addEventListener('DOMContentLoaded', animateCards);
-
-</script>
-// ===== Mobile dropdown toggle =====
-document.querySelectorAll('.nx-item > .nx-link').forEach(link => {
-  link.addEventListener('click', e => {
-    const isMobile = window.matchMedia('(max-width:1024px)').matches;
-    const drop = link.nextElementSibling;
-    if (isMobile && drop && drop.classList.contains('nx-drop')) {
-      e.preventDefault();
-      link.parentElement.classList.toggle('open');
-    }
-  });
-});
-
-// ===== Dropdown buttons (optional .dropdown) =====
+/* ===== Dropdown button toggle (optional) ===== */
 document.querySelectorAll('.dropdown button').forEach(btn => {
   const content = btn.nextElementSibling;
   btn.addEventListener('click', () => {
-    if (content) content.classList.toggle('show');
+    if(content) content.classList.toggle('show');
   });
 });
 
-// Close dropdowns when clicking outside
+// Close dropdowns if clicking outside
 window.addEventListener('click', e => {
-  document.querySelectorAll('.nx-drop, .dropdown-content').forEach(drop => {
-    if (!drop.contains(e.target) && !drop.previousElementSibling.contains(e.target)) {
+  document.querySelectorAll('.dropdown-content, .nx-drop').forEach(drop => {
+    if(!drop.contains(e.target) && !drop.previousElementSibling.contains(e.target)){
       drop.classList.remove('show');
       drop.parentElement.classList.remove('open');
     }
   });
 });
 
-// ===== Card animation (staggered) =====
+/* ===== Card Animation ===== */
 function animateCards() {
   const cards = document.querySelectorAll('.card, .doc-card');
-  cards.forEach((card, i) => {
-    setTimeout(() => card.classList.add('show'), i * 150);
+  cards.forEach((card, i)=>{
+    setTimeout(()=>card.classList.add('show'), i*150);
   });
 }
 document.addEventListener('DOMContentLoaded', animateCards);
+</script>
 
 </body>
 </html>
-
-
