@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -452,6 +452,191 @@ tbody tr:hover { background: rgba(201,166,70,.10); }
   flex-wrap:wrap;
   color:var(--text-dim);
 }
+/* ==============================
+   SLOW DROPDOWN (0.89s)
+============================== */
+
+.nx-drop{
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+
+  transition:
+    opacity 0.89s cubic-bezier(.4,0,.2,1),
+    transform 0.89s cubic-bezier(.4,0,.2,1),
+    visibility 0.89s;
+
+  pointer-events: none;
+}
+
+/* DESKTOP (HOVER) */
+@media (min-width: 1025px){
+  .nx-item:hover > .nx-drop{
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
+
+/* MOBILE (CLICK) */
+@media (max-width: 1024px){
+  .nx-drop{
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-6px);
+
+    transition:
+      max-height 0.89s ease,
+      opacity 0.89s ease,
+      transform 0.89s ease;
+  }
+
+  .nx-item.open > .nx-drop{
+    max-height: 600px;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==============================
+   CARD ANIMATION (ONLY IF EXISTS)
+============================== */
+
+.card,
+.doc-card{
+  opacity: 0;
+  transform: translateY(25px) scale(.97);
+  animation: cardFadeUp 0.7s ease forwards;
+}
+
+@keyframes cardFadeUp{
+  to{
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* MOBILE CARD FIX */
+@media (max-width: 600px){
+  .card,
+  .doc-card{
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+/* ===== DROPDOWN ANIMATION (0.89s) ===== */
+.nx-drop{
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+
+  transition:
+    opacity 0.89s cubic-bezier(.4,0,.2,1),
+    transform 0.89s cubic-bezier(.4,0,.2,1),
+    visibility 0.89s;
+
+  pointer-events: none;
+}
+
+/* DESKTOP HOVER */
+@media (min-width:1025px){
+  .nx-item:hover > .nx-drop{
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
+
+/* MOBILE CLICK */
+@media (max-width:1024px){
+  .nx-drop{
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-6px);
+
+    transition:
+      max-height 0.89s ease,
+      opacity 0.89s ease,
+      transform 0.89s ease;
+  }
+
+  .nx-item.open > .nx-drop{
+    max-height: 600px;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== CARD ANIMATION (ONLY IF EXISTS) ===== */
+.card,
+.doc-card{
+  opacity: 0;
+  transform: translateY(25px) scale(.97);
+  animation: cardFadeUp 0.7s ease forwards;
+}
+
+@keyframes cardFadeUp{
+  to{
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* MOBILE CARD FIX */
+@media (max-width:600px){
+  .card,
+  .doc-card{
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+/* ===== Dropdown ===== */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    overflow: hidden;
+    transition: all 0.89s ease;
+    opacity: 0;
+    transform: translateY(-10px);
+    z-index: 1000;
+}
+.dropdown-content.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== Cards ===== */
+.card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease;
+}
+.card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== Mobile Responsive ===== */
+@media (max-width: 768px) {
+    .dropdown button {
+        width: 100%;
+    }
+    .dropdown-content {
+        min-width: 100%;
+    }
+}
+
 </style>
 </head>
 
@@ -772,5 +957,37 @@ tbody tr:hover { background: rgba(201,166,70,.10); }
   });
 })();
 </script>
+// ===== Dropdown =====
+document.querySelectorAll('.dropdown button').forEach(btn => {
+    const content = btn.nextElementSibling;
+    btn.addEventListener('click', () => {
+        if(content) content.classList.toggle('show');
+    });
+});
+
+// Close dropdown if clicked outside
+window.addEventListener('click', e => {
+    document.querySelectorAll('.dropdown-content').forEach(drop => {
+        if(!drop.contains(e.target) && !drop.previousElementSibling.contains(e.target)){
+            drop.classList.remove('show');
+        }
+    });
+});
+
+// ===== Card Animation =====
+function animateCards() {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach((card, i) => {
+        setTimeout(() => card.classList.add('show'), i*150);
+    });
+}
+document.addEventListener('DOMContentLoaded', animateCards);
+
+// ===== Mobile Detection =====
+function isMobile() {
+    return /Mobi|Android|iPhone/i.test(navigator.userAgent);
+}
+
 </body>
 </html>
+
