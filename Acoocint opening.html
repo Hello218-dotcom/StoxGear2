@@ -153,10 +153,196 @@ body.mobile .btn{
   font-size:18px;
   padding:14px 26px;
 }
+  /* ===== Dropdown ===== */
+.dropdown-content {
+    display: none;          /* Hidden by default */
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    overflow: hidden;
+    opacity: 0;             /* Start invisible */
+    transform: translateY(-10px); /* Start slightly above */
+    transition: opacity 0.89s ease, transform 0.89s ease; /* Smooth open 0.89s */
+    z-index: 1000;
+}
+
+.dropdown-content.show {
+    display: block;
+    opacity: 1;            /* Fade in */
+    transform: translateY(0); /* Slide down */
+}
+
+/* Optional: Hover effect for links */
+.dropdown-content a {
+    padding: 12px 16px;
+    display: block;
+    text-decoration: none;
+    color: #333;
+    transition: background 0.3s;
+}
+.dropdown-content a:hover {
+    background: #f0f0f0;
+}
+
+/* ===== Mobile Responsive ===== */
+@media (max-width: 768px) {
+    .dropdown button {
+        width: 100%;
+    }
+    .dropdown-content {
+        min-width: 100%;
+    }
+}
+/* ===== Dropdown ===== */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    overflow: hidden;
+    transition: all 0.89s ease;
+    opacity: 0;
+    transform: translateY(-10px);
+    z-index: 1000;
+}
+.dropdown-content.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== Cards ===== */
+.card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease;
+}
+.card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== Mobile Responsive ===== */
+@media (max-width: 768px) {
+    .dropdown button {
+        width: 100%;
+    }
+    .dropdown-content {
+        min-width: 100%;
+    }
+}
+
 </style>
 </head>
 
 <body>
+
+<!-- ===== NAVBAR ===== -->
+<header class="nx-navbar" id="nxHeader">
+  <div class="nx-nav-inner">
+
+    <!-- BRAND / LOGO -->
+    <a class="nx-brand" href="index.html">
+      <img class="nx-logo" src="stoxgear-logo.jpg" alt="Stoxgear">
+      <img class="nx-logo2" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="Partner">
+    </a>
+
+    <div class="nx-grow"></div>
+
+    <nav class="nx-menu" id="nxMenu">
+
+      <!-- WHY US -->
+      <div class="nx-item">
+        <a class="nx-link" href="#">Why Us</a>
+        <div class="nx-drop">
+          <a href="about.html">About Us</a>
+          <a href="BOARD of directors.html">Board / Management</a>
+          <a href="Mission.html">Mission & Vision</a>
+          <a href="associated companies.html">Associated Companies</a>
+          <a href="Ncb auditor details .html">Auditors / Legal Advisors</a>
+          <a href="services.html">Services</a>
+          <a href="Registered agents..html">Registered Agents</a>
+        </div>
+      </div>
+
+      <!-- EDUCATION -->
+      <div class="nx-item">
+        <a class="nx-link" href="#">Education</a>
+        <div class="nx-drop">
+          <a href="New to trading.html">New to Trading</a>
+          <a href="Investorguid.html">Investor Guide</a>
+          <a href="Glossary.html">Glossary</a>
+          <a href="psx-rule-book.html">PSX Rule Book</a>
+          <a href="common-terms-share-market.html">Common Terms of Share Market</a>
+          <a href="online-order-execution-flow.html">Order Execution Flow</a>
+          <a href="order-settlement-flow.html">Order Settlement Flow</a>
+          <a href="arbitration-procedure.html">Arbitration Procedure</a>
+          <a href="risk-disclosure-document.html">Risk Disclosure Document</a>
+          <a href="procedure-cancel-pending-orders.html">Cancel Pending Orders</a>
+          <a href="faqs.html">FAQs</a>
+        </div>
+      </div>
+
+      <!-- OPEN ACCOUNT -->
+      <div class="nx-item">
+        <a class="nx-link" href="#">Open Account</a>
+        <div class="nx-drop">
+          <a href="Rda.html">Roshan Digital Account</a>
+          <a href="Acoocint opening.html">Open Digital Account</a>
+          <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
+        </div>
+      </div>
+
+      <!-- DOWNLOADS -->
+      <div class="nx-item">
+        <a class="nx-link" href="#">Downloads</a>
+        <div class="nx-drop">
+          <a href="Forms.html">Forms</a>
+          <a href="software.html">Software</a>
+          <a href="Annaual half yearly.html">Financial Statements</a>
+          <a href="KYC poslicy.html">CDD / KYC Policy</a>
+        </div>
+      </div>
+
+      <!-- SUPPORT -->
+      <div class="nx-item">
+        <a class="nx-link" href="#">Support</a>
+        <div class="nx-drop">
+          <a href="investor complaint.html">Investor Complaint</a>        
+          <a href="Pending investor complaun.html">Pending Complaints</a>
+          <a href="Penal action.html">Penal Action</a>
+          <a href="Secp complaint.html">SECP Complaint</a>
+          <a href="psx complaint.html">PSX Complaint</a>
+          <a href="UIs of NICCPL.html">UIS Services</a>
+          <a href="Eservices By CDC.html">EServices by CDC</a>
+        </div>
+      </div>
+
+      <!-- CONTACT (NO DROPDOWN) -->
+      <div class="nx-item">
+        <a class="nx-link" href="Contact.html">Contact</a>
+      </div>
+
+    </nav>
+
+    <button class="nx-cta">OPEN AN ACCOUNT</button>
+    <button class="nx-toggle" id="nxToggle">☰</button>
+
+  </div>
+</header>
+
+<!-- ===== PAGE HERO ===== -->
+<header class="page-hero">
+  <h1>Manage Funds</h1>
+  <p>
+    Deposit funds to your StoxGear trading account through online transfer or cheque deposit,
+    and share proof via email for swift processing.
+  </p>
+</header>
 
 <div class="page">
 
@@ -182,7 +368,188 @@ body.mobile .btn{
     </div>
 
   </div>
+<!-- ===== FOOTER ===== -->
+<footer class="nx-footer">
+  <div class="nx-foot-wrap">
 
+    <!-- TOP BRAND -->
+    <div class="nx-foot-top">
+      <a class="nx-foot-brand" href="index.html">
+        <img class="nx-foot-logo" src="stoxgear-logo.jpg" alt="">
+        <img class="nx-foot-logo" src="WhatsApp Image 2025-10-18 at 10.34.53_ed0e28f6.jpg" alt="">
+      </a>
+    </div>
+
+    <!-- GRID -->
+    <div class="nx-foot-grid">
+
+      <div class="nx-foot-col">
+        <h4>WHY US</h4>
+        <a href="about.html">About Us</a>
+        <a href="BOARD of directors.html">Board / Management</a>
+        <a href="Mission.html">Mission & Vision</a>
+      </div>
+
+      <div class="nx-foot-col">
+        <h4>EDUCATION</h4>
+        <a href="New to trading.html">New to Trading</a>
+        <a href="Investorguid.html">Investor Guide</a>
+        <a href="Glossary.html">Glossary</a>
+      </div>
+
+      <div class="nx-foot-col">
+        <h4>ACCOUNT</h4>
+        <a href="Rda.html">Roshan Digital Account</a>
+        <a href="Acoocint opening.html">Open Digital Account</a>
+        <a href="DMANAGE FUDNDS.HTML">Manage Funds</a>
+      </div>
+
+      <div class="nx-foot-col">
+        <h4>CONTACT</h4>
+        <a href="mailto:info@stoxgear.com.pk">info@stoxgear.com.pk</a>
+        <a href="tel:0913168395">091-3168395</a>
+        <a href="#">Karachi, Pakistan</a>
+      </div>
+
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="nx-foot-bottom">
+      <span>© <script>document.write(new Date().getFullYear())</script> Stoxgear Securities (Private) Limited</span>
+      <span>
+        <a href="privacy.html">Privacy</a> ·
+        <a href="terms.html">Terms</a>
+      </span>
+    </div>
+
+  </div>
+</footer>
+
+<script>
+/* ===== Mobile navbar toggle ===== */
+(function(){
+  const toggle = document.getElementById('nxToggle');
+  const menu   = document.getElementById('nxMenu');
+
+  function closeMenu(){
+    if(!menu) return;
+    menu.style.display = 'none';
+    toggle?.setAttribute('aria-expanded','false');
+    document.querySelectorAll('.nx-item.open').forEach(n => n.classList.remove('open'));
+  }
+
+  toggle?.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    if(!menu) return;
+    const open = getComputedStyle(menu).display !== 'block';
+    menu.style.display = open ? 'block' : 'none';
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+
+  document.querySelectorAll('.nx-item > .nx-link').forEach(link=>{
+    link.addEventListener('click', (e)=>{
+      const isMobile = window.matchMedia('(max-width:1024px)').matches;
+      const drop = link.nextElementSibling;
+      if(isMobile && drop && drop.classList.contains('nx-drop')){
+        e.preventDefault();
+        link.parentElement.classList.toggle('open');
+      }
+    });
+  });
+
+  document.addEventListener('click', (e)=>{
+    const isMobile = window.matchMedia('(max-width:1024px)').matches;
+    const nav = document.querySelector('.nx-navbar');
+    if(isMobile && nav && !nav.contains(e.target)){
+      closeMenu();
+    }
+  });
+
+  window.addEventListener('resize', ()=>{
+    if(window.innerWidth > 1024 && menu){
+      menu.style.display = '';
+    }
+  });
+})();
+
+/* ===== Copy-to-clipboard for cells with [data-copy] ===== */
+(function(){
+  const cells = document.querySelectorAll('[data-copy]');
+  if(!cells.length) return;
+
+  async function copyText(txt){
+    try {
+      await navigator.clipboard.writeText(txt);
+      return true;
+    } catch {
+      const ta = document.createElement('textarea');
+      ta.value = txt;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.focus(); ta.select();
+      let ok = false;
+      try { ok = document.execCommand('copy'); } catch {}
+      document.body.removeChild(ta);
+      return ok;
+    }
+  }
+
+  function setCopied(el){
+    el.classList.add('copied');
+    setTimeout(()=>el.classList.remove('copied'), 1200);
+  }
+
+  cells.forEach(td=>{
+    td.setAttribute('tabindex','0');
+    td.setAttribute('aria-label','Copy to clipboard');
+
+    const handle = async ()=>{
+      const txt = td.textContent.trim();
+      const ok = await copyText(txt);
+      if(ok) setCopied(td);
+    };
+
+    td.addEventListener('click', handle);
+    td.addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        handle();
+      }
+    });
+  });
+})();
+// ===== Dropdown =====
+document.querySelectorAll('.dropdown button').forEach(btn => {
+    const content = btn.nextElementSibling;
+    btn.addEventListener('click', () => {
+        if(content) content.classList.toggle('show');
+    });
+});
+
+// Close dropdown if clicked outside
+window.addEventListener('click', e => {
+    document.querySelectorAll('.dropdown-content').forEach(drop => {
+        if(!drop.contains(e.target) && !drop.previousElementSibling.contains(e.target)){
+            drop.classList.remove('show');
+        }
+    });
+});
+
+// ===== Card Animation =====
+function animateCards() {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach((card, i) => {
+        setTimeout(() => card.classList.add('show'), i*150);
+    });
+}
+document.addEventListener('DOMContentLoaded', animateCards);
+
+// ===== Mobile Detection =====
+function isMobile() {
+    return /Mobi|Android|iPhone/i.test(navigator.userAgent);
+}
+</script>
   <p class="note">
     * Files must be below 400kb. Upload in JPEG or PNG only.
   </p>
@@ -198,7 +565,55 @@ if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
 } else {
   document.body.classList.add("desktop");
 }
+  // ===== Dropdown =====
+document.querySelectorAll('.dropdown button').forEach(btn => {
+    const content = btn.nextElementSibling;
+    btn.addEventListener('click', () => {
+        if(content) content.classList.toggle('show');
+    });
+});
+
+// Close dropdown if clicked outside
+window.addEventListener('click', e => {
+    document.querySelectorAll('.dropdown-content').forEach(drop => {
+        if(!drop.contains(e.target) && !drop.previousElementSibling.contains(e.target)){
+            drop.classList.remove('show');
+        }
+    });
+});
+
+// ===== Card Animation =====
+function animateCards() {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach((card, i) => {
+        setTimeout(() => card.classList.add('show'), i*150);
+    });
+}
+document.addEventListener('DOMContentLoaded', animateCards);
+
+// ===== Mobile Detection =====
+function isMobile() {
+    return /Mobi|Android|iPhone/i.test(navigator.userAgent);
+}
+// ===== Dropdown Toggle =====
+document.querySelectorAll('.dropdown button').forEach(btn => {
+    const content = btn.nextElementSibling;
+    btn.addEventListener('click', () => {
+        if(content) content.classList.toggle('show');
+    });
+});
+
+// Close dropdown if clicked outside
+window.addEventListener('click', e => {
+    document.querySelectorAll('.dropdown-content').forEach(drop => {
+        if(!drop.contains(e.target) && !drop.previousElementSibling.contains(e.target)){
+            drop.classList.remove('show');
+        }
+    });
+});
+
 </script>
 
 </body>
 </html>
+
