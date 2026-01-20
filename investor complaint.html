@@ -13,43 +13,68 @@
   --bg:#ffffff;
   --text:#0f1220;
   --text-dim:#5e6676;
-  --accent:#c9a646;      
+  --accent:#c9a646;
   --accent-2:#b38b2e;
   --line:#e7e9ee;
   --radius:18px;
   --shadow:0 10px 28px rgba(0,0,0,.08);
+
+  /* ✅ ULTRA SLOW DROPDOWN (2–3 minutes) */
+  --nxDropDuration:150s; /* 120s=2min | 150s=2.5min | 180s=3min */
 }
 
-/* GLOBAL */
+*{box-sizing:border-box}
 body{
   margin:0;
   background:#fff;
   font-family:Inter,sans-serif;
   color:var(--text);
 }
-a{ text-decoration:none!important; }
+a{ text-decoration:none !important; }
 
-/* ================= NAVBAR (FULL) ================= */
+/* ✅ Remove underline everywhere (navbar + footer + hover) */
+.nx-link,
+.nx-drop a,
+.nx-footer a,
+.nx-foot-col a,
+.nx-foot-brand,
+.nx-foot-bottom a{
+  text-decoration:none !important;
+}
+.nx-link:hover,
+.nx-drop a:hover,
+.nx-foot-col a:hover,
+.nx-foot-bottom a:hover{
+  text-decoration:none !important;
+}
+
+/* ================= NAVBAR ================= */
 .nx-navbar{
-  position:sticky; top:0; z-index:1000;
+  position:sticky;
+  top:0;
+  z-index:1000;
   background:#fff;
   border-bottom:1px solid var(--line);
   box-shadow:0 6px 18px rgba(0,0,0,.06);
 }
 .nx-nav-inner{
-  max-width:1200px; margin:0 auto;
+  max-width:1200px;
+  margin:0 auto;
   padding:14px 24px;
-  display:flex; align-items:center; gap:16px;
+  display:flex;
+  align-items:center;
+  gap:16px;
 }
-
 .nx-brand{
-  display:flex; align-items:center; gap:10px;
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 .nx-logo, .nx-logo2{
-  height:38px; width:auto;
+  height:38px;
+  width:auto;
 }
 .nx-logo2{ margin-left:10px; }
-
 .nx-grow{ flex:1; }
 
 .nx-cta{
@@ -60,7 +85,9 @@ a{ text-decoration:none!important; }
   padding:10px 22px;
   border-radius:999px;
   cursor:pointer;
+  transition:.25s;
 }
+.nx-cta:hover{ background:var(--accent-2); }
 
 /* HAMBURGER */
 .nx-toggle{
@@ -98,7 +125,8 @@ a{ text-decoration:none!important; }
 }
 .nx-link:hover:after{ width:100%; }
 
-/* DROPDOWN */
+/* ================= DROPDOWN (ULTRA SLOW) ================= */
+/* Keep display:block; hide by opacity for long transition */
 .nx-drop{
   position:absolute;
   top:calc(100% + 10px);
@@ -109,7 +137,17 @@ a{ text-decoration:none!important; }
   border-radius:var(--radius);
   box-shadow:0 12px 28px rgba(0,0,0,.12);
   padding:10px;
-  display:none;
+
+  display:block;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transform:translateY(18px);
+
+  transition:
+    opacity var(--nxDropDuration) linear,
+    transform var(--nxDropDuration) linear,
+    visibility var(--nxDropDuration) linear;
 }
 .nx-drop a{
   display:block;
@@ -125,7 +163,10 @@ a{ text-decoration:none!important; }
 /* SHOW DROPDOWN ON DESKTOP */
 @media (min-width:1025px){
   .nx-item:hover>.nx-drop{
-    display:block;
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+    transform:translateY(0);
   }
 }
 
@@ -143,6 +184,7 @@ a{ text-decoration:none!important; }
     flex-direction:column;
     padding:10px 12px;
     box-shadow:0 12px 28px rgba(0,0,0,.12);
+    gap:0;
   }
 
   .nx-navbar.is-open .nx-menu{
@@ -150,7 +192,7 @@ a{ text-decoration:none!important; }
   }
 
   .nx-item{ width:100%; }
-  .nx-link{ padding:12px 6px; }
+  .nx-link{ display:block; padding:12px 6px; }
 
   .nx-drop{
     position:static;
@@ -158,14 +200,29 @@ a{ text-decoration:none!important; }
     border:none;
     box-shadow:none;
     padding:0;
-    display:none;
+
+    max-height:0;
+    overflow:hidden;
+    opacity:0;
+    visibility:visible;
+    pointer-events:none;
+    transform:translateY(-6px);
+
+    transition:
+      max-height var(--nxDropDuration) linear,
+      opacity var(--nxDropDuration) linear,
+      transform var(--nxDropDuration) linear;
   }
 
   .nx-item.open>.nx-drop{
-    display:block;
+    max-height:2200px;
+    opacity:1;
+    pointer-events:auto;
+    transform:translateY(0);
   }
 }
 
+/* ================= FORM CONTENT ================= */
 .form-title{
   text-align:center;
   font-size:46px;
@@ -178,7 +235,7 @@ a{ text-decoration:none!important; }
 }
 .form-wrap{
   max-width:900px;
-  margin:40px auto 0;
+  margin:30px auto 0;
   padding:20px;
   opacity:0;
   transform:translateY(30px);
@@ -191,10 +248,9 @@ a{ text-decoration:none!important; }
   font-size:17px;
   border-radius:var(--radius);
   border:2px solid var(--line);
+  outline:none;
 }
-.form-field:focus{
-  border-color:var(--accent);
-}
+.form-field:focus{ border-color:var(--accent); }
 textarea.form-field{ height:150px; }
 
 /* Submit Button */
@@ -208,7 +264,27 @@ textarea.form-field{ height:150px; }
   border-radius:var(--radius);
   font-size:20px;
   cursor:pointer;
+  font-weight:800;
 }
+.btn-submit:hover{ background:var(--accent-2); }
+
+/* Optional image place (safe if missing) */
+.form-visual{
+  max-width:260px;
+  margin:24px auto 0;
+}
+.form-visual img{
+  width:100%;
+  height:auto;
+  border-radius:18px;
+  background:#fff;
+  padding:12px;
+  box-shadow:var(--shadow);
+  opacity:0;
+  transform:translateY(16px);
+  transition:opacity .7s ease, transform .7s ease;
+}
+.form-visual img.show{ opacity:1; transform:none; }
 
 /* ================= FOOTER ================= */
 .nx-footer{
@@ -221,7 +297,6 @@ textarea.form-field{ height:150px; }
   max-width:1200px; margin:auto;
   padding:48px 20px 30px;
 }
-
 .nx-foot-top{
   display:flex; align-items:center;
   gap:16px;
@@ -230,10 +305,9 @@ textarea.form-field{ height:150px; }
 }
 .nx-foot-brand{
   display:flex; align-items:center; gap:12px;
+  color:var(--text);
 }
-.nx-foot-logo{
-  height:38px; width:auto;
-}
+.nx-foot-logo{ height:38px; width:auto; }
 
 /* FOOTER GRID */
 .nx-foot-grid{
@@ -248,16 +322,16 @@ textarea.form-field{ height:150px; }
 @media(max-width:540px){
   .nx-foot-grid{ grid-template-columns:1fr; }
 }
-
 .nx-foot-col h4{
   color:var(--accent);
-  margin-bottom:10px;
+  margin:0 0 10px;
 }
 .nx-foot-col a{
   color:var(--text);
   padding:6px 0;
   display:block;
   opacity:.9;
+  transition:.2s;
 }
 .nx-foot-col a:hover{
   opacity:1;
@@ -270,13 +344,15 @@ textarea.form-field{ height:150px; }
   border-top:1px solid var(--line);
   display:flex;
   justify-content:space-between;
+  flex-wrap:wrap;
   font-size:13px;
 }
 
-/* reveal animation */
+/* reveal animation class */
 .show{opacity:1!important; transform:none!important;}
 </style>
 </head>
+
 <body>
 
 <!-- ========== NAVBAR ========== -->
@@ -375,11 +451,15 @@ textarea.form-field{ height:150px; }
   </div>
 </header>
 
-
 <!-- ========== FORM CONTENT ========== -->
-<h1 class="form-title reveal">Investor Complaint</h1>
+<h1 class="form-title reveal" id="titleReveal">Investor Complaint</h1>
 
-<div class="form-wrap reveal">
+<!-- Optional image placeholder (replace filename if you have it) -->
+<div class="form-visual">
+  <img src="investor-complaint-illustration.png" alt="Investor complaint illustration" id="complaintImg">
+</div>
+
+<div class="form-wrap reveal" id="formReveal">
   <input type="text" class="form-field" placeholder="Code">
   <input type="text" class="form-field" placeholder="Name">
   <input type="email" class="form-field" placeholder="Email Address">
@@ -388,7 +468,6 @@ textarea.form-field{ height:150px; }
 
   <button class="btn-submit">Submit</button>
 </div>
-
 
 <!-- ========== FOOTER ========== -->
 <footer class="nx-footer">
@@ -427,14 +506,14 @@ textarea.form-field{ height:150px; }
         <h4>CONTACT</h4>
         <a href="mailto:info@stoxgear.com.pk">info@stoxgear.com.pk</a>
         <a href="tel:0913168395">091-3168395</a>
-        <a>Karachi, Pakistan</a>
+        <a href="#">Karachi, Pakistan</a>
       </div>
     </div>
 
     <div class="nx-foot-bottom">
       <span>© <script>document.write(new Date().getFullYear())</script> Stoxgear Securities (Private) Limited</span>
       <span>
-        <a href="privacy.html">Privacy</a> · 
+        <a href="privacy.html">Privacy</a> ·
         <a href="terms.html">Terms</a>
       </span>
     </div>
@@ -442,24 +521,22 @@ textarea.form-field{ height:150px; }
   </div>
 </footer>
 
-
 <!-- ========== SCRIPTS ========== -->
 <script>
-// reveal animations
-const obs = new IntersectionObserver((e)=>{
-  e.forEach(b=>{ if(b.isIntersecting){ b.target.classList.add("show"); }});
-},{threshold:.2});
-document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
+/* device class */
+(function(){
+  const isMobileUA = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  document.body.classList.add(isMobileUA ? "mobile" : "desktop");
+})();
 
-// mobile menu toggle
+/* mobile menu toggle */
 const headerEl = document.getElementById("nxHeader");
 const toggleBtn = document.getElementById("nxToggle");
-
-toggleBtn.addEventListener("click",()=>{
+toggleBtn?.addEventListener("click",()=>{
   headerEl.classList.toggle("is-open");
 });
 
-// mobile submenu open
+/* mobile submenu open */
 document.querySelectorAll(".nx-item > .nx-link").forEach(link=>{
   link.addEventListener("click",function(e){
     const isMobile = window.matchMedia("(max-width:1024px)").matches;
@@ -469,6 +546,39 @@ document.querySelectorAll(".nx-item > .nx-link").forEach(link=>{
       link.parentElement.classList.toggle("open");
     }
   });
+});
+
+/* close submenus on outside click */
+document.addEventListener("click",(e)=>{
+  if(!headerEl.contains(e.target)){
+    document.querySelectorAll(".nx-item.open").forEach(x=>x.classList.remove("open"));
+  }
+});
+
+/* reveal animations */
+const obs = new IntersectionObserver((entries)=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){
+      en.target.classList.add("show");
+    }
+  });
+},{threshold:.2});
+
+document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
+
+/* image reveal if exists */
+document.addEventListener("DOMContentLoaded",()=>{
+  const img = document.getElementById("complaintImg");
+  if(!img) return;
+  const io = new IntersectionObserver((ents)=>{
+    ents.forEach(x=>{
+      if(x.isIntersecting){
+        img.classList.add("show");
+        io.disconnect();
+      }
+    });
+  },{threshold:.25});
+  io.observe(img);
 });
 </script>
 
