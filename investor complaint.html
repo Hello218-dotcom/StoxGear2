@@ -306,6 +306,16 @@ textarea.form-field{ height:150px; }
   flex-wrap:wrap;
   font-size:13px;
 }
+/* === BASIC DROPDOWN VISIBILITY (NO ANIMATION) === */
+@media (min-width:1025px){
+  .nx-item:hover > .nx-drop{
+    display:block;
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+    transform:none;
+  }
+}
 
 /* reveal animation */
 .show{opacity:1!important; transform:none!important;}
@@ -498,3 +508,4 @@ document.addEventListener("click",(e)=>{
 
 </body>
 </html>
+
